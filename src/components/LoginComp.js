@@ -27,7 +27,7 @@ const LoginComp = () => {
     setUsername(username);
   };
 
-  console.log(process.env.API_URL)
+  //console.log(`${process.env.REACT_APP_CLIENT_ID}`)
   const onChangePassword = (e) => {
     const password = e.target.value;
     setPassword(password);
@@ -45,8 +45,8 @@ const LoginComp = () => {
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.login(username, password).then(
         () => {
-         // navigate("/profile");
-          //window.location.reload();
+           navigate("/profile");
+           window.location.reload();
         },
         (error) => {
           const resMessage =
