@@ -29,7 +29,7 @@ const Profile = () => {
         setIsLoading(false);
       }, 300);
 
-      console.log(response.data);
+      // console.log(response.data);
       if (response.data.user) {
         setSearchShow(true);
         setResultdata(response.data.user);

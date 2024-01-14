@@ -6,7 +6,7 @@ import EventBus from "./common/eventBus ";
 import AuthService from "./services/AuthService";
 import Navbar from "./components/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import Price from "./components/Price/Price";
 function App() {
   const [currentUser, setCurrentUser] = useState(undefined);
 
@@ -37,11 +37,12 @@ function App() {
   return (
     <React.Fragment>
       {currentUser ? <Navbar user={currentUser} /> : null}
-      <div claasName="container">
+      <div className="container">
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/price" element={<Price />} />
           </Routes>
         </BrowserRouter>
       </div>
