@@ -5,13 +5,15 @@ import Login from "./components/LoginComp";
 import EventBus from "./common/eventBus ";
 import AuthService from "./services/AuthService";
 import Navbar from "./components/Navbar";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(undefined);
+
+  //const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
   useEffect(() => {
     const user = AuthService.getCurrentUser();
-   
+    console.log(user);
     if (user) {
       setCurrentUser(user);
       //setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
@@ -33,8 +35,8 @@ function App() {
     setCurrentUser(undefined);
   };
   return (
-    <>
-      <Navbar user={currentUser} />
+    <React.Fragment>
+      {currentUser ? <Navbar user={currentUser} /> : null}
       <div claasName="container">
         <BrowserRouter>
           <Routes>
@@ -43,7 +45,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </div>
-    </>
+    </React.Fragment>
   );
 }
 

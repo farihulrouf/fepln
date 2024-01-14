@@ -1,5 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 const Home = () => {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState({})
+
+  const fetchData = async () => {
+    /*
+    try {
+      const response = await axios.get("localhost:3000/customers/getnomer",{
+        params: {
+          s: '39843024',
+        },
+      });
+      console.log(response)
+      //setData(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+    */
+   console.log("data di test")
+  };
+
   return (
     <>
       <form className="w-full p-4">
@@ -12,9 +33,9 @@ const Home = () => {
           />
           <button
             className="flex-shrink-0 bg-indigo-500 hover:bg-indigo-500  hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
-            type="button"
+            type="button" onClick={fetchData}
           >
-            Scan
+            Scan ok
           </button>
         </div>
       </form>

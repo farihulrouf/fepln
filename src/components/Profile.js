@@ -1,9 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
 import AuthService from "../services/AuthService";
-
+import Spinner from "./Spinner";
+import Cardsearch from "./Cardsearch";
+import axios from "axios";
 const Profile = () => {
   const currentUser = AuthService.getCurrentUser();
-  console.log(currentUser);
+  const [nomer, setNomer] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchShow, setSearchShow] = useState(false);
+  const [resultdata, setResultdata] = useState({});
+  //const [showinvoice, setShowinvoice] = useState (false)
+  const onChangeNomer = (e) => {
+    const nomer = e.target.value;
+    setNomer(nomer);
+  };
+  const fetchData = async () => {
+    const params = {
+      nomer: nomer,
+    };
+
+    try {
+      setIsLoading(true);
+      const response = await axios.post(
+        process.env.REACT_APP_API_URL + "/customers/getnomer",
+        params
+      );
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 300);
+
+      console.log(response.data);
+      if (response.data.user) {
+        setSearchShow(true);
+        setResultdata(response.data.user);
+        //setDataresult(response.data)
+        //console.log(response.data.found)
+      } else {
+        setSearchShow(false);
+        setResultdata({});
+      }
+    } catch (error) {
+      setIsLoading(false);
+    }
+  };
+
+  const resultSearch = () => {
+    if (searchShow) {
+      return (
+        <>
+          <Cardsearch user={resultdata} />
+        </>
+      );
+    }
+  };
   return (
     <div className="container mx-auto">
       <form className="w-full p-4">
@@ -13,57 +62,25 @@ const Profile = () => {
             type="text"
             placeholder="Nomer Meteran"
             aria-label="Meteran"
+            value={nomer}
+            onChange={onChangeNomer}
           />
           <button
             className="flex-shrink-0 bg-indigo-500 hover:bg-indigo-500  hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
             type="button"
+            onClick={fetchData}
+            disabled={isLoading}
           >
             Scan
           </button>
         </div>
       </form>
-      <div className="mt-4 p-4">
-        <div className="text-xl">
-          <ul className="flex justify-between p-2">
-            <li>Nomer</li>
-            <li>9884934</li>
-          </ul>
-          <ul className="flex justify-between p-2">
-            <li>Nama</li>
-            <li>Ulul Fahmi</li>
-          </ul>
-          <ul className="flex justify-between p-2">
-            <li>Penggunaan</li>
-            <li>1200 m x m</li>
-          </ul>
-          <ul className="flex justify-between p-2">
-            <li>Tagihan</li>
-            <li>Rp 90000</li>
-          </ul>
-        </div>
-      </div>
-      <div className="flex space-x-4 mb-6 text-sm font-medium p-4">
-        <div className="flex-auto flex space-x-4">
-          <button
-            className="h-10 px-6 font-semibold rounded-md bg-pink-500 text-white"
-            type="submit"
-          >
-            Pay Now
-          </button>
-        </div>
-        <button
-          className="flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200"
-          type="button"
-          aria-label="Like"
-        >
-          <svg width="20" height="20" fill="currentColor" aria-hidden="true">
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-            />
-          </svg>
-        </button>
+      <div className="relative">
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <React.Fragment> {resultSearch()}</React.Fragment>
+        )}
       </div>
     </div>
   );
