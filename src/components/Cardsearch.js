@@ -30,8 +30,8 @@ const Cardsearch = ({ user, price }) => {
       ) : (
         <div className="h-screen dark:bg-gray-700 bg-gray-200">
           <div className="max-w-sm mx-auto bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
-            <div className="border-b px-4">
-              <div className="text-center my-1">
+            <div className="border-b px-2 py-2">
+              <div className="text-center my-1 flex px-8 space-x-4">
                 <Avatar
                   className="rounded-full"
                   name={
@@ -55,7 +55,7 @@ const Cardsearch = ({ user, price }) => {
               <div className="px-4 py-2 sm:p-6">
                 <div className="flex flex-col items-start justify-between mb-6">
                   <span className="text-sm font-medium text-gray-600">
-                    Nomer Pelanggan
+                    Nama Pelanggan
                   </span>
                   <span className="text-lg font-medium text-gray-800">
                     {user[0].customers[0].name}
