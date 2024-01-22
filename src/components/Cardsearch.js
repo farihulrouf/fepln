@@ -28,7 +28,7 @@ const Cardsearch = ({ user, price }) => {
       {showinvoice ? (
         <Invoice user={user} value={value} stateChanger={onChange} />
       ) : (
-        <div className="h-screen dark:bg-gray-700 bg-gray-200">
+        <div className="dark:bg-gray-700 bg-gray-200">
           <div className="max-w-sm mx-auto bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
             <div className="border-b px-2 py-2">
               <div className="text-center my-1 flex px-8 space-x-4">
