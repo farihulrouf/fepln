@@ -7,6 +7,8 @@ const Cardsearch = ({ user, price }) => {
   const [showinvoice, setShowinvoice] = useState(false);
   const [value, setValue] = useState("");
   const [pemakaian, setPemakaian] = useState(0);
+  const [noinv, setNoinv] = useState(0)
+  const [bayar, setBayar] = useState(0)
  // console.log("data harga", price);
   const onChange = () => {
     setShowinvoice(!showinvoice);
@@ -14,19 +16,45 @@ const Cardsearch = ({ user, price }) => {
   const onChangeData = (e) => {
     setPemakaian(e.target.value - user[0].meteran);
     setValue(e.target.value);
-    //console.log(pemakaian)
-   /* if(pemakaian >= price[0].maximum && pemakaian < price[1].maximum) {
-      console.log('data harga', price[0].maximum)
+    setBayar(e.target.value * price[0].harga)
+    setNoinv(Math.random().toString().substr(2, 6))
+    //console.log('nilai value', value)
+    //onChangeBayar()
+   
+  };
+
+  const currencyFormatter = Intl.NumberFormat("en-ID", {
+    style: "currency",
+    currency: "IDR",
+    maximumFractionDigits: 3,
+  });
+  /*
+   console.log(price)
+   console.log(price[1].maximum)
+    {
+      value < price[1].minimum ?(
+        console.log('data value',value, pemakaian)
+      ):
+      (
+        console.log('data oke')
+      )
     }
     */
-    //console.log("harga saat ini",price)
-    // console.log(value)
-  };
+   /*
+   if(pemakaian >= price[0].maximum && pemakaian < price[1].maximum) {
+    console.log('data', pemakaian)
+   }
+   */
+  /*if(pemakaian >= price[0].maximum && pemakaian < price[1].maximum) {
+    console.log(pemakaian)
+  }
+  */
+ 
  
   return (
     <React.Fragment>
       {showinvoice ? (
-        <Invoice user={user} value={value} stateChanger={onChange} />
+        <Invoice user={user} value={value} bayar={bayar} noinv={noinv} stateChanger={onChange} />
       ) : (
         <div className="dark:bg-gray-700 bg-gray-200">
           <div className="max-w-sm mx-auto bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
@@ -100,7 +128,7 @@ const Cardsearch = ({ user, price }) => {
 
                     <div className="flex justify-between mt-2 bg-gray-200 p-2">
                       <p className="mt-2 mb-2">Total Bayar</p>
-                      <h1 className="text-3xl">Rp {pemakaian * price[0].harga}</h1>
+                      <h1 className="text-2xl">{currencyFormatter.format(bayar)}</h1>
                     </div>
                   </div>
 

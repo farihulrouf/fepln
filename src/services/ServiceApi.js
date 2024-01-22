@@ -52,6 +52,9 @@ const getTransactions = (params) => {
   return http.post("/transactions/getransactions/", params);
 };
 
+const createTransactions = (data) => {
+  return http.post('/transactions/post');
+}
 const ServiceApi = {
   getallPrice,
   get,
@@ -66,6 +69,7 @@ const ServiceApi = {
   updateCustomer,
   getallCustomer,
   getTransactions,
+  createTransactions
   
 };
 

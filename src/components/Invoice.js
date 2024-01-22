@@ -1,8 +1,9 @@
 import React from "react";
 import moment from "moment";
-const Invoice = ({ user, value, stateChanger }) => {
+import ServiceApi from "../services/ServiceApi";
+const Invoice = ({ user, value, bayar, noinv, stateChanger }) => {
   //console.log(stateChanger);
-  console.log(value);
+  console.log(user);
   const buttonHandler = () => {
     stateChanger();
   };
@@ -14,6 +15,29 @@ const Invoice = ({ user, value, stateChanger }) => {
     maximumFractionDigits: 3,
   });
 
+  const saveTransaction = async () => {
+    const data = {
+      title: 'Listrik',
+      noinv: noinv,
+      amount: bayar,
+      no_id: user[0].customers[0].no_id,
+      meteran: value,
+      transactionType: 'Credit Card',
+      customerId: user[0].customers[0]._id
+    };
+    console.log(data)
+    ServiceApi.createTransactions(data)
+    .then((response) => {
+    
+      //setSubmitted(true);
+      console.log(response);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+ 
+  }
+
   
   //console.log(Math.random().toFixed(7).split('.')[1])
   return (
@@ -24,7 +48,7 @@ const Invoice = ({ user, value, stateChanger }) => {
           <h1 className="text-lg font-bold">Invoice</h1>
           <div className="text-gray-700">
             <div>Date: {moment(date).format('MM/DD/YYYY')}</div>
-            <div>Invoice #: {Math.random().toString().substr(2, 6)}</div>
+            <div>Invoice #: {noinv}</div>
           </div>
         </div>
         <div className="mb-8">
@@ -38,14 +62,14 @@ const Invoice = ({ user, value, stateChanger }) => {
           <thead>
             <tr>
               <th className="text-left font-bold text-gray-700">Description</th>
-              <th className="text-right font-bold text-gray-700">Amount</th>
+              <th className="text-right font-bold text-gray-700">Total</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className="text-left text-gray-700">Air</td>
+              <td className="text-left text-gray-700">Pemakaian / kubik</td>
               <td className="text-right text-gray-700">
-                {currencyFormatter.format(value)}
+                {value}
               </td>
             </tr>
           </tbody>
@@ -53,7 +77,7 @@ const Invoice = ({ user, value, stateChanger }) => {
             <tr>
               <td className="text-left font-bold text-gray-700">Total</td>
               <td className="text-right font-bold text-gray-700">
-                {currencyFormatter.format(value)}
+                {currencyFormatter.format(bayar)}
               </td>
             </tr>
           </tfoot>
@@ -66,7 +90,7 @@ const Invoice = ({ user, value, stateChanger }) => {
         <button className="bg-teal-500 px-2 py-2" onClick={buttonHandler}>
           Back
         </button>
-        <button className="bg-teal-500 px-2 py-2" onClick={buttonHandler}>
+        <button className="bg-teal-500 px-2 py-2" onClick={saveTransaction}>
           Save Print
         </button>
         </div>
