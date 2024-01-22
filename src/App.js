@@ -5,8 +5,10 @@ import Login from "./components/LoginComp";
 import EventBus from "./common/eventBus ";
 import AuthService from "./services/AuthService";
 import Navbar from "./components/Navbar";
+import FormPrice from "./components/Price/FormPrice";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Price from "./components/Price/Price";
+//import Customer from "./components/Customer/Customer";
 function App() {
   const [currentUser, setCurrentUser] = useState(undefined);
 
@@ -43,6 +45,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/price" element={<Price />} />
+            <Route path="/price/add" element={<FormPrice /> } />
           </Routes>
         </BrowserRouter>
       </div>

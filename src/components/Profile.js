@@ -1,15 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AuthService from "../services/AuthService";
 import Spinner from "./Spinner";
 import Cardsearch from "./Cardsearch";
 import axios from "axios";
+import ServiceApi from "../services/ServiceApi";
 const Profile = () => {
   const currentUser = AuthService.getCurrentUser();
   const [nomer, setNomer] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [searchShow, setSearchShow] = useState(false);
-  const [resultdata, setResultdata] = useState({});
+  const [resultdata, setResultdata] = useState();
+  const [price, setPrice] = useState([]);
+
   //const [showinvoice, setShowinvoice] = useState (false)
+
+  useEffect(() => {
+    getPrice();
+  }, []);
+
+  const getPrice = () => {
+    ServiceApi.getallPrice()
+      .then((response) => {
+        setPrice(response.data);
+       // console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   const onChangeNomer = (e) => {
     const nomer = e.target.value;
     setNomer(nomer);
@@ -44,11 +63,35 @@ const Profile = () => {
     }
   };
 
+  const getTransaction = async () => {
+    const params = {
+      nomer: parseInt(nomer, 10),
+    };
+    try {
+      setIsLoading(true);
+      ServiceApi.getTransactions(params)
+        .then((response) => {
+          //console.log(response.data);
+          setResultdata(response.data.transaction)
+          setSearchShow(true);
+
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 300);
+    } catch (error) {}
+  };
+
+  const transAction = async () => {};
+
   const resultSearch = () => {
     if (searchShow) {
       return (
         <>
-          <Cardsearch user={resultdata} />
+          <Cardsearch user={resultdata} price={price} />
         </>
       );
     }
@@ -68,8 +111,7 @@ const Profile = () => {
           <button
             className="flex-shrink-0 bg-indigo-500 hover:bg-indigo-500  hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
             type="button"
-            onClick={fetchData}
-            disabled={isLoading}
+            onClick={getTransaction}
           >
             Scan
           </button>
@@ -79,7 +121,9 @@ const Profile = () => {
         {isLoading ? (
           <Spinner />
         ) : (
-          <React.Fragment> {resultSearch()}</React.Fragment>
+          <React.Fragment>
+            <React.Fragment> {resultSearch()}</React.Fragment>{" "}
+          </React.Fragment>
         )}
       </div>
     </div>

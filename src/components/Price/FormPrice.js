@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ServiceApi from "../../services/ServiceApi";
 
 const FormPrice = () => {
+  //console.log("data di tambahklan", props)
   const initialState = {
     price: null,
     minimum: null,
@@ -17,7 +18,7 @@ const FormPrice = () => {
 
   const savePrice = () => {
     var data = {
-      harga: price.price,
+      harga: price.harga,
       minimum: price.minimum,
       maximum: price.maximum,
     };
@@ -51,9 +52,9 @@ const FormPrice = () => {
             type="text"
             placeholder="Harga"
             aria-label="Meteran"
-            value={price.price}
+            value={price.harga}
             onChange={handleInputChange}
-            name="price"
+            name="harga"
           />
           <input
             className="appearance-none mt-4 bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"

@@ -8,8 +8,8 @@ const create = (data) => {
   return http.post("/tutorials", data);
 };
 
-const update = (id, data) => {
-  return http.put(`/tutorials/${id}`, data);
+const updatePrice = (id, data) => {
+  return http.put(`/prices/${id}`, data);
 };
 
 const remove = (id) => {
@@ -32,15 +32,41 @@ const getallPrice = () => {
   return http.get("/prices/getall");
 };
 
+//customer
+const createCustomer = (data) => {
+  return http.post('/customers/post');
+}
+const getallCustomer = () => {
+  return http.get("/customers/getall");
+};
+
+const updateCustomer = (id, data) => {
+  return http.put(`/customers/update/${id}`, data);
+};
+const deleteCustomer = (id) => {
+  return http.delete(`/customers/delete/${id}`);
+};
+
+const getTransactions = (params) => {
+  console.log("ini adalah", params)
+  return http.post("/transactions/getransactions/", params);
+};
+
 const ServiceApi = {
   getallPrice,
   get,
   create,
-  update,
+  updatePrice,
   remove,
   removeAll,
   findByTitle,
   createPrice,
+  createCustomer,
+  deleteCustomer,
+  updateCustomer,
+  getallCustomer,
+  getTransactions,
+  
 };
 
 export default ServiceApi;

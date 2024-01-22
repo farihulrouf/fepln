@@ -30,9 +30,9 @@ const Invoice = ({ user, value, stateChanger }) => {
         <div className="mb-8">
           <h2 className="text-lg font-bold mb-4">Bill To:</h2>
           <div className="text-gray-700 mb-2">
-            {user.name} ({user.no_id})
+            {user[0].customers[0].name} ({user[0].customers[0].no_id})
           </div>
-          <div className="text-gray-700 mb-2">{user.no_tel}</div>
+          <div className="text-gray-700 mb-2">{user[0].customers[0].no_tel}</div>
         </div>
         <table className="w-full mb-8">
           <thead>
