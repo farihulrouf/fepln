@@ -5,6 +5,7 @@ import Pagination from "../Pagination";
 import { MdModeEditOutline } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import { GrView } from "react-icons/gr";
+import Avatar from "react-avatar";
 
 const Customer = () => {
   const [customers, setCustomers] = useState({});
@@ -12,11 +13,9 @@ const Customer = () => {
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [searchName, setSearchName] = useState("");
 
-
   const [currentPage, setCurrentPage] = useState(0);
   const [customersPerPage, setCustomerPerpage] = useState(5);
 
-  
   const [recordsPerPage] = useState(5);
   useEffect(() => {
     retrieveCustomers();
@@ -39,12 +38,11 @@ const Customer = () => {
       });
   };
 
-
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
   //const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
-  const currentRecords = 3
-  const nPages = Math.ceil(6 / recordsPerPage)
+  const currentRecords = 3;
+  const nPages = Math.ceil(6 / recordsPerPage);
 
   const refreshList = () => {
     retrieveCustomers();
@@ -84,53 +82,54 @@ const Customer = () => {
   }
   return (
     <React.Fragment>
-      <div className="flex flex-col">
-        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-            <div className="overflow-hidden">
-              <table className="min-w-full text-left text-sm font-light">
-                <thead className="border-b font-medium dark:border-neutral-500">
-                  <tr>
-                    <th scope="col" className="px-6 py-4">
-                      #
-                    </th>
-                 
-                    <th scope="col" className="px-6 py-4">
-                      Name
-                    </th>
-                    <th scope="col" className="px-6 py-4">
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {customers.customers?.map((item, index) => {
-                    return (
-                      <tr className="border-b dark:border-neutral-500">
-                        <td className="whitespace-nowrap px-6 py-4 font-medium">
-                          {index + 1}
-                        </td>
-                     
-                        <td className="whitespace-nowrap px-6 py-4" key={index}>
-                          <p className="font-normal">{item.name}</p>
-                          <p className="text-[12px]">{item.no_id}</p>
-                        </td>
-                        <td className="whitespace-nowrap px-6 py-4 flex space-x-2"><MdModeEditOutline /> <GrView /> <FaTrash /></td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-           
-              {/*
-              postsPerPage,
-  totalPosts,
-  paginate,
-  currentPage
-                */}
-            </div>
-          </div>
-        </div>
+      <div className="overflow-hidden">
+        <table className="min-w-full text-left text-sm font-light">
+          <thead className="border-b font-medium dark:border-neutral-500">
+            <tr>
+              <th scope="" className="px-2 w-1/8 py-4">
+                #
+              </th>
+
+              <th scope="" className="px-1 w-2/3 py-4">
+                Name
+              </th>
+              <th scope="" className="px-1 py-4">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {customers.customers?.map((item, index) => {
+              return (
+                <tr className="border-b dark:border-neutral-500">
+                  <td className="px-2 py-4 font-medium">
+                    {index + 1}
+                  </td>
+                  <td
+                    className="px-1 py-4 flex space-x-2"
+                    key={index}
+                  >
+                    <Avatar
+                      className="rounded-full"
+                      name={item.name + " " + item.name}
+                      maxInitials={2}
+                      size={30}
+                    />
+                    <ul>
+                      <li className="font-normal">{item.name}</li>
+                      <li className="text-[12px]">{item.no_id}</li>
+                    </ul>
+                  </td>
+                  <td className="px-2 py-4">
+                    <div className="w-full flex items-center space-x-2">
+                    <MdModeEditOutline /> <GrView /> <FaTrash />
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </React.Fragment>
   );
