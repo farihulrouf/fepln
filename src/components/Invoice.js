@@ -8,7 +8,7 @@ const Invoice = ({ user, value, bayar, noinv, stateChanger }) => {
     stateChanger();
   };
   const date = new Date();
- 
+
   const currencyFormatter = Intl.NumberFormat("en-ID", {
     style: "currency",
     currency: "IDR",
@@ -16,29 +16,26 @@ const Invoice = ({ user, value, bayar, noinv, stateChanger }) => {
   });
 
   const saveTransaction = async () => {
-    const data = {
-      title: 'Listrik',
+    const params = {
+      title: "Listrik",
       noinv: noinv,
       amount: bayar,
       no_id: user[0].customers[0].no_id,
       meteran: value,
-      transactionType: 'Credit Card',
-      customerId: user[0].customers[0]._id
+      transactionType: "Credit Card",
+      customerId: user[0].customers[0]._id,
     };
-    console.log(data)
-    ServiceApi.createTransactions(data)
-    .then((response) => {
-    
-      //setSubmitted(true);
-      console.log(response);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
- 
-  }
+   // console.log(params);
+    ServiceApi.createTransactions(params)
+      .then((response) => {
+        //setSubmitted(true);
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
-  
   //console.log(Math.random().toFixed(7).split('.')[1])
   return (
     <React.Fragment>
@@ -47,7 +44,7 @@ const Invoice = ({ user, value, bayar, noinv, stateChanger }) => {
         <div className="flex justify-between mb-6">
           <h1 className="text-lg font-bold">Invoice</h1>
           <div className="text-gray-700">
-            <div>Date: {moment(date).format('MM/DD/YYYY')}</div>
+            <div>Date: {moment(date).format("MM/DD/YYYY")}</div>
             <div>Invoice #: {noinv}</div>
           </div>
         </div>
@@ -56,7 +53,9 @@ const Invoice = ({ user, value, bayar, noinv, stateChanger }) => {
           <div className="text-gray-700 mb-2">
             {user[0].customers[0].name} ({user[0].customers[0].no_id})
           </div>
-          <div className="text-gray-700 mb-2">{user[0].customers[0].no_tel}</div>
+          <div className="text-gray-700 mb-2">
+            {user[0].customers[0].no_tel}
+          </div>
         </div>
         <table className="w-full mb-8">
           <thead>
@@ -68,9 +67,7 @@ const Invoice = ({ user, value, bayar, noinv, stateChanger }) => {
           <tbody>
             <tr>
               <td className="text-left text-gray-700">Pemakaian / kubik</td>
-              <td className="text-right text-gray-700">
-                {value}
-              </td>
+              <td className="text-right text-gray-700">{value}</td>
             </tr>
           </tbody>
           <tfoot>
@@ -83,16 +80,14 @@ const Invoice = ({ user, value, bayar, noinv, stateChanger }) => {
           </tfoot>
         </table>
         <div className="text-gray-700 mb-2">Thank you for your business!</div>
-        <div className="text-gray-700 text-sm">
-          Please remit payment within 30 days.
-        </div>
+       
         <div className="flex gap-2">
-        <button className="bg-teal-500 px-2 py-2" onClick={buttonHandler}>
-          Back
-        </button>
-        <button className="bg-teal-500 px-2 py-2" onClick={saveTransaction}>
-          Save Print
-        </button>
+          <button className="bg-teal-500 px-2 py-2 text-white" onClick={buttonHandler}>
+            Back
+          </button>
+          <button className="bg-teal-500 px-2 py-2 text-white" onClick={saveTransaction}>
+            Save Print
+          </button>
         </div>
       </div>
     </React.Fragment>

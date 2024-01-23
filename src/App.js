@@ -7,6 +7,7 @@ import AuthService from "./services/AuthService";
 import Navbar from "./components/Navbar";
 import FormPrice from "./components/Price/FormPrice";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Customer from "./components/Customer/Customer";
 import Price from "./components/Price/Price";
 //import Customer from "./components/Customer/Customer";
 function App() {
@@ -46,6 +47,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/price" element={<Price />} />
             <Route path="/price/add" element={<FormPrice /> } />
+            <Route path="/customers" element={<Customer />} />
           </Routes>
         </BrowserRouter>
       </div>

@@ -36,8 +36,9 @@ const getallPrice = () => {
 const createCustomer = (data) => {
   return http.post('/customers/post');
 }
-const getallCustomer = () => {
-  return http.get("/customers/getall");
+const getallCustomer = (page, size) => {
+  //?page=1
+  return http.get(`/customers/getall/?page=${page}&size=${size}`);
 };
 
 const updateCustomer = (id, data) => {
@@ -53,7 +54,7 @@ const getTransactions = (params) => {
 };
 
 const createTransactions = (data) => {
-  return http.post('/transactions/post');
+  return http.post('/transactions/post', data);
 }
 const ServiceApi = {
   getallPrice,
