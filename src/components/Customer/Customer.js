@@ -79,8 +79,9 @@ const Customer = () => {
   };
   const onChangeSearch = (event) => {
    // console.log(event.target.value);
-     setValue(event.target.value)
-     resultSearch(value)
+     console.log(event)
+     setValue(event)
+     resultSearch(event)
     
   }
   const resultSearch = async (value) => {
@@ -109,7 +110,8 @@ const Customer = () => {
             type="text"
             placeholder="Nama Customer"
             aria-label="Meteran"
-            onChange={onChangeSearch}
+            onChange={(e) => onChangeSearch(e.target.value)}
+           // onChange={onChangeSearch}
             value={value}
             //onChange={event => setValue(event.target.value)}
            // onChange={event => setDate(event.target.value)}onChange={event => setDate(event.target.value)}
