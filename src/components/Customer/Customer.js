@@ -111,7 +111,7 @@ const Customer = () => {
                           {index + 1}
                         </td>
                      
-                        <td className="whitespace-nowrap px-6 py-4">
+                        <td className="whitespace-nowrap px-6 py-4" key={index}>
                           <p className="font-normal">{item.name}</p>
                           <p className="text-[12px]">{item.no_id}</p>
                         </td>
