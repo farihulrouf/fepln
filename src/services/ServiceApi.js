@@ -36,9 +36,10 @@ const getallPrice = () => {
 const createCustomer = (data) => {
   return http.post('/customers/post');
 }
-const getallCustomer = (page, size) => {
+const getallCustomer = (name,page, size) => {
   //?page=1
-  return http.get(`/customers/getall/?page=${page}&size=${size}`);
+  return http.get(`/customers/getall/?name=${name}&page=${page}&size=${size}`);
+  //localhost:3000/customers/getall?name=ed&page=0&size=4
 };
 
 const updateCustomer = (id, data) => {

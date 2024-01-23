@@ -5,6 +5,7 @@ import Pagination from "../Pagination";
 import { MdModeEditOutline } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import { GrView } from "react-icons/gr";
+import Spinner from "../Spinner";
 import Avatar from "react-avatar";
 
 const Customer = () => {
@@ -15,8 +16,13 @@ const Customer = () => {
 
   const [currentPage, setCurrentPage] = useState(0);
   const [customersPerPage, setCustomerPerpage] = useState(5);
-
+  const [nameCustomer, setNameCustomer] = useState("")
   const [recordsPerPage] = useState(5);
+  const [value, setValue] = useState("")
+  const [isLoading, setIsLoading] = useState(false);
+
+
+
   useEffect(() => {
     retrieveCustomers();
   }, []);
@@ -28,15 +34,21 @@ const Customer = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const retrieveCustomers = async () => {
-    ServiceApi.getallCustomer(currentCustomer, customersPerPage)
+    
+    ServiceApi.getallCustomer(nameCustomer,currentCustomer, customersPerPage)
       .then((response) => {
+        setIsLoading(true)
         setCustomers(response.data);
+        setIsLoading(false)
+
         // console.log(response.data);
       })
       .catch((e) => {
         console.log(e);
+        setIsLoading(false);
       });
   };
+
 
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
@@ -65,24 +77,54 @@ const Customer = () => {
         console.log(e);
       });
   };
-  console.log("data", customers);
-  {
-    /*
-  const findByName = () => {
-    ServiceApi.findByName(searchName)
-      .then((response) => {
-        setCustomers(response.data);
-        console.log(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
-*/
+  const onChangeSearch = (event) => {
+   // console.log(event.target.value);
+     setValue(event.target.value)
+     resultSearch(value)
+    
   }
+  const resultSearch = async (value) => {
+    console.log('data value', value)
+    ServiceApi.getallCustomer(value,currentCustomer, customersPerPage)
+    .then((response) => {
+      setIsLoading(true)
+      setCustomers(response.data);
+       setIsLoading(false)
+
+      // console.log(response.data);
+    })
+    .catch((e) => {
+      console.log(e);
+      setIsLoading(false)
+
+    });
+  }
+
   return (
     <React.Fragment>
       <div className="overflow-hidden">
+        <div className="flex items-center border-b border-teal-500 py-2">
+          <input
+            className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+            type="text"
+            placeholder="Nama Customer"
+            aria-label="Meteran"
+            onChange={onChangeSearch}
+            value={value}
+            //onChange={event => setValue(event.target.value)}
+           // onChange={event => setDate(event.target.value)}onChange={event => setDate(event.target.value)}
+          //  onChange={onChangeSearch}
+          />
+          <button
+            className="flex-shrink-0 bg-indigo-500 hover:bg-indigo-500  hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
+            type="button"
+          >
+            Scan
+          </button>
+        </div>
+        {isLoading ? (
+          <Spinner />
+        ) : (
         <table className="min-w-full text-left text-sm font-light">
           <thead className="border-b font-medium dark:border-neutral-500">
             <tr>
@@ -102,13 +144,8 @@ const Customer = () => {
             {customers.customers?.map((item, index) => {
               return (
                 <tr className="border-b dark:border-neutral-500">
-                  <td className="px-2 py-4 font-medium">
-                    {index + 1}
-                  </td>
-                  <td
-                    className="px-1 py-4 flex space-x-2"
-                    key={index}
-                  >
+                  <td className="px-2 py-4 font-medium">{index + 1}</td>
+                  <td className="px-1 py-4 flex space-x-2" key={index}>
                     <Avatar
                       className="rounded-full"
                       name={item.name + " " + item.name}
@@ -122,7 +159,7 @@ const Customer = () => {
                   </td>
                   <td className="px-2 py-4">
                     <div className="w-full flex items-center space-x-2">
-                    <MdModeEditOutline /> <GrView /> <FaTrash />
+                      <MdModeEditOutline /> <GrView /> <FaTrash />
                     </div>
                   </td>
                 </tr>
@@ -130,6 +167,7 @@ const Customer = () => {
             })}
           </tbody>
         </table>
+        )}
       </div>
     </React.Fragment>
   );
