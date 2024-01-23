@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ServiceApi from "../../services/ServiceApi";
 import Pagination from "../Pagination";
+import { MdModeEditOutline } from "react-icons/md";
+import { FaTrash } from "react-icons/fa";
+import { GrView } from "react-icons/gr";
+
 const Customer = () => {
   const [customers, setCustomers] = useState({});
   const [currentCustomer, setCurrentCustomer] = useState(null);
@@ -90,14 +94,12 @@ const Customer = () => {
                     <th scope="col" className="px-6 py-4">
                       #
                     </th>
-                    <th scope="col" className="px-6 py-4">
-                      Id
-                    </th>
+                 
                     <th scope="col" className="px-6 py-4">
                       Name
                     </th>
                     <th scope="col" className="px-6 py-4">
-                      Handle
+                      Action
                     </th>
                   </tr>
                 </thead>
@@ -108,13 +110,12 @@ const Customer = () => {
                         <td className="whitespace-nowrap px-6 py-4 font-medium">
                           {index + 1}
                         </td>
+                     
                         <td className="whitespace-nowrap px-6 py-4">
-                          {item.no_id}
+                          <p className="font-normal">{item.name}</p>
+                          <p className="text-[12px]">{item.no_id}</p>
                         </td>
-                        <td className="whitespace-nowrap px-6 py-4">
-                          {item.name}
-                        </td>
-                        <td className="whitespace-nowrap px-6 py-4">@mdo</td>
+                        <td className="whitespace-nowrap px-6 py-4 flex space-x-2"><MdModeEditOutline /> <GrView /> <FaTrash /></td>
                       </tr>
                     );
                   })}
