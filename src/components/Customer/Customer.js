@@ -88,6 +88,7 @@ const Customer = () => {
     console.log('data value', value)
     ServiceApi.getallCustomer(value,currentCustomer, customersPerPage)
     .then((response) => {
+      console.log(response)
       setIsLoading(true)
       setCustomers(response.data);
        setIsLoading(false)

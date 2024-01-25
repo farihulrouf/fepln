@@ -7,20 +7,19 @@ const Cardsearch = ({ user, price }) => {
   const [showinvoice, setShowinvoice] = useState(false);
   const [value, setValue] = useState("");
   const [pemakaian, setPemakaian] = useState(0);
-  const [noinv, setNoinv] = useState(0)
-  const [bayar, setBayar] = useState(0)
- // console.log("data harga", price);
+  const [noinv, setNoinv] = useState(0);
+  const [bayar, setBayar] = useState(0);
+  // console.log("data harga", price);
   const onChange = () => {
     setShowinvoice(!showinvoice);
   };
   const onChangeData = (e) => {
     setPemakaian(e.target.value - user[0].meteran);
     setValue(e.target.value);
-    setBayar(e.target.value * price[0].harga)
-    setNoinv(Math.random().toString().substr(2, 6))
+    setBayar(e.target.value * price[0].harga);
+    setNoinv(Math.random().toString().substr(2, 6));
     //console.log('nilai value', value)
     //onChangeBayar()
-   
   };
 
   const currencyFormatter = Intl.NumberFormat("en-ID", {
@@ -40,7 +39,7 @@ const Cardsearch = ({ user, price }) => {
       )
     }
     */
-   /*
+  /*
    if(pemakaian >= price[0].maximum && pemakaian < price[1].maximum) {
     console.log('data', pemakaian)
    }
@@ -49,12 +48,17 @@ const Cardsearch = ({ user, price }) => {
     console.log(pemakaian)
   }
   */
- 
- 
+
   return (
     <React.Fragment>
       {showinvoice ? (
-        <Invoice user={user} value={value} bayar={bayar} noinv={noinv} stateChanger={onChange} />
+        <Invoice
+          user={user}
+          value={value}
+          bayar={bayar}
+          noinv={noinv}
+          stateChanger={onChange}
+        />
       ) : (
         <div className="dark:bg-gray-700 bg-gray-200">
           <div className="max-w-sm mx-auto bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
@@ -92,14 +96,6 @@ const Cardsearch = ({ user, price }) => {
                 <div className="flex flex-row items-center justify-between">
                   <div className="flex flex-col items-start">
                     <span className="text-sm font-medium text-gray-600">
-                      Jumlah Tagihan
-                    </span>
-                    <span className="text-lg font-medium text-gray-800">
-                      Rp {user[0].amount}
-                    </span>
-                  </div>
-                  <div className="flex flex-col items-start">
-                    <span className="text-sm font-medium text-gray-600">
                       Total Penggunaan
                     </span>
                     <span className="text-lg font-medium text-gray-800">
@@ -128,16 +124,19 @@ const Cardsearch = ({ user, price }) => {
 
                     <div className="flex justify-between mt-2 bg-gray-200 p-2">
                       <p className="mt-2 mb-2">Total Bayar</p>
-                      <h1 className="text-2xl">{currencyFormatter.format(bayar)}</h1>
+                      <h1 className="text-2xl">
+                        {currencyFormatter.format(bayar)}
+                      </h1>
                     </div>
                   </div>
-
-                  <button
-                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full"
-                    onClick={onChange}
-                  >
-                    Pay Now
-                  </button>
+                  <div className="mt-2 mb-2 flex justify-end">
+                    <button
+                      className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full"
+                      onClick={onChange}
+                    >
+                      Simpan
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
