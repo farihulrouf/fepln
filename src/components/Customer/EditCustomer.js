@@ -2,7 +2,7 @@ import React from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 const EditCustomer = ({customer, editChange}) => {
   const onChange = () => {
-    
+    editChange()
   }
   return (
     <React.Fragment>
@@ -17,7 +17,7 @@ const EditCustomer = ({customer, editChange}) => {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="name"
               type="text"
-              value={customer.name}
+              defaultValue={customer.name}
               placeholder="Enter your name"
             />
           </div>
@@ -30,7 +30,7 @@ const EditCustomer = ({customer, editChange}) => {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="noid"
               type="text"
-              value={customer.no_id}
+              defaultValue={customer.no_id}
               placeholder="Enter your no id"
             />
           </div>
@@ -57,7 +57,7 @@ const EditCustomer = ({customer, editChange}) => {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="phone"
               type="tel"
-              value={customer.no_tel}
+              defaultValue={customer.no_tel}
               placeholder="Enter your phone number"
             />
           </div>
@@ -69,7 +69,7 @@ const EditCustomer = ({customer, editChange}) => {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="message"
               rows="4"
-              value={customer.adares}
+              defaultValue={customer.adares}
               placeholder="Enter any additional information"
             ></textarea>
           </div>
