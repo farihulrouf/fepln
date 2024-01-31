@@ -162,7 +162,7 @@ const Customer = () => {
                   </td>
                   <td className="px-2 py-4">
                     <div className="w-full flex items-center space-x-2">
-                      <MdModeEditOutline /> <GrView /> <FaTrash />
+                      <MdModeEditOutline /> <Link  to={"/customers/" + item._id}><GrView /></Link> <FaTrash />
                     </div>
                   </td>
                 </tr>

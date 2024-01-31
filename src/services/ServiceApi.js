@@ -1,7 +1,7 @@
 import http from "./http-common";
 
-const get = (id) => {
-  return http.get(`/tutorials/${id}`);
+const getCustomer = (id) => {
+  return http.get(`/customers/${id}`);
 };
 
 const create = (data) => {
@@ -59,7 +59,6 @@ const createTransactions = (data) => {
 }
 const ServiceApi = {
   getallPrice,
-  get,
   create,
   updatePrice,
   remove,
@@ -71,7 +70,8 @@ const ServiceApi = {
   updateCustomer,
   getallCustomer,
   getTransactions,
-  createTransactions
+  createTransactions,
+  getCustomer
   
 };
 

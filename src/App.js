@@ -9,6 +9,7 @@ import FormPrice from "./components/Price/FormPrice";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Customer from "./components/Customer/Customer";
 import Price from "./components/Price/Price";
+import ViewCustomer from "./components/Customer/ViewCustomer";
 //import Customer from "./components/Customer/Customer";
 function App() {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -48,6 +49,7 @@ function App() {
             <Route path="/price" element={<Price />} />
             <Route path="/price/add" element={<FormPrice /> } />
             <Route path="/customers" element={<Customer />} />
+            <Route path="/customers/:id" element={<ViewCustomer />} />
           </Routes>
         </BrowserRouter>
       </div>
