@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import ServiceApi from "../../services/ServiceApi";
-const NewCustomer = () => {
+const NewCustomer = ({onChangeAdd}) => {
+  //console.log(onChangeAdd)
   const initialState = {
     name: null,
     no_id: null,
@@ -9,21 +10,24 @@ const NewCustomer = () => {
     no_tel: null,
     addres: null,
   };
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(initialState);
 
   const onChangeSave = () => {
-    console.log(data)
-    
+   
     ServiceApi.createCustomer(data)
     .then((response) => {
       setData(data);
+      setIsLoading(false);
+      
+     onChangeAdd()
       //setSubmitted(true);
       //console.log(response.data);
     })
     .catch((e) => {
       console.log(e);
     });
+    
     
   };
 

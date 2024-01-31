@@ -140,7 +140,7 @@ const Customer = () => {
                 </button>
               </div>
               {addshow ? (
-                <NewCustomer />
+                <NewCustomer onChangeAdd={onChangeAdd} />
               ) : (
                 <table className="min-w-full text-left text-sm font-light">
                   <thead className="border-b font-medium dark:border-neutral-500">
@@ -160,7 +160,7 @@ const Customer = () => {
                   <tbody>
                     {customers.customers?.map((item, index) => {
                       return (
-                        <tr className="border-b dark:border-neutral-500">
+                        <tr className="border-b dark:border-neutral-500" key={index}>
                           <td className="px-2 py-4 font-medium">{index + 1}</td>
                           <td className="px-1 py-4 flex space-x-2" key={index}>
                             <Avatar
