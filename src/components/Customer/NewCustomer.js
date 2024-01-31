@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import ServiceApi from "../../services/ServiceApi";
 const NewCustomer = () => {
-
+  const [isLoading, setIsLoading] = useState(false)
   return (
     <React.Fragment>
       <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-        
         <form className="py-1 px-6" action="" method="POST">
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-gray-700 font-bold mb-2" for="name">
               Name
             </label>
@@ -19,7 +19,7 @@ const NewCustomer = () => {
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-gray-700 font-bold mb-2" for="noid">
               No Id
             </label>
@@ -30,7 +30,7 @@ const NewCustomer = () => {
               placeholder="Enter your no id"
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-gray-700 font-bold mb-2" for="gender">
               Gender
             </label>
@@ -45,7 +45,7 @@ const NewCustomer = () => {
             </select>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-gray-700 font-bold mb-2" for="phone">
               Phone Number
             </label>
@@ -56,7 +56,7 @@ const NewCustomer = () => {
               placeholder="Enter your phone number"
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-gray-700 font-bold mb-2" for="message">
               Address
             </label>
@@ -67,7 +67,7 @@ const NewCustomer = () => {
               placeholder="Enter any additional information"
             ></textarea>
           </div>
-          <div className="flex items-center justify-end mb-4">
+          <div className="flex items-center justify-end mb-2">
             <button
               className="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
               type="submit"
