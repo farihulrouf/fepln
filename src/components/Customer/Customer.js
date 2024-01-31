@@ -103,20 +103,28 @@ const Customer = () => {
   return (
     <React.Fragment>
       <div className="overflow-hidden px-4">
-        <div className="flex items-center border-b border-teal-500 py-2">
-          <input
-            className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-            type="text"
-            placeholder="Nama Customer"
-            aria-label="Meteran"
-            onChange={(e) => onChangeSearch(e.target.value)}
-            // onChange={onChangeSearch}
-            value={value}
-            //onChange={event => setValue(event.target.value)}
-            // onChange={event => setDate(event.target.value)}onChange={event => setDate(event.target.value)}
-            //  onChange={onChangeSearch}
-          />
-        </div>
+        { addshow ? 
+          (
+            null
+          ):
+          (
+            <div className="flex items-center border-b border-teal-500 py-2">
+            <input
+              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+              type="text"
+              placeholder="Nama Customer"
+              aria-label="Meteran"
+              onChange={(e) => onChangeSearch(e.target.value)}
+              // onChange={onChangeSearch}
+              value={value}
+              //onChange={event => setValue(event.target.value)}
+              // onChange={event => setDate(event.target.value)}onChange={event => setDate(event.target.value)}
+              //  onChange={onChangeSearch}
+            />
+          </div>
+          )
+        }
+      
 
         {isLoading ? (
           <Spinner />

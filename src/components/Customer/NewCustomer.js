@@ -4,9 +4,9 @@ const NewCustomer = () => {
 
   return (
     <React.Fragment>
-      <div className="max-w-md mx-auto mt-4 bg-white shadow-lg rounded-lg overflow-hidden">
+      <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
         
-        <form className="py-4 px-6" action="" method="POST">
+        <form className="py-1 px-6" action="" method="POST">
           <div className="mb-4">
             <label className="block text-gray-700 font-bold mb-2" for="name">
               Name
