@@ -102,7 +102,7 @@ const Customer = () => {
   };
   return (
     <React.Fragment>
-      <div className="overflow-hidden">
+      <div className="overflow-hidden px-4">
         <div className="flex items-center border-b border-teal-500 py-2">
           <input
             className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
@@ -123,7 +123,7 @@ const Customer = () => {
         ) : (
           <div>
             <div className="py-2">
-              <div className="flex justify-end px-4">
+              <div className="flex justify-end">
                 <button
                   className="bg-indigo-500 px-2 py-1 text-white"
                   onClick={onChangeAdd}
