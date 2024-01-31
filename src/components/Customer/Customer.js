@@ -116,25 +116,19 @@ const Customer = () => {
             // onChange={event => setDate(event.target.value)}onChange={event => setDate(event.target.value)}
             //  onChange={onChangeSearch}
           />
-          <button
-            className="flex-shrink-0 bg-indigo-500 hover:bg-indigo-500  hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
-            type="button"
-          >
-            Scan
-          </button>
         </div>
 
         {isLoading ? (
           <Spinner />
         ) : (
           <div>
-            <div className="">
-              <div className="flex justify-end">
+            <div className="py-2">
+              <div className="flex justify-end px-4">
                 <button
                   className="bg-indigo-500 px-2 py-1 text-white"
                   onClick={onChangeAdd}
                 >
-                  Add new
+                  Add
                 </button>
               </div>
               {addshow ? (
