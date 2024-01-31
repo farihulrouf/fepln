@@ -34,7 +34,8 @@ const getallPrice = () => {
 
 //customer
 const createCustomer = (data) => {
-  return http.post('/customers/post');
+ // console.log('baca data', data)
+  return http.post('/customers/post', data);
 }
 const getallCustomer = (name,page, size) => {
   //?page=1
