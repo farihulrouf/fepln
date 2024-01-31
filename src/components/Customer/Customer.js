@@ -167,7 +167,7 @@ const Customer = () => {
                             </ul>
                           </td>
                           <td className="px-2 py-4">
-                            <div className="w-full flex items-center space-x-2">
+                            <div className="w-full flex items-center space-x-5">
                               <MdModeEditOutline />{" "}
                               <Link to={"/customers/" + item._id}>
                                 <GrView />
