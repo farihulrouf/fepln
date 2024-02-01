@@ -9,6 +9,7 @@ import Spinner from "../Spinner";
 import Avatar from "react-avatar";
 import NewCustomer from "./NewCustomer";
 import Paginatio from "./Pagination";
+import { IoAdd } from "react-icons/io5";
 const Customer = () => {
   const [customers, setCustomers] = useState({});
   const [currentCustomer, setCurrentCustomer] = useState(null);
@@ -135,10 +136,10 @@ const Customer = () => {
             <div className="py-2">
               <div className="flex justify-end">
                 <button
-                  className="bg-indigo-500 px-2 py-1 text-white"
+                  className="px-2 py-1 text-black flex items-center hover:background-indigo-500"
                   onClick={onChangeAdd}
                 >
-                  Add
+                  <IoAdd size={24} />
                 </button>
               </div>
               {addshow ? (

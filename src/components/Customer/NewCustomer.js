@@ -43,7 +43,7 @@ const NewCustomer = ({onChangeAdd}) => {
     <React.Fragment>
       <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
         <div className="mb-2">
-          <label className="block text-gray-700 font-bold mb-2" for="name">
+          <label className="block text-gray-700 font-bold mb-2">
             Name
           </label>
           <input
@@ -58,7 +58,7 @@ const NewCustomer = ({onChangeAdd}) => {
         </div>
 
         <div className="mb-2">
-          <label className="block text-gray-700 font-bold mb-2" for="noid">
+          <label className="block text-gray-700 font-bold mb-2">
             No Id
           </label>
           <input
@@ -72,7 +72,7 @@ const NewCustomer = ({onChangeAdd}) => {
           />
         </div>
         <div className="mb-2">
-          <label className="block text-gray-700 font-bold mb-2" for="gender">
+          <label className="block text-gray-700 font-bold mb-2">
             Gender
           </label>
           <select
@@ -88,7 +88,7 @@ const NewCustomer = ({onChangeAdd}) => {
         </div>
 
         <div className="mb-2">
-          <label className="block text-gray-700 font-bold mb-2" for="phone">
+          <label className="block text-gray-700 font-bold mb-2">
             Phone Number
           </label>
           <input
@@ -102,7 +102,7 @@ const NewCustomer = ({onChangeAdd}) => {
           />
         </div>
         <div className="mb-2">
-          <label className="block text-gray-700 font-bold mb-2" for="message">
+          <label className="block text-gray-700 font-bold mb-2">
             Address
           </label>
           <textarea
