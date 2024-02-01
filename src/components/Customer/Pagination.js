@@ -33,7 +33,7 @@ const Paginatio = ({totalPages, totalItems, currentPage}) => {
       initial="hidden"
       animate="visible"
     >
-      <p className="text-sm px-2">Total items {totalItems} </p>
+      <p className="text-sm px-2 py-2">Total items {totalItems} </p>
       <ReactPaginate
         breakLabel="..."
         nextLabel={
