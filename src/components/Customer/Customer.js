@@ -25,7 +25,7 @@ const Customer = () => {
   const [addshow, setAddshow] = useState(false);
 
   useEffect(() => {
-    retrieveCustomers();
+    retrieveCustomers(value,currentPage, customersPerPage);
   }, []);
 
   const onChangeSearchName = (e) => {
@@ -34,21 +34,7 @@ const Customer = () => {
   };
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const retrieveCustomers = async () => {
-    ServiceApi.getallCustomer(nameCustomer, currentPage, customersPerPage)
-      .then((response) => {
-        setIsLoading(true);
-        setCustomers(response.data);
-        setIsLoading(false);
-
-        // console.log(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-        setIsLoading(false);
-      });
-  };
-
+ 
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
   //const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
@@ -77,16 +63,18 @@ const Customer = () => {
       });
   };
   const onChangeSearch = (event) => {
-    // console.log(event.target.value);
-   // console.log(event);
     setValue(event);
-    resultSearch(event, currentPage, customersPerPage );
+    //retrieveCustomers
+    retrieveCustomers(event, currentPage, customersPerPage );
   };
-  const resultSearch = async (value, currentPage, customersPerPage) => {
-    console.log("data value", value);
+  
+  const onChangeData = () => {
+    console.log('data silver', customersPerPage)
+     //resultSearch('', currentPage, 5)
+  }
+  const retrieveCustomers = async (value, currentPage, customersPerPage) => {
     ServiceApi.getallCustomer(value, currentPage, customersPerPage)
       .then((response) => {
-        console.log(response);
         setIsLoading(true);
         setCustomers(response.data);
         setIsLoading(false);
@@ -98,10 +86,11 @@ const Customer = () => {
         setIsLoading(false);
       });
   };
+
   const onChangeAdd = () => {
     setAddshow(!addshow);
   };
-  console.log(currentPage)
+  console.log('ini data',currentPage)
   console.log(customers)
   return (
     <React.Fragment>
@@ -194,7 +183,7 @@ const Customer = () => {
                       })}
                     </tbody>
                   </table>
-                  <Paginatio setCurrentPage={setCurrentPage} totalItems={customers.totalItems} currentPage={setCurrentPage} />
+                  <Paginatio setCurrentPage={setCurrentPage} totalItems={customers.totalItems} currentPage={currentPage} onChangeData={onChangeData} />
   {/*
                   <PaginationButtons
             totalPages={totalPages}

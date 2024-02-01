@@ -5,8 +5,11 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 //{ setCurrentPage, currentPage, totalPages }
-const Paginatio = ({setCurrentPage, totalItems, currentPage}) => {
+const Paginatio = ({setCurrentPage, totalItems, currentPage, onChangeData}) => {
+   // console.log(currentPage,"data")
    // console.log('nilai total', totalItems)
+ //  console.log(setCurrentPage)
+   //console.log(currentPage)
   const paginationVariants = {
     hidden: {
       opacity: 0,
@@ -28,6 +31,8 @@ const Paginatio = ({setCurrentPage, totalItems, currentPage}) => {
   const showPrevButton = currentPage !== 0;
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
+    onChangeData()
+    //currentPage(selected)
    // onChangeSearch('')
    // console.log('data', currentPage)
     //console.log(selected)
@@ -56,7 +61,7 @@ const Paginatio = ({setCurrentPage, totalItems, currentPage}) => {
         }
         containerClassName="flex items-center justify-center mt-2 mb-2"
         pageClassName="block border- border-solid border-lightGray hover:bg-lightGray w-10 h-10 flex items-center justify-center rounded-md mr-4"
-        activeClassName="bg-purple text-white"
+        activeClassName="bg-gray-200 text-white"
         renderOnZeroPageCount={null}
       />
     </motion.div>
