@@ -8,7 +8,7 @@ import { GrView } from "react-icons/gr";
 import Spinner from "../Spinner";
 import Avatar from "react-avatar";
 import NewCustomer from "./NewCustomer";
-
+import Paginatio from "./Pagination";
 const Customer = () => {
   const [customers, setCustomers] = useState({});
   const [currentCustomer, setCurrentCustomer] = useState(null);
@@ -100,6 +100,8 @@ const Customer = () => {
   const onChangeAdd = () => {
     setAddshow(!addshow);
   };
+
+  console.log(customers)
   return (
     <React.Fragment>
       <div className="overflow-hidden px-4">
@@ -142,52 +144,62 @@ const Customer = () => {
               {addshow ? (
                 <NewCustomer onChangeAdd={onChangeAdd} />
               ) : (
-                <table className="min-w-full text-left text-sm font-light">
-                  <thead className="border-b font-medium dark:border-neutral-500">
-                    <tr>
-                      <th scope="" className="px-2 w-1/8 py-4">
-                        #
-                      </th>
+                <div>
+                  <table className="min-w-full text-left text-sm font-light mb-2">
+                    <thead className="border-b font-medium dark:border-neutral-500">
+                      <tr>
+                        <th scope="" className="px-2 w-1/8 py-4">
+                          #
+                        </th>
 
-                      <th scope="" className="px-1 w-2/3 py-4">
-                        Name
-                      </th>
-                      <th scope="" className="px-1 py-4">
-                        Action
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {customers.customers?.map((item, index) => {
-                      return (
-                        <tr className="border-b dark:border-neutral-500" key={index}>
-                          <td className="px-2 py-4 font-medium">{index + 1}</td>
-                          <td className="px-1 py-4 flex space-x-2" key={index}>
-                            <Avatar
-                              className="rounded-full"
-                              name={item.name + " " + item.name}
-                              maxInitials={2}
-                              size={30}
-                            />
-                            <ul>
-                              <li className="font-normal">{item.name}</li>
-                              <li className="text-[12px]">{item.no_id}</li>
-                            </ul>
-                          </td>
-                          <td className="px-2 py-4">
-                            <div className="w-full flex items-center space-x-5">
-                              <MdModeEditOutline />{" "}
-                              <Link to={"/customers/" + item._id}>
-                                <GrView />
-                              </Link>{" "}
-                              <FaTrash />
-                            </div>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+                        <th scope="" className="px-1 w-2/3 py-4">
+                          Name
+                        </th>
+                        <th scope="" className="px-1 py-4">
+                          Action
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {customers.customers?.map((item, index) => {
+                        return (
+                          <tr className="border-b dark:border-neutral-500" key={index}>
+                            <td className="px-2 py-4 font-medium">{index + 1}</td>
+                            <td className="px-1 py-4 flex space-x-2" key={index}>
+                              <Avatar
+                                className="rounded-full"
+                                name={item.name + " " + item.name}
+                                maxInitials={2}
+                                size={30}
+                              />
+                              <ul>
+                                <li className="font-normal">{item.name}</li>
+                                <li className="text-[12px]">{item.no_id}</li>
+                              </ul>
+                            </td>
+                            <td className="px-2 py-4">
+                              <div className="w-full flex items-center space-x-5">
+                                <MdModeEditOutline />{" "}
+                                <Link to={"/customers/" + item._id}>
+                                  <GrView />
+                                </Link>{" "}
+                                <FaTrash />
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                  <Paginatio totalPages={customers.totalPages} totalItems={customers.totalItems} currentPage={customers.currentPage} />
+  {/*
+                  <PaginationButtons
+            totalPages={totalPages}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+                    */}
+                </div>
               )}
             </div>
           </div>
