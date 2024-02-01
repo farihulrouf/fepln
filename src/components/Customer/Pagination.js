@@ -33,6 +33,7 @@ const Paginatio = ({totalPages, totalItems, currentPage}) => {
       initial="hidden"
       animate="visible"
     >
+      <p className="text-sm px-2">Total items {totalItems} </p>
       <ReactPaginate
         breakLabel="..."
         nextLabel={
@@ -48,7 +49,7 @@ const Paginatio = ({totalPages, totalItems, currentPage}) => {
             <FaChevronLeft />
           </span>
         }
-        containerClassName="flex items-center justify-center mt-8 mb-4"
+        containerClassName="flex items-center justify-center mt-2 mb-2"
         pageClassName="block border- border-solid border-lightGray hover:bg-lightGray w-10 h-10 flex items-center justify-center rounded-md mr-4"
         activeClassName="bg-purple text-white"
         renderOnZeroPageCount={null}
