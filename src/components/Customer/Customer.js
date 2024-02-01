@@ -173,15 +173,17 @@ const Customer = () => {
                                 size={30}
                               />
                               <ul>
-                                <li className="font-normal">{item.name}</li>
-                                <li className="text-[12px]">{item.no_id}</li>
+                                <Link to={"/customers/" + item._id}>
+                                  <li className="font-normal">{item.name}</li>
+                                  <li className="text-[12px]">{item.no_id}</li>
+                                </Link>
                               </ul>
                             </td>
                             <td className="px-2 py-3">
-                              <div className="w-full flex items-center space-x-5">
-                                <MdModeEditOutline />{" "}
+                              <div className="w-full flex items-center space-x-12">
+                               
                                 <Link to={"/customers/" + item._id}>
-                                  <GrView />
+                                  <MdModeEditOutline />{" "}
                                 </Link>{" "}
                                 <FaTrash />
                               </div>
