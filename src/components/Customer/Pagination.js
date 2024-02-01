@@ -5,8 +5,8 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 //{ setCurrentPage, currentPage, totalPages }
-const Paginatio = ({totalPages, totalItems, currentPage}) => {
-    console.log('nilai total', totalItems)
+const Paginatio = ({setCurrentPage, totalItems, currentPage}) => {
+   // console.log('nilai total', totalItems)
   const paginationVariants = {
     hidden: {
       opacity: 0,
@@ -24,9 +24,14 @@ const Paginatio = ({totalPages, totalItems, currentPage}) => {
     },
   };
 
-  const showNextButton = currentPage !== totalPages - 1;
+  const showNextButton = currentPage !== totalItems - 1;
   const showPrevButton = currentPage !== 0;
-
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+   // onChangeSearch('')
+   // console.log('data', currentPage)
+    //console.log(selected)
+  };
   return (
     <motion.div
       variants={paginationVariants}
@@ -41,7 +46,7 @@ const Paginatio = ({totalPages, totalItems, currentPage}) => {
             <FaChevronRight />
           </span>
         }
-        //onPageChange={handlePageClick}
+        onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         pageCount={totalItems/5}
         previousLabel={

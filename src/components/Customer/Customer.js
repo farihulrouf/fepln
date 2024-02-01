@@ -35,7 +35,7 @@ const Customer = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const retrieveCustomers = async () => {
-    ServiceApi.getallCustomer(nameCustomer, currentCustomer, customersPerPage)
+    ServiceApi.getallCustomer(nameCustomer, currentPage, customersPerPage)
       .then((response) => {
         setIsLoading(true);
         setCustomers(response.data);
@@ -78,13 +78,13 @@ const Customer = () => {
   };
   const onChangeSearch = (event) => {
     // console.log(event.target.value);
-    console.log(event);
+   // console.log(event);
     setValue(event);
-    resultSearch(event);
+    resultSearch(event, currentPage, customersPerPage );
   };
-  const resultSearch = async (value) => {
+  const resultSearch = async (value, currentPage, customersPerPage) => {
     console.log("data value", value);
-    ServiceApi.getallCustomer(value, currentCustomer, customersPerPage)
+    ServiceApi.getallCustomer(value, currentPage, customersPerPage)
       .then((response) => {
         console.log(response);
         setIsLoading(true);
@@ -101,7 +101,7 @@ const Customer = () => {
   const onChangeAdd = () => {
     setAddshow(!addshow);
   };
-
+  console.log(currentPage)
   console.log(customers)
   return (
     <React.Fragment>
@@ -194,7 +194,7 @@ const Customer = () => {
                       })}
                     </tbody>
                   </table>
-                  <Paginatio totalPages={customers.totalPages} totalItems={customers.totalItems} currentPage={customers.currentPage} />
+                  <Paginatio setCurrentPage={setCurrentPage} totalItems={customers.totalItems} currentPage={setCurrentPage} />
   {/*
                   <PaginationButtons
             totalPages={totalPages}
