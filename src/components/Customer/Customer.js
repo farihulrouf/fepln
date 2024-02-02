@@ -77,7 +77,7 @@ const Customer = () => {
   const onChangeSearch = (event) => {
     setValue(event);
     //retrieveCustomers
-    retrieveCustomers(event, currentPage, customersPerPage );
+    retrieveCustomers(event, 0, customersPerPage );
   };
   
   const onChangeData = () => {
