@@ -4,7 +4,7 @@ import ReactPaginate from "react-paginate";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-const Paginatio = ({setCurrentPage, totalItems, currentPage, onChangeData}) => {
+const Paginatio = ({setCurrentPage, totalItems, currentPage, onChangeData, paginateBack, paginateFront, retrieveCustomers}) => {
 
   const paginationVariants = {
     hidden: {
@@ -27,7 +27,9 @@ const Paginatio = ({setCurrentPage, totalItems, currentPage, onChangeData}) => {
   const showPrevButton = currentPage !== 0;
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
-    onChangeData()
+    retrieveCustomers('',selected,5)
+    //console.log(retrieveCustomers)
+    //onChangeData()
     //currentPage(selected)
    // onChangeSearch('')
    // console.log('data', currentPage)
@@ -44,7 +46,7 @@ const Paginatio = ({setCurrentPage, totalItems, currentPage, onChangeData}) => {
         breakLabel="..."
         nextLabel={
           <span className="w-10 h-10 flex items-center justify-center bg-lightgray rounded-md">
-            <FaChevronRight />
+            <FaChevronRight onClick={paginateBack}/>
           </span>
         }
         onPageChange={handlePageClick}
@@ -52,7 +54,7 @@ const Paginatio = ({setCurrentPage, totalItems, currentPage, onChangeData}) => {
         pageCount={totalItems/5}
         previousLabel={
           <span className="w-10 h-10 flex items-center justify-center bg-lightgray rounded-md">
-            <FaChevronLeft />
+            <FaChevronLeft onClick={paginateFront} />
           </span>
         }
         containerClassName="flex items-center justify-center mt-2 mb-2"

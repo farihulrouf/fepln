@@ -34,7 +34,19 @@ const Customer = () => {
   };
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
- 
+  const paginateFront = () => {
+    setCurrentPage(currentPage + 1)
+   // console.log('ini data',currentPage)
+    retrieveCustomers('', currentPage+1, 5)
+  };
+  const paginateBack = () => { 
+    setCurrentPage(currentPage - 1)
+   // console.log('ini data',currentPage-1)
+    retrieveCustomers('', currentPage-1, 5)
+
+  }
+
+
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
   //const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
@@ -69,10 +81,13 @@ const Customer = () => {
   };
   
   const onChangeData = () => {
-    console.log('data silver', customersPerPage)
+    //console.log('data silver', customersPerPage)
+    console.log(customers)
+   // retrieveCustomers('', currentPage, customersPerPage)
      //resultSearch('', currentPage, 5)
   }
   const retrieveCustomers = async (value, currentPage, customersPerPage) => {
+    console.log('data dalam', currentPage )
     setIsLoading(true);
 
     ServiceApi.getallCustomer(value, currentPage, customersPerPage)
@@ -92,7 +107,7 @@ const Customer = () => {
   const onChangeAdd = () => {
     setAddshow(!addshow);
   };
-  console.log('ini data',currentPage)
+  //console.log('ini data',currentPage)
   console.log(customers)
   return (
     <React.Fragment>
@@ -185,14 +200,24 @@ const Customer = () => {
                       })}
                     </tbody>
                   </table>
-                  <Paginatio setCurrentPage={setCurrentPage} totalItems={customers.totalItems} currentPage={currentPage} onChangeData={onChangeData} />
-  {/*
-                  <PaginationButtons
-            totalPages={totalPages}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
+                  {/*
+                  <button className="bg-teal-500 px-2" onClick={paginateBack}>Prev</button>
+                  <button className="bg-teal-500 px-2" onClick={paginateFront}>next</button>
                     */}
+
+              
+                 
+                  <Paginatio 
+                      setCurrentPage={setCurrentPage} 
+                      totalItems={customers.totalItems} 
+                      currentPage={currentPage} 
+                      onChangeData={onChangeData} 
+                      paginateBack={paginateBack}
+                      paginateFront={paginateFront}
+                      retrieveCustomers={retrieveCustomers}
+                  />
+                    
+
                 </div>
               )}
             </div>
