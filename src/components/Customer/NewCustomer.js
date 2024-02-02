@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import ServiceApi from "../../services/ServiceApi";
+import Spinner from "../Spinner";
 const NewCustomer = ({onChangeAdd}) => {
   //console.log(onChangeAdd)
   const initialState = {
@@ -10,22 +11,23 @@ const NewCustomer = ({onChangeAdd}) => {
     no_tel: null,
     addres: null,
   };
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState(initialState);
 
   const onChangeSave = () => {
-   
+    setIsLoading(true);
+
     ServiceApi.createCustomer(data)
     .then((response) => {
       setData(data);
-      setIsLoading(false);
-      
-     onChangeAdd()
+      setIsLoading(false);  
+      onChangeAdd()
       //setSubmitted(true);
       //console.log(response.data);
     })
     .catch((e) => {
       console.log(e);
+      setIsLoading(false);  
     });
     
     
@@ -41,7 +43,10 @@ const NewCustomer = ({onChangeAdd}) => {
 
   return (
     <React.Fragment>
-      <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+      <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden relative">
+        { isLoading ? (
+          <Spinner />
+        ): null}
         <div className="mb-2">
           <label className="block text-gray-700 font-bold mb-2">
             Name

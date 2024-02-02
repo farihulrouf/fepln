@@ -13,6 +13,7 @@ const ViewCustomer = (props) => {
     name: "",
     notel: "",
     no_id: "",
+    gender: "",
   };
   const [currentCustomer, setCurrentCustomer] = useState(initialCustomerState);
   const [message, setMessage] = useState("");
@@ -22,7 +23,7 @@ const ViewCustomer = (props) => {
     ServiceApi.getCustomer(id)
       .then((response) => {
         setCurrentCustomer(response.data);
-        // console.log(response.data);
+         //console.log(response.data);
       })
       .catch((e) => {
         console.log(e);

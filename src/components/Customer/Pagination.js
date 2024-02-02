@@ -4,12 +4,8 @@ import ReactPaginate from "react-paginate";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-//{ setCurrentPage, currentPage, totalPages }
 const Paginatio = ({setCurrentPage, totalItems, currentPage, onChangeData}) => {
-   // console.log(currentPage,"data")
-   // console.log('nilai total', totalItems)
- //  console.log(setCurrentPage)
-   //console.log(currentPage)
+
   const paginationVariants = {
     hidden: {
       opacity: 0,
