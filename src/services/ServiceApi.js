@@ -44,7 +44,7 @@ const getallCustomer = (name,page, size) => {
 };
 
 const updateCustomer = (id, data) => {
-  return http.put(`/customers/update/${id}`, data);
+  return http.patch(`/customers/update/${id}`, data);
 };
 const deleteCustomer = (id) => {
   return http.delete(`/customers/delete/${id}`);

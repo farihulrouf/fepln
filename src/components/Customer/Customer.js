@@ -73,9 +73,11 @@ const Customer = () => {
      //resultSearch('', currentPage, 5)
   }
   const retrieveCustomers = async (value, currentPage, customersPerPage) => {
+    setIsLoading(true);
+
     ServiceApi.getallCustomer(value, currentPage, customersPerPage)
       .then((response) => {
-        setIsLoading(true);
+        //setIsLoading(true);
         setCustomers(response.data);
         setIsLoading(false);
 

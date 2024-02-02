@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import Spinner from "../Spinner";
+import ServiceApi from "../../services/ServiceApi";
 const EditCustomer = ({ customer, editChange }) => {
   const initialState = {
+    id: customer._id,
     name: customer.name,
     no_id: customer.no_id,
     gender: customer.gender,
@@ -14,14 +16,29 @@ const EditCustomer = ({ customer, editChange }) => {
   const onChange = () => {
     editChange();
   };
-
+  //console.log(data)
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     // console.log(event.target)
     setData({ ...data, [name]: value });
   };
-  console.log(data);
-  const onChangeSave = () => {};
+ // console.log(data);
+  const onChangeSave = () => {
+    setIsLoading(true);
+    ServiceApi.updateCustomer(customer._id,data)
+    .then((response) => {
+      setData(data);
+      setIsLoading(false);  
+      onChange()
+     // onChangeAdd()
+      //setSubmitted(true);
+      //console.log(response.data);
+    })
+    .catch((e) => {
+      console.log(e);
+      setIsLoading(false);  
+    });
+  };
   //<div className="px-6"><IoMdArrowRoundBack size={25} onClick={onChange}/></div>
   return (
     <React.Fragment>

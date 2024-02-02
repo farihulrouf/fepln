@@ -9,7 +9,7 @@ import EditCustomer from "./EditCustomer";
 const ViewCustomer = (props) => {
   const { id } = useParams();
   const initialCustomerState = {
-    id: null,
+    _id: null,
     name: "",
     notel: "",
     no_id: "",
@@ -37,6 +37,7 @@ const ViewCustomer = (props) => {
   const editChange = () => {
     setEdit(!edit)
   }
+  //console.log(currentCustomer)
   return (
     <React.Fragment>
       {edit ? (
