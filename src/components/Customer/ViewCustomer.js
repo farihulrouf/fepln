@@ -23,7 +23,7 @@ const ViewCustomer = (props) => {
     ServiceApi.getCustomer(id)
       .then((response) => {
         setCurrentCustomer(response.data);
-         //console.log(response.data);
+        //console.log(response.data);
       })
       .catch((e) => {
         console.log(e);
@@ -35,9 +35,9 @@ const ViewCustomer = (props) => {
   }, [id]);
 
   const editChange = () => {
-    setEdit(!edit)
-    getCustomer(id)
-  }
+    setEdit(!edit);
+    getCustomer(id);
+  };
   //console.log(currentCustomer)
   return (
     <React.Fragment>
@@ -60,24 +60,40 @@ const ViewCustomer = (props) => {
                 {currentCustomer.no_id}
               </p>
             </div>
-            <MdModeEditOutline size={25} className="absolute right-4"  onClick={editChange} />
+            <MdModeEditOutline
+              size={25}
+              className="absolute right-4"
+              onClick={editChange}
+            />
           </div>
           <div className="border-t border-gray-200 px-4 py-2 sm:p-0">
             <dl className="sm:divide-y sm:divide-gray-200">
               <div className="py-3 sm:py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-sm font-medium text-gray-500">Gender</dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {currentCustomer.gender == "L" ? <p>Male</p> : <>Female</>}
-                </dd>
+                <div className="flex space-x-12">
+                  <div>
+                    <dt className="text-sm font-medium text-gray-500">
+                      Gender
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                      {currentCustomer.gender == "L" ? (
+                        <p>Male</p>
+                      ) : (
+                        <>Female</>
+                      )}
+                    </dd>
+                  </div>
+
+                  <div>
+                    <dt className="text-sm font-medium text-gray-500">
+                      Phone number
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex items-center">
+                      <FaWhatsapp size={25} /> <p>{currentCustomer.no_tel} </p>
+                    </dd>
+                  </div>
+                </div>
               </div>
-              <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-sm font-medium text-gray-500">
-                  Phone number
-                </dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex items-center">
-                  <FaWhatsapp size={25} /> {currentCustomer.no_tel}
-                </dd>
-              </div>
+
               <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">Address</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
