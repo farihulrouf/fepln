@@ -6,8 +6,10 @@ import { MdModeEditOutline } from "react-icons/md";
 import { useParams, useNavigate } from "react-router-dom";
 import ServiceApi from "../../services/ServiceApi";
 import EditCustomer from "./EditCustomer";
+import Spinner from "../Spinner";
 const ViewCustomer = (props) => {
   const { id } = useParams();
+  const [isLoading, setLoading] = useState(false);
   const initialCustomerState = {
     _id: null,
     name: "",
@@ -18,19 +20,47 @@ const ViewCustomer = (props) => {
   const [currentCustomer, setCurrentCustomer] = useState(initialCustomerState);
   const [message, setMessage] = useState("");
   const [edit, setEdit] = useState(false);
+  const [transaction, setTransaction] = useState([]);
 
   const getCustomer = (id) => {
+    setLoading(true);
+
     ServiceApi.getCustomer(id)
       .then((response) => {
         setCurrentCustomer(response.data);
+        setLoading(false);
+
         //console.log(response.data);
       })
       .catch((e) => {
-        console.log(e);
+        //console.log(e);
+        setLoading(false);
+      });
+  };
+
+  const getTransaction = () => {
+    //console.log("data id",id)
+    const params = {
+      no: id,
+    };
+    console.log("data", params);
+    ServiceApi.getUserTransactions(params)
+      .then((response) => {
+        setTransaction(response.data);
+        // console.log(response)
+        //setCurrentCustomer(response.data);
+        //setLoading(false);
+
+        //console.log(response.data);
+      })
+      .catch((e) => {
+        //console.log(e);
+        setLoading(false);
       });
   };
 
   useEffect(() => {
+    getTransaction(id);
     if (id) getCustomer(id);
   }, [id]);
 
@@ -38,6 +68,7 @@ const ViewCustomer = (props) => {
     setEdit(!edit);
     getCustomer(id);
   };
+  console.log(transaction);
   //console.log(currentCustomer)
   return (
     <React.Fragment>
@@ -103,40 +134,64 @@ const ViewCustomer = (props) => {
             </dl>
           </div>
           <div className="flex flex-col">
-    <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-            <div className="overflow-hidden">
-                <table className="min-w-full">
+            <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+              <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                <div className="overflow-hidden">
+                  <table className="min-w-full">
                     <thead className="border-b">
-                        <tr>
-                            <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">#</th>
-                            <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">Kubik</th>
-                            <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">Total Rp</th>
-                        </tr>
+                      <tr>
+                        <th
+                          scope="col"
+                          className="text-sm font-medium text-gray-900 px-3 py-4 text-left"
+                        >
+                          #
+                        </th>
+                        <th
+                          scope="col"
+                          className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                        >
+                          Kubik
+                        </th>
+                        <th
+                          scope="col"
+                          className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                        >
+                          Total Rp
+                        </th>
+
+                        <th
+                          scope="col"
+                          className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                        >
+                          Status
+                        </th>
+                      </tr>
                     </thead>
                     <tbody>
-                        <tr className="border-b">
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
-                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">Mark</td>
-                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">Otto</td>
-                        </tr>
-                        <tr className="bg-white border-b">
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
-                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">Jacob</td>
-                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">Thornton</td>
-                        </tr>
-                        <tr className="bg-white border-b">
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
-                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">Larry</td>
-                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">Wild</td>
-                        </tr>
+                      {transaction?.map((item, index) => {
+                        return (
+                          <tr className="border-b">
+                            <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                              {index+1}
+                            </td>
+                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                              {item.meteran}
+                            </td>
+                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                              {item.amount}
+                            </td>
+                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                              {item.title}
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
-                </table>
+                  </table>
+                </div>
+              </div>
             </div>
-        </div>
-    </div>
-</div>
-          ;
+          </div>
         </div>
       )}
     </React.Fragment>

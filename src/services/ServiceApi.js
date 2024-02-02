@@ -51,9 +51,15 @@ const deleteCustomer = (id) => {
 };
 
 const getTransactions = (params) => {
-  console.log("ini adalah", params)
+  //console.log("ini adalah", params)
   return http.post("/transactions/getransactions/", params);
 };
+
+const getUserTransactions = (params) => {
+  //console.log('ini data di', id)
+  return http.post("/transactions/getid", params);
+}
+//http://localhost:3000/transactions/getid
 
 const createTransactions = (data) => {
   return http.post('/transactions/post', data);
@@ -72,6 +78,7 @@ const ServiceApi = {
   getallCustomer,
   getTransactions,
   createTransactions,
+  getUserTransactions,
   getCustomer
   
 };
