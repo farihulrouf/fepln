@@ -36,6 +36,7 @@ const ViewCustomer = (props) => {
 
   const editChange = () => {
     setEdit(!edit)
+    getCustomer(id)
   }
   //console.log(currentCustomer)
   return (
