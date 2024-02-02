@@ -7,6 +7,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import ServiceApi from "../../services/ServiceApi";
 import EditCustomer from "./EditCustomer";
 import Spinner from "../Spinner";
+import { FaCheckCircle } from "react-icons/fa";
+import { IoMdCloseCircleOutline } from "react-icons/io";
+
 const ViewCustomer = (props) => {
   const { id } = useParams();
   const [isLoading, setLoading] = useState(false);
@@ -119,7 +122,7 @@ const ViewCustomer = (props) => {
                       Phone number
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex items-center">
-                      <FaWhatsapp size={25} /> <p>{currentCustomer.no_tel} </p>
+                      <FaWhatsapp size={25} className="text-teal-700" /> <p>{currentCustomer.no_tel} </p>
                     </dd>
                   </div>
                 </div>
@@ -172,7 +175,7 @@ const ViewCustomer = (props) => {
                         return (
                           <tr className="border-b">
                             <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                              {index+1}
+                              {index + 1}
                             </td>
                             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                               {item.meteran}
@@ -181,7 +184,11 @@ const ViewCustomer = (props) => {
                               {item.amount}
                             </td>
                             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                              {item.title}
+                              {item.status ? (
+                                <FaCheckCircle size={16} className="text-teal-500" />
+                                ) : (
+                                <IoMdCloseCircleOutline size={18} className="text-red-500" />
+                              )}
                             </td>
                           </tr>
                         );
