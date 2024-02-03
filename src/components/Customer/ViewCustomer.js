@@ -16,6 +16,7 @@ import QRCode from "react-qr-code";
 const ViewCustomer = (props) => {
   const { id } = useParams();
   const [isLoading, setLoading] = useState(false);
+  const [load, setLoad] = useState(false)
   const initialCustomerState = {
     _id: null,
     name: "",
@@ -30,18 +31,18 @@ const ViewCustomer = (props) => {
   const [transaction, setTransaction] = useState([]);
 
   const getCustomer = (id) => {
-    setLoading(true);
+    setLoad(true);
 
     ServiceApi.getCustomer(id)
       .then((response) => {
         setCurrentCustomer(response.data);
-        setLoading(false);
+        setLoad(false);
 
         //console.log(response.data);
       })
       .catch((e) => {
         //console.log(e);
-        setLoading(false);
+        setLoad(false);
       });
   };
 
@@ -92,7 +93,7 @@ const ViewCustomer = (props) => {
         <EditCustomer customer={currentCustomer} editChange={editChange} />
       ) : (
         <div className="bg-white overflow-hidden shadow rounded-lg border relative">
-          {isLoading ? (
+          {load ? (
             <Spinner />
           ) : (
             <>
@@ -165,7 +166,7 @@ const ViewCustomer = (props) => {
             </>
           )}
 
-          <div className="flex flex-col relative">
+          <div className="flex flex-col">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                 <div className="overflow-hidden">
@@ -200,7 +201,7 @@ const ViewCustomer = (props) => {
                       </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody className="relative">
                       {isLoading ? (
                         <Spinner />
                       ) : (
