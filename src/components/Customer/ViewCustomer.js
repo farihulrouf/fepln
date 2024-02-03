@@ -6,10 +6,11 @@ import { MdModeEditOutline } from "react-icons/md";
 import { useParams, useNavigate } from "react-router-dom";
 import ServiceApi from "../../services/ServiceApi";
 import EditCustomer from "./EditCustomer";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Spinner from "../Spinner";
 import { FaCheckCircle } from "react-icons/fa";
 import { IoMdCloseCircleOutline } from "react-icons/io";
-
+import ReactPaginate from "react-paginate";
 const ViewCustomer = (props) => {
   const { id } = useParams();
   const [isLoading, setLoading] = useState(false);
@@ -122,7 +123,8 @@ const ViewCustomer = (props) => {
                       Phone number
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex items-center">
-                      <FaWhatsapp size={25} className="text-teal-700" /> <p>{currentCustomer.no_tel} </p>
+                      <FaWhatsapp size={25} className="text-teal-700" />{" "}
+                      <p>{currentCustomer.no_tel} </p>
                     </dd>
                   </div>
                 </div>
@@ -170,8 +172,9 @@ const ViewCustomer = (props) => {
                         </th>
                       </tr>
                     </thead>
+
                     <tbody>
-                      {transaction?.map((item, index) => {
+                      {transaction.data?.map((item, index) => {
                         return (
                           <tr className="border-b">
                             <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
@@ -185,9 +188,15 @@ const ViewCustomer = (props) => {
                             </td>
                             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                               {item.status ? (
-                                <FaCheckCircle size={16} className="text-teal-500" />
-                                ) : (
-                                <IoMdCloseCircleOutline size={18} className="text-red-500" />
+                                <FaCheckCircle
+                                  size={16}
+                                  className="text-teal-500"
+                                />
+                              ) : (
+                                <IoMdCloseCircleOutline
+                                  size={18}
+                                  className="text-red-500"
+                                />
                               )}
                             </td>
                           </tr>
@@ -195,6 +204,28 @@ const ViewCustomer = (props) => {
                       })}
                     </tbody>
                   </table>
+                  <p className="text-sm px-2 py-2">
+                    Total items {transaction.totalitems}{" "}
+                  </p>
+                  <ReactPaginate
+                    breakLabel="..."
+                    nextLabel={
+                      <span className="w-10 h-10 flex items-center justify-center bg-lightgray rounded-md">
+                        <FaChevronRight />
+                      </span>
+                    }
+                    pageRangeDisplayed={3}
+                    pageCount={transaction.totalPages}
+                    previousLabel={
+                      <span className="w-10 h-10 flex items-center justify-center bg-lightgray rounded-md">
+                        <FaChevronLeft />
+                      </span>
+                    }
+                    containerClassName="flex items-center justify-center mt-2 mb-2"
+                    pageClassName="block border- border-solid border-lightGray hover:bg-lightGray w-10 h-10 flex items-center justify-center rounded-md mr-4"
+                    //activeClassName="bg-gray-200 text-white"
+                    renderOnZeroPageCount={null}
+                  />
                 </div>
               </div>
             </div>
