@@ -11,6 +11,7 @@ import Spinner from "../Spinner";
 import { FaCheckCircle } from "react-icons/fa";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import ReactPaginate from "react-paginate";
+
 const ViewCustomer = (props) => {
   const { id } = useParams();
   const [isLoading, setLoading] = useState(false);
@@ -24,6 +25,7 @@ const ViewCustomer = (props) => {
   const [currentCustomer, setCurrentCustomer] = useState(initialCustomerState);
   const [message, setMessage] = useState("");
   const [edit, setEdit] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
   const [transaction, setTransaction] = useState([]);
 
   const getCustomer = (id) => {
@@ -42,15 +44,17 @@ const ViewCustomer = (props) => {
       });
   };
 
-  const getTransaction = () => {
+  const getTransaction = (currentPage) => {
     //console.log("data id",id)
     const params = {
       no: id,
     };
-    console.log("data", params);
-    ServiceApi.getUserTransactions(params)
+    //console.log("data", params);
+    setLoading(true);
+    ServiceApi.getUserTransactions(params, currentPage, 3)
       .then((response) => {
         setTransaction(response.data);
+        setLoading(false);
         // console.log(response)
         //setCurrentCustomer(response.data);
         //setLoading(false);
@@ -64,7 +68,7 @@ const ViewCustomer = (props) => {
   };
 
   useEffect(() => {
-    getTransaction(id);
+    getTransaction(1);
     if (id) getCustomer(id);
   }, [id]);
 
@@ -73,9 +77,12 @@ const ViewCustomer = (props) => {
     getCustomer(id);
   };
   const handlePageClick = ({ selected }) => {
-    console.log('data di eksekusi', selected)
-  }
-  console.log(transaction);
+    setCurrentPage(selected + 1);
+    getTransaction(selected + 1);
+    // getTransaction(selected)
+  };
+  // console.log(transaction);
+  //console.log('data di eksekusi', currentPage)
   //console.log(currentCustomer)
   return (
     <React.Fragment>
@@ -177,34 +184,40 @@ const ViewCustomer = (props) => {
                     </thead>
 
                     <tbody>
-                      {transaction.data?.map((item, index) => {
-                        return (
-                          <tr className="border-b">
-                            <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                              {index + 1}
-                            </td>
-                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                              {item.meteran}
-                            </td>
-                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                              {item.amount}
-                            </td>
-                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                              {item.status ? (
-                                <FaCheckCircle
-                                  size={16}
-                                  className="text-teal-500"
-                                />
-                              ) : (
-                                <IoMdCloseCircleOutline
-                                  size={18}
-                                  className="text-red-500"
-                                />
-                              )}
-                            </td>
-                          </tr>
-                        );
-                      })}
+                      {isLoading ? (
+                        <Spinner />
+                      ) : (
+                        <React.Fragment>
+                          {transaction.data?.map((item, index) => {
+                            return (
+                              <tr className="border-b">
+                                <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                  {index + 1}
+                                </td>
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                  {item.meteran}
+                                </td>
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                  {item.amount}
+                                </td>
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                  {item.status ? (
+                                    <FaCheckCircle
+                                      size={16}
+                                      className="text-teal-500"
+                                    />
+                                  ) : (
+                                    <IoMdCloseCircleOutline
+                                      size={18}
+                                      className="text-red-500"
+                                    />
+                                  )}
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </React.Fragment>
+                      )}
                     </tbody>
                   </table>
                   <p className="text-sm px-2 py-2">

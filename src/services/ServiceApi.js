@@ -55,9 +55,10 @@ const getTransactions = (params) => {
   return http.post("/transactions/getransactions/", params);
 };
 
-const getUserTransactions = (params) => {
+const getUserTransactions = (params,page,limit) => {
   //console.log('ini data di', id)
-  return http.post("/transactions/getid", params);
+  //?page=1&limit=3 return http.get(`/customers/${id}`);
+  return http.post(`/transactions/getid?page=${page}&limit=${limit}`, params);
 }
 //http://localhost:3000/transactions/getid
 

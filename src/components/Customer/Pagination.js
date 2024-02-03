@@ -61,7 +61,7 @@ const Paginatio = ({setCurrentPage, totalItems, currentPage, onChangeData, pagin
         containerClassName="flex items-center justify-center mt-2 mb-2"
         
         pageClassName="block border- border-solid border-lightGray hover:bg-lightGray w-10 h-10 flex items-center justify-center rounded-md mr-4"
-        //activeClassName="bg-gray-200 text-white"
+        activeClassName="bg-gray-200 text-white"
         renderOnZeroPageCount={null}
       />
     </motion.div>
