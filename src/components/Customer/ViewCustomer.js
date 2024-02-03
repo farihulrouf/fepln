@@ -85,6 +85,8 @@ const ViewCustomer = (props) => {
   // console.log(transaction);
   //console.log('data di eksekusi', currentPage)
   //console.log(currentCustomer)
+  const qrcode = '9837438'
+  console.log(qrcode)
   return (
     <React.Fragment>
       {edit ? (
@@ -142,8 +144,7 @@ const ViewCustomer = (props) => {
 
                   <QRCode
                       size={50}
-                     
-                      value={currentCustomer.no_id}
+                      value={String(currentCustomer.no_id)}
                       viewBox={`0 0 256 256`}
                     />
                 </div>
