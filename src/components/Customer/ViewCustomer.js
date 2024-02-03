@@ -85,8 +85,7 @@ const ViewCustomer = (props) => {
   // console.log(transaction);
   //console.log('data di eksekusi', currentPage)
   //console.log(currentCustomer)
-  const qrcode = '9837438'
-  console.log(qrcode)
+ 
   return (
     <React.Fragment>
       {edit ? (
@@ -94,7 +93,10 @@ const ViewCustomer = (props) => {
       ) : (
         <div className="bg-white overflow-hidden shadow rounded-lg border">
           <div className="px-4 py-5 sm:px-6 flex items-center space-x-2 relative">
-            <Avatar
+            {isLoading ?
+            ( <Spinner />):(
+              <>
+               <Avatar
               className="rounded-full"
               name={currentCustomer.name + " " + currentCustomer.name}
               maxInitials={2}
@@ -113,6 +115,9 @@ const ViewCustomer = (props) => {
               className="absolute right-4"
               onClick={editChange}
             />
+              </>
+            )}
+           
           </div>
           <div className="border-t border-gray-200 px-4 py-2 sm:p-0">
             <dl className="sm:divide-y sm:divide-gray-200">
