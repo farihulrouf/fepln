@@ -11,6 +11,7 @@ import Spinner from "../Spinner";
 import { FaCheckCircle } from "react-icons/fa";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import ReactPaginate from "react-paginate";
+import QRCode from "react-qr-code";
 
 const ViewCustomer = (props) => {
   const { id } = useParams();
@@ -113,8 +114,8 @@ const ViewCustomer = (props) => {
           </div>
           <div className="border-t border-gray-200 px-4 py-2 sm:p-0">
             <dl className="sm:divide-y sm:divide-gray-200">
-              <div className="py-3 sm:py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <div className="flex space-x-12">
+              <div className="py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <div className="flex items-center justify-between">
                   <div>
                     <dt className="text-sm font-medium text-gray-500">
                       Gender
@@ -126,6 +127,7 @@ const ViewCustomer = (props) => {
                         <>Female</>
                       )}
                     </dd>
+                    
                   </div>
 
                   <div>
@@ -137,10 +139,17 @@ const ViewCustomer = (props) => {
                       <p>{currentCustomer.no_tel} </p>
                     </dd>
                   </div>
+
+                  <QRCode
+                      size={50}
+                     
+                      value={currentCustomer.no_id}
+                      viewBox={`0 0 256 256`}
+                    />
                 </div>
               </div>
 
-              <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <div className="py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">Address</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   {currentCustomer.addres}
