@@ -91,7 +91,7 @@ const ViewCustomer = (props) => {
       {edit ? (
         <EditCustomer customer={currentCustomer} editChange={editChange} />
       ) : (
-        <div className="bg-white overflow-hidden shadow rounded-lg border">
+        <div className="bg-white overflow-hidden shadow rounded-lg border relative">
           {isLoading ? (
             <Spinner />
           ) : (
@@ -165,7 +165,7 @@ const ViewCustomer = (props) => {
             </>
           )}
 
-          <div className="flex flex-col">
+          <div className="flex flex-col relative">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                 <div className="overflow-hidden">
