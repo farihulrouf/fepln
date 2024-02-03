@@ -169,7 +169,7 @@ const ViewCustomer = (props) => {
             </>
           )}
          
-          <div className="flex flex-col">
+          <div className="flex flex-col border-t">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                 <div className="overflow-hidden">
@@ -178,26 +178,26 @@ const ViewCustomer = (props) => {
                       <tr>
                         <th
                           scope="col"
-                          className="text-sm font-medium text-gray-900 px-3 py-4 text-left"
+                          className="text-sm font-medium text-gray-900 px-3 py-3 text-left"
                         >
                           #
                         </th>
                         <th
                           scope="col"
-                          className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                          className="text-sm font-medium text-gray-900 px-6 py-3 text-left"
                         >
                           Kubik
                         </th>
                         <th
                           scope="col"
-                          className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                          className="text-sm font-medium text-gray-900 px-6 py-3 text-left"
                         >
                           Total Rp
                         </th>
 
                         <th
                           scope="col"
-                          className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                          className="text-sm font-medium text-gray-900 px-6 py-3 text-left"
                         >
                           Status
                         </th>
@@ -212,16 +212,16 @@ const ViewCustomer = (props) => {
                           {transaction.data?.map((item, index) => {
                             return (
                               <tr className="border-b">
-                                <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                <td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
                                   {index + 1}
                                 </td>
-                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
                                   {item.meteran}
                                 </td>
-                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
                                   {item.amount}
                                 </td>
-                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
                                   {item.status ? (
                                     <FaCheckCircle
                                       size={16}

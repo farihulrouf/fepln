@@ -45,7 +45,7 @@ const Paginatio = ({setCurrentPage, totalItems, currentPage, onChangeData, pagin
       <ReactPaginate
         breakLabel="..."
         nextLabel={
-          <span className="w-10 h-10 flex items-center justify-center bg-lightgray rounded-md">
+          <span className="w-10 h-8 flex items-center justify-center bg-lightgray rounded-md">
             <FaChevronRight onClick={paginateBack}/>
           </span>
 
@@ -54,13 +54,13 @@ const Paginatio = ({setCurrentPage, totalItems, currentPage, onChangeData, pagin
         pageRangeDisplayed={5}
         pageCount={totalItems/5}
         previousLabel={
-          <span className="w-10 h-10 flex items-center justify-center bg-lightgray rounded-md">
+          <span className="w-10 h-8 flex items-center justify-center bg-lightgray rounded-md">
             <FaChevronLeft onClick={paginateFront} />
           </span>
         }
         containerClassName="flex items-center justify-center mt-2 mb-2"
         
-        pageClassName="block border- border-solid border-lightGray hover:bg-lightGray w-10 h-10 flex items-center justify-center rounded-md mr-4"
+        pageClassName="block border- border-solid border-lightGray hover:bg-lightGray w-10 h-8 flex items-center justify-center rounded-md mr-4"
         activeClassName="bg-gray-200 text-white"
         renderOnZeroPageCount={null}
       />
