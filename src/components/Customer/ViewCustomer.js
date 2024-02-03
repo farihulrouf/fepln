@@ -93,8 +93,11 @@ const ViewCustomer = (props) => {
         <EditCustomer customer={currentCustomer} editChange={editChange} />
       ) : (
         <div className="bg-white overflow-hidden shadow rounded-lg border relative">
+          
           {load ? (
-            <Spinner />
+            <div className="relative h-20">
+                <Spinner />
+            </div>
           ) : (
             <>
               <div className="px-4 py-5 sm:px-6 flex items-center space-x-2 relative">
@@ -165,7 +168,7 @@ const ViewCustomer = (props) => {
               </div>
             </>
           )}
-
+         
           <div className="flex flex-col">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
