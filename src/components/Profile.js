@@ -33,7 +33,18 @@ const Profile = () => {
     <div>
       <h1 className="text-2xl">Scan Qr</h1>
       { scanResult 
-      ? <div> success: <a href={scanResult}>{scanResult}</a> </div>
+      ? <div>
+           <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="scan"
+            type="text"
+            name="scan"
+            placeholder="scan"
+            value={scanResult}
+          
+          />
+        </div>
+      
       : <div id="reader"></div>
       }
     </div>
