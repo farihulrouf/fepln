@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 // import { getCameraList } from "./Utils";
+import { MdQrCodeScanner } from "react-icons/md";
+import { FaRegStopCircle } from "react-icons/fa";
 
 const qrConfig = { fps: 10, qrbox: { width: 300, height: 300 } };
 const brConfig = { fps: 10, qrbox: { width: 300, height: 150 } };
@@ -104,7 +106,7 @@ export const Scanner = (props) => {
   };
 
   return (
-    <div style={{ position: "relative" }}>
+    <div className="py-2">
       <div id="reader" width="100%"></div>
       {/*
       <button onClick={getCameras}>Get List of cameras</button>
@@ -123,12 +125,22 @@ export const Scanner = (props) => {
         </select>
       )}
       */}
-      <button onClick={() => handleClickAdvanced()}>
-        click pro {props.type}
-      </button>
-      <button onClick={() => handleStop()}>stop pro</button>
-      <br />
-      <br />
+      <div className="flex space-x-2">
+        <button
+          className="bg-teal-700 rounded-md px-2 py-1 text-white flex gap-2 items-center"
+          onClick={() => handleClickAdvanced()}
+        >
+          <MdQrCodeScanner />
+          <span className="text-sm">Scan {props.type}</span>
+        </button>
+        <button
+          className="text-white bg-red-500 px-2 rounded-sm text-sm flex gap-2 items-center"
+          onClick={() => handleStop()}
+        >
+          <FaRegStopCircle />
+          stop
+        </button>
+      </div>
       {/*
       <button onClick={scanLocalFile}>Scan local file</button>
       <input
@@ -145,12 +157,13 @@ export const Scanner = (props) => {
 
 const Profile = () => {
   const [decodedValue, setDecodedValue] = useState("");
-  const [scannerType, setScannerType] = useState("BAR");
+  const [scannerType, setScannerType] = useState("QR");
   return (
-    <>
+    <div className="px-6">
       <label>
         <input
           type="radio"
+          defaultChecked
           value="QR"
           name="scannerType"
           onChange={() => setScannerType("QR")}
@@ -160,7 +173,6 @@ const Profile = () => {
       <label>
         <input
           type="radio"
-          defaultChecked
           value="BAR"
           name="scannerType"
           onChange={() => setScannerType("BAR")}
@@ -169,11 +181,11 @@ const Profile = () => {
       </label>
       <Scanner type={scannerType} onResult={(res) => setDecodedValue(res)} />
       <br />
-      <p style={{ width: "100%", wordWrap: "break-word" }}>
+      <p>
         <strong>Value:</strong>
         {decodedValue}
       </p>
-    </>
+    </div>
   );
 };
 
