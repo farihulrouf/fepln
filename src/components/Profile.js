@@ -1,196 +1,176 @@
-import React, { useState, useEffect } from "react";
-import AuthService from "../services/AuthService";
-import Spinner from "./Spinner";
-import Cardsearch from "./Cardsearch";
-import axios from "axios";
-import ServiceApi from "../services/ServiceApi";
-import { Html5QrcodeScanner } from "html5-qrcode";
-const Profile = () => {
-  const [scanResult, setScanResult] = useState(null);
+import React, { useEffect, useState, useRef } from "react";
+import { Html5Qrcode } from "html5-qrcode";
+// import { getCameraList } from "./Utils";
 
+const qrConfig = { fps: 10, qrbox: { width: 300, height: 300 } };
+const brConfig = { fps: 10, qrbox: { width: 300, height: 150 } };
+let html5QrCode;
+
+// function startCamera(){}
+
+export const Scanner = (props) => {
+  const fileRef = useRef(null);
+  const [cameraList, setCameraList] = useState([]);
+  const [activeCamera, setActiveCamera] = useState();
   useEffect(() => {
-    const scanner = new Html5QrcodeScanner("reader", {
-      qrbox: {
-        width: 250,
-        height: 250,
-      },
-      fps: 5,
-    });
-
-    scanner.render(success, error);
-
-    function success (result) {
-      scanner.clear();
-      setScanResult(result);
-    };
-
-    function error (err) {
-      console.warn(err);
-    };
-  },[]);
-
-  return (
-    <div>
-      <h1 className="text-2xl">Scan Qr</h1>
-      { scanResult 
-      ? <div>
-           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="scan"
-            type="text"
-            name="scan"
-            placeholder="scan"
-            value={scanResult}
-          
-          />
-        </div>
-      
-      : <div id="reader"></div>
-      }
-    </div>
-  );
-
-  {
-    /*
-  const currentUser = AuthService.getCurrentUser();
-  const [nomer, setNomer] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [searchShow, setSearchShow] = useState(false);
-  const [resultdata, setResultdata] = useState();
-  const [price, setPrice] = useState([]);
-  
-  const [scanResult, setScanResult] = useState(null)
-
-
-  useEffect(() => {
-    const scanner = new Html5QrcodeScanner('reader', {
-      qrbox: {
-        width: 250,
-        height: 250
-      },
-      fps: 5
-    })
-    const success = (result) => {
-      scanner.clear()
-      setScanResult(result)
-    }
-  
-    const error = (err) => {
-      console.warn(err)
-    }
-    //getPrice();
+    html5QrCode = new Html5Qrcode("reader");
+    getCameras();
+    const oldRegion = document.getElementById("qr-shaded-region");
+    oldRegion && oldRegion.remove();
   }, []);
 
-  const getPrice = () => {
-    ServiceApi.getallPrice()
-      .then((response) => {
-        setPrice(response.data);
-       // console.log(response.data);
+  const handleClickAdvanced = () => {
+    const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+      console.info(decodedResult, decodedText);
+      props.onResult(decodedText);
+      alert(`decoded:__ ${decodedText}`);
+      handleStop();
+    };
+    html5QrCode
+      .start(
+        { facingMode: "environment" },
+        props.type === "QR" ? qrConfig : brConfig,
+        qrCodeSuccessCallback
+      )
+      .then(() => {
+        // const oldRegion = document.getElementById("qr-shaded-region");
+        // if (oldRegion) oldRegion.innerHTML = "";
+      });
+  };
+  const getCameras = () => {
+    Html5Qrcode.getCameras()
+      .then((devices) => {
+        /**
+         * devices would be an array of objects of type:
+         * { id: "id", label: "label" }
+         */
+        console.info(devices);
+        if (devices && devices.length) {
+          setCameraList(devices);
+          setActiveCamera(devices[0]);
+        }
       })
-      .catch((e) => {
-        console.log(e);
+      .catch((err) => {
+        console.error(err);
+        setCameraList([]);
+      });
+  };
+  const onCameraChange = (e) => {
+    if (e.target.selectedIndex) {
+      let selectedCamera = e.target.options[e.target.selectedIndex];
+      console.info(selectedCamera);
+      let cameraId = selectedCamera.dataset.key;
+      setActiveCamera(cameraList.find((cam) => cam.id === cameraId));
+    }
+  };
+  const handleStop = () => {
+    try {
+      html5QrCode
+        .stop()
+        .then((res) => {
+          html5QrCode.clear();
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const scanLocalFile = () => {
+    fileRef.current.click();
+  };
+  const scanFile = (e) => {
+    if (e.target.files.length === 0) {
+      // No file selected, ignore
+      return;
+    }
+
+    // Use the first item in the list
+    const imageFile = e.target.files[0];
+    console.info(imageFile);
+    html5QrCode
+      .scanFile(imageFile, /* showImage= */ true)
+      .then((qrCodeMessage) => {
+        // success, use qrCodeMessage
+        console.log(qrCodeMessage);
+        props.onResult(qrCodeMessage);
+        html5QrCode.clear();
+      })
+      .catch((err) => {
+        // failure, handle it.
+        console.log(`Error scanning file. Reason: ${err}`);
       });
   };
 
-  const onChangeNomer = (e) => {
-    const nomer = e.target.value;
-    setNomer(nomer);
-  };
-  const fetchData = async () => {
-    const params = {
-      nomer: nomer,
-    };
-
-    try {
-      setIsLoading(true);
-      const response = await axios.post(
-        process.env.REACT_APP_API_URL + "/customers/getnomer",
-        params
-      );
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 300);
-
-      // console.log(response.data);
-      if (response.data.user) {
-        setSearchShow(true);
-        setResultdata(response.data.user);
-        //setDataresult(response.data)
-        //console.log(response.data.found)
-      } else {
-        setSearchShow(false);
-        setResultdata({});
-      }
-    } catch (error) {
-      setIsLoading(false);
-    }
-  };
-
-  const getTransaction = async () => {
-    const params = {
-      nomer: parseInt(nomer, 10),
-    };
-    try {
-      setIsLoading(true);
-      ServiceApi.getTransactions(params)
-        .then((response) => {
-          //console.log(response.data);
-          setResultdata(response.data.transaction)
-          setSearchShow(true);
-
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 300);
-    } catch (error) {}
-  };
-
-  const transAction = async () => {};
-
-
-
-  const resultSearch = () => {
-    if (searchShow) {
-      return (
-        <>
-          <Cardsearch user={resultdata} price={price} />
-        </>
-      );
-    }
-  };
   return (
-    <div className="container mx-auto">
-      <form className="w-full p-4">
-        <div className="flex items-center border-b border-teal-500 py-2">
-          <input
-            className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-            type="text"
-            placeholder="Nomer Meteran"
-            aria-label="Meteran"
-            value={nomer}
-            onChange={onChangeNomer}
-          />
-          <button
-            className="flex-shrink-0 bg-indigo-500 hover:bg-indigo-500  hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
-            type="button"
-            onClick={getTransaction}
-          >
-            Scan
-          </button>
-        </div>
-      </form>
-      <h1>Qr Code Scaning in React</h1>
-      { scanResult 
-      ? <div>Success: {scanResult} </div>
-      : <div>ok</div>}
-      
+    <div style={{ position: "relative" }}>
+      <div id="reader" width="100%"></div>
+      <button onClick={getCameras}>Get List of cameras</button>
+      {cameraList.length > 0 && (
+        <select onChange={onCameraChange}>
+          {cameraList.map((li) => (
+            <option
+              key={li.id}
+              id={li.id}
+              selected={activeCamera && activeCamera.id === li.id}
+            >
+              {li.label}
+            </option>
+          ))}
+          <option>Dummy</option>
+        </select>
+      )}
+      <button onClick={() => handleClickAdvanced()}>
+        click pro {props.type}
+      </button>
+      <button onClick={() => handleStop()}>stop pro</button>
+      <br />
+      <br />
+      <button onClick={scanLocalFile}>Scan local file</button>
+      <input
+        type="file"
+        hidden
+        ref={fileRef}
+        accept="image/*"
+        onChange={scanFile}
+      />
     </div>
   );
-      */
-  }
+};
+
+const Profile = () => {
+  const [decodedValue, setDecodedValue] = useState("");
+  const [scannerType, setScannerType] = useState("BAR");
+  return (
+    <>
+      <label>
+        <input
+          type="radio"
+          value="QR"
+          name="scannerType"
+          onChange={() => setScannerType("QR")}
+        />
+        QR
+      </label>
+      <label>
+        <input
+          type="radio"
+          defaultChecked
+          value="BAR"
+          name="scannerType"
+          onChange={() => setScannerType("BAR")}
+        />
+        BAR
+      </label>
+      <Scanner type={scannerType} onResult={(res) => setDecodedValue(res)} />
+      <br />
+      <p style={{ width: "100%", wordWrap: "break-word" }}>
+        <strong>Value:</strong>
+        {decodedValue}
+      </p>
+    </>
+  );
 };
 
 export default Profile;
