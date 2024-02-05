@@ -189,7 +189,7 @@ const Profile = () => {
     //getCustomer()
   }
 
- // console.log(customer,'dan', decodedValue)
+  console.log(customer,'dan', decodedValue)
   return (
     <div className="px-6">
       <label>
@@ -222,10 +222,7 @@ const Profile = () => {
             defaultValue={decodedValue}
            
           />
-      <p>
-        <strong>Value:</strong>
-        {decodedValue}
-      </p>
+      
       <div>
        {customer ? (
         <>
@@ -238,7 +235,7 @@ const Profile = () => {
        )}
        </div>
       
-      <button className="px-2 bg-teal-500 mt-2 mb-2" onClick={getCustomer}>Click</button>
+      <button className="px-4 py-1 bg-teal-500 mt-2 mb-2" onClick={getCustomer}>Click</button>
       
     </div>
   );
