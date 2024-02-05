@@ -162,10 +162,10 @@ const Profile = () => {
   const [idvalue, setIdvalue] = useState("")
   const [customer, setCustomer] = useState(null)
 
-  const getCustomer = (res) => {
+  const getCustomer = () => {
    // const x = 817498394
     const params = {
-      id: res
+      id: decodedValue
       //parseInt(nomer, 10),
     };
 
@@ -186,7 +186,7 @@ const Profile = () => {
   }
   const onChangedata = (res) => {
     setDecodedValue(res)
-    getCustomer(res)
+    getCustomer()
   }
 
   console.log(customer,'dan', decodedValue)
