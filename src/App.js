@@ -40,7 +40,8 @@ function App() {
   };
   return (
     <React.Fragment>
-      {currentUser ? <Navbar user={currentUser} /> : null}
+
+      {/*currentUser ? <Navbar user={currentUser} /> : null */}
       <div className="container">
         <BrowserRouter>
           <Routes>
