@@ -39,10 +39,6 @@ const Profile = () => {
   return (
     <div className="px-6 py-2">
       {err && <h2>{err}</h2>}
-
-      <button className="px-2 py-2 p-2 bg-pink-500" onClick={handleClick}>Fetch data</button>
-
-      {isLoading && <h2>Loading...</h2>}
       <div className="py-4">
       {customer? (
        <>
@@ -54,6 +50,10 @@ const Profile = () => {
        </>
       )}
       </div>
+      <button className="px-2 py-2 p-2 bg-pink-500" onClick={handleClick}>Fetch data</button>
+
+      {isLoading && <h2>Loading...</h2>}
+     
     </div>
   );
 };
