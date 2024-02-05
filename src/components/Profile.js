@@ -186,7 +186,7 @@ const Profile = () => {
   }
   const onChangedata = (res) => {
     setDecodedValue(res)
-    getCustomer()
+    //getCustomer()
   }
 
   console.log(customer,'dan', decodedValue)
