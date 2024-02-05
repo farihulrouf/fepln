@@ -171,7 +171,7 @@ const Profile = () => {
     ServiceApi.getNoCustomer(params)
     .then((response) => {
       console.log(response)
-      setCustomer(response)
+      setCustomer(response.data)
      // setCurrentCustomer(response.data);
      // setLoad(false);
 
