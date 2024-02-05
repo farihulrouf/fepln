@@ -219,7 +219,7 @@ const Profile = () => {
             type="text"
             name="nomer"
             placeholder="nomer"
-            defaultChecked={decodedValue}
+            value={decodedValue}
            
           />
       <p>
@@ -229,7 +229,7 @@ const Profile = () => {
       <div>
        {customer ? (
         <>
-          {customer}
+          {customer.user.name}
         </>
        ):(
         <>
