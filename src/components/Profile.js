@@ -160,7 +160,7 @@ const Profile = () => {
   const [scannerType, setScannerType] = useState("QR");
   const [isLoading, setIsLoading] = useState(false)
   const [idvalue, setIdvalue] = useState("")
-  const [customer, setCustomer] = useState({})
+  const [customer, setCustomer] = useState(null)
 
   const getCustomer = () => {
    // const x = 817498394
@@ -186,6 +186,8 @@ const Profile = () => {
     setDecodedValue(res)
     getCustomer()
   }
+
+  console.log(customer,'dan', decodedValue)
   return (
     <div className="px-6">
       <label>
@@ -222,7 +224,14 @@ const Profile = () => {
         <strong>Value:</strong>
         {decodedValue}
       </p>
+      {customer ? (
+        <p>{customer.user.name}</p>
+      ):(
+        <p>ok</p>
+      )}
+      
       <button className="px-2 bg-teal-500 mt-2 mb-2" onClick={getCustomer}>Click</button>
+      
     </div>
   );
 };
