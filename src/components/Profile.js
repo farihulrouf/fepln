@@ -18,18 +18,19 @@ const Profile = () => {
       id: decodedValue
       //parseInt(nomer, 10),
     };
-
+    setIsLoading(true)
     ServiceApi.getNoCustomer(params)
     .then((response) => {
      // console.log(response)
       setCustomer(response.data)
+      setIsLoading(false)
      // setCurrentCustomer(response.data);
      // setLoad(false);
 
       //console.log(response.data);
     })
     .catch((e) => {
-      
+      setIsLoading(false)
     });
   };
 
