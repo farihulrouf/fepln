@@ -12,7 +12,7 @@ const Profile = () => {
   const [scannerType, setScannerType] = useState("QR");
 
   const [idvalue, setIdvalue] = useState("")
-  const [customer, setCustomer] = useState({})
+  const [customer, setCustomer] = useState(null)
   const handleClick = async () => {
     const params = {
       id: decodedValue
@@ -45,11 +45,11 @@ const Profile = () => {
       <div className="py-4">
       {customer? (
        <>
-         Not Found
+         {customer.user.name}
        </>
       ):(
        <>
-         Not Found
+         Ok
        </>
       )}
       </div>
