@@ -1,24 +1,19 @@
 import React, { useEffect, useState, useRef } from "react";
 
 // import { getCameraList } from "./Utils";
-import { MdQrCodeScanner } from "react-icons/md";
-import { FaRegStopCircle } from "react-icons/fa";
+
 import ServiceApi from "../services/ServiceApi";
 
-// function startCamera(){}
-
-
-
 const Profile = () => {
+  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [err, setErr] = useState('');
   const [decodedValue, setDecodedValue] = useState(39843024);
   const [scannerType, setScannerType] = useState("QR");
-  const [isLoading, setIsLoading] = useState(false)
-  const [idvalue, setIdvalue] = useState("")
-  const [customer, setCustomer] = useState(null)
 
-  const getCustomer = () => {
-    //console.log("data",decodedValue)
-    
+  const [idvalue, setIdvalue] = useState("")
+  const [customer, setCustomer] = useState({})
+  const handleClick = async () => {
     const params = {
       id: decodedValue
       //parseInt(nomer, 10),
@@ -36,73 +31,28 @@ const Profile = () => {
     .catch((e) => {
       
     });
-  
-  }
-  const onChangedata = (res) => {
-    setDecodedValue(res)
-    //getCustomer()
-  }
-  const onChangeInput = (e) => {
-    setDecodedValue(e.target.value)
-    //const searchName = e.target.value;
-    //setSearchName(searchName);
   };
-  console.log(customer,'dan', decodedValue)
+
+  console.log(customer);
+
   return (
-    <div className="px-6">
-      {/*
-      <label>
-        <input
-          type="radio"
-          defaultChecked
-          value="QR"
-          name="scannerType"
-          onChange={() => setScannerType("QR")}
-        />
-        QR
-      </label>
-      <label>
-        <input
-          type="radio"
-          value="BAR"
-          name="scannerType"
-          onChange={() => setScannerType("BAR")}
-        />
-        BAR
-      </label>
-        <Scanner type={scannerType} onResult={(res) => onChangedata(res)} />
-      <br />
-  */}
-      <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="nomer"
-            type="text"
-            name="nomer"
-            placeholder="nomer"
-            onChange={onChangeInput}
-            defaultValue={decodedValue}
-           
-          />
-      
+    <div>
+      {err && <h2>{err}</h2>}
+
+      <button className="px-2 py-2" onClick={handleClick}>Fetch data</button>
+
+      {isLoading && <h2>Loading...</h2>}
       <div>
-       {customer ? (
-        <>
-          {customer.user.name}
-        </>
-       ):(
-        <>
-          Not Found
-        </>
-       )}
-       </div>
-      
-      <button
-            className="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-            type="submit"
-            onClick={getCustomer}
-          >
-            Save
-          </button>
+      {customer? (
+       <>
+         Not Found
+       </>
+      ):(
+       <>
+         Not Found
+       </>
+      )}
+      </div>
     </div>
   );
 };

@@ -1,4 +1,7 @@
+import React, { useEffect, useState, useRef } from "react";
 import { Html5Qrcode } from "html5-qrcode";
+import { MdQrCodeScanner } from "react-icons/md";
+import { FaRegStopCircle } from "react-icons/fa";
 const qrConfig = { fps: 10, qrbox: { width: 300, height: 300 } };
 const brConfig = { fps: 10, qrbox: { width: 300, height: 150 } };
 let html5QrCode;
