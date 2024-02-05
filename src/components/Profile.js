@@ -156,20 +156,20 @@ export const Scanner = (props) => {
 };
 
 const Profile = () => {
-  const [decodedValue, setDecodedValue] = useState("");
+  const [decodedValue, setDecodedValue] = useState(39843024);
   const [scannerType, setScannerType] = useState("QR");
   const [isLoading, setIsLoading] = useState(false)
   const [idvalue, setIdvalue] = useState("")
   const [customer, setCustomer] = useState(null)
 
   const getCustomer = () => {
-   // const x = 817498394
+    //console.log("data",decodedValue)
+    
     const params = {
       id: decodedValue
       //parseInt(nomer, 10),
     };
 
-   // console.log('data',params)
     ServiceApi.getNoCustomer(params)
     .then((response) => {
      // console.log(response)
@@ -180,16 +180,16 @@ const Profile = () => {
       //console.log(response.data);
     })
     .catch((e) => {
-      //console.log(e);
-      //setLoad(false);
+      
     });
+  
   }
   const onChangedata = (res) => {
     setDecodedValue(res)
     //getCustomer()
   }
 
-  console.log(customer,'dan', decodedValue)
+ // console.log(customer,'dan', decodedValue)
   return (
     <div className="px-6">
       <label>
@@ -219,7 +219,7 @@ const Profile = () => {
             type="text"
             name="nomer"
             placeholder="nomer"
-            value={decodedValue}
+            defaultValue={decodedValue}
            
           />
       <p>
@@ -229,11 +229,11 @@ const Profile = () => {
       <div>
        {customer ? (
         <>
-          {customer}
+          {customer.user.name}
         </>
        ):(
         <>
-          Ok
+          Not Found
         </>
        )}
        </div>
