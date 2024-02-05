@@ -4,6 +4,7 @@ import Spinner from "./Spinner";
 import Cardsearch from "./Cardsearch";
 import axios from "axios";
 import ServiceApi from "../services/ServiceApi";
+import {QrScanner} from '@yudiel/react-qr-scanner';
 const Profile = () => {
   const currentUser = AuthService.getCurrentUser();
   const [nomer, setNomer] = useState("");
@@ -117,6 +118,11 @@ const Profile = () => {
           </button>
         </div>
       </form>
+      <QrScanner
+          onDecode={(result) => console.log(result)}
+          onError={(error) => console.log(error?.message)}
+      />
+      {/*
       <div className="relative">
         {isLoading ? (
           <Spinner />
@@ -126,6 +132,7 @@ const Profile = () => {
           </React.Fragment>
         )}
       </div>
+      */}
     </div>
   );
 };
