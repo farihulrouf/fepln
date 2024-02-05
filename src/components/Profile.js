@@ -19,7 +19,7 @@ const Profile = () => {
       //parseInt(nomer, 10),
     };
     setIsLoading(true);
-    ServiceApi.getNoCustomer(params)
+    ServiceApi.getNoCustomer(decodedValue)
       .then((response) => {
         // console.log(response)
         setCustomer(response.data.user);

@@ -4,7 +4,7 @@ const getCustomer = (id) => {
   return http.get(`/customers/${id}`);
 };
 const getNoCustomer = (id) => {
-  return http.post(`/customers/getnomer`,id);
+  return http.post(`/customers/getnomer?no=${id}`);
 };
 
 const create = (data) => {
