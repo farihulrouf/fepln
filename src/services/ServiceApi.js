@@ -1,6 +1,6 @@
 import http from "./http-common";
 
-const getCustomer = async (id) => {
+const getCustomer = (id) => {
   return http.get(`/customers/${id}`);
 };
 const getNoCustomer = (id) => {

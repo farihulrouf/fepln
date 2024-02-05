@@ -13,7 +13,7 @@ const Profile = () => {
 
   const [idvalue, setIdvalue] = useState("");
   const [customer, setCustomer] = useState(null);
-  const handleClick = async () => {
+  const handleClick =  () => {
     const params = {
       id: decodedValue,
       //parseInt(nomer, 10),
