@@ -3,6 +3,9 @@ import http from "./http-common";
 const getCustomer = (id) => {
   return http.get(`/customers/${id}`);
 };
+const getNoCustomer = (id) => {
+  return http.post(`/customers/getnomer`,id);
+};
 
 const create = (data) => {
   return http.post("/tutorials", data);
@@ -80,7 +83,8 @@ const ServiceApi = {
   getTransactions,
   createTransactions,
   getUserTransactions,
-  getCustomer
+  getCustomer,
+  getNoCustomer
   
 };
 

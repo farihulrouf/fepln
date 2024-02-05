@@ -3,7 +3,7 @@ import { Html5Qrcode } from "html5-qrcode";
 // import { getCameraList } from "./Utils";
 import { MdQrCodeScanner } from "react-icons/md";
 import { FaRegStopCircle } from "react-icons/fa";
-
+import ServiceApi from "../services/ServiceApi";
 const qrConfig = { fps: 10, qrbox: { width: 300, height: 300 } };
 const brConfig = { fps: 10, qrbox: { width: 300, height: 150 } };
 let html5QrCode;
@@ -158,6 +158,34 @@ export const Scanner = (props) => {
 const Profile = () => {
   const [decodedValue, setDecodedValue] = useState("");
   const [scannerType, setScannerType] = useState("QR");
+  const [isLoading, setIsLoading] = useState(false)
+  const [idvalue, setIdvalue] = useState("")
+  const [customer, setCustomer] = useState(null)
+
+  const getCustomer = () => {
+   // const x = 817498394
+    const params = {
+      id: decodedValue
+      //parseInt(nomer, 10),
+    };
+    ServiceApi.getNoCustomer(params)
+    .then((response) => {
+      console.log(response)
+      setCustomer(response)
+     // setCurrentCustomer(response.data);
+     // setLoad(false);
+
+      //console.log(response.data);
+    })
+    .catch((e) => {
+      //console.log(e);
+      //setLoad(false);
+    });
+  }
+  const onChangedata = (res) => {
+    setDecodedValue(res)
+    getCustomer()
+  }
   return (
     <div className="px-6">
       <label>
@@ -179,12 +207,19 @@ const Profile = () => {
         />
         BAR
       </label>
-      <Scanner type={scannerType} onResult={(res) => setDecodedValue(res)} />
+        <Scanner type={scannerType} onResult={(res) => onChangedata(res)} />
       <br />
       <p>
         <strong>Value:</strong>
-        {decodedValue}
+        {customer ? (
+          <>{customer.user.name}</>
+        ):(
+          <>
+           ok
+          </>
+        )}
       </p>
+      <button className="px-2 bg-teal-500" onClick={getCustomer}>Click</button>
     </div>
   );
 };
