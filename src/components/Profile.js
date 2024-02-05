@@ -7,12 +7,13 @@ import Spinner from "./Spinner";
 import ServiceApi from "../services/ServiceApi";
 import Scanner from "./Scanner";
 import Transaction from "./Transaction";
+import Ujicoba from "./Ujicoba";
 const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState("");
   const [decodedValue, setDecodedValue] = useState(39843024);
   const [scannerType, setScannerType] = useState("QR");
-
+  const [ price, setPrice] = useState([])
   const [idvalue, setIdvalue] = useState("");
   const [customer, setCustomer] = useState(null);
   const handleClick = () => {
@@ -31,7 +32,18 @@ const Profile = () => {
         setIsLoading(false);
       });
   };
-
+  useEffect(() => {
+    getPrice()
+  },[])
+  const getPrice = () => {
+    ServiceApi.getallPrice()
+    .then((response) => {
+      setPrice(response.data)
+     // console.log(response.data)
+    }).catch((e) => {
+      console.log(e)
+    })
+  }
   const onChangeData = (res) => {
     setDecodedValue(res);
     console.log(res);
@@ -91,10 +103,10 @@ const Profile = () => {
             {customer ? (
               <React.Fragment>
                 <CardProfile customer={customer} />
-                <Transaction customer={customer} />
+                <Transaction customer={customer} price={price} />
               </React.Fragment>
             ) : (
-              <></>
+              <Ujicoba price={price} />
             )}
           </>
         )}

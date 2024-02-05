@@ -1,29 +1,27 @@
 import React, { useState } from "react";
-const Transaction = ({ customer, price }) => {
-  //console.log('data transaction',price)
+const Ujicoba = ({ price }) => {
   console.log(price);
-  const [kubik, setKubik] = useState(1);
-  const [bayar, setBayar] = useState(0);
+  const [kubik, setKubik] = useState(1)
+  const [bayar, setBayar] = useState(0)
   const onChangeUp = () => {
-    setKubik(kubik + 1);
+    setKubik(kubik+1)
     //console.log('data eksekusi')
   };
   const onChanData = (e) => {
     setKubik(e.target.value);
-    if (e.target.value <= price[0].maximum) {
-      setBayar(e.target.value * price[0].harga);
-    } else if (
-      e.target.value > price[0].maximum &&
-      e.target.value <= price[1].maximum
-    ) {
-      setBayar(e.target.value * price[1].harga);
-    } else if (e.target.value > price[2].maximum) {
-      setBayar(e.target.value * price[2].harga);
+    if(e.target.value <= price[0].maximum){
+        setBayar(e.target.value * price[0].harga)
+    }
+    else if(e.target.value > price[0].maximum && e.target.value <= price[1].maximum) {
+        setBayar(e.target.value * price[1].harga)
+    }
+    else if(e.target.value > price[2].maximum){
+        setBayar(e.target.value * price[2].harga)
     }
   };
   const onChangeDown = () => {
-    setKubik(kubik - 1);
-  };
+    setKubik(kubik-1)
+  }
   console.log(kubik);
   return (
     <React.Fragment>
@@ -111,4 +109,4 @@ const Transaction = ({ customer, price }) => {
     </React.Fragment>
   );
 };
-export default Transaction;
+export default Ujicoba;
