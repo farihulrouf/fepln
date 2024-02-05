@@ -160,7 +160,7 @@ const Profile = () => {
   const [scannerType, setScannerType] = useState("QR");
   const [isLoading, setIsLoading] = useState(false)
   const [idvalue, setIdvalue] = useState("")
-  const [customer, setCustomer] = useState(null)
+  const [customer, setCustomer] = useState({})
 
   const getCustomer = () => {
    // const x = 817498394
@@ -208,19 +208,21 @@ const Profile = () => {
         BAR
       </label>
         <Scanner type={scannerType} onResult={(res) => onChangedata(res)} />
-      
-        <input
+      <br />
+      <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="nomer"
             type="text"
             name="nomer"
             placeholder="nomer"
-            defaultChecked={decodedValue}
+            value={decodedValue}
            
           />
-        
-
-      <button className="px-2 bg-teal-500" onClick={getCustomer}>Click</button>
+      <p>
+        <strong>Value:</strong>
+        {decodedValue}
+      </p>
+      <button className="px-2 bg-teal-500 mt-2 mb-2" onClick={getCustomer}>Click</button>
     </div>
   );
 };
