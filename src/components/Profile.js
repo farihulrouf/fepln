@@ -168,9 +168,11 @@ const Profile = () => {
       id: decodedValue
       //parseInt(nomer, 10),
     };
+
+   // console.log('data',params)
     ServiceApi.getNoCustomer(params)
     .then((response) => {
-      console.log(response)
+     // console.log(response)
       setCustomer(response.data)
      // setCurrentCustomer(response.data);
      // setLoad(false);
@@ -217,18 +219,24 @@ const Profile = () => {
             type="text"
             name="nomer"
             placeholder="nomer"
-            value={decodedValue}
+            defaultChecked={decodedValue}
            
           />
       <p>
         <strong>Value:</strong>
         {decodedValue}
       </p>
-      {customer ? (
-        <p>{customer.user.name}</p>
-      ):(
-        <p>ok</p>
-      )}
+      <div>
+       {customer ? (
+        <>
+          {customer}
+        </>
+       ):(
+        <>
+          Ok
+        </>
+       )}
+       </div>
       
       <button className="px-2 bg-teal-500 mt-2 mb-2" onClick={getCustomer}>Click</button>
       
