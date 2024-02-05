@@ -42,7 +42,11 @@ const Profile = () => {
     setDecodedValue(res)
     //getCustomer()
   }
-
+  const onChangeInput = (e) => {
+    setDecodedValue(e.target.value)
+    //const searchName = e.target.value;
+    //setSearchName(searchName);
+  };
   console.log(customer,'dan', decodedValue)
   return (
     <div className="px-6">
@@ -75,6 +79,7 @@ const Profile = () => {
             type="text"
             name="nomer"
             placeholder="nomer"
+            onChange={onChangeInput}
             defaultValue={decodedValue}
            
           />
