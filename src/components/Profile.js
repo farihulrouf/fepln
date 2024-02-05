@@ -3,9 +3,8 @@ import React, { useEffect, useState, useRef } from "react";
 // import { getCameraList } from "./Utils";
 
 import ServiceApi from "../services/ServiceApi";
-
+import Scanner from './Scanner'
 const Profile = () => {
-
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState("");
   const [decodedValue, setDecodedValue] = useState(39843024);
@@ -13,7 +12,7 @@ const Profile = () => {
 
   const [idvalue, setIdvalue] = useState("");
   const [customer, setCustomer] = useState(null);
-  const handleClick =  () => {
+  const handleClick = () => {
     const params = {
       id: decodedValue,
       //parseInt(nomer, 10),
@@ -34,23 +33,43 @@ const Profile = () => {
       });
   };
 
-  const onChangeData = (e) => {
-    console.log('silver',e.target.value)
-    setDecodedValue(e.target.value)
-  }
+  const onChangeData = (res) => {
+    setDecodedValue(res)
+    console.log(res)
+   // console.log("silver", e.target.value);
+  //  setDecodedValue(e.target.value);
+  };
+
+  
 
   //console.log(customer);
 
   return (
     <div className="px-6 py-2">
-      <input type="number" onChange={onChangeData} />
+      <label>
+        <input
+          type="radio"
+          defaultChecked
+          value="QR"
+          name="scannerType"
+          onChange={() => setScannerType("QR")}
+        />
+        QR
+      </label>
+      <label>
+        <input
+          type="radio"
+          value="BAR"
+          name="scannerType"
+          onChange={() => setScannerType("BAR")}
+        />
+        BAR
+      </label>
+      <Scanner type={scannerType} onResult={(res) => onChangeData(res)} />
+      <br />
+      {/*<input type="number" onChange={onChangeData} /> */}
       {err && <h2>{err}</h2>}
-      <div className="py-4">
-        {customer ? 
-        <> { customer.name } </> : 
-        <>Ok</>
-        }
-      </div>
+      <div className="py-4">{customer ? <> {customer.name} </> : <>Ok</>}</div>
       <button className="px-2 py-2 p-2 bg-pink-500" onClick={handleClick}>
         Fetch data
       </button>

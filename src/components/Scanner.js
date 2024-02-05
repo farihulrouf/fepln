@@ -6,7 +6,7 @@ const qrConfig = { fps: 10, qrbox: { width: 300, height: 300 } };
 const brConfig = { fps: 10, qrbox: { width: 300, height: 150 } };
 let html5QrCode;
 
-export const Scanner = (props) => {
+const Scanner = (props) => {
     const fileRef = useRef(null);
     const [cameraList, setCameraList] = useState([]);
     const [activeCamera, setActiveCamera] = useState();
@@ -150,4 +150,5 @@ export const Scanner = (props) => {
       </div>
     );
   };
-  
+
+  export default Scanner
