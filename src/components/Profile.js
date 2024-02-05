@@ -27,7 +27,7 @@ const Profile = () => {
     function error (err) {
       console.warn(err);
     };
-  });
+  },[]);
 
   return (
     <div>
