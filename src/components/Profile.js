@@ -208,17 +208,18 @@ const Profile = () => {
         BAR
       </label>
         <Scanner type={scannerType} onResult={(res) => onChangedata(res)} />
-      <br />
-      <p>
-        <strong>Value:</strong>
-        {customer ? (
-          <>{customer.user.name}</>
-        ):(
-          <>
-           ok
-          </>
-        )}
-      </p>
+      
+        <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="nomer"
+            type="text"
+            name="nomer"
+            placeholder="nomer"
+            defaultChecked={decodedValue}
+           
+          />
+        
+
       <button className="px-2 bg-teal-500" onClick={getCustomer}>Click</button>
     </div>
   );
