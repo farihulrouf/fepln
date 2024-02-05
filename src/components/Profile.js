@@ -13,10 +13,7 @@ const Profile = () => {
   const [idvalue, setIdvalue] = useState("");
   const [customer, setCustomer] = useState(null);
   const handleClick = () => {
-    const params = {
-      id: decodedValue,
-      //parseInt(nomer, 10),
-    };
+  
     setIsLoading(true);
     ServiceApi.getNoCustomer(decodedValue)
       .then((response) => {
@@ -36,9 +33,26 @@ const Profile = () => {
   const onChangeData = (res) => {
     setDecodedValue(res)
     console.log(res)
+    onSearchdata(res)
    // console.log("silver", e.target.value);
   //  setDecodedValue(e.target.value);
   };
+  const onSearchdata = (id) => {
+    setIsLoading(true);
+    ServiceApi.getNoCustomer(id)
+      .then((response) => {
+        // console.log(response)
+        setCustomer(response.data.user);
+        setIsLoading(false);
+        // setCurrentCustomer(response.data);
+        // setLoad(false);
+
+        //console.log(response.data);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+      });
+  }
 
   
 
