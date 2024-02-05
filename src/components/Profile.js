@@ -31,8 +31,9 @@ const Profile = () => {
 
   return (
     <div>
+      <h1 className="text-2xl">Scan Qr</h1>
       { scanResult 
-      ? <div> success: {scanResult} </div>
+      ? <div> success: <a href={scanResult}>{scanResult}</a> </div>
       : <div id="reader"></div>
       }
     </div>
