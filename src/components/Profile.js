@@ -229,7 +229,7 @@ const Profile = () => {
       <div>
        {customer ? (
         <>
-          {decodedValue}
+          {customer}
         </>
        ):(
         <>
