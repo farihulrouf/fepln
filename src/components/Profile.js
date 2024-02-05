@@ -235,8 +235,13 @@ const Profile = () => {
        )}
        </div>
       
-      <button className="px-4 py-1 bg-teal-500 mt-2 mb-2" onClick={getCustomer}>Click</button>
-      
+      <button
+            className="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
+            type="submit"
+            onClick={getCustomer}
+          >
+            Save
+          </button>
     </div>
   );
 };
