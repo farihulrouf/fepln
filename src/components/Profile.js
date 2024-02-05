@@ -106,6 +106,7 @@ export const Scanner = (props) => {
   return (
     <div style={{ position: "relative" }}>
       <div id="reader" width="100%"></div>
+      {/*
       <button onClick={getCameras}>Get List of cameras</button>
       {cameraList.length > 0 && (
         <select onChange={onCameraChange}>
@@ -121,12 +122,14 @@ export const Scanner = (props) => {
           <option>Dummy</option>
         </select>
       )}
+      */}
       <button onClick={() => handleClickAdvanced()}>
         click pro {props.type}
       </button>
       <button onClick={() => handleStop()}>stop pro</button>
       <br />
       <br />
+      {/*
       <button onClick={scanLocalFile}>Scan local file</button>
       <input
         type="file"
@@ -134,7 +137,8 @@ export const Scanner = (props) => {
         ref={fileRef}
         accept="image/*"
         onChange={scanFile}
-      />
+          />
+      */}
     </div>
   );
 };
