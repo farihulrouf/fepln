@@ -11,7 +11,7 @@ const Navbar = ({user}) => {
   const [nav, setNav] = useState(false);
 
   const menuItems = [
-    { icon: <TbTruckDelivery size={25} className="mr-4" />, text: "Orders" },
+    { icon: <TbTruckDelivery size={25} className="mr-4" />, text: "Profile" },
     { icon: <MdFavorite size={25} className="mr-4" />, text: "Favorites" },
     { icon: <FaWallet size={25} className="mr-4" />, text: "Wallet" },
     { icon: <MdHelp size={25} className="mr-4" />, text: "Help" },

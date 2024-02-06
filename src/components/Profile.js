@@ -11,7 +11,7 @@ import Ujicoba from "./Ujicoba";
 const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState("");
-  const [decodedValue, setDecodedValue] = useState(39843024);
+  const [decodedValue, setDecodedValue] = useState(45346534);
   const [scannerType, setScannerType] = useState("QR");
   const [ price, setPrice] = useState([])
   const [idvalue, setIdvalue] = useState("");
@@ -34,7 +34,7 @@ const Profile = () => {
   };
   useEffect(() => {
     getPrice()
-    onSearchdata(19741021)
+    onSearchdata(45346534)
   },[])
   const getPrice = () => {
     ServiceApi.getallPrice()
