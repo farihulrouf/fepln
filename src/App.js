@@ -12,6 +12,8 @@ import Price from "./components/Price/Price";
 import ViewCustomer from "./components/Customer/ViewCustomer";
 import RootLayout from "./components/RootLayout";
 import Navbar from "./components/Navbar";
+import EditCustomer from "./components/Customer/EditCustomer";
+import EditTransaction from "./components/EditTransaction";
 //import Customer from "./components/Customer/Customer";
 function App() {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -53,6 +55,7 @@ function App() {
           <Route path="/price/add" element={<FormPrice />} />
           <Route path="/customers" element={<Customer />} />
           <Route path="/customers/:id" element={<ViewCustomer />} />
+          <Route path="/transaction" element={<EditTransaction />} />
         </Routes>
       </BrowserRouter>
     </React.Fragment>
