@@ -72,7 +72,7 @@ const Profile = () => {
   //console.log(customer);
 
   return (
-    <div className="px-6 py-2 mt-8">
+    <div className="px-6 py-2 mt-2">
       <label>
         <input
           type="radio"
