@@ -4,6 +4,7 @@ import { BsFillCartFill } from "react-icons/bs";
 import { TbTruckDelivery } from "react-icons/tb";
 import { FaWallet } from "react-icons/fa";
 import { MdFavorite, MdHelp } from "react-icons/md";
+import Avatar from "react-avatar";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -16,7 +17,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="max-w-sm mx-auto flex justify-between items-center p-4 shadow-sm">
+    <div className="max-w-sm mx-auto flex justify-between items-center p-3 shadow-sm">
       {/* Left side */}
       <div className="flex items-center">
         <div onClick={() => setNav(!nav)} className="cursor-pointer">
@@ -32,9 +33,14 @@ const Navbar = () => {
       </div>
 
       {/* Search Input */}
-      <div className="bg-gray-200 rounded-full flex items-center px-2 w-[200px] sm:w-[400px] lg:w-[500px]">
-        <AiOutlineSearch size={25} />
-      
+      <div className="flex gap-2 items-center">
+        <Avatar
+          className="rounded-full"
+          name="farihul"
+          maxInitials={2}
+          size={25}
+        />
+        farihul
       </div>
       {/* Cart button */}
       <button className="bg-black text-white hidden md:flex items-center py-2 rounded-full border border-black">
