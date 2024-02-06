@@ -1,9 +1,17 @@
 import React, { useState } from "react";
+import ServiceApi from "../services/ServiceApi";
 const Transaction = ({ customer, price }) => {
-  //console.log('data transaction',price)
+    console.log(customer)
+   {/*
+   
+
+    */}
   console.log(price);
   const [kubik, setKubik] = useState(1);
   const [bayar, setBayar] = useState(0);
+  const [num, setNum] = useState(0);
+  const generate =  Math.random().toFixed(6).split('.')[1];
+  const [isLoading, setIsLoading] = useState(false)
   const onChangeUp = () => {
     setKubik(kubik + 1);
     //console.log('data eksekusi')
@@ -24,7 +32,41 @@ const Transaction = ({ customer, price }) => {
   const onChangeDown = () => {
     setKubik(kubik - 1);
   };
-  console.log(kubik);
+
+  const randomNumberInRange = (min, max) => {
+    min = Math.ceil(0);
+    max = Math.floor(5000);
+    const num =  Math.floor(Math.random() * (max - min + 1)) + min;
+    return num.toString().padStart(6, "0")
+  }
+  
+  const onChangeSave = () => {
+    const dataTransaction = {
+        title: "Air",
+        noinv: generate,
+        no_id: customer.no_id,
+        transactionType: 'Cash',
+        customerId: customer._id,
+        status: false,
+        amount: bayar,
+        meteran: kubik
+    
+      }
+      console.log('nilai',dataTransaction)
+    setIsLoading(true)
+    ServiceApi.createTransactions(dataTransaction)
+    .then((response) => {
+        setIsLoading(false)
+        //console.log(response)
+    })
+    .catch((e) => {
+      console.log(e);
+      setIsLoading(false)
+    });
+
+ 
+  }
+
   return (
     <React.Fragment>
       <div className="py-2">
@@ -102,7 +144,7 @@ const Transaction = ({ customer, price }) => {
             </div>
           </div>
           <div className="flex justify-end py-4">
-            <button className="px-3 py-1 bg-teal-700 rounded-sm text-white">
+            <button className="px-3 py-1 bg-teal-700 rounded-sm text-white" onClick={onChangeSave}>
               Save
             </button>
           </div>

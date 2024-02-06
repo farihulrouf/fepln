@@ -6,7 +6,7 @@ import QRCode from "react-qr-code";
 
 const CardProfile = ({customer}) => {
     return(
-        <>
+        <React.Fragment>
         <div className="px-4 py-5 sm:px-6 flex items-center space-x-2 relative">
           <Avatar
             className="rounded-full"
@@ -69,7 +69,7 @@ const CardProfile = ({customer}) => {
             </div>
           </dl>
         </div>
-      </>
+        </React.Fragment>
     )
 }
 export default CardProfile

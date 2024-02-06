@@ -4,12 +4,14 @@ import Profile from "./components/Profile";
 import Login from "./components/LoginComp";
 import EventBus from "./common/eventBus ";
 import AuthService from "./services/AuthService";
-import Navbar from "./components/Navbar";
+//import Navbar from "./components/Navbar";
 import FormPrice from "./components/Price/FormPrice";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Customer from "./components/Customer/Customer";
 import Price from "./components/Price/Price";
 import ViewCustomer from "./components/Customer/ViewCustomer";
+import RootLayout from "./components/RootLayout";
+import Navbar from "./components/Navbar";
 //import Customer from "./components/Customer/Customer";
 function App() {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -40,20 +42,21 @@ function App() {
   };
   return (
     <React.Fragment>
-
       {/*currentUser ? <Navbar user={currentUser} /> : null */}
-      <div className="container">
+        
         <BrowserRouter>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/price" element={<Price />} />
-            <Route path="/price/add" element={<FormPrice /> } />
-            <Route path="/customers" element={<Customer />} />
-            <Route path="/customers/:id" element={<ViewCustomer />} />
-          </Routes>
+            <Navbar />
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/price" element={<Price />} />
+              <Route path="/price/add" element={<FormPrice />} />
+              <Route path="/customers" element={<Customer />} />
+              <Route path="/customers/:id" element={<ViewCustomer />} />
+            </Routes>
+        
         </BrowserRouter>
-      </div>
+      
     </React.Fragment>
   );
 }

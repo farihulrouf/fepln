@@ -34,6 +34,7 @@ const Profile = () => {
   };
   useEffect(() => {
     getPrice()
+    onSearchdata(19741021)
   },[])
   const getPrice = () => {
     ServiceApi.getallPrice()
@@ -71,7 +72,7 @@ const Profile = () => {
   //console.log(customer);
 
   return (
-    <div className="px-6 py-2">
+    <div className="px-6 py-2 mt-8">
       <label>
         <input
           type="radio"
@@ -106,7 +107,7 @@ const Profile = () => {
                 <Transaction customer={customer} price={price} />
               </React.Fragment>
             ) : (
-              <Ujicoba price={price} />
+              <Ujicoba customer={customer} price={price} />
             )}
           </>
         )}
