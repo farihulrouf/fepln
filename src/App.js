@@ -43,20 +43,18 @@ function App() {
   return (
     <React.Fragment>
       {/*currentUser ? <Navbar user={currentUser} /> : null */}
-        
-        <BrowserRouter>
-            <Navbar />
-            <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/price" element={<Price />} />
-              <Route path="/price/add" element={<FormPrice />} />
-              <Route path="/customers" element={<Customer />} />
-              <Route path="/customers/:id" element={<ViewCustomer />} />
-            </Routes>
-        
-        </BrowserRouter>
-      
+
+      <BrowserRouter>
+        {currentUser ? <Navbar user={currentUser} /> : null}
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/price" element={<Price />} />
+          <Route path="/price/add" element={<FormPrice />} />
+          <Route path="/customers" element={<Customer />} />
+          <Route path="/customers/:id" element={<ViewCustomer />} />
+        </Routes>
+      </BrowserRouter>
     </React.Fragment>
   );
 }

@@ -6,7 +6,8 @@ import { FaWallet } from "react-icons/fa";
 import { MdFavorite, MdHelp } from "react-icons/md";
 import Avatar from "react-avatar";
 
-const Navbar = () => {
+const Navbar = ({user}) => {
+  console.log(user)
   const [nav, setNav] = useState(false);
 
   const menuItems = [
@@ -36,11 +37,11 @@ const Navbar = () => {
       <div className="flex gap-2 items-center">
         <Avatar
           className="rounded-full"
-          name="farihul"
+          name={user.user.username}
           maxInitials={2}
           size={25}
         />
-        farihul
+        {user.user.username}
       </div>
       {/* Cart button */}
       <button className="bg-black text-white hidden md:flex items-center py-2 rounded-full border border-black">
