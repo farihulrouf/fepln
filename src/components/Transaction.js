@@ -21,6 +21,8 @@ const Transaction = ({ customer, price }) => {
   };
   const onChanData = (e) => {
     setKubik(e.target.value);
+    setBayar(e.target.value * price[0].harga)
+    {/*
     if (e.target.value <= price[0].maximum) {
       setBayar(e.target.value * price[0].harga);
     } else if (
@@ -31,6 +33,7 @@ const Transaction = ({ customer, price }) => {
     } else if (e.target.value > price[2].maximum) {
       setBayar(e.target.value * price[2].harga);
     }
+    */}
   };
   const onChangeDown = () => {
     setKubik(kubik - 1);
@@ -66,7 +69,7 @@ const Transaction = ({ customer, price }) => {
         setIsLoading(false);
       });
   };
-
+  console.log('nilai', bayar, kubik)
   return (
     <React.Fragment>
       <div className="relative">
@@ -86,7 +89,7 @@ const Transaction = ({ customer, price }) => {
                   <button
                     type="button"
                     id="decrement-button"
-                    onClick={onChangeDown}
+                    
                     data-input-counter-decrement="quantity-input"
                     className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
                   >
@@ -119,7 +122,7 @@ const Transaction = ({ customer, price }) => {
                   <button
                     type="button"
                     id="increment-button"
-                    onClick={onChangeUp}
+                
                     data-input-counter-increment="quantity-input"
                     className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
                   >
