@@ -75,6 +75,7 @@ function App() {
           <Route path="/customers/:id" element={<ViewCustomer />} />
           <Route path="/transaction" element={<EditTransaction />} />
         </Routes>
+        
       </BrowserRouter>
     </React.Fragment>
   );

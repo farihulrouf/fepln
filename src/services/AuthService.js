@@ -33,8 +33,26 @@ const logout = () => {
 };
 
 const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem("authorization"));
+  const user = JSON.parse(localStorage.getItem("authorization"))
+  if (user) {
+    const decodedJwt = parseJwt(user);
+
+    if (decodedJwt.exp * 1000 < Date.now()) {
+      logout()
+      //props.logOut();
+    }
+  }
+  return user
 };
+
+const parseJwt = (token) => {
+  try {
+    return JSON.parse(atob(token.split(".")[1]));
+  } catch (e) {
+    return null;
+  }
+};
+
 
 const AuthService = {
   register,
