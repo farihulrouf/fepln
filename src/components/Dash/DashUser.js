@@ -2,6 +2,9 @@ import React from "react";
 import { CgProfile } from "react-icons/cg";
 import { HiDocumentReport } from "react-icons/hi";
 import { ImProfile } from "react-icons/im";
+import { FaHospitalUser } from "react-icons/fa";
+import { MdPayment } from "react-icons/md";
+
 const DashUser = ({user}) => {
   console.log('data', user)
   return (
@@ -22,16 +25,16 @@ const DashUser = ({user}) => {
         </div>
 
         <div className="bg-white text-gray-700  flex flex-col items-center justify-center w-32 h-28 shadow-sm">
-          <span className="text-sm">Report </span>
+          <span className="text-sm">Customer </span>
           <button className="px-2 py-y rounded-xl">
-            <HiDocumentReport size={30} className="" />
+            <FaHospitalUser size={30} className="" />
           </button>
         </div>
 
         <div className="bg-white text-gray-700  flex flex-col items-center justify-center w-32 h-28 shadow-sm">
-          <span className="text-sm">Report </span>
+          <span className="text-sm">Transaction </span>
           <button className="px-2 py-y rounded-xl">
-            <HiDocumentReport size={30} className="" />
+            <MdPayment size={30} className="" />
           </button>
         </div>
       </div>
