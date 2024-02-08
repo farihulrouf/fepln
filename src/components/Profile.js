@@ -10,9 +10,9 @@ import Transaction from "./Transaction";
 import Ujicoba from "./Ujicoba";
 import UserService from "../services/UserService ";
 import QRCode from "react-qr-code";
-import UserUpdate from "./Users/UserUpdate";
+//import UserUpdate from "./Users/UserUpdate";
 import DashUser from "./Dash/DashUser";
-const Profile = ({ user }) => {
+export default function Profile ({ user }) {
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState("");
   const [decodedValue, setDecodedValue] = useState(45346534);
@@ -154,4 +154,4 @@ const Profile = ({ user }) => {
   );
 };
 
-export default Profile;
+//export default Profile;
