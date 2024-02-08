@@ -12,7 +12,7 @@ import UserService from "../services/UserService ";
 import QRCode from "react-qr-code";
 //import UserUpdate from "./Users/UserUpdate";
 import DashUser from "./Dash/DashUser";
-export default function Profile ({ user }) {
+export default function Profile({ user }) {
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState("");
   const [decodedValue, setDecodedValue] = useState(45346534);
@@ -124,8 +124,7 @@ export default function Profile ({ user }) {
         />
         BAR
       </label>
-      <Scanner type={scannerType} onResult={(res) => onChangeData(res)} />
-
+      <Scanner type={scannerType} onResult={(res) => onChangeData(res)} /> 
       {/*<input type="number" onChange={onChangeData} /> */}
       {err && <h2>{err}</h2>}
       <div className="py-4">
@@ -139,7 +138,7 @@ export default function Profile ({ user }) {
                 <Transaction customer={customer} price={price} />
               </React.Fragment>
             ) : (
-               <DashUser user={user} />
+              <DashUser user={user} />
             )}
           </>
         )}
@@ -152,6 +151,6 @@ export default function Profile ({ user }) {
         */}
     </div>
   );
-};
+}
 
 //export default Profile;

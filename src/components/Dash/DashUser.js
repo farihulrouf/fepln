@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { IoArrowBack } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { HiDocumentReport } from "react-icons/hi";
 import { ImProfile } from "react-icons/im";
@@ -28,15 +29,26 @@ const DashUser = ({ user }) => {
   const onChangeTransaction = () => {
     setMenu(4);
   };
+  const onChageDefault = () => {
+    setMenu(0)
+  }
   console.log("data", menu);
   return (
     <>
+      {menu != 0 ? (
+        <div className="flex justify-end">
+          <button className="px-2 flex space-x-1 items-center" onClick={onChageDefault}>
+            <IoArrowBack /> <span className="text-[12px]">Back</span>
+          </button>
+        </div>
+      ) : null}
+
       {menu === 1 ? (
         <UserUpdate user={user} />
       ) : menu === 2 ? (
         <>menu 2</>
       ) : menu === 3 ? (
-         <Customer />
+        <Customer />
       ) : menu === 4 ? (
         <>menu 4 </>
       ) : (
