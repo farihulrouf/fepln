@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 //import { FaTachometerAlt } from "react-icons/fa";
-import { CgProfile } from "react-icons/cg";
-import { HiDocumentReport } from "react-icons/hi";
-import { ImProfile } from "react-icons/im";
+
 import CardProfile from "./CardProfile";
 //import EventBus from "../common/eventBus"
 import Spinner from "./Spinner";
@@ -13,6 +11,7 @@ import Ujicoba from "./Ujicoba";
 import UserService from "../services/UserService ";
 import QRCode from "react-qr-code";
 import UserUpdate from "./Users/UserUpdate";
+import DashUser from "./Dash/DashUser";
 const Profile = ({ user }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState("");
@@ -140,38 +139,7 @@ const Profile = ({ user }) => {
                 <Transaction customer={customer} price={price} />
               </React.Fragment>
             ) : (
-              <div className="">
-                <div className="flex flex-wrap justify-between py-4 gap-8">
-                  <div className="bg-white text-gray-700 flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
-                    <span className="text-sm">Profile </span>
-                    <button className="px-2 py-y rounded-xl">
-                      <CgProfile size={30} className="" />
-                    </button>
-                  </div>
-                  
-                  <div className="bg-white text-gray-700  flex flex-col items-center justify-center w-32 h-28 shadow-sm">
-                    <span className="text-sm">Report </span>
-                    <button className="px-2 py-y rounded-xl">
-                      <HiDocumentReport size={30} className="" />
-                    </button>
-                  </div>
-
-                  <div className="bg-white text-gray-700  flex flex-col items-center justify-center w-32 h-28 shadow-sm">
-                    <span className="text-sm">Report </span>
-                    <button className="px-2 py-y rounded-xl">
-                      <HiDocumentReport size={30} className="" />
-                    </button>
-                  </div>
-
-                   <div className="bg-white text-gray-700  flex flex-col items-center justify-center w-32 h-28 shadow-sm">
-                    <span className="text-sm">Report </span>
-                    <button className="px-2 py-y rounded-xl">
-                      <HiDocumentReport size={30} className="" />
-                    </button>
-                  </div>
-                  
-                </div>
-              </div>
+               <DashUser user={user} />
             )}
           </>
         )}
