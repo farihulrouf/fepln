@@ -10,15 +10,15 @@ import ServiceApi from "../services/ServiceApi";
 import Scanner from "./Scanner";
 import Transaction from "./Transaction";
 import Ujicoba from "./Ujicoba";
-import UserService from '../services/UserService '
+import UserService from "../services/UserService ";
 import QRCode from "react-qr-code";
 import UserUpdate from "./Users/UserUpdate";
-const Profile = ({user}) => {
+const Profile = ({ user }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState("");
   const [decodedValue, setDecodedValue] = useState(45346534);
   const [scannerType, setScannerType] = useState("QR");
-  const [ price, setPrice] = useState([])
+  const [price, setPrice] = useState([]);
   const [idvalue, setIdvalue] = useState("");
   const [customer, setCustomer] = useState(null);
   const [content, setContent] = useState("");
@@ -40,16 +40,16 @@ const Profile = ({user}) => {
       });
   };
   useEffect(() => {
-   // getAdminBoard()
-    getPrice()
-   // onSearchdata(45346534)
-  },[])
+    // getAdminBoard()
+    getPrice();
+    // onSearchdata(45346534)
+  }, []);
 
   const getAdminBoard = () => {
-  //  console.log('board admmin')
+    //  console.log('board admmin')
     UserService.getAdminBoard().then(
       (response) => {
-        console.log('data response', response)
+        console.log("data response", response);
         setContent(response.data);
       },
       (error) => {
@@ -63,20 +63,21 @@ const Profile = ({user}) => {
         setContent(_content);
 
         if (error.response && error.response.status === 401) {
-         // EventBus.dispatch("logout");
+          // EventBus.dispatch("logout");
         }
       }
     );
-  }
+  };
   const getPrice = () => {
     ServiceApi.getallPrice()
-    .then((response) => {
-      setPrice(response.data)
-     // console.log(response.data)
-    }).catch((e) => {
-      console.log(e)
-    })
-  }
+      .then((response) => {
+        setPrice(response.data);
+        // console.log(response.data)
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
   const onChangeData = (res) => {
     setDecodedValue(res);
     console.log(res);
@@ -100,7 +101,7 @@ const Profile = ({user}) => {
         setIsLoading(false);
       });
   };
-  
+
   //console.log(customer);
   //console.log('data user di profule', user)
   return (
@@ -139,16 +140,22 @@ const Profile = ({user}) => {
                 <Transaction customer={customer} price={price} />
               </React.Fragment>
             ) : (
-               <div className="">
+              <div className="">
                 <div className="flex justify-between py-4">
-                  <button className="px-2 py-2 bg-teal-700 rounded-xl"><CgProfile size={75} className="text-white" /></button>
-                  <button className="px-2 py-2 bg-indigo-700 rounded-xl"><HiDocumentReport size={75} className="text-white" /></button>
+                  <div className="bg-white text-gray-700 flex flex-col items-center justify-center w-28 h-28 drop-shadow-md">
+                    <span className="text-sm">Profile </span>
+                    <button className="px-2 py-y rounded-xl">
+                      <CgProfile size={30} className="" />
+                    </button>
+                  </div>
+                  <div className="bg-white text-gray-700  flex flex-col items-center justify-center w-28 h-28 shadow-md">
+                    <span className="text-sm">Report </span>
+                    <button className="px-2 py-y rounded-xl">
+                      <HiDocumentReport size={30} className="" />
+                    </button>
+                  </div>
                 </div>
-                <div className="flex justify-between py-4">
-                  <button className="px-2 py-2 bg-pink-700 rounded-xl"><CgProfile size={75} className="text-white" /></button>
-                  <button className="px-2 py-2 bg-orange-700 rounded-xl"><HiDocumentReport size={75} className="text-white" /></button>
-                </div>
-               </div>
+              </div>
             )}
           </>
         )}
