@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import Profile from "./components/Profile";
 import Login from "./components/LoginComp";
-import EventBus from "./common/eventBus ";
+//import EventBus from "./common/eventBus";
 import AuthService from "./services/AuthService";
 //import Navbar from "./components/Navbar";
 import FormPrice from "./components/Price/FormPrice";
@@ -14,20 +14,25 @@ import RootLayout from "./components/RootLayout";
 import Navbar from "./components/Navbar";
 import EditCustomer from "./components/Customer/EditCustomer";
 import EditTransaction from "./components/EditTransaction";
+//import AuthVerify from "./common/AuthVerify";
+
 //import Customer from "./components/Customer/Customer";
 function App() {
   const [currentUser, setCurrentUser] = useState(undefined);
+  const [showModeratorBoard, setShowModeratorBoard] = useState(false);
+  const [showAdminBoard, setShowAdminBoard] = useState(false);
 
   //const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
   useEffect(() => {
     const user = AuthService.getCurrentUser();
-    console.log(user);
+    ///console.log('data', user)
+   // console.log(user);
     if (user) {
       setCurrentUser(user);
       //setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
-      //setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
+       setShowAdminBoard(user.typeuser);
     }
-
+    {/*
     EventBus.on("logout", () => {
       logOut();
     });
@@ -35,6 +40,7 @@ function App() {
     return () => {
       EventBus.remove("logout");
     };
+    */}
   }, []);
   const logOut = () => {
     AuthService.logout();

@@ -1,8 +1,8 @@
 import axios from "axios";
-import authHeader from "./authHeader";
+import authHeader from "./AuthHeader"
 
 const getPublicContent = () => {
-  return axios.get(API_URL + "all");
+  return axios.get(process.env.REACT_APP_API_URL + "all");
 };
 
 const getUserBoard = () => {
@@ -14,7 +14,8 @@ const getModeratorBoard = () => {
 };
 
 const getAdminBoard = () => {
-  return axios.get(process.env.REACT_APP_API_URL + "admin", { headers: authHeader() });
+  //console.log('this one board admin')
+  return axios.get(process.env.REACT_APP_API_URL + "/contents/admin", { headers: authHeader() });
 };
 
 const UserService = {

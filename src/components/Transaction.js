@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ServiceApi from "../services/ServiceApi";
 import Spinner from "./Spinner";
 const Transaction = ({ customer, price }) => {
-  console.log(customer);
+ // console.log(customer);
   {
     /*
    
@@ -57,7 +57,7 @@ const Transaction = ({ customer, price }) => {
       amount: bayar,
       meteran: kubik,
     };
-    console.log("nilai", dataTransaction);
+    //console.log("nilai", dataTransaction);
     setIsLoading(true);
     ServiceApi.createTransactions(dataTransaction)
       .then((response) => {

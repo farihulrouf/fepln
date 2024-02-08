@@ -2,12 +2,13 @@ import React, { useEffect, useState, useRef } from "react";
 import { FaTachometerAlt } from "react-icons/fa";
 
 import CardProfile from "./CardProfile";
-// import { getCameraList } from "./Utils";
+//import EventBus from "../common/eventBus"
 import Spinner from "./Spinner";
 import ServiceApi from "../services/ServiceApi";
 import Scanner from "./Scanner";
 import Transaction from "./Transaction";
 import Ujicoba from "./Ujicoba";
+import UserService from '../services/UserService '
 const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState("");
@@ -16,6 +17,8 @@ const Profile = () => {
   const [ price, setPrice] = useState([])
   const [idvalue, setIdvalue] = useState("");
   const [customer, setCustomer] = useState(null);
+  const [content, setContent] = useState("");
+
   const handleClick = () => {
     setIsLoading(true);
     ServiceApi.getNoCustomer(decodedValue)
@@ -33,9 +36,34 @@ const Profile = () => {
       });
   };
   useEffect(() => {
+    getAdminBoard()
     getPrice()
     onSearchdata(45346534)
   },[])
+
+  const getAdminBoard = () => {
+  //  console.log('board admmin')
+    UserService.getAdminBoard().then(
+      (response) => {
+        console.log('data response', response)
+        setContent(response.data);
+      },
+      (error) => {
+        const _content =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        setContent(_content);
+
+        if (error.response && error.response.status === 401) {
+         // EventBus.dispatch("logout");
+        }
+      }
+    );
+  }
   const getPrice = () => {
     ServiceApi.getallPrice()
     .then((response) => {
@@ -68,7 +96,7 @@ const Profile = () => {
         setIsLoading(false);
       });
   };
-
+  
   //console.log(customer);
 
   return (
