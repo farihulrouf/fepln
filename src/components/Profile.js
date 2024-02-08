@@ -11,6 +11,7 @@ import Customer from "./Customer/Customer";
 import ScannerMenu from "./ScannerMenu";
 import { MdGroups2 } from "react-icons/md";
 import Report from "./Report";
+import ListTransaction from "./ListTransaction";
 export default function Profile({ user }) {
   const [menu, setMenu] = useState(0);
 
@@ -56,7 +57,7 @@ export default function Profile({ user }) {
       ) : menu === 3 ? (
         <Customer />
       ) : menu === 4 ? (
-        <>menu 4 </>
+        <ListTransaction />
       ) : menu === 5 ? (
         <ScannerMenu />
       ) : menu === 6 ? (
