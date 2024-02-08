@@ -22,7 +22,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
-
   //const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
   useEffect(() => {
     const user = AuthService.getCurrentUser();
