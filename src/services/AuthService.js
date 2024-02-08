@@ -36,7 +36,7 @@ const getCurrentUser = () => {
   const user = JSON.parse(localStorage.getItem("authorization"))
   if (user) {
     const decodedJwt = parseJwt(user);
-
+   // console.log(decodedJwt,'Dicode jwt')
     if (decodedJwt.exp * 1000 < Date.now()) {
       logout()
       //props.logOut();
@@ -59,6 +59,7 @@ const AuthService = {
   login,
   logout,
   getCurrentUser,
+  parseJwt,
 };
 
 export default AuthService;

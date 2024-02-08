@@ -7,7 +7,7 @@ import { MdFavorite, MdHelp } from "react-icons/md";
 import Avatar from "react-avatar";
 
 const Navbar = ({user}) => {
-  console.log(user)
+  //console.log(user)
   const [nav, setNav] = useState(false);
 
   const menuItems = [
@@ -37,11 +37,11 @@ const Navbar = ({user}) => {
       <div className="flex gap-2 items-center">
         <Avatar
           className="rounded-full"
-          name={user.user.username}
+          name={user.username}
           maxInitials={2}
           size={25}
         />
-        {user.user.username}
+        {user.username}
       </div>
       {/* Cart button */}
       <button className="bg-black text-white hidden md:flex items-center py-2 rounded-full border border-black">

@@ -11,7 +11,7 @@ import Customer from "./components/Customer/Customer";
 import Price from "./components/Price/Price";
 import ViewCustomer from "./components/Customer/ViewCustomer";
 import RootLayout from "./components/RootLayout";
-//import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar";
 import EditCustomer from "./components/Customer/EditCustomer";
 import EditTransaction from "./components/EditTransaction";
 import PrivateRoute from "./components/PrivateRoute";
@@ -22,14 +22,18 @@ function App() {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
+  const [user, setUser] = useState({})
   //const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
   useEffect(() => {
-    const user = AuthService.getCurrentUser();
-
-    if (user) {
-      setCurrentUser(user);
+    const token = AuthService.getCurrentUser();
+    //const data_user = AuthService.parseJwt(token)
+    if (token) {
+      setCurrentUser(token);
+      setUser(AuthService.parseJwt(token))
+     // setUser(data_user)
       //setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
-      setShowAdminBoard(user.typeuser);
+      setShowAdminBoard(token.typeuser);
+      
     }
 
     EventBus.on("logout", () => {
@@ -46,12 +50,16 @@ function App() {
     setShowAdminBoard(false);
     setCurrentUser(undefined);
   };
+  //console.log(user,'this one data user')
+  //const data_user = AuthService.parseJwt(currentUser);
+  //console.log(data_user)
+  //console.log('this one data', user)
   return (
     <React.Fragment>
       {/*currentUser ? <Navbar user={currentUser} /> : null */}
 
       <BrowserRouter>
-        {/*currentUser ? <Navbar user={currentUser} /> : null */}
+        { user ? <Navbar user={user} /> : null }
         <Routes>
           <Route path="/" element={<Login />} />
           <Route
