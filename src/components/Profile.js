@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import { FaTachometerAlt } from "react-icons/fa";
-
+//import { FaTachometerAlt } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
+import { HiDocumentReport } from "react-icons/hi";
+import { ImProfile } from "react-icons/im";
 import CardProfile from "./CardProfile";
 //import EventBus from "../common/eventBus"
 import Spinner from "./Spinner";
@@ -137,7 +139,16 @@ const Profile = ({user}) => {
                 <Transaction customer={customer} price={price} />
               </React.Fragment>
             ) : (
-              <UserUpdate user={user} />
+               <div className="">
+                <div className="flex justify-between py-4">
+                  <button className="px-2 py-2 bg-teal-700 rounded-xl"><CgProfile size={75} className="text-white" /></button>
+                  <button className="px-2 py-2 bg-indigo-700 rounded-xl"><HiDocumentReport size={75} className="text-white" /></button>
+                </div>
+                <div className="flex justify-between py-4">
+                  <button className="px-2 py-2 bg-pink-700 rounded-xl"><CgProfile size={75} className="text-white" /></button>
+                  <button className="px-2 py-2 bg-orange-700 rounded-xl"><HiDocumentReport size={75} className="text-white" /></button>
+                </div>
+               </div>
             )}
           </>
         )}
