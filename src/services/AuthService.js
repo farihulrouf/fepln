@@ -17,20 +17,23 @@ const login = (email, password) => {
     })
     .then((response) => {
      // console.log(response.data.user)
-      if (response.data.user.token) {
+      {/*if (response.data.user.token) {
          localStorage.setItem("user", JSON.stringify(response.data));
       }
+      */}
       //console.log(response.data)
+      //console.log(response.data)
+      localStorage.setItem("authorization", JSON.stringify(response.data.user.token));
       return response.data;
     });
 };
 
 const logout = () => {
-  localStorage.removeItem("user");
+  localStorage.removeItem("authorization");
 };
 
 const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem("user"));
+  return JSON.parse(localStorage.getItem("authorization"));
 };
 
 const AuthService = {

@@ -11,11 +11,12 @@ import Customer from "./components/Customer/Customer";
 import Price from "./components/Price/Price";
 import ViewCustomer from "./components/Customer/ViewCustomer";
 import RootLayout from "./components/RootLayout";
-import Navbar from "./components/Navbar";
+//import Navbar from "./components/Navbar";
 import EditCustomer from "./components/Customer/EditCustomer";
 import EditTransaction from "./components/EditTransaction";
-//import AuthVerify from "./common/AuthVerify";
-
+import PrivateRoute from "./components/PrivateRoute";
+import AuthVerify from "./common/AuthVerify";
+import EventBus from "./common/EventBus";
 //import Customer from "./components/Customer/Customer";
 function App() {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -25,14 +26,13 @@ function App() {
   //const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
   useEffect(() => {
     const user = AuthService.getCurrentUser();
-    ///console.log('data', user)
-   // console.log(user);
+
     if (user) {
       setCurrentUser(user);
       //setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
-       setShowAdminBoard(user.typeuser);
+      setShowAdminBoard(user.typeuser);
     }
-    {/*
+
     EventBus.on("logout", () => {
       logOut();
     });
@@ -40,12 +40,11 @@ function App() {
     return () => {
       EventBus.remove("logout");
     };
-    */}
   }, []);
   const logOut = () => {
     AuthService.logout();
     //setShowModeratorBoard(false);
-    //setShowAdminBoard(false);
+    setShowAdminBoard(false);
     setCurrentUser(undefined);
   };
   return (
@@ -53,11 +52,25 @@ function App() {
       {/*currentUser ? <Navbar user={currentUser} /> : null */}
 
       <BrowserRouter>
-        {currentUser ? <Navbar user={currentUser} /> : null}
+        {/*currentUser ? <Navbar user={currentUser} /> : null */}
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/price" element={<Price />} />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
+            <Route
+            path="/price"
+            element={
+              <PrivateRoute>
+                <Price />
+              </PrivateRoute>
+            }
+          />
           <Route path="/price/add" element={<FormPrice />} />
           <Route path="/customers" element={<Customer />} />
           <Route path="/customers/:id" element={<ViewCustomer />} />

@@ -9,12 +9,13 @@ const parseJwt = (token) => {
   }
 };
 
-const AuthVerify = (props) => {
+function AuthVerify (props) {
+  console.log('data props', props)
   props.history.listen(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("authorization"));
 
     if (user) {
-      const decodedJwt = parseJwt(user.accessToken);
+      const decodedJwt = parseJwt(user);
 
       if (decodedJwt.exp * 1000 < Date.now()) {
         props.logOut();
@@ -24,5 +25,3 @@ const AuthVerify = (props) => {
 
   return <div></div>;
 };
-
-export default withRouter(AuthVerify);
