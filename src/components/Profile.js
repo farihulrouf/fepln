@@ -142,13 +142,13 @@ const Profile = ({ user }) => {
             ) : (
               <div className="">
                 <div className="flex justify-between py-4">
-                  <div className="bg-white text-gray-700 flex flex-col items-center justify-center w-28 h-28 drop-shadow-md">
+                  <div className="bg-white text-gray-700 flex flex-col items-center justify-center w-28 h-28 drop-shadow-sm">
                     <span className="text-sm">Profile </span>
                     <button className="px-2 py-y rounded-xl">
                       <CgProfile size={30} className="" />
                     </button>
                   </div>
-                  <div className="bg-white text-gray-700  flex flex-col items-center justify-center w-28 h-28 shadow-md">
+                  <div className="bg-white text-gray-700  flex flex-col items-center justify-center w-28 h-28 shadow-sm">
                     <span className="text-sm">Report </span>
                     <button className="px-2 py-y rounded-xl">
                       <HiDocumentReport size={30} className="" />
