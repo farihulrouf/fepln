@@ -10,7 +10,7 @@ import UserUpdate from "./Users/UserUpdate";
 import Customer from "./Customer/Customer";
 import ScannerMenu from "./ScannerMenu";
 import { MdGroups2 } from "react-icons/md";
-
+import Report from "./Report";
 export default function Profile({ user }) {
   const [menu, setMenu] = useState(0);
 
@@ -52,7 +52,7 @@ export default function Profile({ user }) {
       {menu === 1 ? (
         <UserUpdate user={user} />
       ) : menu === 2 ? (
-        <>menu 2</>
+         <Report />
       ) : menu === 3 ? (
         <Customer />
       ) : menu === 4 ? (
