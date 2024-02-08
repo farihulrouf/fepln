@@ -66,7 +66,7 @@ function App() {
             path="/dashboard"
             element={
               <PrivateRoute>
-                <Profile />
+                <Profile user={user} />
               </PrivateRoute>
             }
           />

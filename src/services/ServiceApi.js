@@ -68,6 +68,11 @@ const getUserTransactions = (params,page,limit) => {
 const createTransactions = (data) => {
   return http.post('/transactions/post', data);
 }
+
+//user update
+const updateUser = (id, data) => {
+  return http.put(`/users/${id}`, data);
+};
 const ServiceApi = {
   getallPrice,
   create,
@@ -84,7 +89,8 @@ const ServiceApi = {
   createTransactions,
   getUserTransactions,
   getCustomer,
-  getNoCustomer
+  getNoCustomer,
+  updateUser,
   
 };
 

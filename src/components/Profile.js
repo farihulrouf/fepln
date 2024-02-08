@@ -10,7 +10,8 @@ import Transaction from "./Transaction";
 import Ujicoba from "./Ujicoba";
 import UserService from '../services/UserService '
 import QRCode from "react-qr-code";
-const Profile = () => {
+import UserUpdate from "./Users/UserUpdate";
+const Profile = ({user}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState("");
   const [decodedValue, setDecodedValue] = useState(45346534);
@@ -37,7 +38,7 @@ const Profile = () => {
       });
   };
   useEffect(() => {
-    getAdminBoard()
+   // getAdminBoard()
     getPrice()
    // onSearchdata(45346534)
   },[])
@@ -99,7 +100,7 @@ const Profile = () => {
   };
   
   //console.log(customer);
-
+  //console.log('data user di profule', user)
   return (
     <div className="px-6 py-2 mt-2">
       <label>
@@ -136,14 +137,7 @@ const Profile = () => {
                 <Transaction customer={customer} price={price} />
               </React.Fragment>
             ) : (
-              <div className="flex items-center space-x-4">
-              <QRCode
-              size={120}
-              value="Please Scan"
-              viewBox={`0 0 256 256`}
-             />
-             <p>Please Scan by Press Scan Qr button </p>
-             </div>
+              <UserUpdate user={user} />
             )}
           </>
         )}
