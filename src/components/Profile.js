@@ -1,112 +1,113 @@
-import React, { useEffect, useState, useRef } from "react";
-//import { FaTachometerAlt } from "react-icons/fa";
-
-import CardProfile from "./CardProfile";
-//import EventBus from "../common/eventBus"
-import Spinner from "./Spinner";
-import ServiceApi from "../services/ServiceApi";
-import Scanner from "./Scanner";
-import Transaction from "./Transaction";
-import Ujicoba from "./Ujicoba";
-import UserService from "../services/UserService ";
-import QRCode from "react-qr-code";
-//import UserUpdate from "./Users/UserUpdate";
-import DashUser from "./Dash/DashUser";
+import React, { useState, useEffect } from "react";
+import { IoArrowBack } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
+import { HiDocumentReport } from "react-icons/hi";
+import { ImProfile } from "react-icons/im";
+import { FaHospitalUser } from "react-icons/fa";
+import { MdPayment } from "react-icons/md";
+import { CiBarcode } from "react-icons/ci";
+import UserUpdate from "./Users/UserUpdate";
+import Customer from "./Customer/Customer";
+import ScannerMenu from "./ScannerMenu";
 export default function Profile({ user }) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [err, setErr] = useState("");
-  const [decodedValue, setDecodedValue] = useState(45346534);
-  const [scannerType, setScannerType] = useState("QR");
-  const [price, setPrice] = useState([]);
-  const [idvalue, setIdvalue] = useState("");
-  const [customer, setCustomer] = useState(null);
-  const [content, setContent] = useState("");
+  const [menu, setMenu] = useState(0);
 
-  const handleClick = () => {
-    setIsLoading(true);
-    ServiceApi.getNoCustomer(decodedValue)
-      .then((response) => {
-        // console.log(response)
-        setCustomer(response.data.user);
-        setIsLoading(false);
-        // setCurrentCustomer(response.data);
-        // setLoad(false);
-
-        //console.log(response.data);
-      })
-      .catch((e) => {
-        setIsLoading(false);
-      });
+  const onChaneProfile = () => {
+    setMenu(1);
   };
-  useEffect(() => {
-    // getAdminBoard()
-    getPrice();
-    // onSearchdata(45346534)
-  }, []);
-
-  const getAdminBoard = () => {
-    //  console.log('board admmin')
-    UserService.getAdminBoard().then(
-      (response) => {
-        console.log("data response", response);
-        setContent(response.data);
-      },
-      (error) => {
-        const _content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-
-        setContent(_content);
-
-        if (error.response && error.response.status === 401) {
-          // EventBus.dispatch("logout");
-        }
-      }
-    );
+  const onChangeReport = () => {
+    setMenu(2);
   };
-  const getPrice = () => {
-    ServiceApi.getallPrice()
-      .then((response) => {
-        setPrice(response.data);
-        // console.log(response.data)
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+  const onChangeCustomer = () => {
+    setMenu(3);
   };
-  const onChangeData = (res) => {
-    setDecodedValue(res);
-    console.log(res);
-    onSearchdata(res);
-    // console.log("silver", e.target.value);
-    //  setDecodedValue(e.target.value);
+  const onChangeTransaction = () => {
+    setMenu(4);
   };
-  const onSearchdata = (id) => {
-    setIsLoading(true);
-    ServiceApi.getNoCustomer(id)
-      .then((response) => {
-        // console.log(response)
-        setCustomer(response.data.user);
-        setIsLoading(false);
-        // setCurrentCustomer(response.data);
-        // setLoad(false);
-
-        //console.log(response.data);
-      })
-      .catch((e) => {
-        setIsLoading(false);
-      });
+  const onChangeBarcode = () => {
+    setMenu(5);
   };
-
-  //console.log(customer);
-  //console.log('data user di profule', user)
+  const onChageDefault = () => {
+    setMenu(0);
+  };
+  console.log("data", menu);
   return (
-    <>
-      <DashUser user={user} />
-    </>
+    <div className="px-6">
+      {menu != 0 ? (
+        <div className="flex justify-end">
+          <button
+            className="px-2 flex space-x-1 items-center"
+            onClick={onChageDefault}
+          >
+            <IoArrowBack /> <span className="text-[12px]">Back</span>
+          </button>
+        </div>
+      ) : null}
+
+      {menu === 1 ? (
+        <UserUpdate user={user} />
+      ) : menu === 2 ? (
+        <>menu 2</>
+      ) : menu === 3 ? (
+        <Customer />
+      ) : menu === 4 ? (
+        <>menu 4 </>
+      ) : menu === 5 ? (
+        <ScannerMenu />
+      ) : (
+        <div className="">
+          <div className="flex flex-wrap justify-between py-4 gap-8">
+            <div className="bg-white text-gray-700 flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
+              <span className="text-sm">Barcode </span>
+              <button
+                on
+                className="px-2 py-y rounded-xl"
+                onClick={onChangeBarcode}
+              >
+                <CiBarcode size={30} className="" />
+              </button>
+            </div>
+            <div className="bg-white text-gray-700 flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
+              <span className="text-sm">Profile </span>
+              <button
+                on
+                className="px-2 py-y rounded-xl"
+                onClick={onChaneProfile}
+              >
+                <CgProfile size={30} className="" />
+              </button>
+            </div>
+
+            <div className="bg-white text-gray-700  flex flex-col items-center justify-center w-32 h-28 shadow-sm">
+              <span className="text-sm">Report </span>
+              <button className="px-2 py-y rounded-xl" onClick={onChangeReport}>
+                <HiDocumentReport size={30} className="" />
+              </button>
+            </div>
+
+            <div className="bg-white text-gray-700  flex flex-col items-center justify-center w-32 h-28 shadow-sm">
+              <span className="text-sm">Customer </span>
+              <button
+                className="px-2 py-y rounded-xl"
+                onClick={onChangeCustomer}
+              >
+                <FaHospitalUser size={30} className="" />
+              </button>
+            </div>
+
+            <div className="bg-white text-gray-700  flex flex-col items-center justify-center w-32 h-28 shadow-sm">
+              <span className="text-sm">Transaction </span>
+              <button
+                className="px-2 py-y rounded-xl"
+                onClick={onChangeTransaction}
+              >
+                <MdPayment size={30} className="" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 
