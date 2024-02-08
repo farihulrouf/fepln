@@ -53,7 +53,7 @@ function App() {
       <BrowserRouter>
         {/*currentUser ? <Navbar user={currentUser} /> : null */}
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route
             path="/profile"
             element={
