@@ -9,6 +9,8 @@ import { CiBarcode } from "react-icons/ci";
 import UserUpdate from "./Users/UserUpdate";
 import Customer from "./Customer/Customer";
 import ScannerMenu from "./ScannerMenu";
+import { MdGroups2 } from "react-icons/md";
+
 export default function Profile({ user }) {
   const [menu, setMenu] = useState(0);
 
@@ -26,6 +28,9 @@ export default function Profile({ user }) {
   };
   const onChangeBarcode = () => {
     setMenu(5);
+  };
+  const onChangeUser = () => {
+    setMenu(6);
   };
   const onChageDefault = () => {
     setMenu(0);
@@ -54,6 +59,8 @@ export default function Profile({ user }) {
         <>menu 4 </>
       ) : menu === 5 ? (
         <ScannerMenu />
+      ) : menu === 6 ? (
+        <>Menu 6</>
       ) : (
         <div className="">
           <div className="flex flex-wrap justify-between py-4 gap-8">
@@ -102,6 +109,13 @@ export default function Profile({ user }) {
                 onClick={onChangeTransaction}
               >
                 <MdPayment size={30} className="" />
+              </button>
+            </div>
+
+            <div className="bg-white text-gray-700  flex flex-col items-center justify-center w-32 h-28 shadow-sm">
+              <span className="text-sm">Manage Users </span>
+              <button className="px-2 py-y rounded-xl" onClick={onChangeUser}>
+                <MdGroups2 size={30} className="" />
               </button>
             </div>
           </div>
