@@ -53,8 +53,8 @@ const LoginComp = () => {
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.login(username, password).then(
         () => {
-          navigate("/profile");
-          window.location.reload();
+          navigate("/dashboard");
+          //window.location.reload();
         },
         (error) => {
           const resMessage =
@@ -76,7 +76,7 @@ const LoginComp = () => {
   return (
     <React.Fragment>
       {auth ? (
-        navigate("/profile")
+        navigate("/dashboard")
       ) : (
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">

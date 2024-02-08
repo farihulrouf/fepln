@@ -55,7 +55,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route
-            path="/profile"
+            path="/dashboard"
             element={
               <PrivateRoute>
                 <Profile />
