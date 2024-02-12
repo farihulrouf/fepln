@@ -28,7 +28,6 @@ export default function ListTransaction() {
       .then((response) => {
         // setTransaction(response.data.transaction[0].data);
         setDatatrans(response.data.transaction);
-        console.log("dalam", response);
         //console.log(datatrans)
         setMetadata(response.data.transaction);
         //console.log("uesefect",response.data.transaction)
@@ -45,7 +44,7 @@ export default function ListTransaction() {
   };
 
   const handlePageClick = ({ selected }) => {
-    getData(selected+1, limit)
+    getData(selected+1, limit,'')
    // console.log(selected, "ini");
   };
   const onChangeSearch = (e) => {
@@ -159,7 +158,7 @@ export default function ListTransaction() {
                 )}
               </tbody>
             </table>
-            {datatrans === null ? null : (
+            {datatrans === null  ? null : (
               <ReactPaginate
                 breakLabel="..."
                 nextLabel={
@@ -169,7 +168,7 @@ export default function ListTransaction() {
                 }
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={3}
-                pageCount={datatrans[0].metaData[0].totalDocuments / 5 }
+                pageCount={datatrans[0].metaData[0].totalPages }
                 previousLabel={
                   <span className="h-10 flex items-center justify-center bg-lightgray rounded-md">
                     <FaChevronLeft />
