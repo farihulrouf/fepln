@@ -5,23 +5,25 @@ import TransactionTest from "../TransactionTest";
 import ServiceApi from "../../services/ServiceApi";
 import Spinner from "../Spinner";
 import ReactPaginate from "react-paginate";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 export default function ListTransaction() {
   const [isUpdate, setIsupdate] = useState(false);
   const [loading, setLoading] = useState(false);
   const [datatrans, setDatatrans] = useState(null);
   const [metadata, setMetadata] = useState(null);
   const [customer, setCustomers] = useState(null);
+  const [limit, setLimit] = useState(5)
 
   const onChange = () => {
     setIsupdate(true);
   };
   useEffect(() => {
-    getData();
+    getData(1, 5);
     ///retrieveCustomers();
   }, []);
-  const getData = () => {
+  const getData = (page, limit) => {
     setLoading(true);
-    ServiceApi.getTransactionsAll(1, 5)
+    ServiceApi.getTransactionsAll(page, limit)
       .then((response) => {
         // setTransaction(response.data.transaction[0].data);
         setDatatrans(response.data.transaction);
@@ -40,22 +42,10 @@ export default function ListTransaction() {
         setLoading(false);
       });
   };
-  const retrieveCustomers = async () => {
-    //  console.log('data dalam', currentPage )
-    setLoading(true);
 
-    ServiceApi.getallCustomer("", 1, 5)
-      .then((response) => {
-        //setIsLoading(true);
-        setCustomers(response.data);
-        setLoading(false);
-
-        // console.log(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-        setLoading(false);
-      });
+  const handlePageClick = ({ selected }) => {
+    getData(selected+1, limit)
+   // console.log(selected, "ini");
   };
   // console.log("nilai", metadata);
   //console.log("ini data", datatrans);
@@ -100,48 +90,48 @@ export default function ListTransaction() {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                { datatrans === null ? (
+                {datatrans === null ? (
                   <Spinner />
-                ):(
+                ) : (
                   <>
-                  {datatrans[0].data.map((trans, index) => {
-                    return(
-                      <tr key={index}>
-                      <td className="py-2 whitespace-nowrap">
-                        <div className="flex items-center">
-                          <div className="">
-                            <div className="text-sm font-medium text-gray-900">
-                              {trans.customers[0].name}
+                    {datatrans[0].data.map((trans, index) => {
+                      return (
+                        <tr key={index}>
+                          <td className="py-2 whitespace-nowrap">
+                            <div className="flex items-center">
+                              <div className="">
+                                <div className="text-sm font-medium text-gray-900">
+                                  {trans.customers[0].name}
+                                </div>
+                                <div className="text-sm text-gray-500">
+                                  INV: {trans.noinv}
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="py-2 whitespace-nowrap">
+                            <div className="text-sm text-gray-900">
+                              Rp {trans.amount}
                             </div>
                             <div className="text-sm text-gray-500">
-                              INV: {trans.noinv}
+                              {trans.meteran} Kubik
                             </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="py-2 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">
-                          Rp {trans.amount}
-                        </div>
-                        <div className="text-sm text-gray-500">
-                          {trans.meteran} Kubik
-                        </div>
-                      </td>
-                      <td className="py-2 whitespace-nowrap">
-                        <span
-                          onClick={onChange}
-                          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-green-800 ${
-                            trans.status ? "bg-green-200" : "bg-red-400"
-                          }`}
-                        >
-                          {trans.status ? (
-                            <span>Success</span>
-                          ) : (
-                            <span>Waiting</span>
-                          )}
-                        </span>
-                      </td>
-                      {/*
+                          </td>
+                          <td className="py-2 whitespace-nowrap">
+                            <span
+                              onClick={onChange}
+                              className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-green-800 ${
+                                trans.status ? "bg-green-200" : "bg-red-400"
+                              }`}
+                            >
+                              {trans.status ? (
+                                <span>Success</span>
+                              ) : (
+                                <span>Waiting</span>
+                              )}
+                            </span>
+                          </td>
+                          {/*
               <td className="px-6 py-2 whitespace-nowrap  text-sm font-medium">
               <a href="#" class="text-indigo-600 hover:text-indigo-900">
               Edit
@@ -151,17 +141,40 @@ export default function ListTransaction() {
               </a>
               </td>
               */}
-                    </tr>
-                    )
-                  })}
+                        </tr>
+                      );
+                    })}
+                    <div>
+                      <p className="text-sm px-2 py-2">
+                        Total {datatrans[0].metaData[0].totalDocuments}
+                      </p>
+                    </div>
                   </>
                 )}
-                {/*datatrans[0].data && datatrans[0].data.map((trans, index) => {
-
-                  })*/}
               </tbody>
             </table>
-            <p className="text-sm px-2 py-2"></p>
+            {datatrans === null ? null : (
+              <ReactPaginate
+                breakLabel="..."
+                nextLabel={
+                  <span className="w-10 h-10 flex items-center justify-center bg-lightgray rounded-md">
+                    <FaChevronRight />
+                  </span>
+                }
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={3}
+                pageCount={datatrans[0].metaData[0].totalDocuments / 5 }
+                previousLabel={
+                  <span className="h-10 flex items-center justify-center bg-lightgray rounded-md">
+                    <FaChevronLeft />
+                  </span>
+                }
+                containerClassName="flex items-center justify-center mt-2 mb-2"
+                pageClassName="block border- border-solid border-lightGray hover:bg-lightGray w-8 h-10 flex items-center justify-center rounded-md mr-4"
+                activeClassName="bg-gray-200 text-white"
+                renderOnZeroPageCount={null}
+              />
+            )}
           </div>
         </>
       )}
