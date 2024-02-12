@@ -1,12 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //import CardProfile from "../CardProfile";
 import CardProfileTest from "../CardProfileTest";
 import TransactionTest from "../TransactionTest";
+import ServiceApi from "../../services/ServiceApi";
 const ListTransaction = () => {
   const [isUpdate, setIsupdate] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [transaction, setTransaction] = useState([]);
   const onChange = () => {
     setIsupdate(true);
   };
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async() => {
+    setLoading(true)
+    ServiceApi.getTransactionsAll(1, 5)
+      .then((response) => {
+        setTransaction(response.data.transaction[0].data);
+        setLoading(false);
+        // console.log(response)
+        //setCurrentCustomer(response.data);
+        //setLoading(false);
+
+        //console.log(response.data);
+      })
+      .catch((e) => {
+        setLoading(false);
+      });
+  };
+  console.log(transaction);
   return (
     <>
       {isUpdate ? (
@@ -48,169 +72,55 @@ const ListTransaction = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              <tr>
-                <td className="py-2 whitespace-nowrap">
-                  <div className="flex items-center">
-                    {/*
-                <div className="flex-shrink-0 h-10 w-10">
-                  <img
-                    className="h-10 w-10 rounded-full"
-                    src="https://i.pravatar.cc/150?img=1"
-                    alt=""
-                  />
-                </div>
-                 */}
-                    <div className="">
-                      <div className="text-sm font-medium text-gray-900">
-                        Jane Cooper
+              {transaction?.map((trans, index) => {
+                return (
+                  <tr>
+                    <td className="py-2 whitespace-nowrap">
+                      <div className="flex items-center">
+                        {/*
+                 <div className="flex-shrink-0 h-10 w-10">
+                   <img
+                     className="h-10 w-10 rounded-full"
+                     src="https://i.pravatar.cc/150?img=1"
+                     alt=""
+                   />
+                 </div>
+                  */}
+                        <div className="">
+                          <div className="text-sm font-medium text-gray-900">
+                            Jane Cooper
+                          </div>
+                          <div className="text-sm text-gray-500">
+                            INV: {trans.noinv}
+                          </div>
+                        </div>
                       </div>
-                      <div className="text-sm text-gray-500">INV:9827382</div>
-                    </div>
-                  </div>
-                </td>
-                <td className="py-2 whitespace-nowrap">
-                  <div className="text-sm text-gray-900">Rp 250,000</div>
-                  <div className="text-sm text-gray-500">70 Kubik</div>
-                </td>
-                <td className="py-2 whitespace-nowrap">
-                  <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                    Active
-                  </span>
-                </td>
-                {/*
-            <td className="px-6 py-2 whitespace-nowrap  text-sm font-medium">
-              <a href="#" class="text-indigo-600 hover:text-indigo-900">
-                Edit
-              </a>
-              <a href="#" class="ml-2 text-red-600 hover:text-red-900">
-                Delete
-              </a>
-            </td>
-            */}
-              </tr>
-              <tr>
-                <td className="py-2 whitespace-nowrap">
-                  <div className="flex items-center">
+                    </td>
+                    <td className="py-2 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">Rp {trans.amount}</div>
+                      <div className="text-sm text-gray-500">{trans.meteran} Kubik</div>
+                    </td>
+                    <td className="py-2 whitespace-nowrap">
+                      <span
+                        onClick={onChange}
+                        className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                      >
+                        Success
+                      </span>
+                    </td>
                     {/*
-                <div className="flex-shrink-0 h-10 w-10">
-                  <img
-                    className="h-10 w-10 rounded-full"
-                    src="https://i.pravatar.cc/150?img=1"
-                    alt=""
-                  />
-                </div>
-                 */}
-                    <div className="">
-                      <div className="text-sm font-medium text-gray-900">
-                        Jane Cooper
-                      </div>
-                      <div className="text-sm text-gray-500">INV:9827382</div>
-                    </div>
-                  </div>
-                </td>
-                <td className="py-2 whitespace-nowrap">
-                  <div className="text-sm text-gray-900">Rp 250,000</div>
-                  <div className="text-sm text-gray-500">70 Kubik</div>
-                </td>
-                <td className="py-2 whitespace-nowrap">
-                  <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                    Active
-                  </span>
-                </td>
-                {/*
-            <td className="px-6 py-2 whitespace-nowrap  text-sm font-medium">
-              <a href="#" class="text-indigo-600 hover:text-indigo-900">
-                Edit
-              </a>
-              <a href="#" class="ml-2 text-red-600 hover:text-red-900">
-                Delete
-              </a>
-            </td>
-            */}
-              </tr>
-              <tr>
-                <td className="py-2 whitespace-nowrap">
-                  <div className="flex items-center">
-                    {/*
-                <div className="flex-shrink-0 h-10 w-10">
-                  <img
-                    className="h-10 w-10 rounded-full"
-                    src="https://i.pravatar.cc/150?img=1"
-                    alt=""
-                  />
-                </div>
-                 */}
-                    <div className="">
-                      <div className="text-sm font-medium text-gray-900">
-                        Jane Cooper
-                      </div>
-                      <div className="text-sm text-gray-500">INV:9827382</div>
-                    </div>
-                  </div>
-                </td>
-                <td className="py-2 whitespace-nowrap">
-                  <div className="text-sm text-gray-900">Rp 250,000</div>
-                  <div className="text-sm text-gray-500">70 Kubik</div>
-                </td>
-                <td className="py-2 whitespace-nowrap">
-                  <span
-                    onClick={onChange}
-                    className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
-                  >
-                    Active
-                  </span>
-                </td>
-                {/*
-            <td className="px-6 py-2 whitespace-nowrap  text-sm font-medium">
-              <a href="#" class="text-indigo-600 hover:text-indigo-900">
-                Edit
-              </a>
-              <a href="#" class="ml-2 text-red-600 hover:text-red-900">
-                Delete
-              </a>
-            </td>
-            */}
-              </tr>
-              <tr>
-                <td className="py-2 whitespace-nowrap">
-                  <div className="flex items-center">
-                    {/*
-                <div className="flex-shrink-0 h-10 w-10">
-                  <img
-                    className="h-10 w-10 rounded-full"
-                    src="https://i.pravatar.cc/150?img=1"
-                    alt=""
-                  />
-                </div>
-                 */}
-                    <div className="">
-                      <div className="text-sm font-medium text-gray-900">
-                        Jane Cooper
-                      </div>
-                      <div className="text-sm text-gray-500">INV:9827382</div>
-                    </div>
-                  </div>
-                </td>
-                <td className="py-2 whitespace-nowrap">
-                  <div className="text-sm text-gray-900">Rp 250,000</div>
-                  <div className="text-sm text-gray-500">70 Kubik</div>
-                </td>
-                <td className="py-2 whitespace-nowrap">
-                  <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                    Active
-                  </span>
-                </td>
-                {/*
-            <td className="px-6 py-2 whitespace-nowrap  text-sm font-medium">
-              <a href="#" class="text-indigo-600 hover:text-indigo-900">
-                Edit
-              </a>
-              <a href="#" class="ml-2 text-red-600 hover:text-red-900">
-                Delete
-              </a>
-            </td>
-            */}
-              </tr>
+             <td className="px-6 py-2 whitespace-nowrap  text-sm font-medium">
+               <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                 Edit
+               </a>
+               <a href="#" class="ml-2 text-red-600 hover:text-red-900">
+                 Delete
+               </a>
+             </td>
+             */}
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </>

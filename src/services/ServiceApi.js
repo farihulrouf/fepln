@@ -73,6 +73,10 @@ const createTransactions = (data) => {
 const updateUser = (id, data) => {
   return http.put(`/users/${id}`, data);
 };
+
+const getTransactionsAll = (page, limit) => {
+  return http.get(`/transactions/getall?page=${page}&limit=${limit}`)
+}
 const ServiceApi = {
   getallPrice,
   create,
@@ -91,7 +95,7 @@ const ServiceApi = {
   getCustomer,
   getNoCustomer,
   updateUser,
-  
+  getTransactionsAll
 };
 
 export default ServiceApi;

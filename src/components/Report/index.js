@@ -8,29 +8,31 @@ const Report = () => {
   const [startDate, setStartDate] = useState(new Date());
   return (
     <div className="">
-      <DatePicker
-        className="px-2 py-2"
-        selected={startDate}
-        onChange={(date) => {
-          setMonthPicker(false);
-          setStartDate(date);
-        }}
-        dateFormat="MM/yyyy"
-        showMonthYearPicker
-        showFullMonthYearPicker
-      />
+      <div className="flex gap-3">
+        <DatePicker
+          className="px-2 py-2"
+          selected={startDate}
+          onChange={(date) => {
+            setMonthPicker(false);
+            setStartDate(date);
+          }}
+          dateFormat="MM/yyyy"
+          showMonthYearPicker
+          showFullMonthYearPicker
+        />
 
-      <DatePicker
-        className="px-2 py-2"
-        selected={startDate}
-        onChange={(date) => {
-          setMonthPicker(false);
-          setStartDate(date);
-        }}
-        dateFormat="MM/yyyy"
-        showMonthYearPicker
-        showFullMonthYearPicker
-      />
+        <DatePicker
+          className="px-2 py-2"
+          selected={startDate}
+          onChange={(date) => {
+            setMonthPicker(false);
+            setStartDate(date);
+          }}
+          dateFormat="MM/yyyy"
+          showMonthYearPicker
+          showFullMonthYearPicker
+        />
+      </div>
 
       <div className="flex items-center bg-white rounded-sm overflow-hidden">
         <div className="p-4">
