@@ -36,7 +36,7 @@ export default function Profile({ user }) {
   const onChageDefault = () => {
     setMenu(0);
   };
-  console.log("data", menu);
+ // console.log("data", menu);
   return (
     <div className="px-6">
       {menu != 0 ? (
