@@ -12,14 +12,14 @@ export default function ListTransaction() {
   const [datatrans, setDatatrans] = useState(null);
   const [metadata, setMetadata] = useState(null);
   const [customer, setCustomers] = useState(null);
-  const [limit, setLimit] = useState(5)
+  const [limit, setLimit] = useState(7)
   const [currentPage, setCurrentpage] = useState(1)
 
   const onChange = () => {
     setIsupdate(true);
   };
   useEffect(() => {
-    getData(1, 5,'');
+    getData(1, 7,'');
     ///retrieveCustomers();
   }, []);
   const getData = (page, limit,s) => {
@@ -49,7 +49,7 @@ export default function ListTransaction() {
   };
   const onChangeSearch = (e) => {
     console.log(e)
-     getData(1,5,e)
+     getData(1,7,e)
   };
   // console.log("nilai", metadata);
   //console.log("ini data", datatrans);
