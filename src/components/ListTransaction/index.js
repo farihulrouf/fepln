@@ -92,7 +92,7 @@ const ListTransaction = () => {
                   */}
                           <div className="">
                             <div className="text-sm font-medium text-gray-900">
-                              Jane Cooper
+                              {trans.customers[0].name}
                             </div>
                             <div className="text-sm text-gray-500">
                               INV: {trans.noinv}
