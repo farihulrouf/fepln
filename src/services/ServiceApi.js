@@ -74,8 +74,8 @@ const updateUser = (id, data) => {
   return http.put(`/users/${id}`, data);
 };
 
-const getTransactionsAll = async (page, limit) => {
-  return http.get(`/transactions/getall?page=${page}&limit=${limit}`)
+const getTransactionsAll = async (page, limit,name) => {
+  return http.get(`/transactions/getall?page=${page}&limit=${limit}&s=${name}`)
 }
 const ServiceApi = {
   getallPrice,

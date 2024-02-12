@@ -13,17 +13,18 @@ export default function ListTransaction() {
   const [metadata, setMetadata] = useState(null);
   const [customer, setCustomers] = useState(null);
   const [limit, setLimit] = useState(5)
+  const [currentPage, setCurrentpage] = useState(1)
 
   const onChange = () => {
     setIsupdate(true);
   };
   useEffect(() => {
-    getData(1, 5);
+    getData(1, 5,'');
     ///retrieveCustomers();
   }, []);
-  const getData = (page, limit) => {
+  const getData = (page, limit,s) => {
     setLoading(true);
-    ServiceApi.getTransactionsAll(page, limit)
+    ServiceApi.getTransactionsAll(page, limit,s)
       .then((response) => {
         // setTransaction(response.data.transaction[0].data);
         setDatatrans(response.data.transaction);
@@ -47,6 +48,10 @@ export default function ListTransaction() {
     getData(selected+1, limit)
    // console.log(selected, "ini");
   };
+  const onChangeSearch = (e) => {
+    console.log(e)
+     getData(1,5,e)
+  };
   // console.log("nilai", metadata);
   //console.log("ini data", datatrans);
   //console.log(isUpdate);
@@ -61,10 +66,11 @@ export default function ListTransaction() {
         <>
           <div>
             <input
-              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none mt-4 mb-4"
               type="text"
               placeholder="Nama Customer"
               aria-label="Meteran"
+              onChange={(e) => onChangeSearch(e.target.value)}
             />
             <table className="min-w-full divide-y divide-gray-200 overflow-x-auto">
               <thead className="bg-gray-50">
