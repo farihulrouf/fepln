@@ -19,7 +19,7 @@ const ScannerMenu = () => {
   }, []);
   const onChangeData = (res) => {
     setDecodedValue(res);
-    console.log(res);
+    return <div><CardProfile id={res} /></div>
     //onSearchdata(res);
   };
   const getPrice = () => {
@@ -70,9 +70,10 @@ const ScannerMenu = () => {
         BAR
       </label>
       <Scanner type={scannerType} onResult={(res) => onChangeData(res)} />
-      {/*<input type="number" onChange={onChangeData} /> */}
       {err && <h2>{err}</h2>}
       <div className="py-4">
+
+        {/*
         {isLoading ? (
           <Spinner />
         ) : (
@@ -80,11 +81,12 @@ const ScannerMenu = () => {
             {customer ? (
               <React.Fragment>
                 <CardProfile id={decodedValue} />
-                {/*<Transaction customer={customer} price={price} /> */}
+                <Transaction customer={customer} price={price} /> 
               </React.Fragment>
             ) : null}
           </>
         )}
+            */}
       </div>
     </div>
   );
