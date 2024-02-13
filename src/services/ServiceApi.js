@@ -77,6 +77,9 @@ const updateUser = (id, data) => {
 const getTransactionsAll = async (page, limit,name) => {
   return http.get(`/transactions/getall?page=${page}&limit=${limit}&s=${name}`)
 }
+const getReportTransaction = async(date1, date2) => {
+  return http.get(`/transactions/all?from=${date1}&to=${date2}`)
+}
 const ServiceApi = {
   getallPrice,
   create,
@@ -95,7 +98,8 @@ const ServiceApi = {
   getCustomer,
   getNoCustomer,
   updateUser,
-  getTransactionsAll
+  getTransactionsAll,
+  getReportTransaction
 };
 
 export default ServiceApi;
