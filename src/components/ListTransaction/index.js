@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-//import CardProfile from "../CardProfile";
-//import CardProfileTest from "../CardProfileTest";
-import TransactionTest from "../TransactionTest";
+
 import ServiceApi from "../../services/ServiceApi";
 import Spinner from "../Spinner";
 import ReactPaginate from "react-paginate";

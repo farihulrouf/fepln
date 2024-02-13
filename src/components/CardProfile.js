@@ -61,7 +61,7 @@ const CardProfile = ({ id }) => {
                 </dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex items-center">
                   <FaWhatsapp size={25} className="text-teal-700" />{" "}
-                  <p>{data.no_tel}</p>
+                  <p>0{data.no_tel}</p>
                 </dd>
               </div>
 
