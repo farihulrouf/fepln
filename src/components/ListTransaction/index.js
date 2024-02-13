@@ -12,19 +12,19 @@ export default function ListTransaction() {
   const [datatrans, setDatatrans] = useState(null);
   const [metadata, setMetadata] = useState(null);
   const [customer, setCustomers] = useState(null);
-  const [limit, setLimit] = useState(6)
-  const [currentPage, setCurrentpage] = useState(1)
+  const [limit, setLimit] = useState(6);
+  const [currentPage, setCurrentpage] = useState(1);
 
   const onChange = () => {
     setIsupdate(true);
   };
   useEffect(() => {
-    getData(1, 6,'');
+    getData(1, 6, "");
     ///retrieveCustomers();
   }, []);
-  const getData = (page, limit,s) => {
+  const getData = (page, limit, s) => {
     setLoading(true);
-    ServiceApi.getTransactionsAll(page, limit,s)
+    ServiceApi.getTransactionsAll(page, limit, s)
       .then((response) => {
         // setTransaction(response.data.transaction[0].data);
         setDatatrans(response.data.transaction);
@@ -44,12 +44,12 @@ export default function ListTransaction() {
   };
 
   const handlePageClick = ({ selected }) => {
-    getData(selected+1, limit,'')
-   // console.log(selected, "ini");
+    getData(selected + 1, limit, "");
+    // console.log(selected, "ini");
   };
   const onChangeSearch = (e) => {
-    console.log(e)
-     getData(1,6,e)
+    console.log(e);
+    getData(1, 6, e);
   };
   // console.log("nilai", metadata);
   //console.log("ini data", datatrans);
@@ -99,44 +99,48 @@ export default function ListTransaction() {
                   <Spinner />
                 ) : (
                   <>
-                    {datatrans[0].data.map((trans, index) => {
-                      return (
-                        <tr key={index}>
-                          <td className="py-2 whitespace-nowrap">
-                            <div className="flex items-center">
-                              <div className="">
-                                <div className="text-sm font-medium text-gray-900">
-                                  {trans.customers[0].name}
+                    {loading ? (
+                      <Spinner />
+                    ) : (
+                      <React.Fragment>
+                        {datatrans[0].data.map((trans, index) => {
+                          return (
+                            <tr key={index}>
+                              <td className="py-2 whitespace-nowrap">
+                                <div className="flex items-center">
+                                  <div className="">
+                                    <div className="text-sm font-medium text-gray-900">
+                                      {trans.customers[0].name}
+                                    </div>
+                                    <div className="text-sm text-gray-500">
+                                      INV: {trans.noinv}
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                              <td className="py-2 whitespace-nowrap">
+                                <div className="text-sm text-gray-900">
+                                  Rp {trans.amount}
                                 </div>
                                 <div className="text-sm text-gray-500">
-                                  INV: {trans.noinv}
+                                  {trans.meteran} Kubik
                                 </div>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="py-2 whitespace-nowrap">
-                            <div className="text-sm text-gray-900">
-                              Rp {trans.amount}
-                            </div>
-                            <div className="text-sm text-gray-500">
-                              {trans.meteran} Kubik
-                            </div>
-                          </td>
-                          <td className="py-2 whitespace-nowrap">
-                            <span
-                              onClick={onChange}
-                              className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-green-800 ${
-                                trans.status ? "bg-green-200" : "bg-red-400"
-                              }`}
-                            >
-                              {trans.status ? (
-                                <span>Success</span>
-                              ) : (
-                                <span>Waiting</span>
-                              )}
-                            </span>
-                          </td>
-                          {/*
+                              </td>
+                              <td className="py-2 whitespace-nowrap">
+                                <span
+                                  onClick={onChange}
+                                  className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-green-800 ${
+                                    trans.status ? "bg-green-200" : "bg-red-400"
+                                  }`}
+                                >
+                                  {trans.status ? (
+                                    <span>Success</span>
+                                  ) : (
+                                    <span>Waiting</span>
+                                  )}
+                                </span>
+                              </td>
+                              {/*
               <td className="px-6 py-2 whitespace-nowrap  text-sm font-medium">
               <a href="#" class="text-indigo-600 hover:text-indigo-900">
               Edit
@@ -146,19 +150,21 @@ export default function ListTransaction() {
               </a>
               </td>
               */}
-                        </tr>
-                      );
-                    })}
-                    <div>
-                      <p className="text-sm px-2 py-2">
-                        Total {datatrans[0].metaData[0].totalDocuments}
-                      </p>
-                    </div>
+                            </tr>
+                          );
+                        })}
+                        <div>
+                          <p className="text-sm px-2 py-2">
+                            Total {datatrans[0].metaData[0].totalDocuments}
+                          </p>
+                        </div>
+                      </React.Fragment>
+                    )}
                   </>
                 )}
               </tbody>
             </table>
-            {datatrans === null  ? null : (
+            {datatrans === null ? null : (
               <ReactPaginate
                 breakLabel="..."
                 nextLabel={
@@ -168,7 +174,7 @@ export default function ListTransaction() {
                 }
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={3}
-                pageCount={datatrans[0].metaData[0].totalPages }
+                pageCount={datatrans[0].metaData[0].totalPages}
                 previousLabel={
                   <span className="h-10 flex items-center justify-center bg-lightgray rounded-md">
                     <FaChevronLeft />
