@@ -20,9 +20,7 @@ const ScannerMenu = () => {
   const onChangeData = (res) => {
     setDecodedValue(res);
     console.log(res);
-    onSearchdata(res);
-    // console.log("silver", e.target.value);
-    //  setDecodedValue(e.target.value);
+    //onSearchdata(res);
   };
   const getPrice = () => {
     ServiceApi.getallPrice()
@@ -81,8 +79,8 @@ const ScannerMenu = () => {
           <>
             {customer ? (
               <React.Fragment>
-                <CardProfile customer={customer} />
-                <Transaction customer={customer} price={price} />
+                <CardProfile id={decodedValue} />
+                {/*<Transaction customer={customer} price={price} /> */}
               </React.Fragment>
             ) : null}
           </>
