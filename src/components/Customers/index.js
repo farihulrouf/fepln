@@ -34,11 +34,10 @@ export default function Customers() {
       });
   };
 
-  const onCalldata = (id, idtrans) => {
+  const onCalldata = (id) => {
     return (
       <div>
         <CardProfile id={id} />
-        <Transaction idtrans={idtrans} />
       </div>
     );
   };
@@ -50,19 +49,19 @@ export default function Customers() {
     console.log(e);
     getList(1, 6, e);
   };
-  const onChange = (data, idtrans) => {
+  const onChange = (data) => {
     setCurrentUser(data);
-    setCurrentIdtrans(idtrans);
+    //setCurrentIdtrans(idtrans);
     setIsupdate(true);
     // onCalldata(id)
   };
 
-  console.log("ini data", customer);
+ // console.log("ini data", customer);
 
   return (
     <div className="realtive">
       {isUpdate ? (
-        <></>
+        onCalldata(currentUser)
       ) : (
         <>
           <div>
@@ -82,7 +81,7 @@ export default function Customers() {
                   >
                     Name
                   </th>
-                
+
                   <th
                     scope="col"
                     className="py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -138,7 +137,7 @@ export default function Customers() {
                               <td className="py-2 whitespace-nowrap">
                                 <button
                                   onClick={() => {
-                                    /*onChange(customer.customers[0].no_id, trans._id) */
+                                    onChange(customer.no_id)
                                   }}
                                   className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-green-800"
                                 >
