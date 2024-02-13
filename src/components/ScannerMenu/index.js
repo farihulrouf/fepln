@@ -19,6 +19,7 @@ const ScannerMenu = () => {
     // onSearchdata(45346534)
   }, []);
   const onChangeData = (res) => {
+    setGetcall(false)
     setDecodedValue(res);
     setGetcall(true);
     {
@@ -30,6 +31,9 @@ const ScannerMenu = () => {
     */
     }
   };
+  const onChangeCal = () => {
+    setGetcall(false);
+  }
   const getPrice = () => {
     ServiceApi.getallPrice()
       .then((response) => {
