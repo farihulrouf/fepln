@@ -47,7 +47,6 @@ const CardProfile = ({ id }) => {
               <div>
                 <dt className="text-sm font-medium text-gray-500">Gender</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  Male
                   {data.gender == "L" ? (
                       <p>Male</p>
                     ) : (

@@ -80,7 +80,7 @@ const ScannerMenu = () => {
       <Scanner type={scannerType} onResult={(res) => onChangeData(res)} />
       {err && <h2>{err}</h2>}
       <div className="py-4">
-        {getCall ? <CardProfile id={decodedValue} /> : null}
+        {getCall ? <CardProfile id={decodedValue} /> : <Spinner /> }
 
         {/*
         {isLoading ? (
