@@ -6,6 +6,7 @@ import ServiceApi from "../../services/ServiceApi";
 import Spinner from "../Spinner";
 import ReactPaginate from "react-paginate";
 import CardProfile from "../CardProfile";
+import Transaction from "../Transaction";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { render } from "react-dom";
 export default function ListTransaction() {
@@ -17,7 +18,7 @@ export default function ListTransaction() {
   const [limit, setLimit] = useState(6);
   const [currentPage, setCurrentpage] = useState(1);
   const [currentUser, setCurrentUser] = useState(null)
- 
+  const [curentIdtrans, setCurrentIdtrans] = useState(null)
 
   useEffect(() => {
     getData(1, 6, "");
@@ -44,8 +45,8 @@ export default function ListTransaction() {
       });
   };
 
-  const onCalldata = (id) => {
-    return <div><CardProfile id={id} /></div>;
+  const onCalldata = (id, idtrans) => {
+    return <div><CardProfile id={id} /><Transaction idtrans={idtrans} /></div>;
   }
   const handlePageClick = ({ selected }) => {
     getData(selected + 1, limit, "");
@@ -55,9 +56,9 @@ export default function ListTransaction() {
     console.log(e);
     getData(1, 6, e);
   };
-  const onChange = (data) => {
+  const onChange = (data,idtrans) => {
     setCurrentUser(data)
-    console.log('caba data',data)
+    setCurrentIdtrans(idtrans)
     setIsupdate(true);
    // onCalldata(id)
   };
@@ -67,7 +68,7 @@ export default function ListTransaction() {
   return (
     <div className="realtive">
       {isUpdate ? (
-        onCalldata(currentUser)
+        onCalldata(currentUser, curentIdtrans)
       ) : (
         <>
           <div>
@@ -135,7 +136,7 @@ export default function ListTransaction() {
                               </td>
                               <td className="py-2 whitespace-nowrap">
                                 <button
-                                  onClick={() => onChange(trans.customers[0]._id)}
+                                  onClick={() => onChange(trans.customers[0]._id, trans._id)}
                                   className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-green-800 ${
                                     trans.status ? "bg-green-200" : "bg-red-400"
                                   }`}

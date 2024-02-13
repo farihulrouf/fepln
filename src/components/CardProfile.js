@@ -22,7 +22,7 @@ const CardProfile = ({ id }) => {
         setLoading(false);
       });
   };
-  console.log(data);
+ // console.log(data);
   return (
     <React.Fragment>
       <div className="px-4 py-5 sm:px-6 flex items-center space-x-2 relative">

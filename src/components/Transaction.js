@@ -1,39 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ServiceApi from "../services/ServiceApi";
 import Spinner from "./Spinner";
-const Transaction = ({ customer, price }) => {
+const Transaction = ({idtrans}) => {
  // console.log(customer);
-  {
-    /*
-   
-
-    */
-  }
-  console.log(price);
   const [kubik, setKubik] = useState(1);
   const [bayar, setBayar] = useState(0);
   const [num, setNum] = useState(0);
   const generate = Math.random().toFixed(6).split(".")[1];
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [currentTrans, setCurrentTrans] = useState(null)
+  console.log('nomer id',idtrans)
+  useEffect(() => {
+    getDetailTransaction()
+  }, []);
+
+  const getDetailTransaction = () => {
+    setLoading(true);
+    ServiceApi.getTransactions(idtrans)
+      .then((response) => {
+        setCurrentTrans(response.data)
+        setBayar(response.data.amount)
+        setKubik(response.data.meteran)
+        setLoading(false);
+      })
+      .catch((e) => {
+        setLoading(false);
+      });
+  }
+
   const onChangeUp = () => {
     setKubik(kubik + 1);
     //console.log('data eksekusi')
   };
   const onChanData = (e) => {
-    setKubik(e.target.value);
-    setBayar(e.target.value * price[0].harga)
-    {/*
-    if (e.target.value <= price[0].maximum) {
-      setBayar(e.target.value * price[0].harga);
-    } else if (
-      e.target.value > price[0].maximum &&
-      e.target.value <= price[1].maximum
-    ) {
-      setBayar(e.target.value * price[1].harga);
-    } else if (e.target.value > price[2].maximum) {
-      setBayar(e.target.value * price[2].harga);
-    }
-    */}
+    //setKubik(e.target.value);
+   // setBayar(e.target.value * price[0].harga)
+    
   };
   const onChangeDown = () => {
     setKubik(kubik - 1);
@@ -47,7 +49,8 @@ const Transaction = ({ customer, price }) => {
   };
 
   const onChangeSave = () => {
-    const dataTransaction = {
+   {/* const dataTransaction = {
+      
       title: "Air",
       noinv: generate,
       no_id: customer.no_id,
@@ -57,23 +60,25 @@ const Transaction = ({ customer, price }) => {
       amount: bayar,
       meteran: kubik,
     };
-    //console.log("nilai", dataTransaction);
+   */}
+    {/*
     setIsLoading(true);
     ServiceApi.createTransactions(dataTransaction)
       .then((response) => {
         setIsLoading(false);
-        //console.log(response)
       })
       .catch((e) => {
         console.log(e);
         setIsLoading(false);
       });
+    */}
   };
-  console.log('nilai', bayar, kubik)
+  //console.log('nilai', bayar, kubik)
+  console.log(currentTrans)
   return (
     <React.Fragment>
       <div className="relative">
-        {isLoading ? (
+        {loading ? (
           <Spinner />
         ) : (
           <React.Fragment>

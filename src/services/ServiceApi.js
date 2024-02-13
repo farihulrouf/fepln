@@ -55,7 +55,7 @@ const deleteCustomer = (id) => {
 
 const getTransactions = (params) => {
   //console.log("ini adalah", params)
-  return http.post("/transactions/getransactions/", params);
+  return http.get(`/transactions/getone/?no=${params}`);
 };
 
 const getUserTransactions = (params,page,limit) => {
