@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 //import CardProfile from "../CardProfile";
-import CardProfileTest from "../CardProfileTest";
+//import CardProfileTest from "../CardProfileTest";
 import TransactionTest from "../TransactionTest";
 import ServiceApi from "../../services/ServiceApi";
 import Spinner from "../Spinner";
 import ReactPaginate from "react-paginate";
+import CardProfile from "../CardProfile";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { render } from "react-dom";
 export default function ListTransaction() {
   const [isUpdate, setIsupdate] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -14,10 +16,9 @@ export default function ListTransaction() {
   const [customer, setCustomers] = useState(null);
   const [limit, setLimit] = useState(6);
   const [currentPage, setCurrentpage] = useState(1);
+  const [currentUser, setCurrentUser] = useState(null)
+ 
 
-  const onChange = () => {
-    setIsupdate(true);
-  };
   useEffect(() => {
     getData(1, 6, "");
     ///retrieveCustomers();
@@ -43,6 +44,9 @@ export default function ListTransaction() {
       });
   };
 
+  const onCalldata = (id) => {
+    return <div><CardProfile id={id} /></div>;
+  }
   const handlePageClick = ({ selected }) => {
     getData(selected + 1, limit, "");
     // console.log(selected, "ini");
@@ -51,16 +55,19 @@ export default function ListTransaction() {
     console.log(e);
     getData(1, 6, e);
   };
+  const onChange = (data) => {
+    setCurrentUser(data)
+    console.log('caba data',data)
+    setIsupdate(true);
+   // onCalldata(id)
+  };
   // console.log("nilai", metadata);
-  //console.log("ini data", datatrans);
+  console.log("ini data", datatrans);
   //console.log(isUpdate);
   return (
     <div className="realtive">
       {isUpdate ? (
-        <React.Fragment>
-          <CardProfileTest />
-          <TransactionTest />
-        </React.Fragment>
+        onCalldata(currentUser)
       ) : (
         <>
           <div>
@@ -127,8 +134,8 @@ export default function ListTransaction() {
                                 </div>
                               </td>
                               <td className="py-2 whitespace-nowrap">
-                                <span
-                                  onClick={onChange}
+                                <button
+                                  onClick={() => onChange(trans.customers[0]._id)}
                                   className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-green-800 ${
                                     trans.status ? "bg-green-200" : "bg-red-400"
                                   }`}
@@ -138,7 +145,7 @@ export default function ListTransaction() {
                                   ) : (
                                     <span>Waiting</span>
                                   )}
-                                </span>
+                                </button>
                               </td>
                               {/*
               <td className="px-6 py-2 whitespace-nowrap  text-sm font-medium">
