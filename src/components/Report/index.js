@@ -82,11 +82,11 @@ const Report = () => {
         <React.Fragment>
           <div className="flex items-center bg-white rounded-sm overflow-hidden">
             <div className="p-4">
-              <IoCashSharp size={45} />
+              <TbSum size={45} />
             </div>
             <div className="px-4 text-gray-700">
-              <h3 className="text-sm tracking-wider">Cash Balance</h3>
-              <p className="text-2xl">{rupiah(report[0].total)}</p>
+              <h3 className="text-sm tracking-wider">Total Transactions</h3>
+              <p className="text-3xl">{report[0].count}</p>
             </div>
           </div>
           <div className="flex items-center bg-white rounded-sm overflow-hidden">
@@ -112,11 +112,13 @@ const Report = () => {
           </div>
           <div className="flex items-center bg-white rounded-sm overflow-hidden">
             <div className="p-4">
-              <TbSum size={45} />
+            
+            
+              <IoCashSharp size={45} />
             </div>
             <div className="px-4 text-gray-700">
-              <h3 className="text-sm tracking-wider">Total Transactions</h3>
-              <p className="text-3xl">{report[0].count}</p>
+              <h3 className="text-sm tracking-wider">Cash Flow</h3>
+              <p className="text-2xl">{rupiah(report[0].total)}</p>
             </div>
           </div>
         </React.Fragment>
