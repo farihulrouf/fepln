@@ -81,6 +81,12 @@ const getTransactionsAll = async (page, limit,name) => {
 const getReportTransaction = async(date1, date2) => {
   return http.get(`/transactions/all?from=${date1}&to=${date2}`)
 }
+
+const getListCustomers = async (page, limit, name) => {
+  console.log('di dalam',page, limit, name)
+  //http://localhost:3000/customers/all?page=1&limit=5&s=Farihul
+  return http.get(`/customers/all?page=${page}&limit=${limit}&s=${name}`)
+}
 const ServiceApi = {
   getallPrice,
   create,
@@ -93,6 +99,7 @@ const ServiceApi = {
   deleteCustomer,
   updateCustomer,
   getallCustomer,
+  getListCustomers,
   getTransactions,
   createTransactions,
   getUserTransactions,
