@@ -4,6 +4,7 @@ import ServiceApi from "../../services/ServiceApi";
 import CardProfile from "../CardProfile";
 import Transaction from "../Transaction";
 import Spinner from "../Spinner";
+import LoadingQr from "../LoadingQr";
 const ScannerMenu = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [scannerType, setScannerType] = useState("QR");
@@ -84,7 +85,7 @@ const ScannerMenu = () => {
       <Scanner type={scannerType} onResult={(res) => onChangeData(res)} />
       {err && <h2>{err}</h2>}
       <div className="py-4">
-        {getCall ? <CardProfile id={decodedValue} /> : <Spinner /> }
+        {getCall ? <CardProfile id={decodedValue} /> : <LoadingQr /> }
 
         {/*
         {isLoading ? (
