@@ -17,8 +17,8 @@ export default function ListTransaction() {
   const [customer, setCustomers] = useState(null);
   const [limit, setLimit] = useState(6);
   const [currentPage, setCurrentpage] = useState(1);
-  const [currentUser, setCurrentUser] = useState(null)
-  const [curentIdtrans, setCurrentIdtrans] = useState(null)
+  const [currentUser, setCurrentUser] = useState(null);
+  const [curentIdtrans, setCurrentIdtrans] = useState(null);
 
   useEffect(() => {
     getData(1, 6, "");
@@ -46,8 +46,13 @@ export default function ListTransaction() {
   };
 
   const onCalldata = (id, idtrans) => {
-    return <div><CardProfile id={id} /><Transaction idtrans={idtrans} /></div>;
-  }
+    return (
+      <div>
+        <CardProfile id={id} />
+       <Transaction idtrans={idtrans} />
+      </div>
+    );
+  };
   const handlePageClick = ({ selected }) => {
     getData(selected + 1, limit, "");
     // console.log(selected, "ini");
@@ -56,11 +61,11 @@ export default function ListTransaction() {
     console.log(e);
     getData(1, 6, e);
   };
-  const onChange = (data,idtrans) => {
-    setCurrentUser(data)
-    setCurrentIdtrans(idtrans)
+  const onChange = (data, idtrans) => {
+    setCurrentUser(data);
+    setCurrentIdtrans(idtrans);
     setIsupdate(true);
-   // onCalldata(id)
+    // onCalldata(id)
   };
   // console.log("nilai", metadata);
   console.log("ini data", datatrans);
@@ -136,7 +141,9 @@ export default function ListTransaction() {
                               </td>
                               <td className="py-2 whitespace-nowrap">
                                 <button
-                                  onClick={() => onChange(trans.customers[0]._id, trans._id)}
+                                  onClick={() =>
+                                    onChange(trans.customers[0].no_id, trans._id)
+                                  }
                                   className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-green-800 ${
                                     trans.status ? "bg-green-200" : "bg-red-400"
                                   }`}
@@ -148,16 +155,7 @@ export default function ListTransaction() {
                                   )}
                                 </button>
                               </td>
-                              {/*
-              <td className="px-6 py-2 whitespace-nowrap  text-sm font-medium">
-              <a href="#" class="text-indigo-600 hover:text-indigo-900">
-              Edit
-              </a>
-              <a href="#" class="ml-2 text-red-600 hover:text-red-900">
-              Delete
-              </a>
-              </td>
-              */}
+            
                             </tr>
                           );
                         })}

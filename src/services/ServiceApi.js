@@ -1,7 +1,8 @@
 import http from "./http-common";
 
-const getCustomer = (id) => {
-  return http.get(`/customers/${id}`);
+const getCustomer = (nomer) => {
+  //http://localhost:3000/customers?no=886868468
+  return http.get(`/customers?no=${nomer}`);
 };
 const getNoCustomer = (id) => {
   return http.post(`/customers/getnomer?no=${id}`);
