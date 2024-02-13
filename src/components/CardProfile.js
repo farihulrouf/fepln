@@ -28,7 +28,7 @@ const CardProfile = ({ id }) => {
       <div className="px-4 py-5 sm:px-6 flex items-center space-x-2 relative">
         <Avatar
           className="rounded-full"
-          name="farihul"
+          name={data.name}
           maxInitials={2}
           size={50}
         />
