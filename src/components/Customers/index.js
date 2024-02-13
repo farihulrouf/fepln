@@ -7,6 +7,7 @@ import CardProfile from "../CardProfile";
 import Transaction from "../Transaction";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { render } from "react-dom";
+import ViewTrans from "./ViewTrans";
 export default function Customers() {
   const [isUpdate, setIsupdate] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -16,6 +17,7 @@ export default function Customers() {
   const [limit, setLimit] = useState(6);
   const [currentPage, setCurrentpage] = useState(1);
   const [currentUser, setCurrentUser] = useState(null);
+  const [idCustomer, setIdCustomer] = useState(null)
   const [curentIdtrans, setCurrentIdtrans] = useState(null);
 
   useEffect(() => {
@@ -34,10 +36,11 @@ export default function Customers() {
       });
   };
 
-  const onCalldata = (id) => {
+  const onCalldata = (id,id_customer) => {
     return (
       <div>
         <CardProfile id={id} />
+        <ViewTrans id={idCustomer} />
       </div>
     );
   };
@@ -49,19 +52,22 @@ export default function Customers() {
     console.log(e);
     getList(1, 6, e);
   };
-  const onChange = (data) => {
+  const onChange = (data,id_customer) => {
     setCurrentUser(data);
+    setIdCustomer(id_customer)
     //setCurrentIdtrans(idtrans);
     setIsupdate(true);
     // onCalldata(id)
   };
+
+  
 
  // console.log("ini data", customer);
 
   return (
     <div className="realtive">
       {isUpdate ? (
-        onCalldata(currentUser)
+        onCalldata(currentUser, idCustomer)
       ) : (
         <>
           <div>
@@ -137,7 +143,7 @@ export default function Customers() {
                               <td className="py-2 whitespace-nowrap">
                                 <button
                                   onClick={() => {
-                                    onChange(customer.no_id)
+                                    onChange(customer.no_id, customer._id)
                                   }}
                                   className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-green-800"
                                 >
