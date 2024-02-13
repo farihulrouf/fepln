@@ -10,6 +10,7 @@ const ScannerMenu = () => {
   const [customer, setCustomer] = useState(null);
   const [price, setPrice] = useState([]);
   const [err, setErr] = useState("");
+  const [getCall, setGetcall] = useState(false);
   const [decodedValue, setDecodedValue] = useState(45346534);
 
   useEffect(() => {
@@ -19,8 +20,15 @@ const ScannerMenu = () => {
   }, []);
   const onChangeData = (res) => {
     setDecodedValue(res);
-    return <div><CardProfile id={res} /></div>
-    //onSearchdata(res);
+    setGetcall(true);
+    {
+      /*
+    return (
+      <div><CardProfile id={res} />
+      </div>
+    )
+    */
+    }
   };
   const getPrice = () => {
     ServiceApi.getallPrice()
@@ -72,6 +80,7 @@ const ScannerMenu = () => {
       <Scanner type={scannerType} onResult={(res) => onChangeData(res)} />
       {err && <h2>{err}</h2>}
       <div className="py-4">
+        {getCall ? null : <CardProfile id={decodedValue} />}
 
         {/*
         {isLoading ? (

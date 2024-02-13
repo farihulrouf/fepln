@@ -9,7 +9,7 @@ const Transaction = ({idtrans}) => {
   const generate = Math.random().toFixed(6).split(".")[1];
   const [loading, setLoading] = useState(false);
   const [currentTrans, setCurrentTrans] = useState(null)
-  console.log('nomer id',idtrans)
+ // console.log('nomer id',idtrans)
   useEffect(() => {
     getDetailTransaction()
   }, []);
