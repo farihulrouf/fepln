@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from "react";
 import ServiceApi from "../services/ServiceApi";
 import Spinner from "./Spinner";
-const Transaction = ({idtrans}) => {
- // console.log(customer);
+const Transaction = ({ idtrans, user }) => {
+  // console.log(customer);
   const [kubik, setKubik] = useState(1);
   const [bayar, setBayar] = useState(0);
   const [num, setNum] = useState(0);
   const generate = Math.random().toFixed(6).split(".")[1];
   const [loading, setLoading] = useState(false);
-  const [currentTrans, setCurrentTrans] = useState(null)
- // console.log('nomer id',idtrans)
+  const [currentTrans, setCurrentTrans] = useState(null);
+  // console.log('nomer id',idtrans)
   useEffect(() => {
-    getDetailTransaction()
+    getDetailTransaction();
   }, []);
 
   const getDetailTransaction = () => {
     setLoading(true);
     ServiceApi.getTransactions(idtrans)
       .then((response) => {
-        setCurrentTrans(response.data)
-        setBayar(response.data.amount)
-        setKubik(response.data.meteran)
+        setCurrentTrans(response.data);
+        setBayar(response.data.amount);
+        setKubik(response.data.meteran);
         setLoading(false);
       })
       .catch((e) => {
         setLoading(false);
       });
-  }
+  };
 
   const onChangeUp = () => {
     setKubik(kubik + 1);
@@ -34,8 +34,7 @@ const Transaction = ({idtrans}) => {
   };
   const onChanData = (e) => {
     //setKubik(e.target.value);
-   // setBayar(e.target.value * price[0].harga)
-    
+    // setBayar(e.target.value * price[0].harga)
   };
   const onChangeDown = () => {
     setKubik(kubik - 1);
@@ -49,7 +48,8 @@ const Transaction = ({idtrans}) => {
   };
 
   const onChangeSave = () => {
-   {/* const dataTransaction = {
+    {
+      /* const dataTransaction = {
       
       title: "Air",
       noinv: generate,
@@ -60,8 +60,10 @@ const Transaction = ({idtrans}) => {
       amount: bayar,
       meteran: kubik,
     };
-   */}
-    {/*
+   */
+    }
+    {
+      /*
     setIsLoading(true);
     ServiceApi.createTransactions(dataTransaction)
       .then((response) => {
@@ -71,10 +73,11 @@ const Transaction = ({idtrans}) => {
         console.log(e);
         setIsLoading(false);
       });
-    */}
+    */
+    }
   };
   //console.log('nilai', bayar, kubik)
-  console.log(currentTrans)
+  console.log("data user", user);
   return (
     <React.Fragment>
       <div className="relative">
@@ -94,7 +97,6 @@ const Transaction = ({idtrans}) => {
                   <button
                     type="button"
                     id="decrement-button"
-                    
                     data-input-counter-decrement="quantity-input"
                     className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
                   >
@@ -127,7 +129,6 @@ const Transaction = ({idtrans}) => {
                   <button
                     type="button"
                     id="increment-button"
-                
                     data-input-counter-increment="quantity-input"
                     className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
                   >
@@ -166,14 +167,16 @@ const Transaction = ({idtrans}) => {
     */}
               </div>
             </div>
-            <div className="flex justify-end py-4">
-              <button
-                className="px-3 py-1 bg-teal-700 rounded-sm text-white"
-                onClick={onChangeSave}
-              >
-                Save
-              </button>
-            </div>
+            {user.typeuser === "Admin" ? (
+              <div className="flex justify-end py-4">
+                <button
+                  className="px-3 py-1 bg-teal-700 rounded-sm text-white"
+                  onClick={onChangeSave}
+                >
+                  Save
+                </button>
+              </div>
+            ) : null}
           </React.Fragment>
         )}
       </div>

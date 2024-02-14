@@ -8,7 +8,7 @@ import Transaction from "../Transaction";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { render } from "react-dom";
 import ViewTrans from "./ViewTrans";
-export default function Customers() {
+export default function Customers({ user }) {
   const [isUpdate, setIsupdate] = useState(false);
   const [loading, setLoading] = useState(false);
   //const [dataCustomer, setDataCustomer] = useState(null);
@@ -39,7 +39,7 @@ export default function Customers() {
   const onCalldata = (id,id_customer) => {
     return (
       <div>
-        <CardProfile id={id} />
+        <CardProfile id={id}  user={user} />
         <ViewTrans id={idCustomer} />
       </div>
     );
@@ -61,9 +61,9 @@ export default function Customers() {
   };
 
   
-
+  //console.log('ini data di customer', user)
  // console.log("ini data", customer);
-
+ 
   return (
     <div className="realtive">
       {isUpdate ? (

@@ -5,7 +5,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import ServiceApi from "../services/ServiceApi";
 import QRCode from "react-qr-code";
 import Spinner from "./Spinner";
-const CardProfile = ({ id }) => {
+const CardProfile = ({ id, user }) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -22,7 +22,7 @@ const CardProfile = ({ id }) => {
         setLoading(false);
       });
   };
-  //console.log(dec);
+  
   return (
     <React.Fragment>
       {loading ? (
@@ -44,7 +44,9 @@ const CardProfile = ({ id }) => {
                 {data.no_id}
               </p>
             </div>
-            <MdModeEditOutline size={25} className="absolute right-4" />
+            {user.typeuser === "Admin" ? (
+              <MdModeEditOutline size={25} className="absolute right-4" />
+            ) : null}
           </div>
           <div className="border-t border-gray-200 px-4 py-2 sm:p-0">
             <dl className="sm:divide-y sm:divide-gray-200">

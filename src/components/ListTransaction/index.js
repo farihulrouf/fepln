@@ -7,7 +7,7 @@ import CardProfile from "../CardProfile";
 import Transaction from "../Transaction";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { render } from "react-dom";
-export default function ListTransaction() {
+export default function ListTransaction({ user }) {
   const [isUpdate, setIsupdate] = useState(false);
   const [loading, setLoading] = useState(false);
   const [datatrans, setDatatrans] = useState(null);
@@ -46,8 +46,8 @@ export default function ListTransaction() {
   const onCalldata = (id, idtrans) => {
     return (
       <div>
-        <CardProfile id={id} />
-       <Transaction idtrans={idtrans} />
+        <CardProfile id={id} user={user} />
+       <Transaction idtrans={idtrans} user={user} />
       </div>
     );
   };
@@ -66,7 +66,7 @@ export default function ListTransaction() {
     // onCalldata(id)
   };
   // console.log("nilai", metadata);
-  console.log("ini data", datatrans);
+ //console.log("ini data", datatrans);
   //console.log(isUpdate);
   return (
     <div className="realtive">

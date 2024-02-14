@@ -37,6 +37,7 @@ export default function Profile({ user }) {
   const onChageDefault = () => {
     setMenu(0);
   };
+  //console.log('this one',user)
  // console.log("data", menu);
   return (
     <div className="px-6">
@@ -56,9 +57,9 @@ export default function Profile({ user }) {
       ) : menu === 2 ? (
          <Report />
       ) : menu === 3 ? (
-        <Customers />
+        <Customers user={user} />
       ) : menu === 4 ? (
-        <ListTransaction />
+        <ListTransaction user={user} />
       ) : menu === 5 ? (
         <ScannerMenu />
       ) : menu === 6 ? (

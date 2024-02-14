@@ -50,9 +50,7 @@ function App() {
     setShowAdminBoard(false);
     setCurrentUser(undefined);
   };
-  //console.log(user,'this one data user')
-  //const data_user = AuthService.parseJwt(currentUser);
-  //console.log(data_user)
+
   //console.log('this one data', user)
   return (
     <React.Fragment>
