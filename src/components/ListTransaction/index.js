@@ -50,7 +50,7 @@ export default function ListTransaction({ user }) {
       <>
         {menuCount === 0 ? (
           <div>
-            <CardProfile id={id} user={user} />
+            <CardProfile id={id} user={user} onChangeBack={onChangeBack} />
             <Transaction idtrans={idtrans} user={user} />
           </div>
         ) : (
