@@ -17,7 +17,7 @@ export default function ListTransaction({ user }) {
   const [currentPage, setCurrentpage] = useState(1);
   const [currentUser, setCurrentUser] = useState(null);
   const [curentIdtrans, setCurrentIdtrans] = useState(null);
-
+  const [menuCount, setMenuCount] = useState(0);
   useEffect(() => {
     getData(1, 6, "");
     ///retrieveCustomers();
@@ -42,13 +42,21 @@ export default function ListTransaction({ user }) {
         setLoading(false);
       });
   };
-
+  const onChangeBack = () => {
+    setMenuCount(0)
+  }
   const onCalldata = (id, idtrans) => {
     return (
-      <div>
-        <CardProfile id={id} user={user} />
-       <Transaction idtrans={idtrans} user={user} />
-      </div>
+      <>
+        {menuCount === 0 ? (
+          <div>
+            <CardProfile id={id} user={user} />
+            <Transaction idtrans={idtrans} user={user} />
+          </div>
+        ) : (
+          <></>
+        )}
+      </>
     );
   };
   const handlePageClick = ({ selected }) => {
@@ -66,7 +74,7 @@ export default function ListTransaction({ user }) {
     // onCalldata(id)
   };
   // console.log("nilai", metadata);
- //console.log("ini data", datatrans);
+  //console.log("ini data", datatrans);
   //console.log(isUpdate);
   return (
     <div className="realtive">
@@ -140,7 +148,10 @@ export default function ListTransaction({ user }) {
                               <td className="py-2 whitespace-nowrap">
                                 <button
                                   onClick={() =>
-                                    onChange(trans.customers[0].no_id, trans._id)
+                                    onChange(
+                                      trans.customers[0].no_id,
+                                      trans._id
+                                    )
                                   }
                                   className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-green-800 ${
                                     trans.status ? "bg-green-200" : "bg-red-400"
@@ -153,7 +164,6 @@ export default function ListTransaction({ user }) {
                                   )}
                                 </button>
                               </td>
-            
                             </tr>
                           );
                         })}

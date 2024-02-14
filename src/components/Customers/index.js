@@ -17,8 +17,9 @@ export default function Customers({ user }) {
   const [limit, setLimit] = useState(6);
   const [currentPage, setCurrentpage] = useState(1);
   const [currentUser, setCurrentUser] = useState(null);
-  const [idCustomer, setIdCustomer] = useState(null)
+  const [idCustomer, setIdCustomer] = useState(null);
   const [curentIdtrans, setCurrentIdtrans] = useState(null);
+  const [menuCount, setMenuCount] = useState(0);
 
   useEffect(() => {
     getList(1, 6, "");
@@ -35,13 +36,17 @@ export default function Customers({ user }) {
         setLoading(false);
       });
   };
-
-  const onCalldata = (id,id_customer) => {
+  const onChangeBack = () => {
+    setMenuCount(1);
+  };
+  const onCalldata = (id, id_customer) => {
     return (
-      <div>
-        <CardProfile id={id}  user={user} />
-        <ViewTrans id={idCustomer} />
-      </div>
+      <>
+        <div>
+          <CardProfile id={id} user={user} onChangeBack={onChangeBack} />
+          {menuCount === 0 ? <ViewTrans id={idCustomer} /> : null}
+        </div>
+      </>
     );
   };
   const handlePageClick = ({ selected }) => {
@@ -52,18 +57,17 @@ export default function Customers({ user }) {
     console.log(e);
     getList(1, 6, e);
   };
-  const onChange = (data,id_customer) => {
+  const onChange = (data, id_customer) => {
     setCurrentUser(data);
-    setIdCustomer(id_customer)
+    setIdCustomer(id_customer);
     //setCurrentIdtrans(idtrans);
     setIsupdate(true);
     // onCalldata(id)
   };
 
-  
   //console.log('ini data di customer', user)
- // console.log("ini data", customer);
- 
+  // console.log("ini data", customer);
+
   return (
     <div className="realtive">
       {isUpdate ? (
@@ -143,7 +147,7 @@ export default function Customers({ user }) {
                               <td className="py-2 whitespace-nowrap">
                                 <button
                                   onClick={() => {
-                                    onChange(customer.no_id, customer._id)
+                                    onChange(customer.no_id, customer._id);
                                   }}
                                   className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-green-800"
                                 >
