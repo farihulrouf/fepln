@@ -7,6 +7,8 @@ import CardProfile from "../CardProfile";
 import Transaction from "../Transaction";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { render } from "react-dom";
+import { IoAdd } from "react-icons/io5";
+//import { IoArrowBack } from "react-icons/io5";
 import ViewTrans from "./ViewTrans";
 export default function Customers({ user }) {
   const [isUpdate, setIsupdate] = useState(false);
@@ -67,7 +69,7 @@ export default function Customers({ user }) {
 
   //console.log('ini data di customer', user)
   // console.log("ini data", customer);
-
+  console.log(user);
   return (
     <div className="realtive">
       {isUpdate ? (
@@ -75,13 +77,20 @@ export default function Customers({ user }) {
       ) : (
         <>
           <div>
-            <input
-              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none mt-4 mb-4"
-              type="text"
-              placeholder="Nama Customer"
-              aria-label="Meteran"
-              onChange={(e) => onChangeSearch(e.target.value)}
-            />
+            <div className="flex space-x-2 items-center">
+              <input
+                className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none mt-4 mb-4"
+                type="text"
+                placeholder="Type name Customer"
+                aria-label="Meteran"
+                onChange={(e) => onChangeSearch(e.target.value)}
+              />
+              {user.typeuser === "Admin" ? (
+                <button className="px-1 py-1 rounded-full bg-teal-800 text-white text-bold">
+                  <IoAdd />
+                </button>
+              ) : null}
+            </div>
             <table className="min-w-full divide-y divide-gray-200 overflow-x-auto">
               <thead className="bg-gray-50">
                 <tr>

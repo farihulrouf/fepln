@@ -15,7 +15,7 @@ import ListTransaction from "./ListTransaction";
 import Customers from "./Customers";
 export default function Profile({ user }) {
   const [menu, setMenu] = useState(0);
-
+  const [menuAf, setMenuAf] = useState(false)
   const onChaneProfile = () => {
     setMenu(1);
   };
@@ -37,22 +37,24 @@ export default function Profile({ user }) {
   const onChageDefault = () => {
     setMenu(0);
   };
-  //console.log('this one',user)
- // console.log("data", menu);
+  
   return (
     <div className="px-6">
       {menu != 0 ? (
-        <div className="flex justify-end">
+        <div className="flex justify-end mt-2">
           <button
             className="px-2 flex space-x-1 items-center"
             onClick={onChageDefault}
           >
-            <IoArrowBack /> <span className="text-[12px]">Back</span>
+            <IoArrowBack /> <span className="text-[12px]">Back Menu {menuAf ? (<>Tes</>):(<></>)} </span>
           </button>
         </div>
       ) : null}
 
       {menu === 1 ? (
+
+
+
         <UserUpdate user={user} />
       ) : menu === 2 ? (
          <Report />
