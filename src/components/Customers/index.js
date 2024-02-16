@@ -48,7 +48,7 @@ export default function Customers({ user }) {
     return (
       <>
         <div>
-          <CardProfile id={id} user={user} onChangeBack={onChangeBack} />
+          <CardProfile id={id} user={user} onChangeBack={onChangeBack} setIsupdate={setIsupdate} />
           {menuCount === 0 ? <ViewTrans id={idCustomer} /> : null}
         </div>
       </>
@@ -77,8 +77,7 @@ export default function Customers({ user }) {
     )
   }
 
-  //console.log('ini data di customer', user)
-  // console.log("ini data", customer);
+
   return (
     <div className="realtive px-2">
       {isUpdate === 1 ? (
@@ -88,8 +87,7 @@ export default function Customers({ user }) {
         isAddData()
       ):
       (
-        <>
-       
+        <>       
             <div className="flex space-x-2 items-center">
               <input
                 className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none mt-4 mb-4"
@@ -212,7 +210,6 @@ export default function Customers({ user }) {
                 renderOnZeroPageCount={null}
               />
             )}
-          
         </>
       )}
     </div>

@@ -6,7 +6,8 @@ import ServiceApi from "../services/ServiceApi";
 import QRCode from "react-qr-code";
 import Spinner from "./Spinner";
 import Edit from "./Customers/Edit";
-const CardProfile = ({ id, user, onChangeBack }) => {
+import { IoChevronBack } from "react-icons/io5";
+const CardProfile = ({ id, user, onChangeBack, setIsupdate }) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
   const [isUpdate, setIsUpdate] = useState(0);
@@ -25,8 +26,8 @@ const CardProfile = ({ id, user, onChangeBack }) => {
       });
   };
   const dataOnchange = () => {
-    setIsUpdate(1)
-    onChangeBack()
+    setIsUpdate(1);
+    onChangeBack();
   };
   //console.log('data pengguna', data)
   //console.log('function',onChangeBack)
@@ -38,6 +39,13 @@ const CardProfile = ({ id, user, onChangeBack }) => {
         <React.Fragment>
           {isUpdate === 0 ? (
             <>
+              <button
+                className="absolute top-[57px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center"
+                onClick={() => setIsupdate(0)}
+              >
+                <IoChevronBack />
+                Customers
+              </button>
               <div className="px-4 py-5 sm:px-6 flex items-center space-x-2 relative">
                 <Avatar
                   className="rounded-full"
@@ -103,7 +111,9 @@ const CardProfile = ({ id, user, onChangeBack }) => {
                 </dl>
               </div>
             </>
-          ) : <Edit customer={data} editChange={dataOnchange} />}
+          ) : (
+            <Edit customer={data} editChange={dataOnchange} />
+          )}
         </React.Fragment>
       )}
     </React.Fragment>

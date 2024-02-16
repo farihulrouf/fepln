@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import Spinner from "../Spinner";
 import ServiceApi from "../../services/ServiceApi";
+import { IoChevronBack } from "react-icons/io5";
 const Edit = ({ customer, editChange }) => {
   const initialState = {
     id: customer._id,
@@ -22,30 +23,31 @@ const Edit = ({ customer, editChange }) => {
     // console.log(event.target)
     setData({ ...data, [name]: value });
   };
- // console.log(data);
+  // console.log(data);
   const onChangeSave = () => {
     setIsLoading(true);
-    ServiceApi.updateCustomer(customer._id,data)
-    .then((response) => {
-      setData(data);
-      setIsLoading(false);  
-      onChange()
-     // onChangeAdd()
-      //setSubmitted(true);
-      //console.log(response.data);
-    })
-    .catch((e) => {
-      console.log(e);
-      setIsLoading(false);  
-    });
+    ServiceApi.updateCustomer(customer._id, data)
+      .then((response) => {
+        setData(data);
+        setIsLoading(false);
+        onChange();
+        // onChangeAdd()
+        //setSubmitted(true);
+        //console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+        setIsLoading(false);
+      });
   };
   //<div className="px-6"><IoMdArrowRoundBack size={25} onClick={onChange}/></div>
   return (
     <React.Fragment>
-      <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden relative px-6">
-        <button className="px-2 py-2 bg-teal-500">X</button>
         <div className="px-6">
-          <IoMdArrowRoundBack size={25} onClick={onChange} />
+          <button className="absolute top-[57px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center">
+            <IoChevronBack />
+            Customers
+          </button>
         </div>
         {isLoading ? <Spinner /> : null}
         <div className="mb-2">
@@ -123,7 +125,6 @@ const Edit = ({ customer, editChange }) => {
             Save
           </button>
         </div>
-      </div>
     </React.Fragment>
   );
 };
