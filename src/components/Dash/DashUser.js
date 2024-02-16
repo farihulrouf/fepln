@@ -7,8 +7,8 @@ import { FaHospitalUser } from "react-icons/fa";
 import { MdPayment } from "react-icons/md";
 import { CiBarcode } from "react-icons/ci";
 import UserUpdate from "../Users/UserUpdate";
-import Customer from "../Customer/Customer";
 import ScannerMenu from "../ScannerMenu";
+import Customers from "../Customers";
 const DashUser = ({ user }) => {
   const [menu, setMenu] = useState(0);
   //console.log('data', user)
@@ -56,7 +56,7 @@ const DashUser = ({ user }) => {
       ) : menu === 2 ? (
         <>menu 2</>
       ) : menu === 3 ? (
-        <Customer />
+        <Customers />
       ) : menu === 4 ? (
         <>menu 4 </>
       ) : menu === 5 ? (

@@ -7,17 +7,13 @@ import AuthService from "./services/AuthService";
 //import Navbar from "./components/Navbar";
 import FormPrice from "./components/Price/FormPrice";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Customer from "./components/Customer/Customer";
 import Price from "./components/Price/Price";
-import ViewCustomer from "./components/Customer/ViewCustomer";
 import RootLayout from "./components/RootLayout";
 import Navbar from "./components/Navbar";
-import EditCustomer from "./components/Customer/EditCustomer";
 import EditTransaction from "./components/EditTransaction";
 import PrivateRoute from "./components/PrivateRoute";
 import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
-//import Customer from "./components/Customer/Customer";
 function App() {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -77,8 +73,6 @@ function App() {
             }
           />
           <Route path="/price/add" element={<FormPrice />} />
-          <Route path="/customers" element={<Customer />} />
-          <Route path="/customers/:id" element={<ViewCustomer />} />
           <Route path="/transaction" element={<EditTransaction />} />
         </Routes>
         

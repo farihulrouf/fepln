@@ -7,7 +7,6 @@ import { FaHospitalUser } from "react-icons/fa";
 import { MdPayment } from "react-icons/md";
 import { CiBarcode } from "react-icons/ci";
 import UserUpdate from "./Users/UserUpdate";
-import Customer from "./Customer/Customer";
 import ScannerMenu from "./ScannerMenu";
 import { MdGroups2 } from "react-icons/md";
 import Report from "./Report";
