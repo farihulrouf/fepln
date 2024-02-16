@@ -8,10 +8,13 @@ import Transaction from "../Transaction";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { render } from "react-dom";
 import { IoAdd } from "react-icons/io5";
+import Add from "./Add";
+import { IoIosArrowRoundBack } from "react-icons/io";
+
 //import { IoArrowBack } from "react-icons/io5";
 import ViewTrans from "./ViewTrans";
 export default function Customers({ user }) {
-  const [isUpdate, setIsupdate] = useState(false);
+  const [isUpdate, setIsupdate] = useState(0);
   const [loading, setLoading] = useState(false);
   //const [dataCustomer, setDataCustomer] = useState(null);
   const [metadata, setMetadata] = useState(null);
@@ -63,18 +66,29 @@ export default function Customers({ user }) {
     setCurrentUser(data);
     setIdCustomer(id_customer);
     //setCurrentIdtrans(idtrans);
-    setIsupdate(true);
+    setIsupdate(1);
     // onCalldata(id)
   };
+  const isAddData = () => {
+    return (
+      <>
+        <Add setIsupdate={setIsupdate} />
+      </>
+    )
+  }
 
   //console.log('ini data di customer', user)
   // console.log("ini data", customer);
   console.log(user);
   return (
     <div className="realtive">
-      {isUpdate ? (
+      {isUpdate === 1 ? (
         onCalldata(currentUser, idCustomer)
-      ) : (
+      ) :
+      isUpdate === 2 ? (
+        isAddData()
+      ):
+      (
         <>
           <div>
             <div className="flex space-x-2 items-center">
@@ -86,7 +100,7 @@ export default function Customers({ user }) {
                 onChange={(e) => onChangeSearch(e.target.value)}
               />
               {user.typeuser === "Admin" ? (
-                <button className="px-1 py-1 rounded-full bg-teal-800 text-white text-bold">
+                <button onClick={()=> setIsupdate(2)} className="px-1 py-1 rounded-full bg-teal-800 text-white text-bold">
                   <IoAdd />
                 </button>
               ) : null}

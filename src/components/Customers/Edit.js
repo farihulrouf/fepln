@@ -43,6 +43,7 @@ const Edit = ({ customer, editChange }) => {
   return (
     <React.Fragment>
       <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden relative px-6">
+        <button className="px-2 py-2 bg-teal-500">X</button>
         <div className="px-6">
           <IoMdArrowRoundBack size={25} onClick={onChange} />
         </div>
