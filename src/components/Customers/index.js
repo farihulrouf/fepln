@@ -79,9 +79,8 @@ export default function Customers({ user }) {
 
   //console.log('ini data di customer', user)
   // console.log("ini data", customer);
-  console.log(user);
   return (
-    <div className="realtive">
+    <div className="realtive px-2">
       {isUpdate === 1 ? (
         onCalldata(currentUser, idCustomer)
       ) :
@@ -90,7 +89,7 @@ export default function Customers({ user }) {
       ):
       (
         <>
-          <div>
+       
             <div className="flex space-x-2 items-center">
               <input
                 className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none mt-4 mb-4"
@@ -213,7 +212,7 @@ export default function Customers({ user }) {
                 renderOnZeroPageCount={null}
               />
             )}
-          </div>
+          
         </>
       )}
     </div>

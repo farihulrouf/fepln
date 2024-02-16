@@ -46,7 +46,7 @@ export default function Profile({ user }) {
             className="px-2 flex space-x-1 items-center"
             onClick={onChageDefault}
           >
-            <IoArrowBack /> <span className="text-[12px]">Back Menu {menuAf ? (<>Tes</>):(<></>)} </span>
+            <IoArrowBack /> <span className="text-[12px]">Menu {menuAf ? (<>Tes</>):(<></>)} </span>
           </button>
         </div>
       ) : null}

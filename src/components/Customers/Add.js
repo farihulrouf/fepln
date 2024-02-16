@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { IoMdArrowRoundBack } from "react-icons/io";
+import { IoArrowBack } from "react-icons/io5";
+import { IoChevronBack } from "react-icons/io5";
+
 import ServiceApi from "../../services/ServiceApi";
 import Spinner from "../Spinner";
 import { IoIosArrowRoundBack } from "react-icons/io";
 
-const Add = ({setIsupdate}) => {
+const Add = ({ setIsupdate }) => {
   //console.log(onChangeAdd)
   const initialState = {
     name: null,
@@ -18,27 +20,23 @@ const Add = ({setIsupdate}) => {
 
   const onChangeSave = () => {
     //console.log('tester')
-    console.log(setIsupdate(0))
-    
+    //console.log(setIsupdate(0))
+
     setIsLoading(true);
 
     ServiceApi.createCustomer(data)
       .then((response) => {
         setData(data);
         setIsLoading(false);
-        setIsupdate(0)
+        setIsupdate(0);
         //console.log(setIsupdate(0))
 
-       // onChangeAdd();
+        // onChangeAdd();
       })
       .catch((e) => {
         console.log(e);
         setIsLoading(false);
       });
-    
-
-
-
   };
 
   const handleInputChange = (event) => {
@@ -51,10 +49,15 @@ const Add = ({setIsupdate}) => {
 
   return (
     <React.Fragment>
-      <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden relative">
-        <div className="flex justify-end">
-      <button className="px-1 mt-2 text-white py-1 bg-teal-700 text-[12px] flex space-x-2 items-center" onClick={()=> setIsupdate(0)}><IoIosArrowRoundBack size={20} />Customers</button>
-        </div>
+
+          <button
+            className="absolute top-[57px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center"
+            onClick={() => setIsupdate(0)}
+          >
+            <IoChevronBack />
+            Customers
+          </button>
+        
         {isLoading ? <Spinner /> : null}
         <div className="mb-2">
           <label className="block text-gray-700 font-bold mb-2">Name</label>
@@ -130,7 +133,6 @@ const Add = ({setIsupdate}) => {
             Save
           </button>
         </div>
-      </div>
     </React.Fragment>
   );
 };
