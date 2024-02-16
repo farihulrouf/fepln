@@ -18,10 +18,10 @@ const ScannerMenu = ({ user }) => {
   useEffect(() => {
     // getAdminBoard()
     //getPrice();
-     //onSearchdata(43243435)
+    //onSearchdata(43243435)
   }, []);
   const onChangeData = (res) => {
-    setGetcall(false)
+    setGetcall(false);
     setDecodedValue(res);
     setGetcall(true);
     {
@@ -35,7 +35,7 @@ const ScannerMenu = ({ user }) => {
   };
   const onChangeCal = () => {
     setGetcall(false);
-  }
+  };
   const getPrice = () => {
     ServiceApi.getallPrice()
       .then((response) => {
@@ -53,7 +53,6 @@ const ScannerMenu = ({ user }) => {
         // console.log(response)
         setCustomer(response.data.user);
         setIsLoading(false);
-  
       })
       .catch((e) => {
         setIsLoading(false);
@@ -62,7 +61,7 @@ const ScannerMenu = ({ user }) => {
 
   const onChangeBack = () => {
     //setMenuCount(0)
-  }
+  };
   return (
     <div>
       <label>
@@ -84,25 +83,26 @@ const ScannerMenu = ({ user }) => {
         />
         BAR
       </label>
-      <Scanner type={scannerType} onResult={(res) => onChangeData(res)} />
+      {/* <Scanner type={scannerType} onResult={(res) => onChangeData(res)} /> */}
       {err && <h2>{err}</h2>}
       <div className="py-4">
-        {getCall ? <CardProfile id={decodedValue} user={user} onChangeBack={onChangeBack} setIsupdate={setIsupdate} /> : <LoadingQr /> }
-
-        {/*
-        {isLoading ? (
-          <Spinner />
-        ) : (
+        {getCall ? (
           <>
-            {customer ? (
-              <React.Fragment>
-                <CardProfile id={decodedValue} />
-                <Transaction customer={customer} price={price} /> 
-              </React.Fragment>
-            ) : null}
+            <CardProfile
+              id={decodedValue}
+              user={user}
+              onChangeBack={onChangeBack}
+              setIsupdate={setIsupdate}
+            />
+            <Transaction
+              idtrans={decodedValue}
+              user={user}
+              setIsupdate={isUpdate}
+            />
           </>
+        ) : (
+          <LoadingQr />
         )}
-            */}
       </div>
     </div>
   );

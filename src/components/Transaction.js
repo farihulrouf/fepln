@@ -10,11 +10,26 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
   const [loading, setLoading] = useState(false);
   const [currentTrans, setCurrentTrans] = useState(null);
   const [price, setPrice] = useState(null);
+  const [customer, setCustomer] = useState(null);
   useEffect(() => {
-    getDetailTransaction();
+    if (setIsupdate === 0) {
+      getCustomerName();
+    } else {
+      getDetailTransaction();
+    }
     getPrice();
   }, []);
-
+  const getCustomerName = () => {
+    setLoading(true);
+    ServiceApi.getNoCustomer(idtrans)
+      .then((response) => {
+        setCustomer(response.data.user);
+        setLoading(false);
+      })
+      .catch((e) => {
+        setLoading(false);
+      });
+  };
   const getDetailTransaction = () => {
     setLoading(true);
     ServiceApi.getTransactions(idtrans)
@@ -64,16 +79,24 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     ServiceApi.updateTransactions(edit, currentTrans._id)
       .then((response) => {
         setLoading(false);
-        setIsupdate(0)
+        //setIsupdate(0)
       })
       .catch((e) => {
         setLoading(false);
       });
   };
+  //console.log('idtrans', idtrans)
+  const saveData = () => {
+    if (setIsupdate === 0) {
+      onChangeSave();
+    } else {
+      onChangeEdit();
+    }
+  };
   const onChangeSave = () => {
-    {
-      /* const dataTransaction = {
-      
+    console.log("cek data");
+
+    const dataTransaction = {
       title: "Air",
       noinv: generate,
       no_id: customer.no_id,
@@ -83,25 +106,22 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       amount: bayar,
       meteran: kubik,
     };
-   */
-    }
-    {
-      /*
-    setIsLoading(true);
+
+    setLoading(true);
     ServiceApi.createTransactions(dataTransaction)
       .then((response) => {
-        setIsLoading(false);
+        setLoading(false);
       })
       .catch((e) => {
         console.log(e);
-        setIsLoading(false);
+        setLoading(false);
       });
-    */
-    }
   };
   //console.log('nilai', bayar, kubik)
   //console.log("data pri", price);
-  console.log(currentTrans);
+  //console.log(currentTrans);
+  // console.log('data', user)
+  console.log(customer);
   return (
     <React.Fragment>
       <div className="relative">
@@ -195,7 +215,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
               <div className="flex justify-end py-4">
                 <button
                   className="px-3 py-1 bg-teal-700 rounded-sm text-white"
-                  onClick={onChangeEdit}
+                  onClick={saveData}
                 >
                   Save
                 </button>

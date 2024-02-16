@@ -26,8 +26,8 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate }) => {
       });
   };
   const dataOnchange = () => {
-    setIsUpdate(1);
-    onChangeBack();
+    setIsUpdate(1)
+    onChangeBack()
   };
   //console.log('data pengguna', data)
   //console.log('function',onChangeBack)
@@ -39,13 +39,13 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate }) => {
         <React.Fragment>
           {isUpdate === 0 ? (
             <>
-              <button
-                className="absolute top-[57px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center"
-                onClick={() => setIsupdate(0)}
-              >
-                <IoChevronBack />
-                Customers
-              </button>
+                  <button
+        className="absolute top-[57px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center"
+        onClick={() => setIsupdate(0)}
+      >
+        <IoChevronBack />
+        Customers
+      </button>
               <div className="px-4 py-5 sm:px-6 flex items-center space-x-2 relative">
                 <Avatar
                   className="rounded-full"
@@ -111,9 +111,7 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate }) => {
                 </dl>
               </div>
             </>
-          ) : (
-            <Edit customer={data} editChange={dataOnchange} />
-          )}
+          ) : <Edit customer={data} editChange={dataOnchange} />}
         </React.Fragment>
       )}
     </React.Fragment>
