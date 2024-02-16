@@ -8,7 +8,7 @@ import Transaction from "../Transaction";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { render } from "react-dom";
 export default function ListTransaction({ user }) {
-  const [isUpdate, setIsupdate] = useState(false);
+  const [isUpdate, setIsupdate] = useState(0);
   const [loading, setLoading] = useState(false);
   const [datatrans, setDatatrans] = useState(null);
   const [metadata, setMetadata] = useState(null);
@@ -50,7 +50,7 @@ export default function ListTransaction({ user }) {
       <>
         {menuCount === 0 ? (
           <div>
-            <CardProfile id={id} user={user} onChangeBack={onChangeBack} />
+            <CardProfile id={id} user={user} onChangeBack={onChangeBack} setIsupdate={setIsupdate} />
             <Transaction idtrans={idtrans} user={user} />
           </div>
         ) : (
@@ -70,7 +70,7 @@ export default function ListTransaction({ user }) {
   const onChange = (data, idtrans) => {
     setCurrentUser(data);
     setCurrentIdtrans(idtrans);
-    setIsupdate(true);
+    setIsupdate(1);
     // onCalldata(id)
   };
   // console.log("nilai", metadata);
@@ -78,7 +78,7 @@ export default function ListTransaction({ user }) {
   //console.log(isUpdate);
   return (
     <div className="realtive">
-      {isUpdate ? (
+      {isUpdate === 1 ? (
         onCalldata(currentUser, curentIdtrans)
       ) : (
         <>
