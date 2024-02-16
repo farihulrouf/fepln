@@ -41,7 +41,7 @@ export default function Profile({ user }) {
   return (
     <div className="px-6">
       {menu != 0 ? (
-        <div className="flex justify-end mt-2">
+        <div className="flex justify-start mt-2">
           <button
             className="px-2 flex space-x-1 items-center"
             onClick={onChageDefault}
