@@ -4,6 +4,7 @@ import { CgProfile } from "react-icons/cg";
 import { HiDocumentReport } from "react-icons/hi";
 import { ImProfile } from "react-icons/im";
 import { FaHospitalUser } from "react-icons/fa";
+import { GiPriceTag } from "react-icons/gi";
 import { MdPayment } from "react-icons/md";
 import { CiBarcode } from "react-icons/ci";
 import UserUpdate from "./Users/UserUpdate";
@@ -15,7 +16,7 @@ import Customers from "./Customers";
 import User from "./Users";
 export default function Profile({ user }) {
   const [menu, setMenu] = useState(0);
-  const [menuAf, setMenuAf] = useState(false)
+  const [menuAf, setMenuAf] = useState(false);
   const onChaneProfile = () => {
     setMenu(1);
   };
@@ -37,7 +38,7 @@ export default function Profile({ user }) {
   const onChageDefault = () => {
     setMenu(0);
   };
-  
+
   return (
     <div className="px-6">
       {menu != 0 ? (
@@ -46,18 +47,18 @@ export default function Profile({ user }) {
             className="px-2 flex space-x-1 items-center"
             onClick={onChageDefault}
           >
-            <IoArrowBack /> <span className="text-[12px]">Menu {menuAf ? (<>Tes</>):(<></>)} </span>
+            <IoArrowBack />{" "}
+            <span className="text-[12px]">
+              Menu {menuAf ? <>Tes</> : <></>}{" "}
+            </span>
           </button>
         </div>
       ) : null}
 
       {menu === 1 ? (
-
-
-
         <UserUpdate user={user} />
       ) : menu === 2 ? (
-         <Report />
+        <Report />
       ) : menu === 3 ? (
         <Customers user={user} />
       ) : menu === 4 ? (
@@ -66,6 +67,8 @@ export default function Profile({ user }) {
         <ScannerMenu />
       ) : menu === 6 ? (
         <User />
+      ) : menu === 7 ? (
+        <>Price</>
       ) : (
         <div className="">
           <div className="flex flex-wrap justify-between py-4 gap-8">
@@ -117,6 +120,12 @@ export default function Profile({ user }) {
               </button>
             </div>
 
+            <div className="bg-white text-gray-700  flex flex-col items-center justify-center w-32 h-28 shadow-sm">
+              <span className="text-sm">Prices</span>
+              <button className="px-2 py-y rounded-xl">
+                <GiPriceTag size={30} className="" />
+              </button>
+            </div>
             <div className="bg-white text-gray-700  flex flex-col items-center justify-center w-32 h-28 shadow-sm">
               <span className="text-sm">Manage Users </span>
               <button className="px-2 py-y rounded-xl" onClick={onChangeUser}>

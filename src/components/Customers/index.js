@@ -93,7 +93,7 @@ export default function Customers({ user }) {
               <input
                 className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none mt-4 mb-4"
                 type="text"
-                placeholder="Type name Customer"
+                placeholder="Type name Users"
                 aria-label="Meteran"
                 onChange={(e) => onChangeSearch(e.target.value)}
               />
