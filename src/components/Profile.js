@@ -64,7 +64,7 @@ export default function Profile({ user }) {
       ) : menu === 4 ? (
         <ListTransaction user={user} />
       ) : menu === 5 ? (
-        <ScannerMenu />
+        <ScannerMenu user={user} />
       ) : menu === 6 ? (
         <User />
       ) : menu === 7 ? (

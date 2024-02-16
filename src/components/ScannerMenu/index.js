@@ -5,19 +5,20 @@ import CardProfile from "../CardProfile";
 import Transaction from "../Transaction";
 import Spinner from "../Spinner";
 import LoadingQr from "../LoadingQr";
-const ScannerMenu = () => {
+const ScannerMenu = ({ user }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [scannerType, setScannerType] = useState("QR");
   const [customer, setCustomer] = useState(null);
   const [price, setPrice] = useState([]);
   const [err, setErr] = useState("");
   const [getCall, setGetcall] = useState(false);
-  const [decodedValue, setDecodedValue] = useState(45346534);
+  const [decodedValue, setDecodedValue] = useState(43243435);
+  const [isUpdate, setIsupdate] = useState(0);
 
   useEffect(() => {
     // getAdminBoard()
-    getPrice();
-    // onSearchdata(45346534)
+    //getPrice();
+     //onSearchdata(43243435)
   }, []);
   const onChangeData = (res) => {
     setGetcall(false)
@@ -52,15 +53,16 @@ const ScannerMenu = () => {
         // console.log(response)
         setCustomer(response.data.user);
         setIsLoading(false);
-        // setCurrentCustomer(response.data);
-        // setLoad(false);
-
-        //console.log(response.data);
+  
       })
       .catch((e) => {
         setIsLoading(false);
       });
   };
+
+  const onChangeBack = () => {
+    //setMenuCount(0)
+  }
   return (
     <div>
       <label>
@@ -85,7 +87,7 @@ const ScannerMenu = () => {
       <Scanner type={scannerType} onResult={(res) => onChangeData(res)} />
       {err && <h2>{err}</h2>}
       <div className="py-4">
-        {getCall ? <CardProfile id={decodedValue} /> : <LoadingQr /> }
+        {getCall ? <CardProfile id={decodedValue} user={user} onChangeBack={onChangeBack} setIsupdate={setIsupdate} /> : <LoadingQr /> }
 
         {/*
         {isLoading ? (
