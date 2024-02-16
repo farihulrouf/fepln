@@ -12,6 +12,7 @@ import { MdGroups2 } from "react-icons/md";
 import Report from "./Report";
 import ListTransaction from "./ListTransaction";
 import Customers from "./Customers";
+import User from "./Users";
 export default function Profile({ user }) {
   const [menu, setMenu] = useState(0);
   const [menuAf, setMenuAf] = useState(false)
@@ -64,7 +65,7 @@ export default function Profile({ user }) {
       ) : menu === 5 ? (
         <ScannerMenu />
       ) : menu === 6 ? (
-        <>Menu 6</>
+        <User />
       ) : (
         <div className="">
           <div className="flex flex-wrap justify-between py-4 gap-8">
