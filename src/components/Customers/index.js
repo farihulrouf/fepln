@@ -10,6 +10,7 @@ import { render } from "react-dom";
 import { IoAdd } from "react-icons/io5";
 import Add from "./Add";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { GrFormViewHide } from "react-icons/gr";
 
 //import { IoArrowBack } from "react-icons/io5";
 import ViewTrans from "./ViewTrans";
@@ -169,9 +170,9 @@ export default function Customers({ user }) {
                                   onClick={() => {
                                     onChange(customer.no_id, customer._id);
                                   }}
-                                  className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-green-800"
+                                  className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-teal-800"
                                 >
-                                  <span>Detail</span>
+                                  <span className="flex gap-2 items-center">Detail <GrFormViewHide /> </span>
                                 </button>
                               </td>
                             </tr>
