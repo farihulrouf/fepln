@@ -51,7 +51,7 @@ export default function ListTransaction({ user }) {
         {menuCount === 0 ? (
           <div>
             <CardProfile id={id} user={user} onChangeBack={onChangeBack} setIsupdate={setIsupdate} />
-            <Transaction idtrans={idtrans} user={user} />
+            <Transaction idtrans={idtrans} user={user} setIsupdate={setIsupdate}/>
           </div>
         ) : (
           <></>
@@ -73,9 +73,6 @@ export default function ListTransaction({ user }) {
     setIsupdate(1);
     // onCalldata(id)
   };
-  // console.log("nilai", metadata);
-  //console.log("ini data", datatrans);
-  //console.log(isUpdate);
   return (
     <div className="realtive">
       {isUpdate === 1 ? (

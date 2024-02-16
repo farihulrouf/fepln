@@ -71,7 +71,7 @@ export default function Profile({ user }) {
         <>Price</>
       ) : (
         <div className="">
-          <div className="flex flex-wrap justify-between py-4 gap-8">
+          <div className="flex flex-wrap justify-between py-2 gap-8">
             <div className="bg-white text-gray-700 flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
               <span className="text-sm">Barcode </span>
               <button

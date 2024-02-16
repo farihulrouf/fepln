@@ -70,6 +70,9 @@ const createTransactions = (data) => {
   return http.post("/transactions/post", data);
 };
 
+const updateTransactions = (data, id) => {
+  return http.put(`/transactions/update?id=${id}`, data);
+};
 //user update
 const updateUser = (id, data) => {
   return http.put(`/users/${id}`, data);
@@ -112,6 +115,7 @@ const ServiceApi = {
   getTransactionsAll,
   getReportTransaction,
   getallUsers,
+  updateTransactions
 };
 
 export default ServiceApi;

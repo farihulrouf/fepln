@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ServiceApi from "../services/ServiceApi";
 import Spinner from "./Spinner";
-const Transaction = ({ idtrans, user }) => {
+const Transaction = ({ idtrans, user, setIsupdate }) => {
   // console.log(customer);
   const [kubik, setKubik] = useState(1);
   const [bayar, setBayar] = useState(0);
@@ -9,10 +9,10 @@ const Transaction = ({ idtrans, user }) => {
   const generate = Math.random().toFixed(6).split(".")[1];
   const [loading, setLoading] = useState(false);
   const [currentTrans, setCurrentTrans] = useState(null);
-  const [price, setPrice] = useState(null)
-  // console.log('nomer id',idtrans)
+  const [price, setPrice] = useState(null);
   useEffect(() => {
     getDetailTransaction();
+    getPrice();
   }, []);
 
   const getDetailTransaction = () => {
@@ -29,13 +29,19 @@ const Transaction = ({ idtrans, user }) => {
       });
   };
 
+  const getPrice = () => {
+    ServiceApi.getallPrice().then((response) => {
+      setPrice(response.data);
+    });
+  };
+
   const onChangeUp = () => {
     setKubik(kubik + 1);
     //console.log('data eksekusi')
   };
   const onChanData = (e) => {
-    //setKubik(e.target.value);
-    // setBayar(e.target.value * price[0].harga)
+    setKubik(e.target.value);
+    setBayar(e.target.value * price[0].harga);
   };
   const onChangeDown = () => {
     setKubik(kubik - 1);
@@ -47,7 +53,23 @@ const Transaction = ({ idtrans, user }) => {
     const num = Math.floor(Math.random() * (max - min + 1)) + min;
     return num.toString().padStart(6, "0");
   };
-
+  const onChangeEdit = () => {
+    const edit = {
+      status: true,
+      meteran: kubik,
+      amount: bayar,
+      customer: currentTrans.customer,
+    };
+    setLoading(true);
+    ServiceApi.updateTransactions(edit, currentTrans._id)
+      .then((response) => {
+        setLoading(false);
+        setIsupdate(0)
+      })
+      .catch((e) => {
+        setLoading(false);
+      });
+  };
   const onChangeSave = () => {
     {
       /* const dataTransaction = {
@@ -78,7 +100,8 @@ const Transaction = ({ idtrans, user }) => {
     }
   };
   //console.log('nilai', bayar, kubik)
-  console.log("data user", user);
+  //console.log("data pri", price);
+  console.log(currentTrans);
   return (
     <React.Fragment>
       <div className="relative">
@@ -172,7 +195,7 @@ const Transaction = ({ idtrans, user }) => {
               <div className="flex justify-end py-4">
                 <button
                   className="px-3 py-1 bg-teal-700 rounded-sm text-white"
-                  onClick={onChangeSave}
+                  onClick={onChangeEdit}
                 >
                   Save
                 </button>
