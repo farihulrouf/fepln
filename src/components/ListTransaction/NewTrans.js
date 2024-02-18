@@ -13,6 +13,7 @@ const NewTrans = (nomer) => {
   const [bayar, setBayar] = useState(0);
   const [kubik, setKubik] = useState(1);
   const [price, setPrice] = useState(null);
+  //const generate = Math.random().toFixed(6).split(".")[1];
 
   useEffect(() => {
     getTran();
@@ -42,8 +43,33 @@ const NewTrans = (nomer) => {
 
   const onChanData = (e) => {
     setKubik(e.target.value);
-    setBayar(((e.target.value) - customerData.meteran )* price[0].harga);
+    setBayar((e.target.value - customerData.meteran) * price[0].harga);
   };
+  const saveData = () => {
+   // console.log("cek data");
+
+    const dataTransaction = {
+      title: "Air",
+      noinv: Math.random().toFixed(6).split(".")[1],
+      no_id: customerData.customers[0].no_id,
+      transactionType: "Cash",
+      customerId: customerData.customers[0]._id,
+      status: false,
+      amount: bayar,
+      meteran: kubik,
+    };
+
+    setLoading(true);
+    ServiceApi.createTransactions(dataTransaction)
+      .then((response) => {
+        setLoading(false);
+      })
+      .catch((e) => {
+        console.log(e);
+        setLoading(false);
+      });
+  };
+  console.log(price)
   // console.log("data", customerData.customers[0].name);
   return (
     <React.Fragment>
@@ -104,8 +130,8 @@ const NewTrans = (nomer) => {
             </dl>
           </div>
           <div className="py-2 flex justify-between items-center px-4">
-                <h2 className="text-xl">Meteran</h2>
-                <h2 className="text-3xl">{customerData.meteran}</h2>
+            <h2 className="text-xl">Meteran</h2>
+            <h2 className="text-3xl">{customerData.meteran}</h2>
           </div>
           <div className="py-2 flex relative">
             <div>
@@ -181,6 +207,14 @@ const NewTrans = (nomer) => {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="flex justify-end py-4">
+            <button
+              className="px-3 py-1 bg-teal-700 rounded-sm text-white"
+              onClick={saveData}
+            >
+              Save
+            </button>
           </div>
         </>
       )}

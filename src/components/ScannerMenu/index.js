@@ -84,7 +84,7 @@ const ScannerMenu = ({ user }) => {
         />
         BAR
       </label>
-      {/*<Scanner type={scannerType} onResult={(res) => onChangeData(res)} /> */}
+      <Scanner type={scannerType} onResult={(res) => onChangeData(res)} />
       {err && <h2>{err}</h2>}
       <div className="py-4">
         {getCall ? (
@@ -95,11 +95,11 @@ const ScannerMenu = ({ user }) => {
               onChangeBack={onChangeBack}
               setIsupdate={setIsupdate}
             />
+            <NewTrans nomer={decodedValue} />
           </>
         ) : (
           <>
             <LoadingQr />
-            <NewTrans nomer={39843096} />
           </>
         )}
       </div>
