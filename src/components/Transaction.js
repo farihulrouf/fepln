@@ -117,10 +117,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
         setLoading(false);
       });
   };
-  //console.log('nilai', bayar, kubik)
-  //console.log("data pri", price);
-  //console.log(currentTrans);
-  // console.log('data', user)
+  
   console.log(customer);
   return (
     <React.Fragment>

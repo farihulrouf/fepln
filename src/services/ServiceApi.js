@@ -54,9 +54,12 @@ const deleteCustomer = (id) => {
   return http.delete(`/customers/delete/${id}`);
 };
 
-const getTransactions = (params) => {
-  //console.log("ini adalah", params)
-  return http.get(`/transactions/getone/?no=${params}`);
+const getTransactions = (id) => {
+  //console.log("ini adalah", id)
+  console.log('data param',id)
+  console.log(id)
+  const data = 39843096
+  return http.get(`/transactions/getransactions/?nomer=${data}`);
 };
 
 const getUserTransactions = (params, page, limit) => {

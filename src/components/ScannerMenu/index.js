@@ -5,6 +5,7 @@ import CardProfile from "../CardProfile";
 import Transaction from "../Transaction";
 import Spinner from "../Spinner";
 import LoadingQr from "../LoadingQr";
+import NewTrans from "../ListTransaction/NewTrans";
 const ScannerMenu = ({ user }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [scannerType, setScannerType] = useState("QR");
@@ -18,7 +19,7 @@ const ScannerMenu = ({ user }) => {
   useEffect(() => {
     // getAdminBoard()
     //getPrice();
-    //onSearchdata(43243435)
+    onSearchdata(43243435);
   }, []);
   const onChangeData = (res) => {
     setGetcall(false);
@@ -83,7 +84,7 @@ const ScannerMenu = ({ user }) => {
         />
         BAR
       </label>
-       <Scanner type={scannerType} onResult={(res) => onChangeData(res)} /> 
+      {/*<Scanner type={scannerType} onResult={(res) => onChangeData(res)} /> */}
       {err && <h2>{err}</h2>}
       <div className="py-4">
         {getCall ? (
@@ -94,14 +95,12 @@ const ScannerMenu = ({ user }) => {
               onChangeBack={onChangeBack}
               setIsupdate={setIsupdate}
             />
-            <Transaction
-              idtrans={decodedValue}
-              user={user}
-              setIsupdate={isUpdate}
-            />
           </>
         ) : (
-          <LoadingQr />
+          <>
+            <LoadingQr />
+            <NewTrans nomer={39843096} />
+          </>
         )}
       </div>
     </div>
