@@ -19,7 +19,7 @@ const ScannerMenu = ({ user }) => {
   useEffect(() => {
     // getAdminBoard()
     //getPrice();
-    onSearchdata(43243435);
+    //onSearchdata(43243435);
   }, []);
   const onChangeData = (res) => {
     setGetcall(false);
