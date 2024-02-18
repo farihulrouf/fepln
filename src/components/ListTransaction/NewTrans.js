@@ -35,15 +35,15 @@ const NewTrans = ({ customerData, price }) => {
         setLoading(false);
       });
   };
-*/
+
   }
 
-  const getPrice = () => {
+ const getPrice = () => {
     ServiceApi.getallPrice().then((response) => {
       setPrice(response.data);
     });
   };
-
+*/}
   const onChanData = (e) => {
     setKubik(e.target.value);
     setBayar((e.target.value - customerData.meteran) * price[0].harga);
