@@ -105,7 +105,7 @@ const ScannerMenu = ({ user }) => {
           </>
         ) : (
           <>
-            <NewTrans customerData={customer} />
+            
             <LoadingQr />
           </>
         )}
