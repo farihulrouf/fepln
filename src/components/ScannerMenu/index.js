@@ -49,10 +49,10 @@ const ScannerMenu = ({ user }) => {
   };
   const onSearchdata = (id) => {
     setIsLoading(true);
-    ServiceApi.getNoCustomer(id)
+    ServiceApi.getTransactions(id)
       .then((response) => {
         // console.log(response)
-        setCustomer(response.data.user);
+        setCustomer(response.data.transaction[0]);
         setIsLoading(false);
       })
       .catch((e) => {
@@ -60,9 +60,13 @@ const ScannerMenu = ({ user }) => {
       });
   };
 
+
+
   const onChangeBack = () => {
     //setMenuCount(0)
   };
+
+  console.log(customer,"data")
   return (
     <div>
       <label>
@@ -95,7 +99,7 @@ const ScannerMenu = ({ user }) => {
               onChangeBack={onChangeBack}
               setIsupdate={setIsupdate}
             />
-            <NewTrans decodedValue={decodedValue} />
+            <NewTrans customerData={customer} />
           </>
         ) : (
           <>
