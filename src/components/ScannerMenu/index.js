@@ -18,7 +18,7 @@ const ScannerMenu = ({ user }) => {
 
   useEffect(() => {
     // getAdminBoard()
-    //getPrice();
+     getPrice();
     //onSearchdata(43243435);
   }, []);
   const onChangeData = (res) => {
@@ -99,7 +99,7 @@ const ScannerMenu = ({ user }) => {
               onChangeBack={onChangeBack}
               setIsupdate={setIsupdate}
             />
-            <NewTrans customerData={customer} />
+            <NewTrans customerData={customer} price={price} />
           </>
         ) : (
           <>
