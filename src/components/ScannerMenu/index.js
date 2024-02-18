@@ -102,7 +102,7 @@ const ScannerMenu = ({ user }) => {
               setIsupdate={setIsupdate}
             />
           */}
-            <NewTrans customerData={customer} />
+            <NewTrans customerData={customer} price={price} />
           </>
         ) : (
           <>

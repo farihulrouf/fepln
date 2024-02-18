@@ -7,12 +7,12 @@ import Avatar from "react-avatar";
 import Spinner from "../Spinner";
 import QRCode from "react-qr-code";
 
-const NewTrans = ({ customerData }) => {
+const NewTrans = ({ customerData, price }) => {
  // const [customerData, setcustomerData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [bayar, setBayar] = useState(0);
   const [kubik, setKubik] = useState(1);
-  const [price, setPrice] = useState(null);
+  //const [price, setPrice] = useState(null);
   //const generate = Math.random().toFixed(6).split(".")[1];
   {/*
   useEffect(() => {
@@ -38,7 +38,7 @@ const NewTrans = ({ customerData }) => {
 
   const getPrice = () => {
     ServiceApi.getallPrice().then((response) => {
-      setPrice(response.data);
+      //setPrice(response.data);
     });
   };
 
