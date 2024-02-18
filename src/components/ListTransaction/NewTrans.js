@@ -7,7 +7,7 @@ import Avatar from "react-avatar";
 import Spinner from "../Spinner";
 import QRCode from "react-qr-code";
 
-const NewTrans = (nomer) => {
+const NewTrans = ({nomer}) => {
   const [customerData, setcustomerData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [bayar, setBayar] = useState(0);
