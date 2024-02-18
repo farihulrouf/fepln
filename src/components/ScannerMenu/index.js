@@ -19,11 +19,12 @@ const ScannerMenu = ({ user }) => {
   useEffect(() => {
     // getAdminBoard()
      getPrice();
-     onSearchdata(43243435);
+    // onSearchdata(43243435);
   }, []);
   const onChangeData = (res) => {
     setGetcall(false);
     setDecodedValue(res);
+    onSearchdata(res)
     setGetcall(true);
     {
       /*
@@ -88,7 +89,7 @@ const ScannerMenu = ({ user }) => {
         />
         BAR
       </label>
-      <Scanner type={scannerType} onResult={(res) => setDecodedValue(res)} />
+      <Scanner type={scannerType} onResult={(res) => onChangeData(res)} />
       {err && <h2>{err}</h2>}
       <div className="py-4">
         {getCall ? (
