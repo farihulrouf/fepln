@@ -95,7 +95,7 @@ const ScannerMenu = ({ user }) => {
               onChangeBack={onChangeBack}
               setIsupdate={setIsupdate}
             />
-            <NewTrans nomer={decodedValue} />
+            <NewTrans decodedValue={decodedValue} />
           </>
         ) : (
           <>
