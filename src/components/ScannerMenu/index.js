@@ -99,7 +99,7 @@ const ScannerMenu = ({ user }) => {
               onChangeBack={onChangeBack}
               setIsupdate={setIsupdate}
             />
-            <NewTrans customerData={customer} price={price} />
+            <NewTrans customerData={customer} />
           </>
         ) : (
           <>
