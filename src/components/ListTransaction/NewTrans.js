@@ -8,13 +8,15 @@ import Spinner from "../Spinner";
 import QRCode from "react-qr-code";
 
 const NewTrans = ({ customerData, price }) => {
- // const [customerData, setcustomerData] = useState(null);
+  // const [customerData, setcustomerData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [bayar, setBayar] = useState(0);
   const [kubik, setKubik] = useState(1);
+  const [nilai, setNilai] = useState(0);
   //const [price, setPrice] = useState(null);
   //const generate = Math.random().toFixed(6).split(".")[1];
-  {/*
+  {
+    /*
   useEffect(() => {
     getTran();
     getPrice();
@@ -34,7 +36,8 @@ const NewTrans = ({ customerData, price }) => {
         setLoading(false);
       });
   };
-*/}
+*/
+  }
 
   const getPrice = () => {
     ServiceApi.getallPrice().then((response) => {
@@ -45,9 +48,10 @@ const NewTrans = ({ customerData, price }) => {
   const onChanData = (e) => {
     setKubik(e.target.value);
     setBayar((e.target.value - customerData.meteran) * price[0].harga);
+    setNilai(e.target.value - customerData.meteran);
   };
   const saveData = () => {
-   // console.log("cek data");
+    // console.log("cek data");
 
     const dataTransaction = {
       title: "Air",
@@ -133,6 +137,9 @@ const NewTrans = ({ customerData, price }) => {
           <div className="py-2 flex justify-between items-center px-4">
             <h2 className="text-xl">Meteran</h2>
             <h2 className="text-3xl">{customerData.meteran}</h2>
+          </div>
+          <div className="py-2 flex justify-end items-center px-4">
+            <h2 className="text-3xl">{nilai}</h2>
           </div>
           <div className="py-2 flex relative">
             <div>
