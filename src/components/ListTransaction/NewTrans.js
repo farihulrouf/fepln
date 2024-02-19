@@ -221,7 +221,7 @@ const NewTrans = ({ customerData, price }) => {
               className="px-3 py-1 bg-teal-700 rounded-sm text-white"
               onClick={saveData}
             >
-              Save
+              {loading ? <>Save</> : <>Loading</>}
             </button>
           </div>
         </>
