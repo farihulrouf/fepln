@@ -47,7 +47,7 @@ function App() {
     setCurrentUser(undefined);
   };
 
-  //console.log('this one data', user)
+  console.log('this one data', user)
   return (
     <React.Fragment>
       {/*currentUser ? <Navbar user={currentUser} /> : null */}
