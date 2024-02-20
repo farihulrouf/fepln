@@ -135,7 +135,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
                           <FaGenderless />Gender
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                          {customerData.name === "L" ? <p className="flex gap-1 items-center"><FaMale />Male</p> : <p className="flex gap-1 items-center"><FaFemale />Female</p>}
+                          {customerData.gender === "L" ? <p className="flex gap-1 items-center"><FaMale />Male</p> : <p className="flex gap-1 items-center"><FaFemale />Female</p>}
                         </dd>
                       </div>
 
