@@ -62,6 +62,10 @@ const getTransactionsDetail = (id) => {
   return http.get(`/transactions/getransactions/?nomer=${id}`);
 };
 
+const getDetailtransById = async (id) => {
+  return http.get(`/transactions/getlast/?nomer=${id}`);
+}
+
 
 const getUserTransactions = (params, page, limit) => {
   //console.log('ini data di', id)
@@ -97,6 +101,8 @@ const getListCustomers = async (page, limit, name) => {
 const getallUsers = async (page, limit, name) => {
   return http.get(`/users/all?page=${page}&limit=${limit}&s=${name}`);
 };
+
+
 const ServiceApi = {
   getallPrice,
   create,
@@ -120,7 +126,8 @@ const ServiceApi = {
   getReportTransaction,
   getallUsers,
   updateTransactions,
-  getTransactionsDetail
+  getTransactionsDetail,
+  getDetailtransById
 };
 
 export default ServiceApi;

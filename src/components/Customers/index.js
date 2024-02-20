@@ -28,7 +28,7 @@ export default function Customers({ user, isBoolean }) {
   const [menuCount, setMenuCount] = useState(0);
   const [detailCust, setDetailcust] = useState(null);
   const [price, setPrice] = useState([]);
-
+  const [transaction, setTransaction] = useState(null)
   useEffect(() => {
     getList(1, 6, "");
     getPrice()
@@ -77,7 +77,7 @@ export default function Customers({ user, isBoolean }) {
   const callTransaction = (currentUser) => {
     return (
       <>
-       <NewTrans customerData={detailCust} price={price} />
+       <NewTrans customerData={detailCust} price={price} transaction={transaction} />
       
 
       </>
@@ -102,7 +102,9 @@ export default function Customers({ user, isBoolean }) {
       }
       else if (isBoolean === 1) {
         console.log('boolean', no_id, isBoolean)
-        onSearchdata(no_id)
+        getCustomerDetail(no_id)
+        getTransactionDetail(no_id)
+       // onSearchdata(no_id)
         setIsupdate(3)
       }
     
@@ -125,6 +127,32 @@ export default function Customers({ user, isBoolean }) {
         setLoading(false);
       });
   };
+
+  const getCustomerDetail = (no_id) => {
+    setLoading(true);
+    ServiceApi.getNoCustomer(no_id)
+      .then((response) => {
+        // console.log(response)
+        setDetailcust(response.data.user);
+        setLoading(false);
+      })
+      .catch((e) => {
+        setLoading(false);
+      });
+  };
+  const getTransactionDetail = (no_id) => {
+    setLoading(true);
+    ServiceApi.getDetailtransById(no_id)
+      .then((response) => {
+          setTransaction(response.data.transaction[0])
+        setLoading(false);
+      })
+      .catch((e) => {
+        setLoading(false);
+        setTransaction(null)
+      });
+  };
+
   const isAddData = () => {
     return (
       <>
@@ -132,9 +160,7 @@ export default function Customers({ user, isBoolean }) {
       </>
     );
   };
-  console.log('data test', isUpdate, isBoolean)
-  console.log('is data', detailCust)
-  console.log('cobadata',currentUser)
+ 
   return (
     <div className="realtive px-2">
       {isUpdate === 1 ? (

@@ -16,16 +16,20 @@ const ScannerMenu = ({ user }) => {
   const [getCall, setGetcall] = useState(false);
   const [decodedValue, setDecodedValue] = useState(43243435);
   const [isUpdate, setIsupdate] = useState(0);
+  const [transaction, setTransaction] = useState(null)
   const isBoolean = 1
   useEffect(() => {
     // getAdminBoard()
      getPrice();
+    // getCustomerDetail(43243435)
     // onSearchdata(43243435);
   }, []);
   const onChangeData = (res) => {
     setGetcall(false);
     setDecodedValue(res);
-    onSearchdata(res)
+    getCustomerDetail(res)
+    getTransactionDetail(res)
+   // onSearchdata(res)
     setGetcall(true);
     {
       /*
@@ -63,12 +67,39 @@ const ScannerMenu = ({ user }) => {
   };
 
 
+  const getCustomerDetail = (id) => {
+    setIsLoading(true);
+    ServiceApi.getNoCustomer(id)
+      .then((response) => {
+        // console.log(response)
+        setCustomer(response.data.user);
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+      });
+  };
+  
+
+  const getTransactionDetail = (no_id) => {
+    setIsLoading(true);
+    ServiceApi.getDetailtransById(no_id)
+      .then((response) => {
+          setTransaction(response.data.transaction[0])
+          setIsLoading(false);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+        setTransaction(null)
+      });
+  };
+
 
   const onChangeBack = () => {
     //setMenuCount(0)
   };
 
-  //console.log('jakshdiajdh',customer)
+  console.log('jakshdiajdh',customer)
   return (
     <div>
       <label>
@@ -103,7 +134,7 @@ const ScannerMenu = ({ user }) => {
               setIsupdate={setIsupdate}
             />
           */}
-            <NewTrans customerData={customer} price={price} />
+            <NewTrans customerData={customer} price={price} transaction={transaction} />
           </>
         ) : (
           <>

@@ -7,12 +7,13 @@ import Avatar from "react-avatar";
 import Spinner from "../Spinner";
 import QRCode from "react-qr-code";
 
-const NewTrans = ({ customerData, price }) => {
+const NewTrans = ({ customerData, price, transaction }) => {
   // const [customerData, setcustomerData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [bayar, setBayar] = useState(0);
   const [kubik, setKubik] = useState(1);
   const [nilai, setNilai] = useState(0);
+  //const [transaction, setTransaction] = useState(null)
   //const [price, setPrice] = useState(null);
   //const generate = Math.random().toFixed(6).split(".")[1];
   {
@@ -38,7 +39,25 @@ const NewTrans = ({ customerData, price }) => {
   };
 */
   }
+  
+  useEffect(() => {
+   // getTransactionDetail(customerData.no_id)
+  }, []);
 
+
+  const getTransactionDetail = (no_id) => {
+    setLoading(true);
+    ServiceApi.getDetailtransById(no_id)
+      .then((response) => {
+        // console.log(response)
+        //setDetailcust(response.data.user);
+        console.log('test response', response)
+        setLoading(false);
+      })
+      .catch((e) => {
+        setLoading(false);
+      });
+  };
   const getPrice = () => {
     ServiceApi.getallPrice().then((response) => {
       //setPrice(response.data);
@@ -47,8 +66,10 @@ const NewTrans = ({ customerData, price }) => {
 
   const onChanData = (e) => {
     setKubik(e.target.value);
-    setBayar((e.target.value - customerData.meteran) * price[0].harga);
-    setNilai(e.target.value - customerData.meteran);
+   // setBayar((e.target.value - customerData.meteran) * price[0].harga);
+    setBayar((e.target.value - transaction.meteran) * price[0].harga);
+    setNilai(e.target.value - transaction.meteran);
+    //setNilai(e.target.value - customerData.meteran);
   };
   const saveData = () => {
     // console.log("cek data");
@@ -56,9 +77,9 @@ const NewTrans = ({ customerData, price }) => {
     const dataTransaction = {
       title: "Air",
       noinv: Math.random().toFixed(6).split(".")[1],
-      no_id: customerData.customers[0].no_id,
+      no_id: customerData.no_id,
       transactionType: "Cash",
-      customerId: customerData.customers[0]._id,
+      customerId: customerData._id,
       status: false,
       amount: bayar,
       meteran: kubik,
@@ -74,7 +95,8 @@ const NewTrans = ({ customerData, price }) => {
         setLoading(false);
       });
   };
-  //console.log(price)
+  console.log(transaction)
+  //console.log(price) getDetailtransById
   // console.log("data", customerData.customers[0].name);
   return (
     <React.Fragment>
@@ -85,16 +107,16 @@ const NewTrans = ({ customerData, price }) => {
           <div className="px-4 py-5 sm:px-6 flex items-center space-x-2 relative">
             <Avatar
               className="rounded-full"
-              name={customerData.customers[0].name}
+              name={customerData.name}
               maxInitials={2}
               size={50}
             />
             <div>
               <h3 className="text-lg leading-6 font-medium text-gray-900">
-                {customerData.customers[0].name}
+                {customerData.name}
               </h3>
               <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                {customerData.customers[0].no_id}
+                {customerData.no_id}
               </p>
             </div>
           </div>
@@ -107,7 +129,7 @@ const NewTrans = ({ customerData, price }) => {
                       Gender
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      {customerData.customers[0].name == "L" ? (
+                      {customerData.name == "L" ? (
                         <p>Male</p>
                       ) : (
                         <>Female</>
@@ -121,13 +143,13 @@ const NewTrans = ({ customerData, price }) => {
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex items-center">
                       <FaWhatsapp size={25} className="text-teal-700" />{" "}
-                      <p>0{customerData.customers[0].no_tel}</p>
+                      <p>0{customerData.no_tel}</p>
                     </dd>
                   </div>
 
                   <QRCode
                     size={50}
-                    value={String(customerData.customers[0].no_id)}
+                    value={String(customerData.no_id)}
                     viewBox={`0 0 256 256`}
                   />
                 </div>
@@ -136,7 +158,14 @@ const NewTrans = ({ customerData, price }) => {
           </div>
           <div className="py-2 flex justify-between items-center px-4">
             <h2 className="text-xl">Meteran</h2>
-            <h2 className="text-3xl">{customerData.meteran}</h2>
+            <h2 className="text-3xl">
+              {transaction ? (
+                         <>     {transaction.meteran}</>
+
+              ):(
+                0
+              )}
+            </h2>
           </div>
           <div className="py-2 flex justify-end items-center px-4">
             <h2 className="text-3xl">{nilai}</h2>
