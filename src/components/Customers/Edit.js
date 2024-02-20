@@ -44,7 +44,7 @@ const Edit = ({ customer, editChange }) => {
   return (
     <React.Fragment>
         <div className="px-6">
-          <button className="absolute top-[57px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center">
+          <button className="absolute top-[50px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center">
             <IoChevronBack />
             Customers
           </button>

@@ -23,12 +23,11 @@ const Navbar = ({ user }) => {
       {/* Left side */}
       <div className="flex items-center">
         <div onClick={() => setNav(!nav)} className="cursor-pointer">
-        <FaHouseFloodWater size={24} className="text-blue-800" />
+          <FaHouseFloodWater size={24} className="text-blue-800" />
         </div>
-     
-          
-          <p className="text-blue-900 font-medium ml-2">Hippam Wotan</p>
-       
+
+        <p className="ml-2">Hippam Wotan</p>
+
         {/*
         <h1 className="text-2xl sm:text-3xl lg:text-4xl px-2">
           Bum <span className="font-bold">Des</span>
@@ -76,9 +75,10 @@ const Navbar = ({ user }) => {
           size={30}
           className="absolute right-4 top-4 cursor-pointer"
         />
-        <h2 className="text-2xl p-4">
-          Bum <span className="font-bold">Des</span>
-        </h2>
+        <div className="flex gap-2 ml-3 mt-4">
+          <FaHouseFloodWater size={24} className="text-blue-800" />
+          <p>Hipam Wotan</p>
+        </div>
         <nav>
           <ul className="flex flex-col p-4 text-gray-800">
             {menuItems.map(({ icon, text }, index) => {

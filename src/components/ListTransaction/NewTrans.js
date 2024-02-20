@@ -16,6 +16,9 @@ import { FaFemale } from "react-icons/fa";
 import { FaGenderless } from "react-icons/fa";
 import { CiPhone } from "react-icons/ci";
 import { BsThermometerSun } from "react-icons/bs";
+import { CiSaveUp2 } from "react-icons/ci";
+import { IoPrintOutline } from "react-icons/io5";
+
 const NewTrans = ({ customerData, price, transaction }) => {
   // const [customerData, setcustomerData] = useState(null);
   const notify = () => toast("Transaction Saved");
@@ -99,7 +102,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
              <Spinner />
           ) : (
             <>
-              <button className="absolute top-[57px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center">
+              <button className="absolute top-[50px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center">
                 <IoChevronBack />
                 QRCode
               </button>
@@ -241,12 +244,12 @@ const NewTrans = ({ customerData, price, transaction }) => {
                 </div>
               </div>
               {isSave ? null : (
-                <div className="flex justify-end py-4">
+                <div className="flex justify-end py-2">
                   <button
-                    className="px-3 py-1 bg-teal-700 rounded-sm text-white"
+                    className="px-2 py-1 bg-teal-700 rounded-sm text-white flex items-center gap-1"
                     onClick={saveData}
                   >
-                    {loading ? <>Loading</> : <>Save</>}
+                    {loading ? <>Loading</> : <> <CiSaveUp2 />Save</>}
                   </button>
                 </div>
               )}

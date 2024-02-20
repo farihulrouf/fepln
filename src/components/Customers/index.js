@@ -171,7 +171,7 @@ export default function Customers({ user, isBoolean }) {
             <input
               className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none mt-4 mb-4"
               type="text"
-              placeholder="Type name Users"
+              placeholder="Type Customers Name"
               aria-label="Meteran"
               onChange={(e) => onChangeSearch(e.target.value)}
             />
@@ -251,10 +251,10 @@ export default function Customers({ user, isBoolean }) {
                                 onClick={() => {
                                   onChange(customer.no_id, customer._id);
                                 }}
-                                className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-blue-800"
+                                className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
                               >
-                                <span className="flex gap-2 items-center">
-                                  Detail <GrFormViewHide />{" "}
+                                <span className="flex gap-2 items-center text-gray-500">
+                                  <span className="">Detail</span> <GrFormViewHide />{" "}
                                 </span>
                               </button>
                             </td>
