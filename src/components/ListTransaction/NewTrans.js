@@ -110,7 +110,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
                 null
               )}
             
-              <div className="px-4 py-5 sm:px-6 flex items-center space-x-2 relative">
+              <div className="py-2 flex items-center space-x-2 relative">
                 <Avatar
                   className="rounded-full"
                   name={customerData.name}
@@ -126,7 +126,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
                   </p>
                 </div>
               </div>
-              <div className="border-t border-gray-200 px-4 py-2 sm:p-0">
+              <div className="border-t border-gray-200 py-2 sm:p-0">
                 <dl className="sm:divide-y sm:divide-gray-200">
                   <div className="py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <div className="flex items-center justify-between">
@@ -158,13 +158,13 @@ const NewTrans = ({ customerData, price, transaction }) => {
                   </div>
                 </dl>
               </div>
-              <div className="py-2 flex justify-between items-center px-4">
+              <div className="py-2 flex justify-between items-center">
                 <h2 className="text-xl flex gap-1 items-center"><BsSpeedometer />Meteran</h2>
                 <h2 className="text-3xl">
                   {transaction ? <> {transaction.meteran}</> : 0}
                 </h2>
               </div>
-              <div className="py-2 flex justify-end items-center px-4">
+              <div className="py-2 flex justify-end items-center">
                 <h2 className="text-3xl">{nilai}</h2>
               </div>
               <ToastContainer />
