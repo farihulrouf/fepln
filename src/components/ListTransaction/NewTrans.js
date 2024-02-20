@@ -10,6 +10,12 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ScannerMenu from "../ScannerMenu";
 import AlertMessage from "../AlertMessage";
+import { BsSpeedometer } from "react-icons/bs";
+import { FaMale } from "react-icons/fa";
+import { FaFemale } from "react-icons/fa";
+import { FaGenderless } from "react-icons/fa";
+import { CiPhone } from "react-icons/ci";
+import { BsThermometerSun } from "react-icons/bs";
 const NewTrans = ({ customerData, price, transaction }) => {
   // const [customerData, setcustomerData] = useState(null);
   const notify = () => toast("Transaction Saved");
@@ -122,17 +128,17 @@ const NewTrans = ({ customerData, price, transaction }) => {
                   <div className="py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <dt className="text-sm font-medium text-gray-500">
-                          Gender
+                        <dt className="text-sm font-medium text-gray-500 flex gap-1 items-center">
+                          <FaGenderless />Gender
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                          {customerData.name == "L" ? <p>Male</p> : <>Female</>}
+                          {customerData.name === "L" ? <p className="flex gap-1 items-center"><FaMale />Male</p> : <p className="flex gap-1 items-center"><FaFemale />Female</p>}
                         </dd>
                       </div>
 
                       <div>
-                        <dt className="text-sm font-medium text-gray-500">
-                          Phone number
+                        <dt className="text-sm font-medium text-gray-500 flex items-center gap-1">
+                          <CiPhone />Phone number
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex items-center">
                           <FaWhatsapp size={25} className="text-teal-700" />{" "}
@@ -150,7 +156,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
                 </dl>
               </div>
               <div className="py-2 flex justify-between items-center px-4">
-                <h2 className="text-xl">Meteran</h2>
+                <h2 className="text-xl flex gap-1 items-center"><BsSpeedometer />Meteran</h2>
                 <h2 className="text-3xl">
                   {transaction ? <> {transaction.meteran}</> : 0}
                 </h2>
@@ -163,9 +169,9 @@ const NewTrans = ({ customerData, price, transaction }) => {
                 <div>
                   <label
                     htmlFor="quantity-input"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white flex items-center gap-1"
                   >
-                    Meteran:
+                    <BsThermometerSun /> Meteran:
                   </label>
                   <div className="relative flex items-center w-36">
                     <button

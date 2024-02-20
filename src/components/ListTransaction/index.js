@@ -152,8 +152,8 @@ export default function ListTransaction({ user }) {
                                       trans._id
                                     )
                                   }
-                                  className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-green-800 ${
-                                    trans.status ? "bg-green-200" : "bg-red-400"
+                                  className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-white ${
+                                    trans.status ? "bg-green-500" : "bg-red-500"
                                   }`}
                                 >
                                   {trans.status ? (
@@ -195,7 +195,7 @@ export default function ListTransaction({ user }) {
                 }
                 containerClassName="flex items-center justify-center mt-2 mb-2"
                 pageClassName="block border- border-solid border-lightGray hover:bg-lightGray w-8 h-10 flex items-center justify-center rounded-md mr-4"
-                activeClassName="bg-gray-200 text-white"
+                activeClassName="bg-blue-300 text-white"
                 renderOnZeroPageCount={null}
               />
             )}

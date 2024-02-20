@@ -251,7 +251,7 @@ export default function Customers({ user, isBoolean }) {
                                 onClick={() => {
                                   onChange(customer.no_id, customer._id);
                                 }}
-                                className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-teal-800"
+                                className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-blue-800"
                               >
                                 <span className="flex gap-2 items-center">
                                   Detail <GrFormViewHide />{" "}
@@ -290,7 +290,7 @@ export default function Customers({ user, isBoolean }) {
               }
               containerClassName="flex items-center justify-center mt-2 mb-2"
               pageClassName="block border- border-solid border-lightGray hover:bg-lightGray w-8 h-10 flex items-center justify-center rounded-md mr-4"
-              activeClassName="bg-gray-200 text-white"
+              activeClassName="bg-blue-300 text-white"
               renderOnZeroPageCount={null}
             />
           )}

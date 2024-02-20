@@ -5,6 +5,7 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { FaWallet } from "react-icons/fa";
 import { MdFavorite, MdHelp } from "react-icons/md";
 import Avatar from "react-avatar";
+import { FaHouseFloodWater } from "react-icons/fa6";
 
 const Navbar = ({user}) => {
   //console.log(user)
@@ -14,7 +15,7 @@ const Navbar = ({user}) => {
     { icon: <TbTruckDelivery size={25} className="mr-4" />, text: "Profile" },
     { icon: <MdFavorite size={25} className="mr-4" />, text: "Favorites" },
     { icon: <FaWallet size={25} className="mr-4" />, text: "Wallet" },
-    { icon: <MdHelp size={25} className="mr-4" />, text: "Help" },
+    { icon: <MdHelp size={25} className="mr-4" />, text: "Logout" },
   ];
 
   return (
@@ -24,9 +25,12 @@ const Navbar = ({user}) => {
         <div onClick={() => setNav(!nav)} className="cursor-pointer">
           <AiOutlineMenu size={30} />
         </div>
+        <FaHouseFloodWater size={24} className="text-blue-800"/>
+          {/*
         <h1 className="text-2xl sm:text-3xl lg:text-4xl px-2">
           Bum <span className="font-bold">Des</span>
         </h1>
+  */}
         <div className="hidden lg:flex items-center bg-gray-200 rounded-full p-1 text-[14px]">
           <p className="bg-black text-white rounded-full p-2">Delivery</p>
           <p className="p-2">Pickup</p>
