@@ -18,6 +18,8 @@ import { CiPhone } from "react-icons/ci";
 import { BsThermometerSun } from "react-icons/bs";
 import { CiSaveUp2 } from "react-icons/ci";
 import { IoPrintOutline } from "react-icons/io5";
+import Barcode from 'react-barcode';
+import { MdOutlineVerified } from "react-icons/md";
 
 const NewTrans = ({ customerData, price, transaction }) => {
   // const [customerData, setcustomerData] = useState(null);
@@ -117,15 +119,17 @@ const NewTrans = ({ customerData, price, transaction }) => {
                   maxInitials={2}
                   size={50}
                 />
-                <div>
+                <div className="w-44">
                   <h3 className="text-lg leading-6 font-medium text-gray-900">
                     {customerData.name}
                   </h3>
-                  <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                    {customerData.no_id}
+                  <p className="mt-1 max-w-2xl text-sm text-gray-500 flex items-center gap-1">
+                    Active <MdOutlineVerified />
                   </p>
                 </div>
+                <Barcode height={20} value={customerData.no_id}/>
               </div>
+              
               <div className="border-t border-gray-200 py-2 sm:p-0">
                 <dl className="sm:divide-y sm:divide-gray-200">
                   <div className="py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -158,6 +162,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
                   </div>
                 </dl>
               </div>
+             
               <div className="py-2 flex justify-between items-center">
                 <h2 className="text-xl flex gap-1 items-center"><BsSpeedometer />Meteran</h2>
                 <h2 className="text-3xl">
