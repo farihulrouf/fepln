@@ -117,8 +117,8 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
         setLoading(false);
       });
   };
-  
-  console.log(customer);
+  console.log(currentTrans)
+ // console.log('ini data asd', idtrans);
   return (
     <React.Fragment>
       <div className="relative">
@@ -134,7 +134,8 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                 >
                   Meteran:
                 </label>
-                <div className="relative flex items-center w-36">
+                {kubik}
+                {/*<div className="relative flex items-center w-36">
                   <button
                     type="button"
                     id="decrement-button"
@@ -189,7 +190,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                       />
                     </svg>
                   </button>
-                </div>
+        </div> */}
               </div>
               <div className="mt-5 absolute right-4">
                 <div className="flex flex-row items-center justify-between py-4">
@@ -214,7 +215,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                   className="px-3 py-1 bg-teal-700 rounded-sm text-white"
                   onClick={saveData}
                 >
-                  Save
+                  Bayar
                 </button>
               </div>
             ) : null}

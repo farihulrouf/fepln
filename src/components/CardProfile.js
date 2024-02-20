@@ -29,7 +29,7 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate }) => {
     setIsUpdate(1)
     onChangeBack()
   };
-  //console.log('data pengguna', data)
+  console.log('data pengguna', data)
   //console.log('function',onChangeBack)
   return (
     <React.Fragment>

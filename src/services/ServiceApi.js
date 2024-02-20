@@ -55,7 +55,7 @@ const deleteCustomer = (id) => {
 };
 
 const getTransactions = (id) => {
-  return http.get(`/transactions/getransactions/?nomer=${id}`);
+  return http.get(`/transactions/getone/?no=${id}`);
 };
 
 const getUserTransactions = (params, page, limit) => {
