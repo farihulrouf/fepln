@@ -28,10 +28,10 @@ export default function Customers({ user, isBoolean }) {
   const [menuCount, setMenuCount] = useState(0);
   const [detailCust, setDetailcust] = useState(null);
   const [price, setPrice] = useState([]);
-  const [transaction, setTransaction] = useState(null)
+  const [transaction, setTransaction] = useState(null);
   useEffect(() => {
     getList(1, 6, "");
-    getPrice()
+    getPrice();
   }, []);
   const getList = (page, limit, s) => {
     setLoading(true);
@@ -57,7 +57,7 @@ export default function Customers({ user, isBoolean }) {
       .catch((e) => {
         console.log(e);
       });
-  }
+  };
   const onCalldata = (id, id_customer) => {
     return (
       <>
@@ -77,12 +77,15 @@ export default function Customers({ user, isBoolean }) {
   const callTransaction = (currentUser) => {
     return (
       <>
-       <NewTrans customerData={detailCust} price={price} transaction={transaction} />
+        <NewTrans
+          customerData={detailCust}
+          price={price}
+          transaction={transaction}
       
-
+        />
       </>
-    )
-  }
+    );
+  };
 
   const handlePageClick = ({ selected }) => {
     getList(selected + 1, limit, "");
@@ -93,29 +96,22 @@ export default function Customers({ user, isBoolean }) {
     getList(1, 6, e);
   };
   const onChange = (no_id, id_customer) => {
-     // console.log('this one',data)
-      if(isBoolean === 0 ){
-        setCurrentUser(no_id);
-        setIdCustomer(id_customer);
-        setIsupdate(1);
-  
-      }
-      else if (isBoolean === 1) {
-        console.log('boolean', no_id, isBoolean)
-        getCustomerDetail(no_id)
-        getTransactionDetail(no_id)
-       // onSearchdata(no_id)
-        setIsupdate(3)
-      }
-    
-      //setCurrentIdtrans(idtrans);
-  
-    // onSearchdata(id)
-    // onCalldata(id)
+    // console.log('this one',data)
+    if (isBoolean === 0) {
+      setCurrentUser(no_id);
+      setIdCustomer(id_customer);
+      setIsupdate(1);
+    } else if (isBoolean === 1) {
+      console.log("boolean", no_id, isBoolean);
+      getCustomerDetail(no_id);
+      getTransactionDetail(no_id);
+      // onSearchdata(no_id)
+      setIsupdate(3);
+    }
   };
 
   const onSearchdata = (no_id) => {
-    console.log('ini data di onsear', no_id)
+    console.log("ini data di onsear", no_id);
     setLoading(true);
     ServiceApi.getTransactionsDetail(no_id)
       .then((response) => {
@@ -144,12 +140,12 @@ export default function Customers({ user, isBoolean }) {
     setLoading(true);
     ServiceApi.getDetailtransById(no_id)
       .then((response) => {
-          setTransaction(response.data.transaction[0])
+        setTransaction(response.data.transaction[0]);
         setLoading(false);
       })
       .catch((e) => {
         setLoading(false);
-        setTransaction(null)
+        setTransaction(null);
       });
   };
 
@@ -160,7 +156,7 @@ export default function Customers({ user, isBoolean }) {
       </>
     );
   };
- 
+
   return (
     <div className="realtive px-2">
       {isUpdate === 1 ? (
@@ -169,7 +165,7 @@ export default function Customers({ user, isBoolean }) {
         isAddData()
       ) : isUpdate === 3 ? (
         callTransaction(currentUser)
-      ):(
+      ) : (
         <>
           <div className="flex space-x-2 items-center">
             <input

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ServiceApi from "../services/ServiceApi";
 import Spinner from "./Spinner";
+import AlertMessage from "./AlertMessage";
 const Transaction = ({ idtrans, user, setIsupdate }) => {
   // console.log(customer);
   const [kubik, setKubik] = useState(1);
@@ -11,7 +12,10 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
   const [currentTrans, setCurrentTrans] = useState(null);
   const [price, setPrice] = useState(null);
   const [customer, setCustomer] = useState(null);
- // console.log('dara dari', idtrans)
+  const [isSave, setIsSave] = useState(false);
+  const dataTrans = "Transaction";
+
+  // console.log('dara dari', idtrans)
   useEffect(() => {
     if (setIsupdate === 0) {
       getCustomerName();
@@ -80,6 +84,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     ServiceApi.updateTransactions(edit, currentTrans._id)
       .then((response) => {
         setLoading(false);
+        setIsSave(true);
         //setIsupdate(0)
       })
       .catch((e) => {
@@ -112,14 +117,15 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     ServiceApi.createTransactions(dataTransaction)
       .then((response) => {
         setLoading(false);
+        setIsSave(true);
       })
       .catch((e) => {
         console.log(e);
         setLoading(false);
       });
   };
-  console.log(currentTrans)
- // console.log('ini data asd', idtrans);
+  console.log(currentTrans);
+  // console.log('ini data asd', idtrans);
   return (
     <React.Fragment>
       <div className="relative">
@@ -127,6 +133,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
           <Spinner />
         ) : (
           <React.Fragment>
+            {isSave ? <AlertMessage data={dataTrans} /> : null}
             <div className="py-2 flex relative">
               <div>
                 <label
@@ -135,7 +142,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                 >
                   Meteran:
                 </label>
-                {kubik}
+                <p className="text-xl">{kubik}</p>
                 {/*<div className="relative flex items-center w-36">
                   <button
                     type="button"
@@ -212,12 +219,19 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
             </div>
             {user.typeuser === "Admin" ? (
               <div className="flex justify-end py-4">
-                <button
-                  className="px-3 py-1 bg-teal-700 rounded-sm text-white"
-                  onClick={saveData}
-                >
-                  Bayar
-                </button>
+                {isSave ?  <button
+                    className="px-3 py-1 bg-teal-700 rounded-sm text-white"
+                    
+                  >
+                    Print
+                  </button> : (
+                  <button
+                    className="px-3 py-1 bg-teal-700 rounded-sm text-white"
+                    onClick={saveData}
+                  >
+                    Bayar
+                  </button>
+                )}
               </div>
             ) : null}
           </React.Fragment>
