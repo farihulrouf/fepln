@@ -58,6 +58,11 @@ const getTransactions = (id) => {
   return http.get(`/transactions/getone/?no=${id}`);
 };
 
+const getTransactionsDetail = (id) => {
+  return http.get(`/transactions/getransactions/?nomer=${id}`);
+};
+
+
 const getUserTransactions = (params, page, limit) => {
   //console.log('ini data di', id)
   //?page=1&limit=3 return http.get(`/customers/${id}`);
@@ -114,7 +119,8 @@ const ServiceApi = {
   getTransactionsAll,
   getReportTransaction,
   getallUsers,
-  updateTransactions
+  updateTransactions,
+  getTransactionsDetail
 };
 
 export default ServiceApi;

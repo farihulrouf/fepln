@@ -17,6 +17,7 @@ import User from "./Users";
 export default function Profile({ user }) {
   const [menu, setMenu] = useState(0);
   const [menuAf, setMenuAf] = useState(false);
+  const isBoolean = 0
   const onChaneProfile = () => {
     setMenu(1);
   };
@@ -60,7 +61,7 @@ export default function Profile({ user }) {
       ) : menu === 2 ? (
         <Report />
       ) : menu === 3 ? (
-        <Customers user={user} />
+        <Customers user={user} isBoolean={isBoolean}/>
       ) : menu === 4 ? (
         <ListTransaction user={user} />
       ) : menu === 5 ? (

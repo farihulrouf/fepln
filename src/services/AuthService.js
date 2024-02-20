@@ -9,7 +9,7 @@ const register = (username, email, password) => {
 };
 
 const login = (email, password) => {
-  //console.log("test",`${process.env.API_URL}`)
+  console.log("test",`${process.env.REACT_APP_API_UR}`)
   return axios
     .post(process.env.REACT_APP_API_URL + "/users/login", {
       email,

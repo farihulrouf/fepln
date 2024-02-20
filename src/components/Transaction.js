@@ -11,6 +11,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
   const [currentTrans, setCurrentTrans] = useState(null);
   const [price, setPrice] = useState(null);
   const [customer, setCustomer] = useState(null);
+ // console.log('dara dari', idtrans)
   useEffect(() => {
     if (setIsupdate === 0) {
       getCustomerName();

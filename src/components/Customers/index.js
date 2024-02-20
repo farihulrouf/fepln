@@ -11,10 +11,10 @@ import { IoAdd } from "react-icons/io5";
 import Add from "./Add";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { GrFormViewHide } from "react-icons/gr";
-
+import NewTrans from "../ListTransaction/NewTrans";
 //import { IoArrowBack } from "react-icons/io5";
 import ViewTrans from "./ViewTrans";
-export default function Customers({ user }) {
+export default function Customers({ user, isBoolean }) {
   const [isUpdate, setIsupdate] = useState(0);
   const [loading, setLoading] = useState(false);
   //const [dataCustomer, setDataCustomer] = useState(null);
@@ -26,9 +26,12 @@ export default function Customers({ user }) {
   const [idCustomer, setIdCustomer] = useState(null);
   const [curentIdtrans, setCurrentIdtrans] = useState(null);
   const [menuCount, setMenuCount] = useState(0);
+  const [detailCust, setDetailcust] = useState(null);
+  const [price, setPrice] = useState([]);
 
   useEffect(() => {
     getList(1, 6, "");
+    getPrice()
   }, []);
   const getList = (page, limit, s) => {
     setLoading(true);
@@ -45,16 +48,42 @@ export default function Customers({ user }) {
   const onChangeBack = () => {
     setMenuCount(1);
   };
+  const getPrice = () => {
+    ServiceApi.getallPrice()
+      .then((response) => {
+        setPrice(response.data);
+        // console.log(response.data)
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
   const onCalldata = (id, id_customer) => {
     return (
       <>
         <div>
-          <CardProfile id={id} user={user} onChangeBack={onChangeBack} setIsupdate={setIsupdate} />
+          <CardProfile
+            id={id}
+            user={user}
+            onChangeBack={onChangeBack}
+            setIsupdate={setIsupdate}
+          />
           {menuCount === 0 ? <ViewTrans id={idCustomer} /> : null}
         </div>
       </>
     );
   };
+
+  const callTransaction = (currentUser) => {
+    return (
+      <>
+       <NewTrans customerData={detailCust} price={price} />
+      
+
+      </>
+    )
+  }
+
   const handlePageClick = ({ selected }) => {
     getList(selected + 1, limit, "");
     // console.log(selected, "ini");
@@ -63,95 +92,125 @@ export default function Customers({ user }) {
     console.log(e);
     getList(1, 6, e);
   };
-  const onChange = (data, id_customer) => {
-    setCurrentUser(data);
-    setIdCustomer(id_customer);
-    //setCurrentIdtrans(idtrans);
-    setIsupdate(1);
+  const onChange = (no_id, id_customer) => {
+     // console.log('this one',data)
+      if(isBoolean === 0 ){
+        setCurrentUser(no_id);
+        setIdCustomer(id_customer);
+        setIsupdate(1);
+  
+      }
+      else if (isBoolean === 1) {
+        console.log('boolean', no_id, isBoolean)
+        onSearchdata(no_id)
+        setIsupdate(3)
+      }
+    
+      //setCurrentIdtrans(idtrans);
+  
+    // onSearchdata(id)
     // onCalldata(id)
+  };
+
+  const onSearchdata = (no_id) => {
+    console.log('ini data di onsear', no_id)
+    setLoading(true);
+    ServiceApi.getTransactionsDetail(no_id)
+      .then((response) => {
+        // console.log(response)
+        setDetailcust(response.data.transaction[0]);
+        setLoading(false);
+      })
+      .catch((e) => {
+        setLoading(false);
+      });
   };
   const isAddData = () => {
     return (
       <>
         <Add setIsupdate={setIsupdate} />
       </>
-    )
-  }
-
-
+    );
+  };
+  console.log('data test', isUpdate, isBoolean)
+  console.log('is data', detailCust)
+  console.log('cobadata',currentUser)
   return (
     <div className="realtive px-2">
       {isUpdate === 1 ? (
         onCalldata(currentUser, idCustomer)
-      ) :
-      isUpdate === 2 ? (
+      ) : isUpdate === 2 ? (
         isAddData()
-      ):
-      (
-        <>       
-            <div className="flex space-x-2 items-center">
-              <input
-                className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none mt-4 mb-4"
-                type="text"
-                placeholder="Type name Users"
-                aria-label="Meteran"
-                onChange={(e) => onChangeSearch(e.target.value)}
-              />
-              {user.typeuser === "Admin" ? (
-                <button onClick={()=> setIsupdate(2)} className="px-1 py-1 rounded-full bg-teal-800 text-white text-bold">
-                  <IoAdd />
-                </button>
-              ) : null}
-            </div>
-            <table className="min-w-full divide-y divide-gray-200 overflow-x-auto">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th
-                    scope="col"
-                    className="py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Name
-                  </th>
+      ) : isUpdate === 3 ? (
+        callTransaction(currentUser)
+      ):(
+        <>
+          <div className="flex space-x-2 items-center">
+            <input
+              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none mt-4 mb-4"
+              type="text"
+              placeholder="Type name Users"
+              aria-label="Meteran"
+              onChange={(e) => onChangeSearch(e.target.value)}
+            />
+            {user.typeuser === "Admin" ? (
+              <button
+                onClick={() => setIsupdate(2)}
+                className="px-1 py-1 rounded-full bg-teal-800 text-white text-bold"
+              >
+                <IoAdd />
+              </button>
+            ) : null}
+          </div>
+          <table className="min-w-full divide-y divide-gray-200 overflow-x-auto">
+            <thead className="bg-gray-50">
+              <tr>
+                <th
+                  scope="col"
+                  className="py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Name
+                </th>
 
-                  <th
-                    scope="col"
-                    className="py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Status
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {customer === null ? (
-                  <Spinner />
-                ) : (
-                  <>
-                    {loading ? (
-                      <Spinner />
-                    ) : (
-                      <React.Fragment>
-                        {customer[0].data.map((customer, index) => {
-                          return (
-                            <tr key={index}>
-                              <td className="py-2 whitespace-nowrap">
-                                <div className="flex space-x-2 items-center">
-                                  <Avatar
-                                    className="rounded-full"
-                                    name={customer.name}
-                                    maxInitials={2}
-                                    size={30}
-                                  />
-                                  <div className="">
-                                    <div className="text-sm font-medium text-gray-900">
-                                      {customer.name}
-                                    </div>
-                                    <div className="text-sm text-gray-500">
-                                      {customer.no_id}
-                                    </div>
+                <th
+                  scope="col"
+                  className="py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Status
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {customer === null ? (
+                <Spinner />
+              ) : (
+                <>
+                  {loading ? (
+                    <Spinner />
+                  ) : (
+                    <React.Fragment>
+                      {customer[0].data.map((customer, index) => {
+                        return (
+                          <tr key={index}>
+                            <td className="py-2 whitespace-nowrap">
+                              <div className="flex space-x-2 items-center">
+                                <Avatar
+                                  className="rounded-full"
+                                  name={customer.name}
+                                  maxInitials={2}
+                                  size={30}
+                                />
+                                <div className="">
+                                  <div className="text-sm font-medium text-gray-900">
+                                    {customer.name}
+                                  </div>
+                                  <div className="text-sm text-gray-500">
+                                    {customer.no_id}
                                   </div>
                                 </div>
-                              </td>
-                              {/*
+                              </div>
+                            </td>
+                            {/*
                               <td className="py-2 whitespace-nowrap">
                                 <div className="text-sm text-gray-900">
                                   0{customer.no_tel}
@@ -165,52 +224,54 @@ export default function Customers({ user }) {
                                 </div>
                               </td>
                               */}
-                              <td className="py-2 whitespace-nowrap">
-                                <button
-                                  onClick={() => {
-                                    onChange(customer.no_id, customer._id);
-                                  }}
-                                  className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-teal-800"
-                                >
-                                  <span className="flex gap-2 items-center">Detail <GrFormViewHide /> </span>
-                                </button>
-                              </td>
-                            </tr>
-                          );
-                        })}
-                        <div>
-                          <p className="text-sm px-2 py-2">
-                            Total {customer[0].metaData[0].totalDocuments}
-                          </p>
-                        </div>
-                      </React.Fragment>
-                    )}
-                  </>
-                )}
-              </tbody>
-            </table>
-            {customer === null ? null : (
-              <ReactPaginate
-                breakLabel="..."
-                nextLabel={
-                  <span className="w-10 h-10 flex items-center justify-center bg-lightgray rounded-md">
-                    <FaChevronRight />
-                  </span>
-                }
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={3}
-                pageCount={customer[0].metaData[0].totalPages}
-                previousLabel={
-                  <span className="h-10 flex items-center justify-center bg-lightgray rounded-md">
-                    <FaChevronLeft />
-                  </span>
-                }
-                containerClassName="flex items-center justify-center mt-2 mb-2"
-                pageClassName="block border- border-solid border-lightGray hover:bg-lightGray w-8 h-10 flex items-center justify-center rounded-md mr-4"
-                activeClassName="bg-gray-200 text-white"
-                renderOnZeroPageCount={null}
-              />
-            )}
+                            <td className="py-2 whitespace-nowrap">
+                              <button
+                                onClick={() => {
+                                  onChange(customer.no_id, customer._id);
+                                }}
+                                className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-teal-800"
+                              >
+                                <span className="flex gap-2 items-center">
+                                  Detail <GrFormViewHide />{" "}
+                                </span>
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                      <div>
+                        <p className="text-sm px-2 py-2">
+                          Total {customer[0].metaData[0].totalDocuments}
+                        </p>
+                      </div>
+                    </React.Fragment>
+                  )}
+                </>
+              )}
+            </tbody>
+          </table>
+          {customer === null ? null : (
+            <ReactPaginate
+              breakLabel="..."
+              nextLabel={
+                <span className="w-10 h-10 flex items-center justify-center bg-lightgray rounded-md">
+                  <FaChevronRight />
+                </span>
+              }
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={3}
+              pageCount={customer[0].metaData[0].totalPages}
+              previousLabel={
+                <span className="h-10 flex items-center justify-center bg-lightgray rounded-md">
+                  <FaChevronLeft />
+                </span>
+              }
+              containerClassName="flex items-center justify-center mt-2 mb-2"
+              pageClassName="block border- border-solid border-lightGray hover:bg-lightGray w-8 h-10 flex items-center justify-center rounded-md mr-4"
+              activeClassName="bg-gray-200 text-white"
+              renderOnZeroPageCount={null}
+            />
+          )}
         </>
       )}
     </div>

@@ -6,6 +6,7 @@ import Transaction from "../Transaction";
 import Spinner from "../Spinner";
 import LoadingQr from "../LoadingQr";
 import NewTrans from "../ListTransaction/NewTrans";
+import Customers from "../Customers";
 const ScannerMenu = ({ user }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [scannerType, setScannerType] = useState("QR");
@@ -15,11 +16,11 @@ const ScannerMenu = ({ user }) => {
   const [getCall, setGetcall] = useState(false);
   const [decodedValue, setDecodedValue] = useState(43243435);
   const [isUpdate, setIsupdate] = useState(0);
-
+  const isBoolean = 1
   useEffect(() => {
     // getAdminBoard()
      getPrice();
-     //onSearchdata(43243435);
+    // onSearchdata(43243435);
   }, []);
   const onChangeData = (res) => {
     setGetcall(false);
@@ -50,7 +51,7 @@ const ScannerMenu = ({ user }) => {
   };
   const onSearchdata = (id) => {
     setIsLoading(true);
-    ServiceApi.getTransactions(id)
+    ServiceApi.getTransactionsDetail(id)
       .then((response) => {
         // console.log(response)
         setCustomer(response.data.transaction[0]);
@@ -67,7 +68,7 @@ const ScannerMenu = ({ user }) => {
     //setMenuCount(0)
   };
 
-  console.log(customer,"data")
+  //console.log('jakshdiajdh',customer)
   return (
     <div>
       <label>
@@ -107,7 +108,7 @@ const ScannerMenu = ({ user }) => {
         ) : (
           <>
 
-            <LoadingQr />
+            <Customers user={user} isBoolean={isBoolean} />
           </>
         )}
       </div>
