@@ -81,7 +81,7 @@ export default function Profile({ user }) {
                 className="px-2 py-y rounded-xl"
                 onClick={onChangeBarcode}
               >
-                <CiBarcode size={30} className="text-indigo-900" />
+                <CiBarcode size={30} className="text-blue-600" />
               </button>
             </div>
             <div className="bg-white flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
@@ -91,14 +91,14 @@ export default function Profile({ user }) {
                 className="px-2 py-y rounded-xl"
                 onClick={onChaneProfile}
               >
-                <CgProfile size={30} className="text-indigo-900" />
+                <CgProfile size={30} className="text-blue-600" />
               </button>
             </div>
 
             <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
               <span className="text-sm text-blue-800">Report </span>
               <button className="px-2 py-y rounded-xl" onClick={onChangeReport}>
-                <HiDocumentReport size={30} className="text-indigo-900" />
+                <HiDocumentReport size={30} className="text-blue-600" />
               </button>
             </div>
 
@@ -108,7 +108,7 @@ export default function Profile({ user }) {
                 className="px-2 py-y rounded-xl"
                 onClick={onChangeCustomer}
               >
-                <FaHospitalUser size={30} className="text-indigo-900" />
+                <FaHospitalUser size={30} className="text-blue-600" />
               </button>
             </div>
 
@@ -118,20 +118,20 @@ export default function Profile({ user }) {
                 className="px-2 py-y rounded-xl"
                 onClick={onChangeTransaction}
               >
-                <MdPayment size={30} className="text-indigo-900" />
+                <MdPayment size={30} className="text-blue-600" />
               </button>
             </div>
 
             <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
               <span className="text-sm text-blue-800">Prices</span>
               <button className="px-2 py-y rounded-xl">
-                <GiPriceTag size={30} className="text-indigo-900" />
+                <GiPriceTag size={30} className="text-blue-600" />
               </button>
             </div>
             <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
               <span className="text-sm text-blue-800">Manage Users </span>
               <button className="px-2 py-y rounded-xl" onClick={onChangeUser}>
-                <MdGroups2 size={30} className="text-indigo-900" />
+                <MdGroups2 size={30} className="text-blue-600" />
               </button>
             </div>
           </div>
