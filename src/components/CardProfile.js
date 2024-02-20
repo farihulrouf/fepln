@@ -8,6 +8,7 @@ import Spinner from "./Spinner";
 import Edit from "./Customers/Edit";
 import { IoChevronBack } from "react-icons/io5";
 import Barcode from 'react-barcode';
+import { MdOutlineVerified } from "react-icons/md";
 const CardProfile = ({ id, user, onChangeBack, setIsupdate }) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
@@ -59,8 +60,9 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate }) => {
                     {data.name}
                   </h3>
                   
-                  <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                    {data.no_id}
+                  <p className="mt-1 flex gap-1 items-center text-sm text-gray-500">
+                  Active <MdOutlineVerified />
+
                   </p>
                 </div>
 
