@@ -7,6 +7,7 @@ import QRCode from "react-qr-code";
 import Spinner from "./Spinner";
 import Edit from "./Customers/Edit";
 import { IoChevronBack } from "react-icons/io5";
+import Barcode from 'react-barcode';
 const CardProfile = ({ id, user, onChangeBack, setIsupdate }) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
@@ -53,14 +54,16 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate }) => {
                   maxInitials={2}
                   size={50}
                 />
-                <div>
+                <div className="w-52">
                   <h3 className="text-lg leading-6 font-medium text-gray-900">
                     {data.name}
                   </h3>
+                  
                   <p className="mt-1 max-w-2xl text-sm text-gray-500">
                     {data.no_id}
                   </p>
                 </div>
+
                 {user.typeuser === "Admin" ? (
                   <MdModeEditOutline
                     size={25}
@@ -99,7 +102,6 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate }) => {
                       />
                     </div>
                   </div>
-
                   <div className="py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <dt className="text-sm font-medium text-gray-500">
                       Address
@@ -109,6 +111,10 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate }) => {
                     </dd>
                   </div>
                 </dl>
+              </div>
+              <div className="px-2">
+              <Barcode height={10} width={3} fontSize={14} textPosition="bottom" value={data.no_id}/>
+
               </div>
             </>
           ) : (

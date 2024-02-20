@@ -126,20 +126,11 @@ const ScannerMenu = ({ user }) => {
       <div className="py-4">
         {getCall ? (
           <>
-           {/*
-            <CardProfile
-              id={decodedValue}
-              user={user}
-              onChangeBack={onChangeBack}
-              setIsupdate={setIsupdate}
-            />
-          */}
             <NewTrans customerData={customer} price={price} transaction={transaction} />
           </>
         ) : (
           <>
-
-            <Customers user={user} isBoolean={isBoolean} />
+            <Customers user={user} isBoolean={isBoolean}  />
           </>
         )}
       </div>
