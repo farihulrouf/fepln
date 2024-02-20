@@ -27,7 +27,11 @@ const Navbar = ({ user }) => {
       {/* Left side */}
       <div className="flex items-center">
         <div onClick={() => setNav(!nav)} className="cursor-pointer">
-          <FaHouseFloodWater size={24} className="text-blue-800" />
+          <img
+            className="mx-auto h-6 w-auto"
+            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+            alt="pic"
+          />
         </div>
 
         <p className="ml-2">Hippam Wotan</p>
