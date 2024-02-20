@@ -6,16 +6,20 @@ import { FaWallet } from "react-icons/fa";
 import { MdFavorite, MdHelp } from "react-icons/md";
 import Avatar from "react-avatar";
 import { FaHouseFloodWater } from "react-icons/fa6";
+import { HiDocumentReport } from "react-icons/hi";
+import { CgProfile } from "react-icons/cg";
+import { GiPriceTag } from "react-icons/gi";
+import { IoIosLogOut } from "react-icons/io";
 
 const Navbar = ({ user }) => {
   //console.log(user)
   const [nav, setNav] = useState(false);
 
   const menuItems = [
-    { icon: <TbTruckDelivery size={25} className="mr-4" />, text: "Profile" },
-    { icon: <MdFavorite size={25} className="mr-4" />, text: "Favorites" },
-    { icon: <FaWallet size={25} className="mr-4" />, text: "Wallet" },
-    { icon: <MdHelp size={25} className="mr-4" />, text: "Logout" },
+    { icon: <CgProfile size={25} className="mr-4" />, text: "Profile" },
+    { icon: <HiDocumentReport size={25} className="mr-4" />, text: "Report" },
+    { icon: <GiPriceTag size={25} className="mr-4" />, text: "Price" },
+    { icon: <IoIosLogOut size={25} className="mr-4" />, text: "Logout" },
   ];
 
   return (
@@ -77,7 +81,7 @@ const Navbar = ({ user }) => {
         />
         <div className="flex gap-2 ml-3 mt-4">
           <FaHouseFloodWater size={24} className="text-blue-800" />
-          <p>Hipam Wotan</p>
+          <p>Hipamm Wotan</p>
         </div>
         <nav>
           <ul className="flex flex-col p-4 text-gray-800">
