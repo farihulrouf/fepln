@@ -39,11 +39,10 @@ const NewTrans = ({ customerData, price, transaction }) => {
   };
 */
   }
-  
-  useEffect(() => {
-   // getTransactionDetail(customerData.no_id)
-  }, []);
 
+  useEffect(() => {
+    // getTransactionDetail(customerData.no_id)
+  }, []);
 
   const getTransactionDetail = (no_id) => {
     setLoading(true);
@@ -51,7 +50,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
       .then((response) => {
         // console.log(response)
         //setDetailcust(response.data.user);
-        console.log('test response', response)
+        console.log("test response", response);
         setLoading(false);
       })
       .catch((e) => {
@@ -66,11 +65,18 @@ const NewTrans = ({ customerData, price, transaction }) => {
 
   const onChanData = (e) => {
     setKubik(e.target.value);
-   // setBayar((e.target.value - customerData.meteran) * price[0].harga);
-    setBayar((e.target.value - transaction.meteran) * price[0].harga);
-    setNilai(e.target.value - transaction.meteran);
+    if (transaction === undefined) {
+      setBayar((e.target.value - 0) * price[0].harga);
+      setNilai(e.target.value - 0);
+    } else {
+      setBayar((e.target.value - transaction.meteran) * price[0].harga);
+      setNilai(e.target.value - transaction.meteran);
+    }
+    // setBayar((e.target.value - customerData.meteran) * price[0].harga);
+
     //setNilai(e.target.value - customerData.meteran);
   };
+  //console.log('test data',transaction)
   const saveData = () => {
     // console.log("cek data");
 
@@ -95,7 +101,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
         setLoading(false);
       });
   };
-  console.log(transaction)
+  console.log(transaction);
   //console.log(price) getDetailtransById
   // console.log("data", customerData.customers[0].name);
   return (
@@ -129,11 +135,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
                       Gender
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      {customerData.name == "L" ? (
-                        <p>Male</p>
-                      ) : (
-                        <>Female</>
-                      )}
+                      {customerData.name == "L" ? <p>Male</p> : <>Female</>}
                     </dd>
                   </div>
 
@@ -159,12 +161,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
           <div className="py-2 flex justify-between items-center px-4">
             <h2 className="text-xl">Meteran</h2>
             <h2 className="text-3xl">
-              {transaction ? (
-                         <>     {transaction.meteran}</>
-
-              ):(
-                0
-              )}
+              {transaction ? <> {transaction.meteran}</> : 0}
             </h2>
           </div>
           <div className="py-2 flex justify-end items-center px-4">
