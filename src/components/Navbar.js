@@ -7,7 +7,7 @@ import { MdFavorite, MdHelp } from "react-icons/md";
 import Avatar from "react-avatar";
 import { FaHouseFloodWater } from "react-icons/fa6";
 
-const Navbar = ({user}) => {
+const Navbar = ({ user }) => {
   //console.log(user)
   const [nav, setNav] = useState(false);
 
@@ -25,8 +25,11 @@ const Navbar = ({user}) => {
         <div onClick={() => setNav(!nav)} className="cursor-pointer">
           <AiOutlineMenu size={30} />
         </div>
-        <FaHouseFloodWater size={24} className="text-blue-800"/>
-          {/*
+        <div className="flex items-center gap-1">
+          <FaHouseFloodWater size={24} className="text-blue-800" />
+          <p className="text-blue-900 font-medium">Hippam Wotan</p>
+        </div>
+        {/*
         <h1 className="text-2xl sm:text-3xl lg:text-4xl px-2">
           Bum <span className="font-bold">Des</span>
         </h1>

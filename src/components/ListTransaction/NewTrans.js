@@ -140,8 +140,8 @@ const NewTrans = ({ customerData, price, transaction }) => {
                         <dt className="text-sm font-medium text-gray-500 flex items-center gap-1">
                           <CiPhone />Phone number
                         </dt>
-                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex items-center">
-                          <FaWhatsapp size={25} className="text-teal-700" />{" "}
+                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex gap-1 items-center">
+                          <FaWhatsapp className="" />{" "}
                           <p>0{customerData.no_tel}</p>
                         </dd>
                       </div>

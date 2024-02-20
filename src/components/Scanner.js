@@ -123,7 +123,7 @@ const Scanner = (props) => {
         */}
         <div className="flex space-x-2">
           <button
-            className="bg-blue-500 rounded-md px-3 py-2 text-white flex gap-2 items-center"
+            className="bg-blue-900 rounded-md px-3 py-2 text-white flex gap-2 items-center"
             onClick={() => handleClickAdvanced()}
           >
             <MdQrCodeScanner />
