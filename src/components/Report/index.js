@@ -6,7 +6,10 @@ import { TbSum } from "react-icons/tb";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ServiceApi from "../../services/ServiceApi";
+import formatNumber from "../formatNumber";
 import Spinner from "../Spinner";
+import { LuSpace } from "react-icons/lu";
+
 const Report = () => {
   const [isMonthPicker, setMonthPicker] = useState(false);
   const [isMonthPickerTo, setMonthPickerTo] = useState(false);
@@ -86,7 +89,11 @@ const Report = () => {
             </div>
             <div className="px-4 text-gray-700">
               <h3 className="text-sm tracking-wider">Total Transactions</h3>
-              <p className="text-3xl">{report[0].count}</p>
+              <div className="flex">
+                <p className="text-3xl">{report[0].count}</p>
+                <LuSpace className="text-blue-500" />
+                <p className="text-3xl text-red-500">{report[1].count}</p>
+              </div>
             </div>
           </div>
           <div className="flex items-center bg-white rounded-sm overflow-hidden">
@@ -96,8 +103,15 @@ const Report = () => {
             <div className="px-4 text-gray-700">
               <h3 className="text-sm tracking-wider">Total Usage</h3>
               <div className="flex space-x-2 items-center">
-                <p className="text-3xl">{report[0].used}</p>{" "}
-                <span className="text-[12px]">Kubik</span>
+                <div className="flex">
+                  <p className="text-3xl">{report[0].used}</p>{" "}
+                  <span className="text-[10px]">Kubik</span>
+                </div>
+                <LuSpace className="text-blue-500" />
+                <div className="flex text-red-500">
+                  <p className="text-3xl">{report[1].used}</p>{" "}
+                  <span className="text-[10px]">Kubik</span>
+                </div>
               </div>
             </div>
           </div>
@@ -107,18 +121,28 @@ const Report = () => {
             </div>
             <div className="px-4 text-gray-700">
               <h3 className="text-sm tracking-wider">Average/kubik</h3>
-              <p className="text-3xl">{report[0].avg_used}</p>
+              <div className="flex gap-1 ">
+                <p className="text-3xl">{report[0].avg_used.toFixed(2)}</p>
+                <LuSpace className="text-blue-500" />
+                <p className="text-3xl text-red-600">
+                  {report[1].avg_used.toFixed(2)}
+                </p>
+              </div>
             </div>
           </div>
           <div className="flex items-center bg-white rounded-sm overflow-hidden">
             <div className="p-4">
-            
-            
               <IoCashSharp size={45} />
             </div>
             <div className="px-4 text-gray-700">
               <h3 className="text-sm tracking-wider">Cash Flow</h3>
-              <p className="text-2xl">{rupiah(report[0].total)}</p>
+              <div className="flex gap-1 ">
+                <p className="text-2xl">Rp {formatNumber(report[0].total)}</p>
+                <LuSpace className="text-blue-500" />
+                <p className="text-2xl text-red-600">
+                  Rp {formatNumber(report[1].total)}
+                </p>
+              </div>
             </div>
           </div>
         </React.Fragment>
