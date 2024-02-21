@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import moment from 'moment'
 import ServiceApi from "../../services/ServiceApi";
 import Spinner from "../Spinner";
 import ReactPaginate from "react-paginate";
@@ -9,7 +9,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { render } from "react-dom";
 import { FaCheckDouble } from "react-icons/fa6";
 import { IoCloseSharp } from "react-icons/io5";
-
+import formatnumber from '../formatNumber'
 export default function ListTransaction({ user }) {
   const [isUpdate, setIsupdate] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -115,7 +115,7 @@ export default function ListTransaction({ user }) {
                   </th>
                   <th
                     scope="col"
-                    className="py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
                     Status
                   </th>
@@ -147,21 +147,22 @@ export default function ListTransaction({ user }) {
                               </td>
                               <td className="py-2 whitespace-nowrap">
                                 <div className="text-sm text-gray-900">
-                                  Rp {trans.amount}
+                                  Rp {formatnumber(trans.amount)}
                                 </div>
-                                <div className="text-sm text-gray-500">
-                                  {trans.last_meteran} Kubik
+                                <div className="text-sm text-gray-500 flex gap-1 items-center">
+                                  {trans.last_meteran} C
                                 </div>
                               </td>
                               <td className="py-2 whitespace-nowrap">
                                 <div className="text-sm text-gray-900">
-                                  Rp {trans.amount}
+
+                                   {moment(trans.created_at).format("YYYY/MM/DD")}
                                 </div>
-                                <div className="text-sm text-gray-500">
-                                  {trans.last_meteran} Kubik
+                                <div className="text-sm text-gray-500 flex gap-1 items-center">
+                                {trans.meteran} C
                                 </div>
                               </td>
-                              <td className="py-2 whitespace-nowrap">
+                              <td className="py-2 flex justify-center">
                                 <button
                                   onClick={() =>
                                     onChange(
@@ -169,7 +170,7 @@ export default function ListTransaction({ user }) {
                                       trans._id
                                     )
                                   }
-                                  className={`px-1 py-1 inline-flex text-xs leading-5 font-semibold rounded-full text-white ${
+                                  className={`px-1 py-1 leading-5 font-semibold rounded-full text-white ${
                                     trans.status ? "bg-green-700" : "bg-red-500"
                                   }`}
                                 >
