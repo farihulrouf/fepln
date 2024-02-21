@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import moment from 'moment'
+import moment from "moment";
 import ServiceApi from "../../services/ServiceApi";
 import Spinner from "../Spinner";
 import ReactPaginate from "react-paginate";
@@ -9,7 +9,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { render } from "react-dom";
 import { FaCheckDouble } from "react-icons/fa6";
 import { IoCloseSharp } from "react-icons/io5";
-import formatnumber from '../formatNumber'
+import formatnumber from "../formatNumber";
 export default function ListTransaction({ user }) {
   const [isUpdate, setIsupdate] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -46,15 +46,24 @@ export default function ListTransaction({ user }) {
       });
   };
   const onChangeBack = () => {
-    setMenuCount(0)
-  }
+    setMenuCount(0);
+  };
   const onCalldata = (id, idtrans) => {
     return (
       <>
         {menuCount === 0 ? (
           <div>
-            <CardProfile id={id} user={user} onChangeBack={onChangeBack} setIsupdate={setIsupdate} />
-            <Transaction idtrans={idtrans} user={user} setIsupdate={setIsupdate}/>
+            <CardProfile
+              id={id}
+              user={user}
+              onChangeBack={onChangeBack}
+              setIsupdate={setIsupdate}
+            />
+            <Transaction
+              idtrans={idtrans}
+              user={user}
+              setIsupdate={setIsupdate}
+            />
           </div>
         ) : (
           <></>
@@ -71,13 +80,13 @@ export default function ListTransaction({ user }) {
     getData(1, 6, e);
   };
   const onChange = (data, idtrans) => {
-    console.log('this one', idtrans)
-     setCurrentUser(data);
-     setCurrentIdtrans(idtrans);
-     setIsupdate(1);
+    console.log("this one", idtrans);
+    setCurrentUser(data);
+    setCurrentIdtrans(idtrans);
+    setIsupdate(1);
   };
 
-  console.log('data ini', datatrans)
+  console.log("data ini", datatrans);
   return (
     <div className="realtive">
       {isUpdate === 1 ? (
@@ -155,11 +164,12 @@ export default function ListTransaction({ user }) {
                               </td>
                               <td className="py-2 whitespace-nowrap">
                                 <div className="text-sm text-gray-900">
-
-                                   {moment(trans.created_at).format("YYYY/MM/DD")}
+                                  {moment(trans.created_at).format(
+                                    "YYYY/MM/DD"
+                                  )}
                                 </div>
                                 <div className="text-sm text-gray-500 flex gap-1 items-center">
-                                {trans.meteran} C
+                                  {trans.meteran} C
                                 </div>
                               </td>
                               <td className="py-2 flex justify-center">
