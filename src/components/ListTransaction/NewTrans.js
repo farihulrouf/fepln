@@ -77,6 +77,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
       status: false,
       amount: bayar,
       meteran: kubik,
+      last_meteran: nilai,
     };
 
     setLoading(true);
@@ -92,7 +93,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
       });
   };
 
-
+ console.log('data', nilai)
 
   return (
     <React.Fragment>
@@ -172,7 +173,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
               <div className="py-2 flex justify-end items-center">
                 <h2 className="text-3xl">{nilai}</h2>
               </div>
-              <ToastContainer />
+             
               <div className="py-2 flex relative">
                 <div>
                   <label

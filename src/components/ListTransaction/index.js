@@ -141,7 +141,7 @@ export default function ListTransaction({ user }) {
                                   Rp {trans.amount}
                                 </div>
                                 <div className="text-sm text-gray-500">
-                                  {trans.meteran} Kubik
+                                  {trans.last_meteran} Kubik
                                 </div>
                               </td>
                               <td className="py-2 whitespace-nowrap">

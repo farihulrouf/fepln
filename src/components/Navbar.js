@@ -10,6 +10,7 @@ import { HiDocumentReport } from "react-icons/hi";
 import { CgProfile } from "react-icons/cg";
 import { GiPriceTag } from "react-icons/gi";
 import { IoIosLogOut } from "react-icons/io";
+import { FaHandHoldingWater } from "react-icons/fa";
 
 const Navbar = ({ user }) => {
   //console.log(user)
@@ -23,18 +24,14 @@ const Navbar = ({ user }) => {
   ];
 
   return (
-    <div className="max-w-sm mx-auto flex justify-between items-center p-3 shadow-sm">
+    <div className="max-w-sm bg-blue-600 mx-auto flex justify-between items-center p-3 shadow-sm">
       {/* Left side */}
       <div className="flex items-center">
         <div onClick={() => setNav(!nav)} className="cursor-pointer">
-          <img
-            className="mx-auto h-6 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="pic"
-          />
+          <FaHandHoldingWater size={24} className="text-white" />
         </div>
 
-        <p className="ml-2">Hippam Wotan</p>
+        <p className="ml-2 text-white">Hippam Wotan</p>
 
         {/*
         <h1 className="text-2xl sm:text-3xl lg:text-4xl px-2">
