@@ -13,7 +13,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
   const [currentTrans, setCurrentTrans] = useState(null);
   const [price, setPrice] = useState(null);
   const [customer, setCustomer] = useState(null);
-  const [isSave, setIsSave] = useState(false);
+  const [isSave, setIsSave] = useState(true);
   const dataTrans = "Transaction";
 
   // console.log('dara dari', idtrans)
@@ -85,7 +85,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     ServiceApi.updateTransactions(edit, currentTrans._id)
       .then((response) => {
         setLoading(false);
-        setIsSave(true);
+        setIsSave(false);
         //setIsupdate(0)
       })
       .catch((e) => {
@@ -134,7 +134,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
           <Spinner />
         ) : (
           <React.Fragment>
-            {isSave ? <AlertMessage data={dataTrans} /> : null}
+            {isSave ? null : <AlertMessage data={dataTrans} />}
             <div className="py-2 flex relative">
               <div className="w-2/3">
                 <label
@@ -146,11 +146,9 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                 <p className="text-xl">{kubik}</p>
               </div>
               <p className="flex text-sm text-gray-500 justify-end w-1/3">
-                {currentTrans === null ? null : (
-                  <span>
-                    {moment(currentTrans.created_at).format("YYYY/MM/DD")}
-                  </span>
-                )}
+                <span>
+                  {moment(currentTrans?.created_at).format("YYYY/MM/DD")}
+                </span>
               </p>
 
               <div className="mt-5 absolute right-0">
@@ -165,10 +163,11 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
             </div>
             {user.typeuser === "Admin" ? (
               <div className="flex justify-end py-4">
-                {isSave ? (
-                  <button className="px-3 py-1 bg-blue-600 rounded-sm text-white">
+                {currentTrans?.status && isSave ? (
+                    <button className="px-3 py-1 bg-blue-600 rounded-sm text-white">
                     Print
                   </button>
+                  
                 ) : (
                   <button
                     className="px-3 py-1 bg-blue-600 rounded-sm text-white"
