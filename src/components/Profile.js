@@ -142,7 +142,7 @@ export default function Profile({ user }) {
 
             <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
               <span className="text-sm text-blue-800">Inbox </span>
-              <button className="px-2 py-y rounded-xl" onClick={onChangeUser}>
+              <button className="px-2 py-y rounded-xl" >
                 <MdMessage  size={30} className="text-blue-600" />
               </button>
             </div>
