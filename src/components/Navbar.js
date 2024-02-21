@@ -45,7 +45,7 @@ const Navbar = ({ user }) => {
       </div>
 
       {/* Search Input */}
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center text-white">
         <Avatar
           className="rounded-full"
           name={user.username}
