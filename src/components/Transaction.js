@@ -147,7 +147,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
               </div>
               <p className="flex text-sm text-gray-500 justify-end w-1/3">
                 <span>
-                  {moment(currentTrans?.created_at).format("YYYY/MM/DD")}
+                  {moment(currentTrans?.created_at).format("MM/DD/YYYY")}
                 </span>
               </p>
 
@@ -164,10 +164,9 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
             {user.typeuser === "Admin" ? (
               <div className="flex justify-end py-4">
                 {currentTrans?.status && isSave ? (
-                    <button className="px-3 py-1 bg-blue-600 rounded-sm text-white">
+                  <button className="px-3 py-1 bg-blue-600 rounded-sm text-white">
                     Print
                   </button>
-                  
                 ) : (
                   <button
                     className="px-3 py-1 bg-blue-600 rounded-sm text-white"
