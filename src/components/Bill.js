@@ -21,7 +21,8 @@ const Bill = ({ user }) => {
           <h2 className="text-sm font-medium text-gray-800">753 K</h2>
         </div>
       </div>
-      <div className="px-4 flex justify-end">
+      <div className="px-4 flex space-x-12">
+        <p className="text-gray-600 text-sm">2024/02/20</p>
         <button className="bg-red-500 text-white px-1 text-sm rounded-sm flex items-center gap-1">
           <IoMdClose />
           waiting
