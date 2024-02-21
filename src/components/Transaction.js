@@ -220,13 +220,13 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
             {user.typeuser === "Admin" ? (
               <div className="flex justify-end py-4">
                 {isSave ?  <button
-                    className="px-3 py-1 bg-teal-700 rounded-sm text-white"
+                    className="px-3 py-1 bg-blue-600 rounded-sm text-white"
                     
                   >
                     Print
                   </button> : (
                   <button
-                    className="px-3 py-1 bg-teal-700 rounded-sm text-white"
+                    className="px-3 py-1 bg-blue-600 rounded-sm text-white"
                     onClick={saveData}
                   >
                     Bayar

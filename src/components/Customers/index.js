@@ -290,7 +290,7 @@ export default function Customers({ user, isBoolean }) {
               }
               containerClassName="flex items-center justify-center mt-2 mb-2"
               pageClassName="block border- border-solid border-lightGray hover:bg-lightGray w-8 h-10 flex items-center justify-center rounded-md mr-4"
-              activeClassName="bg-blue-300 text-white"
+              activeClassName="bg-blue-600 text-white"
               renderOnZeroPageCount={null}
             />
           )}

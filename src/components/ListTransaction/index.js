@@ -7,6 +7,9 @@ import CardProfile from "../CardProfile";
 import Transaction from "../Transaction";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { render } from "react-dom";
+import { FaCheckDouble } from "react-icons/fa6";
+import { IoCloseSharp } from "react-icons/io5";
+
 export default function ListTransaction({ user }) {
   const [isUpdate, setIsupdate] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -102,7 +105,13 @@ export default function ListTransaction({ user }) {
                     scope="col"
                     className="py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Pemakaian
+                    Used
+                  </th>
+                  <th
+                    scope="col"
+                    className="py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Date
                   </th>
                   <th
                     scope="col"
@@ -145,6 +154,14 @@ export default function ListTransaction({ user }) {
                                 </div>
                               </td>
                               <td className="py-2 whitespace-nowrap">
+                                <div className="text-sm text-gray-900">
+                                  Rp {trans.amount}
+                                </div>
+                                <div className="text-sm text-gray-500">
+                                  {trans.last_meteran} Kubik
+                                </div>
+                              </td>
+                              <td className="py-2 whitespace-nowrap">
                                 <button
                                   onClick={() =>
                                     onChange(
@@ -152,14 +169,14 @@ export default function ListTransaction({ user }) {
                                       trans._id
                                     )
                                   }
-                                  className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-white ${
-                                    trans.status ? "bg-green-500" : "bg-red-500"
+                                  className={`px-1 py-1 inline-flex text-xs leading-5 font-semibold rounded-full text-white ${
+                                    trans.status ? "bg-green-700" : "bg-red-500"
                                   }`}
                                 >
                                   {trans.status ? (
-                                    <span>Success</span>
+                                    <FaCheckDouble />
                                   ) : (
-                                    <span>Waiting</span>
+                                    <IoCloseSharp />
                                   )}
                                 </button>
                               </td>
@@ -195,7 +212,7 @@ export default function ListTransaction({ user }) {
                 }
                 containerClassName="flex items-center justify-center mt-2 mb-2"
                 pageClassName="block border- border-solid border-lightGray hover:bg-lightGray w-8 h-10 flex items-center justify-center rounded-md mr-4"
-                activeClassName="bg-blue-300 text-white"
+                activeClassName="bg-blue-600 text-white"
                 renderOnZeroPageCount={null}
               />
             )}
