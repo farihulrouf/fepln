@@ -3,6 +3,8 @@ import { IoArrowBack } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { HiDocumentReport } from "react-icons/hi";
 import { ImProfile } from "react-icons/im";
+
+import { MdMessage } from "react-icons/md";
 import { FaHospitalUser } from "react-icons/fa";
 import { GiPriceTag } from "react-icons/gi";
 import { MdPayment } from "react-icons/md";
@@ -132,6 +134,13 @@ export default function Profile({ user }) {
               <span className="text-sm text-blue-800">Manage Users </span>
               <button className="px-2 py-y rounded-xl" onClick={onChangeUser}>
                 <MdGroups2 size={30} className="text-blue-600" />
+              </button>
+            </div>
+
+            <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
+              <span className="text-sm text-blue-800">Inbox </span>
+              <button className="px-2 py-y rounded-xl" onClick={onChangeUser}>
+                <MdMessage  size={30} className="text-blue-600" />
               </button>
             </div>
           </div>
