@@ -125,7 +125,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
         setLoading(false);
       });
   };
-  console.log("transaksi",currentTrans)
+  console.log("transaksi", currentTrans);
   // console.log('ini data asd', idtrans);
   return (
     <React.Fragment>
@@ -143,13 +143,15 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                 >
                   Meteran:
                 </label>
-                <p className="text-xl">{kubik}</p>       
+                <p className="text-xl">{kubik}</p>
               </div>
-              <p className="flex text-sm text-gray-500 justify-end w-1/3">{currentTrans === null ? (
-                null
-              ):(
-                <span>{moment(currentTrans.created_at).format("YYYY/MM/DD")}</span>
-              )}</p>
+              <p className="flex text-sm text-gray-500 justify-end w-1/3">
+                {currentTrans === null ? null : (
+                  <span>
+                    {moment(currentTrans.created_at).format("YYYY/MM/DD")}
+                  </span>
+                )}
+              </p>
 
               <div className="mt-5 absolute right-0">
                 <div className="flex flex-row items-center justify-between py-4">
@@ -159,16 +161,15 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                     </span>
                   </div>
                 </div>
-           </div>
+              </div>
             </div>
             {user.typeuser === "Admin" ? (
               <div className="flex justify-end py-4">
-                {isSave ?  <button
-                    className="px-3 py-1 bg-blue-600 rounded-sm text-white"
-                    
-                  >
+                {isSave ? (
+                  <button className="px-3 py-1 bg-blue-600 rounded-sm text-white">
                     Print
-                  </button> : (
+                  </button>
+                ) : (
                   <button
                     className="px-3 py-1 bg-blue-600 rounded-sm text-white"
                     onClick={saveData}

@@ -5,12 +5,9 @@ import Login from "./components/LoginComp";
 //import EventBus from "./common/eventBus";
 import AuthService from "./services/AuthService";
 //import Navbar from "./components/Navbar";
-import FormPrice from "./components/Price/FormPrice";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Price from "./components/Price/Price";
 import RootLayout from "./components/RootLayout";
 import Navbar from "./components/Navbar";
-import EditTransaction from "./components/EditTransaction";
 import PrivateRoute from "./components/PrivateRoute";
 import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
@@ -64,16 +61,7 @@ function App() {
               </PrivateRoute>
             }
           />
-            <Route
-            path="/price"
-            element={
-              <PrivateRoute>
-                <Price />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/price/add" element={<FormPrice />} />
-          <Route path="/transaction" element={<EditTransaction />} />
+          
         </Routes>
         
       </BrowserRouter>

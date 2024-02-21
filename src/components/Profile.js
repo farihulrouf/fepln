@@ -3,7 +3,7 @@ import { IoArrowBack } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { HiDocumentReport } from "react-icons/hi";
 import { ImProfile } from "react-icons/im";
-
+import Price from "./Price";
 import { MdMessage } from "react-icons/md";
 import { FaHospitalUser } from "react-icons/fa";
 import { GiPriceTag } from "react-icons/gi";
@@ -39,6 +39,9 @@ export default function Profile({ user }) {
   const onChangeUser = () => {
     setMenu(6);
   };
+  const onChangePrice = () => {
+    setMenu(7);
+  };
   const onChageDefault = () => {
     setMenu(0);
   };
@@ -72,7 +75,7 @@ export default function Profile({ user }) {
       ) : menu === 6 ? (
         <User />
       ) : menu === 7 ? (
-        <>Price</>
+         <Price />
       ) : (
         <div className="">
           <div className="flex flex-wrap justify-between py-2 gap-8">
@@ -126,7 +129,7 @@ export default function Profile({ user }) {
 
             <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
               <span className="text-sm text-blue-800">Prices</span>
-              <button className="px-2 py-y rounded-xl">
+              <button className="px-2 py-y rounded-xl" onClick={onChangePrice}>
                 <GiPriceTag size={30} className="text-blue-600" />
               </button>
             </div>
