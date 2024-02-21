@@ -45,12 +45,9 @@ const Report = () => {
     if (date.getMonth() > startDate.getMonth()) {
       getReport(startDate.getMonth() + 1, date.getMonth + 1);
     }
-    //getReport(startDate.getMonth()+1,)
-    //console.log(startDateTwo.getMonth()+1)
+   
   };
-  //  console.log(startDateTwo.getMonth())
-  // console.log(startDate.getMonth()+1)
-  console.log(report);
+
   return (
     <div className="">
       <div className="py-4">

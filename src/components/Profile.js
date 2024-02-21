@@ -16,11 +16,13 @@ import Report from "./Report";
 import ListTransaction from "./ListTransaction";
 import Customers from "./Customers";
 import User from "./Users";
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
+import Bill from "./Bill";
 export default function Profile({ user }) {
   const [menu, setMenu] = useState(0);
   const [menuAf, setMenuAf] = useState(false);
-  const isBoolean = 0
-  const l = 6
+  const isBoolean = 0;
+  const l = 6;
   const onChaneProfile = () => {
     setMenu(1);
   };
@@ -45,7 +47,10 @@ export default function Profile({ user }) {
   const onChageDefault = () => {
     setMenu(0);
   };
-
+  const onChangeBil = () => {
+    setMenu(8)
+  }
+  console.log(user);
   return (
     <div className="px-6">
       {menu != 0 ? (
@@ -67,28 +72,44 @@ export default function Profile({ user }) {
       ) : menu === 2 ? (
         <Report />
       ) : menu === 3 ? (
-        <Customers user={user} isBoolean={isBoolean} l={l}/>
+        <Customers user={user} isBoolean={isBoolean} l={l} />
       ) : menu === 4 ? (
         <ListTransaction user={user} />
       ) : menu === 5 ? (
         <ScannerMenu user={user} />
       ) : menu === 6 ? (
         <User />
-      ) : menu === 7 ? (
-         <Price />
+      ) : menu === 8 ? (
+        <Bill user={user} />
+      ): menu === 7 ? (
+        <Price />
       ) : (
         <div className="">
           <div className="flex flex-wrap justify-between py-2 gap-8">
-            <div className="bg-white flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
-              <span className="text-sm text-blue-800">Barcode </span>
-              <button
-                on
-                className="px-2 py-y rounded-xl"
-                onClick={onChangeBarcode}
-              >
-                <CiBarcode size={30} className="text-blue-600" />
-              </button>
-            </div>
+            {user.typeuser === "User" ? (
+              <div className="bg-white flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
+                <span className="text-sm text-blue-800">My Bill </span>
+                <button
+                  on
+                  className="px-2 py-y rounded-xl"
+                  onClick={onChangeBil}
+                >
+                  <FaMoneyBillTrendUp  size={30} className="text-blue-600" />
+                </button>
+              </div>
+            ) : (
+              <div className="bg-white flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
+                <span className="text-sm text-blue-800">Barcode </span>
+                <button
+                  on
+                  className="px-2 py-y rounded-xl"
+                  onClick={onChangeBarcode}
+                >
+                  <CiBarcode size={30} className="text-blue-600" />
+                </button>
+              </div>
+            )}
+
             <div className="bg-white flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
               <span className="text-sm text-blue-800">Profile </span>
               <button
@@ -99,53 +120,62 @@ export default function Profile({ user }) {
                 <CgProfile size={30} className="text-blue-600" />
               </button>
             </div>
-
+            <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
+              <span className="text-sm text-blue-800">Inbox </span>
+              <button className="px-2 py-y rounded-xl">
+                <MdMessage size={30} className="text-blue-600" />
+              </button>
+            </div>
             <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
               <span className="text-sm text-blue-800">Report </span>
               <button className="px-2 py-y rounded-xl" onClick={onChangeReport}>
                 <HiDocumentReport size={30} className="text-blue-600" />
               </button>
             </div>
+            {user.typeuser === "Admin" ? (
+              <>
+                <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
+                  <span className="text-sm text-blue-800">Customers </span>
+                  <button
+                    className="px-2 py-y rounded-xl"
+                    onClick={onChangeCustomer}
+                  >
+                    <FaHospitalUser size={30} className="text-blue-600" />
+                  </button>
+                </div>
 
-            <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
-              <span className="text-sm text-blue-800">Customer </span>
-              <button
-                className="px-2 py-y rounded-xl"
-                onClick={onChangeCustomer}
-              >
-                <FaHospitalUser size={30} className="text-blue-600" />
-              </button>
-            </div>
+                <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
+                  <span className="text-sm text-blue-800">Transaction </span>
+                  <button
+                    className="px-2 py-y rounded-xl"
+                    onClick={onChangeTransaction}
+                  >
+                    <MdPayment size={30} className="text-blue-600" />
+                  </button>
+                </div>
 
-            <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
-              <span className="text-sm text-blue-800">Transaction </span>
-              <button
-                className="px-2 py-y rounded-xl"
-                onClick={onChangeTransaction}
-              >
-                <MdPayment size={30} className="text-blue-600" />
-              </button>
-            </div>
-
-            <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
-              <span className="text-sm text-blue-800">Prices</span>
-              <button className="px-2 py-y rounded-xl" onClick={onChangePrice}>
-                <GiPriceTag size={30} className="text-blue-600" />
-              </button>
-            </div>
-            <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
-              <span className="text-sm text-blue-800">Manage Users </span>
-              <button className="px-2 py-y rounded-xl" onClick={onChangeUser}>
-                <MdGroups2 size={30} className="text-blue-600" />
-              </button>
-            </div>
-
-            <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
-              <span className="text-sm text-blue-800">Inbox </span>
-              <button className="px-2 py-y rounded-xl" >
-                <MdMessage  size={30} className="text-blue-600" />
-              </button>
-            </div>
+                <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
+                  <span className="text-sm text-blue-800">Prices</span>
+                  <button
+                    className="px-2 py-y rounded-xl"
+                    onClick={onChangePrice}
+                  >
+                    <GiPriceTag size={30} className="text-blue-600" />
+                  </button>
+                </div>
+                <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
+                  <span className="text-sm text-blue-800">Manage Users </span>
+                  <button
+                    className="px-2 py-y rounded-xl"
+                    onClick={onChangeUser}
+                  >
+                    <MdGroups2 size={30} className="text-blue-600" />
+                  </button>
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       )}
