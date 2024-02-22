@@ -147,7 +147,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
               </div>
               <p className="flex text-sm text-gray-500 justify-end w-1/3">
                 <span>
-                  {moment(currentTrans?.created_at).format("MM/DD/YYYY")}
+                  {moment(currentTrans?.updated_at).format("MM/DD/YYYY")}
                 </span>
               </p>
 
