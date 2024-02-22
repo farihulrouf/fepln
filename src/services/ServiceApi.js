@@ -64,12 +64,11 @@ const getTransactionsDetail = (id) => {
 
 const getDetailtransById = async (id) => {
   return http.get(`/transactions/getlast/?nomer=${id}`);
-}
+};
 
 const getDetailtransLimit = async (id) => {
   return http.get(`/transactions/idcustomer/?no=${id}`);
-}
-
+};
 
 const getUserTransactions = (params, page, limit) => {
   //console.log('ini data di', id)
@@ -90,6 +89,10 @@ const updateUser = (id, data) => {
   return http.put(`/users/${id}`, data);
 };
 
+const createUser = async (data) => {
+  return http.post("/users/register", data);
+};
+
 const getTransactionsAll = async (page, limit, name) => {
   return http.get(`/transactions/getall?page=${page}&limit=${limit}&s=${name}`);
 };
@@ -105,7 +108,6 @@ const getListCustomers = async (page, limit, name) => {
 const getallUsers = async (page, limit, name) => {
   return http.get(`/users/all?page=${page}&limit=${limit}&s=${name}`);
 };
-
 
 const ServiceApi = {
   getallPrice,
@@ -132,7 +134,8 @@ const ServiceApi = {
   updateTransactions,
   getTransactionsDetail,
   getDetailtransById,
-  getDetailtransLimit
+  getDetailtransLimit,
+  createUser,
 };
 
 export default ServiceApi;

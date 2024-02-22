@@ -9,7 +9,7 @@ const Add = ({ setIsupdate }) => {
   //console.log(onChangeAdd)
   const initialState = {
     name: null,
-    no_id: null,
+    no_id: Math.random().toFixed(6).split(".")[1],
     gender: null,
     no_tel: null,
     addres: null,
@@ -18,16 +18,17 @@ const Add = ({ setIsupdate }) => {
   const [data, setData] = useState(initialState);
 
   const onChangeSave = () => {
-    //console.log('tester')
-    //console.log(setIsupdate(0))
+    saveCustomer();
+    saveUser();
+  };
 
+  const saveCustomer = () => {
     setIsLoading(true);
-
     ServiceApi.createCustomer(data)
       .then((response) => {
         setData(data);
         setIsLoading(false);
-        setIsupdate(0);
+        // setIsupdate(0);
         //console.log(setIsupdate(0))
 
         // onChangeAdd();
@@ -37,7 +38,24 @@ const Add = ({ setIsupdate }) => {
         setIsLoading(false);
       });
   };
+  const saveUser = () => {
+    const userData = {
+      username: data.no_id.toString(),
+      email: data.no_id.toString() + "@hippamwotan.com",
+      password: data.no_id.toString(),
+      typeuser: "User",
+      no_id: data.no_id,
+    };
 
+    ServiceApi.createUser(userData)
+      .then((response) => {
+        setIsupdate(0);
+        console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     // console.log(event.target)
@@ -45,7 +63,7 @@ const Add = ({ setIsupdate }) => {
   };
 
   // console.log("coba", data);
-
+  //console.log(data.no_id);
   return (
     <React.Fragment>
       <button
@@ -69,7 +87,7 @@ const Add = ({ setIsupdate }) => {
           onChange={handleInputChange}
         />
       </div>
-
+      {/*
       <div className="mb-2">
         <label className="block text-gray-700 font-bold mb-2">No Id</label>
         <input
@@ -82,6 +100,7 @@ const Add = ({ setIsupdate }) => {
           onChange={handleInputChange}
         />
       </div>
+    */}
       <div className="mb-2">
         <label className="block text-gray-700 font-bold mb-2">Gender</label>
         <select

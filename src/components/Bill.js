@@ -13,7 +13,9 @@ const Bill = ({ user }) => {
   const onChangeBack = () => {};
   const setIsupdate = () => {};
   useEffect(() => {
-    getDetailTrans("65cee1ec1cf173883b45fae1");
+    //console.log('cek', user)
+    //getDetailTrans("65cee1ec1cf173883b45fae1");
+    getDetailTrans(user.no_id)
   }, []);
 
   const getDetailTrans = (idc) => {
@@ -21,18 +23,18 @@ const Bill = ({ user }) => {
     ServiceApi.getDetailtransLimit(idc)
       .then((response) => {
         setData(response.data.transaction);
-        console.log("this one", response.data);
+        //console.log("this one", response.data);
         setLoading(false);
       })
       .catch((e) => {
         setLoading(false);
       });
   };
-  console.log("tst", data);
+ // console.log("baca data", user);
   return (
     <>
-      <CardProfile
-        id={id}
+     <CardProfile
+        id={user.no_id}
         user={user}
         onChangeBack={onChangeBack}
         setIsupdate={setIsupdate}
@@ -41,6 +43,7 @@ const Bill = ({ user }) => {
         <Spinner />
       ) : (
         <>
+        
           <div className="bg-gray-100 px-4 py-2">
             <div className="flex justify-between">
               <h2 className="text-sm font-medium text-gray-800">Total kubik</h2>
@@ -93,6 +96,7 @@ const Bill = ({ user }) => {
               </div>
             </div>
           </div>
+              
         </>
       )}
     </>

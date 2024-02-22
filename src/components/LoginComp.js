@@ -5,6 +5,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import AuthService from "../services/AuthService";
 import UserService from "../services/UserService ";
+import Spinner from "./Spinner";
 const required = (value) => {
   if (!value) {
     return (
@@ -72,7 +73,7 @@ const LoginComp = () => {
       setLoading(false);
     }
   };
-  console.log(auth);
+  //console.log(auth);
   return (
     <React.Fragment>
       {auth ? (
