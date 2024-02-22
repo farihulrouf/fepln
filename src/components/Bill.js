@@ -4,6 +4,7 @@ import { IoMdClose } from "react-icons/io";
 import ServiceApi from "../services/ServiceApi";
 import Spinner from "./Spinner";
 import moment from "moment";
+import { FaCheck } from "react-icons/fa";
 const Bill = ({ user }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
@@ -16,7 +17,6 @@ const Bill = ({ user }) => {
   }, []);
 
   const getDetailTrans = (idc) => {
-    console.log("cek", idc);
     setLoading(true);
     ServiceApi.getDetailtransLimit(idc)
       .then((response) => {
@@ -28,7 +28,7 @@ const Bill = ({ user }) => {
         setLoading(false);
       });
   };
-  //console.log(data);
+  console.log("tst", data);
   return (
     <>
       <CardProfile
@@ -60,8 +60,17 @@ const Bill = ({ user }) => {
                 data?.status ? "bg-green-700" : "bg-red-500"
               }`}
             >
-              <IoMdClose />
-              waiting
+              {data?.status ? (
+                <>
+                  <FaCheck />
+                  Success
+                </>
+              ) : (
+                <>
+                  <IoMdClose />
+                  Waiting
+                </>
+              )}
             </button>
           </div>
           <div className="px-4 py-5 sm:p-6">
