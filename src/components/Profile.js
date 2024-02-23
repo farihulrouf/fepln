@@ -55,8 +55,8 @@ export default function Profile({ user }) {
   const onChangeTransUser = () => {
     setMenu(9);
   };
-  
- // console.log(user);
+
+  // console.log(user);
   return (
     <div className="px-6">
       {menu != 0 ? (
@@ -111,34 +111,22 @@ export default function Profile({ user }) {
                 </div>
                 <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
                   <span className="text-sm text-blue-800">Report </span>
-                  <button className="px-2 py-y rounded-xl" onClick={onChangeTransUser} >
+                  <button
+                    className="px-2 py-y rounded-xl"
+                    onClick={onChangeTransUser}
+                  >
                     <VscGraph size={40} className="text-blue-600" />
                   </button>
                 </div>
               </React.Fragment>
             ) : null}
 
-            <div className="bg-white flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
-              <span className="text-sm text-blue-800">Profile </span>
-              <button
-                on
-                className="px-2 py-y rounded-xl"
-                onClick={onChaneProfile}
-              >
-                <CgProfile size={40} className="text-blue-600" />
-              </button>
-            </div>
-            <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
-              <span className="text-sm text-blue-800">Inbox </span>
-              <button className="px-2 py-y rounded-xl">
-                <MdMessage size={40} className="text-blue-600" />
-              </button>
-            </div>
+          
 
             {user.typeuser === "Admin" ? (
               <>
                 <div className="bg-white flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
-                  <span className="text-sm text-blue-800">Barcode </span>
+                  <span className="text-sm text-blue-800">Record </span>
                   <button
                     on
                     className="px-2 py-y rounded-xl"
@@ -198,6 +186,22 @@ export default function Profile({ user }) {
             ) : (
               <></>
             )}
+            <div className="bg-white flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
+            <span className="text-sm text-blue-800">Profile </span>
+            <button
+              on
+              className="px-2 py-y rounded-xl"
+              onClick={onChaneProfile}
+            >
+              <CgProfile size={40} className="text-blue-600" />
+            </button>
+          </div>
+          <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
+            <span className="text-sm text-blue-800">Inbox </span>
+            <button className="px-2 py-y rounded-xl">
+              <MdMessage size={40} className="text-blue-600" />
+            </button>
+          </div>
           </div>
         </div>
       )}
