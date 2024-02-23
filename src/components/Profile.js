@@ -94,7 +94,7 @@ export default function Profile({ user }) {
                   className="px-2 py-y rounded-xl"
                   onClick={onChangeBil}
                 >
-                  <FaMoneyBillTrendUp  size={30} className="text-blue-600" />
+                  <FaMoneyBillTrendUp  size={40} className="text-blue-600" />
                 </button>
               </div>
             ) : (
@@ -105,7 +105,7 @@ export default function Profile({ user }) {
                   className="px-2 py-y rounded-xl"
                   onClick={onChangeBarcode}
                 >
-                  <CiBarcode size={30} className="text-blue-600" />
+                  <CiBarcode size={40} className="text-blue-600" />
                 </button>
               </div>
             )}
@@ -117,19 +117,19 @@ export default function Profile({ user }) {
                 className="px-2 py-y rounded-xl"
                 onClick={onChaneProfile}
               >
-                <CgProfile size={30} className="text-blue-600" />
+                <CgProfile size={40} className="text-blue-600" />
               </button>
             </div>
             <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
               <span className="text-sm text-blue-800">Inbox </span>
               <button className="px-2 py-y rounded-xl">
-                <MdMessage size={30} className="text-blue-600" />
+                <MdMessage size={40} className="text-blue-600" />
               </button>
             </div>
             <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
               <span className="text-sm text-blue-800">Report </span>
               <button className="px-2 py-y rounded-xl" onClick={onChangeReport}>
-                <HiDocumentReport size={30} className="text-blue-600" />
+                <HiDocumentReport size={40} className="text-blue-600" />
               </button>
             </div>
             {user.typeuser === "Admin" ? (
@@ -140,7 +140,7 @@ export default function Profile({ user }) {
                     className="px-2 py-y rounded-xl"
                     onClick={onChangeCustomer}
                   >
-                    <FaHospitalUser size={30} className="text-blue-600" />
+                    <FaHospitalUser size={40} className="text-blue-600" />
                   </button>
                 </div>
 
@@ -150,7 +150,7 @@ export default function Profile({ user }) {
                     className="px-2 py-y rounded-xl"
                     onClick={onChangeTransaction}
                   >
-                    <MdPayment size={30} className="text-blue-600" />
+                    <MdPayment size={40} className="text-blue-600" />
                   </button>
                 </div>
 
@@ -160,7 +160,7 @@ export default function Profile({ user }) {
                     className="px-2 py-y rounded-xl"
                     onClick={onChangePrice}
                   >
-                    <GiPriceTag size={30} className="text-blue-600" />
+                    <GiPriceTag size={40} className="text-blue-600" />
                   </button>
                 </div>
                 <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
@@ -169,7 +169,7 @@ export default function Profile({ user }) {
                     className="px-2 py-y rounded-xl"
                     onClick={onChangeUser}
                   >
-                    <MdGroups2 size={30} className="text-blue-600" />
+                    <MdGroups2 size={40} className="text-blue-600" />
                   </button>
                 </div>
               </>
