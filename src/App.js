@@ -15,18 +15,17 @@ function App() {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({});
   //const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
   useEffect(() => {
     const token = AuthService.getCurrentUser();
     //const data_user = AuthService.parseJwt(token)
     if (token) {
       setCurrentUser(token);
-      setUser(AuthService.parseJwt(token))
-     // setUser(data_user)
+      setUser(AuthService.parseJwt(token));
+      // setUser(data_user)
       //setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
       setShowAdminBoard(token.typeuser);
-      
     }
 
     EventBus.on("logout", () => {
@@ -47,23 +46,22 @@ function App() {
   return (
     <React.Fragment>
       {/*currentUser ? <Navbar user={currentUser} /> : null */}
-
-      <BrowserRouter>
-        { user ? <Navbar user={user} /> : null }
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute>
-                <Profile user={user} />
-              </PrivateRoute>
-            }
-          />
-          
-        </Routes>
-        
-      </BrowserRouter>
+      <div className="max-w-sm mx-auto">
+        <BrowserRouter>
+          {user ? <Navbar user={user} /> : null}
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <Profile user={user} />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </React.Fragment>
   );
 }
