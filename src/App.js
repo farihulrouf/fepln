@@ -41,6 +41,8 @@ function App() {
     //setShowModeratorBoard(false);
     setShowAdminBoard(false);
     setCurrentUser(undefined);
+    window.location.reload();
+   // console.log('test log')
   };
 
   return (
@@ -48,7 +50,7 @@ function App() {
       {/*currentUser ? <Navbar user={currentUser} /> : null */}
       <div className="max-w-sm mx-auto">
         <BrowserRouter>
-          {user ? <Navbar user={user} /> : null}
+          {user ? <Navbar user={user} logOut={logOut} /> : null}
           <Routes>
             <Route path="/" element={<Login />} />
             <Route

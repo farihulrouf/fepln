@@ -169,7 +169,7 @@ const LoginComp = () => {
                   )}
                   <CheckButton style={{ display: "none" }} ref={checkBtn} />
                 </Form>
-
+                
                 <p className="mt-10 text-center text-sm text-gray-500">
                   Not a member?
                   <a

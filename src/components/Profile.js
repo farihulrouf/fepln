@@ -90,13 +90,13 @@ export default function Profile({ user }) {
         <div className="py-2">
           <p className="text-lg py-4 mb-4 px-2">List Transaction</p>
           <Barcode
-                  height={15}
-                  width={4}
-                  fontSize={14}
-                  textPosition="bottom"
-                  value={user.no_id}
-                />
-              
+            height={15}
+            width={4}
+            fontSize={14}
+            textPosition="bottom"
+            value={user.no_id}
+          />
+
           <ViewTrans id={user.no_id} />
         </div>
       ) : menu === 8 ? (
@@ -129,8 +129,6 @@ export default function Profile({ user }) {
                 </div>
               </React.Fragment>
             ) : null}
-
-          
 
             {user.typeuser === "Admin" ? (
               <>
@@ -196,21 +194,21 @@ export default function Profile({ user }) {
               <></>
             )}
             <div className="bg-white flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
-            <span className="text-sm text-blue-800">Profile </span>
-            <button
-              on
-              className="px-2 py-y rounded-xl"
-              onClick={onChaneProfile}
-            >
-              <CgProfile size={40} className="text-blue-600" />
-            </button>
-          </div>
-          <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
-            <span className="text-sm text-blue-800">Inbox </span>
-            <button className="px-2 py-y rounded-xl">
-              <MdMessage size={40} className="text-blue-600" />
-            </button>
-          </div>
+              <span className="text-sm text-blue-800">Profile </span>
+              <button
+                on
+                className="px-2 py-y rounded-xl"
+                onClick={onChaneProfile}
+              >
+                <CgProfile size={40} className="text-blue-600" />
+              </button>
+            </div>
+            <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
+              <span className="text-sm text-blue-800">Inbox </span>
+              <button className="px-2 py-y rounded-xl">
+                <MdMessage size={40} className="text-blue-600" />
+              </button>
+            </div>
           </div>
         </div>
       )}
