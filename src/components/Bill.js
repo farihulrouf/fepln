@@ -44,15 +44,15 @@ const Bill = ({ user }) => {
       ) : (
         <>
         
-          <div className="bg-gray-100 px-4 py-2">
+          <div className="px-4 py-2 mb-2">
             <div className="flex justify-between">
               <h2 className="text-sm font-medium text-gray-800">Total kubik</h2>
               <h2 className="text-sm font-medium text-gray-800">
-                {data?.meteran}
+                {data?.last_meteran}
               </h2>
             </div>
           </div>
-          <div className="px-4 flex space-x-12">
+          <div className="px-4 flex justify-between">
             <p className="text-gray-600 text-sm">
               {" "}
               {moment(data?.updated_at).format("MM/DD/YYYY HH:mm:ss")}
@@ -88,7 +88,7 @@ const Bill = ({ user }) => {
               </div>
               <div className="flex flex-col items-start">
                 <span className="text-sm font-medium text-gray-600">
-                  Total paid
+                  Total 
                 </span>
                 <span className="text-lg font-medium text-gray-800">
                   Rp {data?.amount}

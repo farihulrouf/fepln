@@ -13,12 +13,12 @@ const create = (data) => {
 };
 
 const updatePrice = (id, data) => {
-  console.log('cek tesdt', data)
+  //console.log('cek tesdt', data)
   return http.put(`/prices/${id}`, data);
 };
 
 const findPrice = (id) => {
-  console.log(id)
+  //console.log(id)
   return http.get(`/prices/?id=${id}`)
 }
 

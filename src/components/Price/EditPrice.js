@@ -34,7 +34,7 @@ const EditPrice = ({ setIsupdate, idprice }) => {
     setLoading(true)
     ServiceApi.updatePrice(idprice, data)
     .then((response) => {
-      console.log('di dalam',response.data)
+      //console.log('di dalam',response.data)
       setLoading(false)
     }).catch((e) => {
       setLoading(false)
