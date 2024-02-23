@@ -38,10 +38,7 @@ const Navbar = ({ user }) => {
           Bum <span className="font-bold">Des</span>
         </h1>
   */}
-        <div className="hidden lg:flex items-center bg-gray-200 rounded-full p-1 text-[14px]">
-          <p className="bg-black text-white rounded-full p-2">Delivery</p>
-          <p className="p-2">Pickup</p>
-        </div>
+        
       </div>
 
       {/* Search Input */}
@@ -55,9 +52,7 @@ const Navbar = ({ user }) => {
         {user.username}
       </div>
       {/* Cart button */}
-      <button className="bg-black text-white hidden md:flex items-center py-2 rounded-full border border-black">
-        <BsFillCartFill size={20} className="mr-2" /> Cart
-      </button>
+      
 
       {/* Mobile Menu */}
       {/* Overlay */}
