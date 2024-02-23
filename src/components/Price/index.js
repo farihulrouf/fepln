@@ -7,6 +7,7 @@ const Price = () => {
   const [dataPrice, setDataPrice] = useState(null);
   const [isUpdate, setIsupdate] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [idPrice, setIdPrice] = useState(null)
   useEffect(() => {
     getPrice();
   }, []);
@@ -23,12 +24,13 @@ const Price = () => {
         setIsLoading(false);
       });
   };
-  const onChangePrice = () => {
-    //console.log(id_price)
-    setIsupdate(true);
+  const onChangePrice = (id_price) => {
+   // console.log('cek',id_price)
+     setIsupdate(true);
+    setIdPrice(id_price)
   };
 
-  // console.log(data)
+  
   return (
     <React.Fragment>
       {isLoading ? (
@@ -36,7 +38,7 @@ const Price = () => {
       ) : (
         <>
           {isUpdate ? (
-            <EditPrice setIsupdate={setIsupdate} />
+            <EditPrice setIsupdate={setIsupdate} idprice={idPrice} />
           ) : (
             <div className="flex flex-col">
               <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -85,7 +87,8 @@ const Price = () => {
                                 {price.minimum} - {price.maximum}
                               </td>
                               <td className="text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
-                                <FaRegEdit onClick={onChangePrice} />
+                                
+                                <FaRegEdit onClick={() => onChangePrice(price._id)} />
                               </td>
                             </tr>
                           );

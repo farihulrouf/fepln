@@ -17,7 +17,7 @@ const Navbar = ({ user, logOut }) => {
   const [nav, setNav] = useState(false);
 
   //console.log('object',user)
-  
+
   return (
     <div className="max-w-sm bg-blue-600 mx-auto flex justify-between items-center p-3 shadow-sm">
       {/* Left side */}
@@ -33,22 +33,20 @@ const Navbar = ({ user, logOut }) => {
           Bum <span className="font-bold">Des</span>
         </h1>
   */}
-        
       </div>
 
-      {Object.keys(user).length === 0 ? (
-        null
-      ):  <div className="flex gap-2 items-center text-white">
-      <Avatar
-        className="rounded-full"
-        name={user.username}
-        maxInitials={2}
-        size={25}
-      />
-      {user.username}
-    </div>}
-      
-     
+      {Object.keys(user).length === 0 ? null : (
+        <div className="flex gap-2 items-center text-white">
+          <Avatar
+            className="rounded-full"
+            name={user.username}
+            maxInitials={2}
+            size={25}
+          />
+          {user.username}
+        </div>
+      )}
+
       {nav ? (
         <div className="bg-black/80 fixed w-full h-screen z-10 top-0 left-0"></div>
       ) : (
@@ -74,20 +72,22 @@ const Navbar = ({ user, logOut }) => {
         </div>
         <nav>
           <ul className="flex flex-col p-4 space-y-3 text-gray-800">
-         
-                  <li className="text-xl flex cursor-pointer  w-[50%] rounded-full mx-auto p-2 hover:text-white hover:bg-black">
-                    <CgProfile size={25} className="mr-4" /> Profile
-                  </li>
-                  <li className="text-xl flex cursor-pointer  w-[50%] rounded-full mx-auto p-2 hover:text-white hover:bg-black">
-                    <HiDocumentReport size={25} className="mr-4" /> Report
-                  </li>
-                  <li className="text-xl flex cursor-pointer  w-[50%] rounded-full mx-auto p-2 hover:text-white hover:bg-black">
-                    <GiPriceTag size={25} className="mr-4" /> Prices
-                  </li>
-                  <li onClick={logOut} className="text-xl flex cursor-pointer  w-[50%] rounded-full mx-auto p-2 hover:text-white hover:bg-black">
-                    <IoIosLogOut size={25} className="mr-4" /> Logout
-                  </li>
-               
+            <li className="text-xl flex cursor-pointer  w-[50%] rounded-full mx-auto p-2 hover:text-white hover:bg-black">
+              <CgProfile size={25} className="mr-4" /> Profile
+            </li>
+            <li className="text-xl flex cursor-pointer  w-[50%] rounded-full mx-auto p-2 hover:text-white hover:bg-black">
+              <HiDocumentReport size={25} className="mr-4" /> Report
+            </li>
+            <li className="text-xl flex cursor-pointer  w-[50%] rounded-full mx-auto p-2 hover:text-white hover:bg-black">
+              <GiPriceTag size={25} className="mr-4" /> Prices
+            </li>
+            <li
+              onClick={logOut}
+              className="text-xl flex cursor-pointer  w-[50%] rounded-full mx-auto p-2 hover:text-white hover:bg-black"
+            >
+              <IoIosLogOut size={25} className="mr-4" /> Logout
+            </li>
+
             {/*menuItems.map(({ icon, text }, index) => {
               return (
                 <div key={index} className=" py-4">

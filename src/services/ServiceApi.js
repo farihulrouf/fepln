@@ -13,8 +13,14 @@ const create = (data) => {
 };
 
 const updatePrice = (id, data) => {
+  console.log('cek tesdt', data)
   return http.put(`/prices/${id}`, data);
 };
+
+const findPrice = (id) => {
+  console.log(id)
+  return http.get(`/prices/?id=${id}`)
+}
 
 const remove = (id) => {
   return http.delete(`/tutorials/${id}`);
@@ -137,6 +143,7 @@ const ServiceApi = {
   getDetailtransById,
   getDetailtransLimit,
   createUser,
+  findPrice
 };
 
 export default ServiceApi;
