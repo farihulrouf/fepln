@@ -17,6 +17,7 @@ import Report from "./Report";
 import ListTransaction from "./ListTransaction";
 import Customers from "./Customers";
 import User from "./Users";
+import Barcode from "react-barcode";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import Bill from "./Bill";
 import ViewTrans from "./Customers/ViewTrans";
@@ -87,7 +88,15 @@ export default function Profile({ user }) {
         <User />
       ) : menu === 9 ? (
         <div className="py-2">
-          <p className="text-sm py-4 mb-4">List Transaction</p>
+          <p className="text-lg py-4 mb-4 px-2">List Transaction</p>
+          <Barcode
+                  height={15}
+                  width={4}
+                  fontSize={14}
+                  textPosition="bottom"
+                  value={user.no_id}
+                />
+              
           <ViewTrans id={user.no_id} />
         </div>
       ) : menu === 8 ? (

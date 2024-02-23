@@ -10,7 +10,7 @@ import Avatar from "react-avatar";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaFileInvoiceDollar } from "react-icons/fa6";
 import { MdModeEditOutline } from "react-icons/md";
-
+import moment from "moment";
 const ViewTrans = ({ id }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [transaction, setTransaction] = useState([]);
@@ -67,14 +67,14 @@ const ViewTrans = ({ id }) => {
                       scope="col"
                       className="text-sm font-medium text-gray-900 px-6 py-3 text-left"
                     >
-                      Total Rp
+                       Rp
                     </th>
 
                     <th
                       scope="col"
                       className="text-sm font-medium text-gray-900 px-6 py-3 text-left"
                     >
-                      Status
+                      Date
                     </th>
                   </tr>
                 </thead>
@@ -88,16 +88,6 @@ const ViewTrans = ({ id }) => {
                         return (
                           <tr className="border-b">
                             <td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
-                              {index + 1}
-                            </td>
-                            <td className="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
-                              {item.last_meteran}
-                              
-                            </td>
-                            <td className="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
-                              {item.amount}
-                            </td>
-                            <td className="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
                               {item.status ? (
                                 <FaCheckCircle
                                   size={16}
@@ -109,6 +99,15 @@ const ViewTrans = ({ id }) => {
                                   className="text-red-500"
                                 />
                               )}
+                            </td>
+                            <td className="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                              {item.last_meteran}
+                            </td>
+                            <td className="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                              {item.amount}
+                            </td>
+                            <td className="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                              {moment(item.updated_at).format("MM/DD/YYYY")}
                             </td>
                           </tr>
                         );
