@@ -91,7 +91,8 @@ const ViewTrans = ({ id }) => {
                               {index + 1}
                             </td>
                             <td className="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
-                              {item.meteran}
+                              {item.last_meteran}
+                              
                             </td>
                             <td className="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
                               {item.amount}

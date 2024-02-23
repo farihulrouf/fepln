@@ -19,6 +19,7 @@ import Customers from "./Customers";
 import User from "./Users";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import Bill from "./Bill";
+import ViewTrans from "./Customers/ViewTrans";
 export default function Profile({ user }) {
   const [menu, setMenu] = useState(0);
   const [menuAf, setMenuAf] = useState(false);
@@ -51,7 +52,11 @@ export default function Profile({ user }) {
   const onChangeBil = () => {
     setMenu(8);
   };
-  //console.log(user);
+  const onChangeTransUser = () => {
+    setMenu(9);
+  };
+  
+ // console.log(user);
   return (
     <div className="px-6">
       {menu != 0 ? (
@@ -80,6 +85,11 @@ export default function Profile({ user }) {
         <ScannerMenu user={user} />
       ) : menu === 6 ? (
         <User />
+      ) : menu === 9 ? (
+        <div className="py-2">
+          <p className="text-sm py-4 mb-4">List Transaction</p>
+          <ViewTrans id={user.no_id} />
+        </div>
       ) : menu === 8 ? (
         <Bill user={user} />
       ) : menu === 7 ? (
@@ -89,22 +99,19 @@ export default function Profile({ user }) {
           <div className="flex flex-wrap justify-between py-2 gap-8">
             {user.typeuser === "User" ? (
               <React.Fragment>
-              <div className="bg-white flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
-                <span className="text-sm text-blue-800">My Bill </span>
-                <button
-                  on
-                  className="px-2 py-y rounded-xl"
-                  onClick={onChangeBil}
-                >
-                  <FaMoneyBillTrendUp size={40} className="text-blue-600" />
-                </button>
-              </div>
-              <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
-                  <span className="text-sm text-blue-800">Report </span>
+                <div className="bg-white flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
+                  <span className="text-sm text-blue-800">My Bill </span>
                   <button
+                    on
                     className="px-2 py-y rounded-xl"
-                   
+                    onClick={onChangeBil}
                   >
+                    <FaMoneyBillTrendUp size={40} className="text-blue-600" />
+                  </button>
+                </div>
+                <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
+                  <span className="text-sm text-blue-800">Report </span>
+                  <button className="px-2 py-y rounded-xl" onClick={onChangeTransUser} >
                     <VscGraph size={40} className="text-blue-600" />
                   </button>
                 </div>
