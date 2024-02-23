@@ -3,6 +3,7 @@ import ServiceApi from "../services/ServiceApi";
 import Spinner from "./Spinner";
 import moment from "moment";
 import AlertMessage from "./AlertMessage";
+import { MdModeEditOutline } from "react-icons/md";
 const Transaction = ({ idtrans, user, setIsupdate }) => {
   // console.log(customer);
   const [kubik, setKubik] = useState(1);
@@ -15,7 +16,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
   const [customer, setCustomer] = useState(null);
   const [isSave, setIsSave] = useState(true);
   const dataTrans = "Transaction";
-
+  const [isEdit, setIsEdit] = useState(false);
   // console.log('dara dari', idtrans)
   useEffect(() => {
     if (setIsupdate === 0) {
@@ -42,7 +43,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       .then((response) => {
         setCurrentTrans(response.data);
         setBayar(response.data.amount);
-        setKubik(response.data.meteran);
+        setKubik(response.data.last_meteran);
         setLoading(false);
       })
       .catch((e) => {
@@ -135,6 +136,14 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
         ) : (
           <React.Fragment>
             {isSave ? null : <AlertMessage data={dataTrans} />}
+            {user.typeuser === "Admin" ? (
+              <div className="w-full flex justify-end">
+                <MdModeEditOutline />
+              </div>
+            ) : null}
+
+            <div>{isEdit ? <p>{currentTrans?.meteran}</p> : null}</div>
+
             <div className="py-2 flex relative">
               <div className="w-2/3">
                 <label
