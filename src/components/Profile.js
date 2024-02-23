@@ -12,6 +12,7 @@ import { CiBarcode } from "react-icons/ci";
 import UserUpdate from "./Users/UserUpdate";
 import ScannerMenu from "./ScannerMenu";
 import { MdGroups2 } from "react-icons/md";
+import { VscGraph } from "react-icons/vsc";
 import Report from "./Report";
 import ListTransaction from "./ListTransaction";
 import Customers from "./Customers";
@@ -48,9 +49,9 @@ export default function Profile({ user }) {
     setMenu(0);
   };
   const onChangeBil = () => {
-    setMenu(8)
-  }
-  console.log(user);
+    setMenu(8);
+  };
+  //console.log(user);
   return (
     <div className="px-6">
       {menu != 0 ? (
@@ -81,12 +82,13 @@ export default function Profile({ user }) {
         <User />
       ) : menu === 8 ? (
         <Bill user={user} />
-      ): menu === 7 ? (
+      ) : menu === 7 ? (
         <Price />
       ) : (
         <div className="">
           <div className="flex flex-wrap justify-between py-2 gap-8">
             {user.typeuser === "User" ? (
+              <React.Fragment>
               <div className="bg-white flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
                 <span className="text-sm text-blue-800">My Bill </span>
                 <button
@@ -94,21 +96,20 @@ export default function Profile({ user }) {
                   className="px-2 py-y rounded-xl"
                   onClick={onChangeBil}
                 >
-                  <FaMoneyBillTrendUp  size={40} className="text-blue-600" />
+                  <FaMoneyBillTrendUp size={40} className="text-blue-600" />
                 </button>
               </div>
-            ) : (
-              <div className="bg-white flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
-                <span className="text-sm text-blue-800">Barcode </span>
-                <button
-                  on
-                  className="px-2 py-y rounded-xl"
-                  onClick={onChangeBarcode}
-                >
-                  <CiBarcode size={40} className="text-blue-600" />
-                </button>
-              </div>
-            )}
+              <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
+                  <span className="text-sm text-blue-800">Report </span>
+                  <button
+                    className="px-2 py-y rounded-xl"
+                   
+                  >
+                    <VscGraph size={40} className="text-blue-600" />
+                  </button>
+                </div>
+              </React.Fragment>
+            ) : null}
 
             <div className="bg-white flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
               <span className="text-sm text-blue-800">Profile </span>
@@ -126,14 +127,28 @@ export default function Profile({ user }) {
                 <MdMessage size={40} className="text-blue-600" />
               </button>
             </div>
-            <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
-              <span className="text-sm text-blue-800">Report </span>
-              <button className="px-2 py-y rounded-xl" onClick={onChangeReport}>
-                <HiDocumentReport size={40} className="text-blue-600" />
-              </button>
-            </div>
+
             {user.typeuser === "Admin" ? (
               <>
+                <div className="bg-white flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
+                  <span className="text-sm text-blue-800">Barcode </span>
+                  <button
+                    on
+                    className="px-2 py-y rounded-xl"
+                    onClick={onChangeBarcode}
+                  >
+                    <CiBarcode size={40} className="text-blue-600" />
+                  </button>
+                </div>
+                <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
+                  <span className="text-sm text-blue-800">Report </span>
+                  <button
+                    className="px-2 py-y rounded-xl"
+                    onClick={onChangeReport}
+                  >
+                    <HiDocumentReport size={40} className="text-blue-600" />
+                  </button>
+                </div>
                 <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
                   <span className="text-sm text-blue-800">Customers </span>
                   <button

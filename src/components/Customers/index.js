@@ -38,7 +38,7 @@ export default function Customers({ user, isBoolean }) {
     ServiceApi.getListCustomers(page, limit, s)
       .then((response) => {
         setCustomers(response.data.customer);
-        console.log(response.data.customer);
+        //console.log(response.data.customer);
         setLoading(false);
       })
       .catch((e) => {
@@ -68,7 +68,7 @@ export default function Customers({ user, isBoolean }) {
             onChangeBack={onChangeBack}
             setIsupdate={setIsupdate}
           />
-          {menuCount === 0 ? <ViewTrans id={idCustomer} /> : null}
+          {menuCount === 0 ? <ViewTrans id={currentUser} /> : null}
         </div>
       </>
     );
@@ -92,7 +92,7 @@ export default function Customers({ user, isBoolean }) {
     // console.log(selected, "ini");
   };
   const onChangeSearch = (e) => {
-    console.log(e);
+   // console.log(e);
     getList(1, 6, e);
   };
   const onChange = (no_id, id_customer) => {
@@ -102,7 +102,7 @@ export default function Customers({ user, isBoolean }) {
       setIdCustomer(id_customer);
       setIsupdate(1);
     } else if (isBoolean === 1) {
-      console.log("boolean", no_id, isBoolean);
+     // console.log("boolean", no_id, isBoolean);
       getCustomerDetail(no_id);
       getTransactionDetail(no_id);
       // onSearchdata(no_id)
@@ -111,7 +111,7 @@ export default function Customers({ user, isBoolean }) {
   };
 
   const onSearchdata = (no_id) => {
-    console.log("ini data di onsear", no_id);
+    //console.log("ini data di onsear", no_id);
     setLoading(true);
     ServiceApi.getTransactionsDetail(no_id)
       .then((response) => {
@@ -156,6 +156,8 @@ export default function Customers({ user, isBoolean }) {
       </>
     );
   };
+
+ // console.log('ini test', currentUser)
 
   return (
     <div className="realtive px-2">

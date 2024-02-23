@@ -58,7 +58,7 @@ const LoginComp = () => {
       AuthService.login(username, password).then(
         () => {
           setLoading(false)
-          window.location.reload('/dashboard');
+           window.location.reload('/dashboard');
           
           //navigate("/dashboard");
          /// window.location.reload();
