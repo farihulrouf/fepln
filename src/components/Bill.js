@@ -46,9 +46,9 @@ const Bill = ({ user }) => {
         
           <div className="px-4 py-2 mb-2">
             <div className="flex justify-between">
-              <h2 className="text-sm font-medium text-gray-800">Total kubik</h2>
+              <h2 className="text-sm font-medium text-gray-800">Total Cubic</h2>
               <h2 className="text-sm font-medium text-gray-800">
-                {data?.last_meteran}
+                {data?.meteran}
               </h2>
             </div>
           </div>
