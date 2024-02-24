@@ -101,13 +101,15 @@ const ScannerMenu = ({ user }) => {
 
   console.log('jakshdiajdh',customer)
   return (
-    <div>
+    <React.Fragment>
+      <div className="flex space-x-4 mb-2 mt-2">
       <label>
         <input
           type="radio"
           defaultChecked
           value="QR"
           name="scannerType"
+          className=""
           onChange={() => setScannerType("QR")}
         />
         QR
@@ -117,10 +119,12 @@ const ScannerMenu = ({ user }) => {
           type="radio"
           value="BAR"
           name="scannerType"
+          className=""
           onChange={() => setScannerType("BAR")}
         />
         BAR
       </label>
+      </div>
       <Scanner type={scannerType} onResult={(res) => onChangeData(res)} />
       {err && <h2>{err}</h2>}
       <div className="py-4">
@@ -134,7 +138,7 @@ const ScannerMenu = ({ user }) => {
           </>
         )}
       </div>
-    </div>
+      </React.Fragment>
   );
 };
 export default ScannerMenu;
