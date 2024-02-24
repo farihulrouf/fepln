@@ -40,7 +40,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
       .then((response) => {
         // console.log(response)
         //setDetailcust(response.data.user);
-        console.log("test response", response);
+        //console.log("test response", response);
         setLoading(false);
       })
       .catch((e) => {
@@ -59,12 +59,47 @@ const NewTrans = ({ customerData, price, transaction }) => {
       setBayar((e.target.value - 0) * price[0].harga);
       setNilai(e.target.value - 0);
     } else {
-      setBayar((e.target.value - transaction.meteran) * price[0].harga);
+       var x = 0
+       var harga_ = 0
+       x = e.target.value - transaction.meteran
+       var harga_normal = 0
+       var harga_update = 0
+      if(x <= price[0].maximum ) {
+        harga_ = x * price[0].harga
+        //console.log('nilai value', harga_, 'dari harga', price[0].harga)
+        setBayar(harga_)
+      }
+      else if( x > price[0].maximum && x <= price[1].maximum ) {
+       // console.log('cek data lagi', x)   
+        const price_ = x - price[0].maximum
+        //console.log('cek lagi', price_ * price[1].harga)
+        harga_normal = price[0].harga * (x - price_)
+        harga_update = price_ * price[1].harga
+        //console.log("ini harga update", price_ * price[1].harga)
+        //console.log(harga_normal ,"ini harga normal")
+        //console.log('harga total', harga_update+harga_normal)
+        setBayar(harga_normal+harga_update)
+
+      }
+      else if(x > price[1].maximum ) {
+        var harga_akhir = 0
+        console.log('harga akhir')
+        const price_ = x - price[1].maximum
+        harga_normal = price_ * price[2].harga
+
+        //console.log('cek data',harga_normal)
+       // console.log('harga sisa',price_)
+        //console.log(price_ * price[2].harga,"masuk harga") //harga_3
+        harga_update = ((x - price_) - price[0].maximum) * price[1].harga
+        harga_akhir = (x - ((x - price_) - price[0].maximum) - price_) * price[0].harga
+       // console.log(harga_akhir, harga_update, harga_normal,"cek update")
+        //console.log(harga_akhir+harga_normal+harga_update,"ini harga_awal")
+        setBayar(harga_akhir+harga_normal+harga_update)
+      
+      }
       setNilai(e.target.value - transaction.meteran);
     }
-    // setBayar((e.target.value - customerData.meteran) * price[0].harga);
-
-    //setNilai(e.target.value - customerData.meteran);
+   
   };
   //console.log('test data',transaction)
   const saveData = () => {
@@ -93,7 +128,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
       });
   };
 
- console.log('data', nilai)
+  //console.log('data', price)
 
   return (
     <React.Fragment>

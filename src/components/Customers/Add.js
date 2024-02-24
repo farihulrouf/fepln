@@ -24,6 +24,7 @@ const Add = ({ setIsupdate }) => {
 
   const saveCustomer = () => {
     setIsLoading(true);
+    
     ServiceApi.createCustomer(data)
       .then((response) => {
         setData(data);
@@ -37,16 +38,24 @@ const Add = ({ setIsupdate }) => {
         console.log(e);
         setIsLoading(false);
       });
+    
   };
   const saveUser = () => {
+    //const myArray = text.split(" ", 1);
+    //substring(0, str.indexOf('_'));
+    //const str = 'Walk the dog';
+  //const before_ = str.substring(0, str.indexOf('_'));
+
+    const user_name = data.name.substring(0, data.name.indexOf(" "));
     const userData = {
-      username: data.no_id.toString(),
+      username: user_name.toLowerCase(),
       email: data.no_id.toString() + "@hippamwotan.com",
       password: data.no_id.toString(),
       typeuser: "User",
       no_id: data.no_id,
     };
-
+    //console.log(userData)
+      
     ServiceApi.createUser(userData)
       .then((response) => {
         setIsupdate(0);
@@ -55,6 +64,7 @@ const Add = ({ setIsupdate }) => {
       .catch((e) => {
         console.log(e);
       });
+    
   };
   const handleInputChange = (event) => {
     const { name, value } = event.target;

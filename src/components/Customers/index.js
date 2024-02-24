@@ -224,30 +224,17 @@ export default function Customers({ user, isBoolean }) {
                                   maxInitials={2}
                                   size={30}
                                 />
-                                <div className="">
+                             
                                   <div className="text-sm font-medium text-gray-900">
                                     {customer.name}
                                   </div>
                                   <div className="text-sm text-gray-500">
                                     {customer.no_id}
                                   </div>
-                                </div>
+                                
                               </div>
                             </td>
-                            {/*
-                              <td className="py-2 whitespace-nowrap">
-                                <div className="text-sm text-gray-900">
-                                  0{customer.no_tel}
-                                </div>
-                                <div className="text-sm text-gray-500">
-                                  {customer.gender == "L" ? (
-                                    <p>Male</p>
-                                  ) : (
-                                    <>Female</>
-                                  )}
-                                </div>
-                              </td>
-                              */}
+                         
                             <td className="py-2 whitespace-nowrap">
                               <button
                                 onClick={() => {

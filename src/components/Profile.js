@@ -133,7 +133,7 @@ export default function Profile({ user }) {
             {user.typeuser === "Admin" ? (
               <>
                 <div className="bg-white flex flex-col items-center justify-center w-32 h-28 drop-shadow-sm">
-                  <span className="text-sm text-blue-800">Record </span>
+                  <span className="text-sm text-blue-800">Transaction </span>
                   <button
                     on
                     className="px-2 py-y rounded-xl"
@@ -162,7 +162,7 @@ export default function Profile({ user }) {
                 </div>
 
                 <div className="bg-white flex flex-col items-center justify-center w-32 h-28 shadow-sm">
-                  <span className="text-sm text-blue-800">Transaction </span>
+                  <span className="text-sm text-blue-800">Validation </span>
                   <button
                     className="px-2 py-y rounded-xl"
                     onClick={onChangeTransaction}

@@ -126,7 +126,9 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
         setLoading(false);
       });
   };
-  console.log("transaksi", currentTrans);
+
+  
+ // console.log("transaksi", currentTrans);
   // console.log('ini data asd', idtrans);
   return (
     <React.Fragment>
@@ -143,7 +145,6 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
             ) : null}
 
             <div>{isEdit ? <p>{currentTrans?.meteran}</p> : null}</div>
-
             <div className="py-2 flex relative">
               <div className="w-2/3">
                 <label
