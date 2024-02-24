@@ -80,13 +80,13 @@ export default function ListTransaction({ user }) {
     getData(1, 6, e);
   };
   const onChange = (data, idtrans) => {
-    console.log("this one", idtrans);
+    //console.log("this one", idtrans);
     setCurrentUser(data);
     setCurrentIdtrans(idtrans);
     setIsupdate(1);
   };
 
-  console.log("data ini", datatrans);
+  //console.log("data ini", datatrans);
   return (
     <div className="realtive">
       {isUpdate === 1 ? (
