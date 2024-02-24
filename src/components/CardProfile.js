@@ -13,7 +13,7 @@ import { FaGenderless } from "react-icons/fa";
 import { FaMale } from "react-icons/fa";
 import { FaFemale } from "react-icons/fa";
 import { CiPhone } from "react-icons/ci";
-
+import ReactWhatsapp from 'react-whatsapp';
 const CardProfile = ({ id, user, onChangeBack, setIsupdate }) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
@@ -100,8 +100,9 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate }) => {
                           Phone number
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex gap-1 items-center">
-                          <FaWhatsapp  />{" "}
+                        <ReactWhatsapp className="flex gap-1" number="+6282333899903" message="Hello World!!!"><FaWhatsapp  />{" "}
                           <p>0{data.no_tel}</p>
+                        </ReactWhatsapp>
                         </dd>
                       </div>
 
