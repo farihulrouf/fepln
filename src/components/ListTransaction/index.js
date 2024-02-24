@@ -196,7 +196,7 @@ export default function ListTransaction({ user }) {
                         })}
                         <div>
                           <p className="text-sm px-2 py-2">
-                            Total {datatrans[0].metaData[0].totalDocuments}
+                            Total {datatrans[0].metaData[0]?.totalDocuments}
                           </p>
                         </div>
                       </React.Fragment>
@@ -215,7 +215,7 @@ export default function ListTransaction({ user }) {
                 }
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={3}
-                pageCount={datatrans[0].metaData[0].totalPages}
+                pageCount={datatrans[0].metaData[0]?.totalPages}
                 previousLabel={
                   <span className="h-10 flex items-center justify-center bg-lightgray rounded-md">
                     <FaChevronLeft />

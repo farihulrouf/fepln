@@ -38,7 +38,6 @@ export default function Customers({ user, isBoolean }) {
     ServiceApi.getListCustomers(page, limit, s)
       .then((response) => {
         setCustomers(response.data.customer);
-        //console.log(response.data.customer);
         setLoading(false);
       })
       .catch((e) => {
@@ -252,7 +251,7 @@ export default function Customers({ user, isBoolean }) {
                       })}
                       <div>
                         <p className="text-sm px-2 py-2">
-                          Total {customer[0].metaData[0].totalDocuments}
+                          Total {customer[0].metaData[0]?.totalDocuments}
                         </p>
                       </div>
                     </React.Fragment>
@@ -271,7 +270,7 @@ export default function Customers({ user, isBoolean }) {
               }
               onPageChange={handlePageClick}
               pageRangeDisplayed={3}
-              pageCount={customer[0].metaData[0].totalPages}
+              pageCount={customer[0].metaData[0]?.totalPages}
               previousLabel={
                 <span className="h-10 flex items-center justify-center bg-lightgray rounded-md">
                   <FaChevronLeft />
