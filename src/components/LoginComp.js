@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 //  const history = useHistory();
+import { FaHandHoldingWater } from "react-icons/fa";
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -93,11 +94,10 @@ const LoginComp = () => {
           ) : (
             <>
               <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <img
-                  className="mx-auto h-10 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                  alt="Your Company"
-                />
+                <div className="w-full flex justify-center">
+                <FaHandHoldingWater size={45} className="text-blue-600" />
+
+                </div>
                 <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                   Sign in to your account
                 </h2>

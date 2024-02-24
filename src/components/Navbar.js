@@ -67,7 +67,7 @@ const Navbar = ({ user, logOut }) => {
           className="absolute right-4 top-4 cursor-pointer"
         />
         <div className="flex gap-2 ml-3 mt-4">
-          <FaHouseFloodWater size={24} className="text-blue-800" />
+        <FaHandHoldingWater size={24} className="" />
           <p>Hipamm Wotan</p>
         </div>
         <nav>

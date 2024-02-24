@@ -11,6 +11,8 @@ import Navbar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
+//import { Bluetooth, BluetoothRemoteGATTCharacteristic } from "./print/webbluetooth"
+
 function App() {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);

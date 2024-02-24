@@ -146,7 +146,7 @@ export default function ListTransaction({ user }) {
                                 <div className="flex items-center">
                                   <div className="">
                                     <div className="text-sm font-medium text-gray-900">
-                                      {trans.customers[0].name}
+                                      {trans.customers[0]?.name}
                                     </div>
                                     <div className="text-sm text-gray-500">
                                       INV: {trans.noinv}
