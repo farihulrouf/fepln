@@ -102,7 +102,7 @@ const Scanner = (props) => {
     };
   
     return (
-      <div className="py-2">
+      <div className="py-0">
         <div id="reader" width="100%"></div>
         {/*
         <button onClick={getCameras}>Get List of cameras</button>
