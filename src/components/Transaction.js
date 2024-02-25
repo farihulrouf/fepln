@@ -105,6 +105,8 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     } else {
       onChangeEdit();
     }
+    setIsSave(false);
+
   };
   const onChangeSave = () => {
     //console.log("cek data");
