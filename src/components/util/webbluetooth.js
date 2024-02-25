@@ -1,26 +1,29 @@
-// types.js
+// Bluetooth Types
+const BluetoothServiceUUID = Number | String;
+const BluetoothCharacteristicUUID = Number | String;
+const BluetoothDescriptorUUID = Number | String;
 
-export const BluetoothServiceUUID = Number | String;
-export const BluetoothCharacteristicUUID = Number | String;
-export const BluetoothDescriptorUUID = Number | String;
+const BluetoothManufacturerData = new Map();
+const BluetoothServiceData = new Map();
 
-export const BluetoothManufacturerData = new Map();
-export const BluetoothServiceData = new Map();
-
-export const BluetoothDataFilter = {
+// Bluetooth Data Filter Interfaces
+const BluetoothDataFilter = {
   dataPrefix: undefined,
   mask: undefined,
 };
 
-export const BluetoothManufacturerDataFilter = {
-  companyIdentifier: 0,
+const BluetoothManufacturerDataFilter = {
+  ...BluetoothDataFilter,
+  companyIdentifier: Number,
 };
 
-export const BluetoothServiceDataFilter = {
-  service: undefined,
+const BluetoothServiceDataFilter = {
+  ...BluetoothDataFilter,
+  service: BluetoothServiceUUID,
 };
 
-export const BluetoothLEScanFilter = {
+// Bluetooth LE Scan Interfaces
+const BluetoothLEScanFilter = {
   name: undefined,
   namePrefix: undefined,
   services: undefined,
@@ -28,18 +31,20 @@ export const BluetoothLEScanFilter = {
   serviceData: undefined,
 };
 
-export const BluetoothLEScanOptions = {
+const BluetoothLEScanOptions = {
   filters: undefined,
   keepRepeatedDevices: undefined,
   acceptAllAdvertisements: undefined,
 };
 
-export const BluetoothLEScan = {
+const BluetoothLEScan = {
+  ...BluetoothLEScanOptions,
   active: false,
   stop: () => {},
 };
 
-export const RequestDeviceOptions = {
+// Request Device Options
+const RequestDeviceOptions = {
   filters: [],
   optionalServices: undefined,
   optionalManufacturerData: undefined,
@@ -49,26 +54,29 @@ export const RequestDeviceOptions = {
   optionalManufacturerData: undefined,
 };
 
-export const BluetoothAdvertisingEvent = {
-  device: {},
+// Bluetooth Advertising Event
+const BluetoothAdvertisingEvent = {
+  device: undefined,
   uuids: [],
-  manufacturerData: {},
-  serviceData: {},
+  manufacturerData: new Map(),
+  serviceData: new Map(),
   name: undefined,
   appearance: undefined,
   rssi: undefined,
   txPower: undefined,
 };
 
-export const BluetoothRemoteGATTDescriptor = {
-  characteristic: {},
-  uuid: '',
+// Bluetooth Remote GATT Descriptor
+const BluetoothRemoteGATTDescriptor = {
+  characteristic: undefined,
+  uuid: String,
   value: undefined,
   readValue: async () => new DataView(),
   writeValue: async (value) => {},
 };
 
-export const BluetoothCharacteristicProperties = {
+// Bluetooth Characteristic Properties
+const BluetoothCharacteristicProperties = {
   broadcast: false,
   read: false,
   writeWithoutResponse: false,
@@ -80,13 +88,15 @@ export const BluetoothCharacteristicProperties = {
   writableAuxiliaries: false,
 };
 
-export const CharacteristicEventHandlers = {
+// Characteristic Event Handlers
+const CharacteristicEventHandlers = {
   oncharacteristicvaluechanged: (ev) => {},
 };
 
-export const BluetoothRemoteGATTCharacteristic = {
-  service: {},
-  uuid: '',
+// Bluetooth Remote GATT Characteristic
+const BluetoothRemoteGATTCharacteristic = {
+  service: undefined,
+  uuid: String,
   properties: BluetoothCharacteristicProperties,
   value: undefined,
   getDescriptor: async (descriptor) => BluetoothRemoteGATTDescriptor,
@@ -100,15 +110,17 @@ export const BluetoothRemoteGATTCharacteristic = {
   addEventListener: (type, listener, useCapture) => {},
 };
 
-export const ServiceEventHandlers = {
+// Service Event Handlers
+const ServiceEventHandlers = {
   onserviceadded: (ev) => {},
   onservicechanged: (ev) => {},
   onserviceremoved: (ev) => {},
 };
 
-export const BluetoothRemoteGATTService = {
-  device: {},
-  uuid: '',
+// Bluetooth Remote GATT Service
+const BluetoothRemoteGATTService = {
+  device: undefined,
+  uuid: String,
   isPrimary: false,
   getCharacteristic: async (characteristic) => BluetoothRemoteGATTCharacteristic,
   getCharacteristics: async (characteristic) => [BluetoothRemoteGATTCharacteristic],
@@ -117,8 +129,9 @@ export const BluetoothRemoteGATTService = {
   addEventListener: (type, listener, useCapture) => {},
 };
 
-export const BluetoothRemoteGATTServer = {
-  device: {},
+// Bluetooth Remote GATT Server
+const BluetoothRemoteGATTServer = {
+  device: undefined,
   connected: false,
   connect: async () => BluetoothRemoteGATTServer,
   disconnect: () => {},
@@ -126,17 +139,20 @@ export const BluetoothRemoteGATTServer = {
   getPrimaryServices: async (service) => [BluetoothRemoteGATTService],
 };
 
-export const BluetoothDeviceEventHandlers = {
+// Bluetooth Device Event Handlers
+const BluetoothDeviceEventHandlers = {
   onadvertisementreceived: (ev) => {},
   ongattserverdisconnected: (ev) => {},
 };
 
-export const WatchAdvertisementsOptions = {
+// Watch Advertisements Options
+const WatchAdvertisementsOptions = {
   signal: undefined,
 };
 
-export const BluetoothDevice = {
-  id: '',
+// Bluetooth Device
+const BluetoothDevice = {
+  id: String,
   name: undefined,
   gatt: undefined,
   forget: async () => {},
@@ -146,7 +162,8 @@ export const BluetoothDevice = {
   addEventListener: (type, listener, useCapture) => {},
 };
 
-export const Bluetooth = {
+// Bluetooth API
+const Bluetooth = {
   getDevices: async () => [BluetoothDevice],
   getAvailability: async () => false,
   onavailabilitychanged: (ev) => {},
@@ -156,6 +173,7 @@ export const Bluetooth = {
   addEventListener: (type, listener, useCapture) => {},
 };
 
-export const Navigator = {
+// Navigator Interface
+const Navigator = {
   bluetooth: Bluetooth,
 };

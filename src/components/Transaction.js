@@ -4,6 +4,11 @@ import Spinner from "./Spinner";
 import moment from "moment";
 import AlertMessage from "./AlertMessage";
 import { MdModeEditOutline } from "react-icons/md";
+import EscPosEncoder from "@manhnd/esc-pos-encoder";
+import {
+  Bluetooth,
+  BluetoothRemoteGATTCharacteristic,
+} from "./util/webbluetooth";
 const Transaction = ({ idtrans, user, setIsupdate }) => {
   // console.log(customer);
   const [kubik, setKubik] = useState(1);
@@ -127,8 +132,77 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       });
   };
 
-  
- // console.log("transaksi", currentTrans);
+  const InvoiceColumn = [
+    { width: 5, marginRight: 2, align: "left" },
+    { width: 10, marginRight: 2, align: "center" },
+    { width: 10, align: "right" },
+  ];
+
+  const InvoiceColumnHeader = ["QTY", "Item", "Total"];
+
+  const getPrintDeviceList = async () => {
+    const nvg = navigator;
+    if (nvg && nvg.bluetooth) {
+      return await nvg.bluetooth.requestDevice({
+        filters: [
+          {
+            services: ["000018f0-0000-1000-8000-00805f9b34fb"],
+          },
+        ],
+      });
+    } else {
+      throw new Error("Navigator / Bluetooth is not found!");
+    }
+  };
+
+  const sendPrintData = async (characteristic) => {
+    if (characteristic) {
+      console.log("Cache the characteristic", characteristic);
+      const data = [
+        InvoiceColumnHeader,
+        ["1", "Item 1123123", "10000"],
+        ["2", "Item 1333", "100000"],
+        ["Total", "", "900000"],
+      ];
+      let encoder = new EscPosEncoder();
+      let result = encoder.table(InvoiceColumn, data).encode();
+      // Print text
+      return await characteristic.writeValue(result);
+    } else {
+      throw new Error("characteristic not found!");
+    }
+  };
+
+  const handlePrint = async () => {
+    try {
+      const deviceList = await getPrintDeviceList();
+      const gatt = await deviceList?.gatt?.connect();
+      if (gatt) {
+        if (typeof gatt.getPrimaryService === "function") {
+          const service = await gatt.getPrimaryService(
+            "000018f0-0000-1000-8000-00805f9b34fb"
+          );
+          if (service) {
+            const characteristic = await service.getCharacteristic(
+              "00002af1-0000-1000-8000-00805f9b34fb"
+            );
+            const response = await sendPrintData(characteristic);
+            console.log("print result:", response);
+          } else {
+            console.log("service not found!");
+          }
+        } else {
+          console.log("gatt.getPrimaryService not found!");
+        }
+      } else {
+        console.log("GATT Device not found!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // console.log("transaksi", currentTrans);
   // console.log('ini data asd', idtrans);
   return (
     <React.Fragment>
@@ -174,7 +248,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
             {user.typeuser === "Admin" ? (
               <div className="flex justify-end py-4">
                 {currentTrans?.status && isSave ? (
-                  <button className="px-3 py-1 bg-blue-600 rounded-sm text-white">
+                  <button className="px-3 py-1 bg-blue-600 rounded-sm text-white" onClick={handlePrint}>
                     Print
                   </button>
                 ) : (
