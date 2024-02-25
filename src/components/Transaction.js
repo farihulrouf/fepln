@@ -163,14 +163,13 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       .align("center")
       .line("HIPAMM WOTAN")
       .align("left")
-      .line("https://hippamwotan.com")
       .line(`No INV: ${currentTrans.noinv}`)
       .line(`Kasir   : Eli`)
-      .line(`Tanggal   : ${new Date().toTimeString()}`)
+      .line(`Tanggal   : ${moment(new Date()).format("MM/DD/YYYY HH:mm:ss")}`)
       .line(`Sub total : ${Number(bayar)}`)
-      .line(`TOTAL     : ${Number(1111111)}`)
+      .line(`TOTAL     : ${Number(bayar)}`)
       .newline();
-
+    //moment(new Date()).format("MM/DD/YYYY HH:mm:ss")
     basePrint
       .table(InvoiceColumn, [
         InvoiceColumnHeader,
@@ -179,7 +178,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       .newline();
     basePrint
       .newline()
-      .line("Untuk cek pesanan kamu, bisa melakukan scan disini");
+      .line("Untuk cek  tagihan kamu, bisa melakukan scan disini");
     basePrint.qrcode("Guest", 1, 2, "q");
 
     basePrint.newline().line("Terima Kasih").newline();
