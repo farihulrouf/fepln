@@ -168,9 +168,10 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     let basePrint = invoiceEncoder
       .align("center")
       .line("HIPPAM WOTAN")
+      .newline()
       .align("left")
-      .line(`No INV: ${currentTrans.noinv}`)
-      .line(`Kasir   : Eli`)
+      .line(`No INV    : ${currentTrans.noinv}`)
+      .line(`Kasir     : Eli`)
       .line(`Tanggal   : ${moment(new Date()).format("MM/DD/YYYY HH:mm:ss")}`)
       .line(`Sub total : ${Number(bayar)}`)
       .line(`TOTAL     : ${Number(bayar)}`)
