@@ -20,6 +20,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
   const [price, setPrice] = useState(null);
   const [customer, setCustomer] = useState(null);
   const [isSave, setIsSave] = useState(true);
+  const [isPrint, setIprint] = useState(true)
   const dataTrans = "Transaction";
   const [isEdit, setIsEdit] = useState(false);
   // console.log('dara dari', idtrans)
@@ -47,6 +48,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     ServiceApi.getTransactions(idtrans)
       .then((response) => {
         setCurrentTrans(response.data);
+        setIprint(response.data.status)
         setBayar(response.data.amount);
         setKubik(response.data.last_meteran);
         setLoading(false);
@@ -92,6 +94,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       .then((response) => {
         setLoading(false);
         setIsSave(false);
+        setIprint(true)
         //setIsupdate(0)
       })
       .catch((e) => {
@@ -105,7 +108,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     } else {
       onChangeEdit();
     }
-    setIsSave(false);
+    //setIsSave(false);
 
   };
   const onChangeSave = () => {
@@ -122,6 +125,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       meteran: kubik,
     };
 
+    setIsSave(false)
     setLoading(true);
     ServiceApi.createTransactions(dataTransaction)
       .then((response) => {
@@ -289,7 +293,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
             </div>
             {user.typeuser === "Admin" ? (
               <div className="flex justify-end py-4">
-                {currentTrans?.status && isSave ? (
+                {isPrint === true ? (
                   <button
                     className="px-3 py-1 bg-blue-600 rounded-sm text-white"
                     onClick={handlePrint}
