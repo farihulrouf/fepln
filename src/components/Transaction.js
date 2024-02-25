@@ -138,7 +138,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     { width: 10, align: "right" },
   ];
 
-  const InvoiceColumnHeader = ["QTY", "Item", "Total"];
+  const InvoiceColumnHeader = ["1", "Cubic", "Total"];
 
   const getPrintDeviceList = async () => {
     const nvg = navigator;
@@ -161,7 +161,8 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       const data = [
         InvoiceColumnHeader,
         ["1", kubik.toString(), bayar.toString()],
-        ["Total", "", "900000"],
+        ["","",""]
+       
       ];
       let encoder = new EscPosEncoder();
       let result = encoder.table(InvoiceColumn, data).encode();
