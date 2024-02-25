@@ -133,8 +133,8 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
   };
 
   const InvoiceColumn = [
-    { width: 5, marginRight: 2, align: "left" },
-    { width: 10, marginRight: 2, align: "center" },
+    { width: 10, marginRight: 2, align: "left" },
+    { width: 5, marginRight: 2, align: "center" },
     { width: 10, align: "right" },
   ];
 
