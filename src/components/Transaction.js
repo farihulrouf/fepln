@@ -138,7 +138,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     { width: 10, align: "right" },
   ];
 
-  const InvoiceColumnHeader = ["1", "Cubic", "Total"];
+  const InvoiceColumnHeader = ["date", "Cubic", "Total"];
 
   const getPrintDeviceList = async () => {
     const nvg = navigator;
@@ -160,9 +160,13 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       console.log("Cache the characteristic", characteristic);
       const data = [
         InvoiceColumnHeader,
-        ["1", kubik.toString(), bayar.toString()],
-        ["","",""]
-       
+        ["****", "****", "****"],
+        [
+          moment(new Date()).format("MM/DD/YYYY"),
+          kubik.toString(),
+          bayar.toString(),
+        ],
+        ["****", "****", "****"],
       ];
       let encoder = new EscPosEncoder();
       let result = encoder.table(InvoiceColumn, data).encode();
@@ -248,7 +252,10 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
             {user.typeuser === "Admin" ? (
               <div className="flex justify-end py-4">
                 {currentTrans?.status && isSave ? (
-                  <button className="px-3 py-1 bg-blue-600 rounded-sm text-white" onClick={handlePrint}>
+                  <button
+                    className="px-3 py-1 bg-blue-600 rounded-sm text-white"
+                    onClick={handlePrint}
+                  >
                     Print
                   </button>
                 ) : (
