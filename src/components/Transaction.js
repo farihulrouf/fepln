@@ -160,6 +160,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       console.log("Cache the characteristic", characteristic);
       const data = [
         InvoiceColumnHeader,
+        ["", "Hippam Wotan", ""],
         [currentTrans.noinv.toString(), "", currentTrans.no_id.toString()],
         [
           moment(new Date()).format("MM/DD/YYYY HH:mm:ss"),
