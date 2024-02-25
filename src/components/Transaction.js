@@ -140,7 +140,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     { width: 10, align: "right" },
   ];
 
-  const InvoiceColumnHeader = ["QTY", "Item", "Total"];
+  const InvoiceColumnHeader = ["No", "Meteran", "Total"];
 
   const getPrintDeviceList = async () => {
     const nvg = navigator;
@@ -161,32 +161,23 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     let invoiceEncoder = new EscPosEncoder();
     let basePrint = invoiceEncoder
       .align("center")
-      .line("CODE STORE")
+      .line("HIPAMM WOTAN")
       .align("left")
-      .line("https://codesandbox.io/")
-      .line(`No Trx: 1234111`)
-      .line(`Kasir   : Zeta`)
-      .line(`Customer: Guest`)
+      .line("https://hippamwotan.com")
+      .line(`No INV: ${currentTrans.noinv}`)
+      .line(`Kasir   : Eli`)
       .line(`Tanggal   : ${new Date().toTimeString()}`)
-      .line(`Jam       : ${new Date().getHours()}`)
-      .line(`Sub total : ${Number(111111)}`)
-      .line(`Service   : ${Number(1)}`)
-      .line(`Tax       : ${Number(12)}`)
+      .line(`Sub total : ${Number(bayar)}`)
       .line(`TOTAL     : ${Number(1111111)}`)
       .newline();
 
     basePrint
       .table(InvoiceColumn, [
         InvoiceColumnHeader,
-        ["1", "Green Tea", "11.000"],
-        ["1", "White Tea", "13.000"],
-        ["1", "Blue Tea", "12.000"],
+        ["1", kubik.toString(), bayar.toString()],
       ])
       .newline();
     basePrint
-      .newline()
-      .line("Nomor Antrian")
-      .line("1")
       .newline()
       .line("Untuk cek pesanan kamu, bisa melakukan scan disini");
     basePrint.qrcode("Guest", 1, 2, "q");
