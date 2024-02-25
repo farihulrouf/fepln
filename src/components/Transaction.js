@@ -160,8 +160,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       console.log("Cache the characteristic", characteristic);
       const data = [
         InvoiceColumnHeader,
-        ["1", "Item 1123123", "10000"],
-        ["2", "Item 1333", "100000"],
+        ["1", kubik.toString(), bayar.toString()],
         ["Total", "", "900000"],
       ];
       let encoder = new EscPosEncoder();
