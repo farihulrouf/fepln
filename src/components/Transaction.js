@@ -160,9 +160,9 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       console.log("Cache the characteristic", characteristic);
       const data = [
         InvoiceColumnHeader,
-        ["****", "****", "****"],
+        [currentTrans.noinv.toString(), "", currentTrans.no_id.toString()],
         [
-          moment(new Date()).format("MM/DD/YYYY"),
+          moment(new Date()).format("MM/DD/YYYY HH:mm:ss"),
           kubik.toString(),
           bayar.toString(),
         ],
@@ -206,7 +206,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     }
   };
 
-  // console.log("transaksi", currentTrans);
+   console.log("transaksi", currentTrans);
   // console.log('ini data asd', idtrans);
   return (
     <React.Fragment>
