@@ -167,7 +167,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     let invoiceEncoder = new EscPosEncoder();
     let basePrint = invoiceEncoder
       .align("center")
-      .line("HIPAMM WOTAN")
+      .line("HIPPAM WOTAN")
       .align("left")
       .line(`No INV: ${currentTrans.noinv}`)
       .line(`Kasir   : Eli`)
