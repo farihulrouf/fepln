@@ -188,7 +188,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       .line(`No INV    : ${currentTrans.noinv}`)
       .line(`Nama      : ${data.name}`)
       .line(`Tanggal   : ${moment(new Date()).format("MM/DD/YYYY HH:mm:ss")}`)
-      .line(`Sub total : ${Number(bayar)}`)
+      .newline()
       .line(`TOTAL     : ${Number(bayar)}`)
       .newline();
     //moment(new Date()).format("MM/DD/YYYY HH:mm:ss")
