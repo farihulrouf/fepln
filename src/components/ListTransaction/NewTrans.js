@@ -18,7 +18,7 @@ import { CiPhone } from "react-icons/ci";
 import { BsThermometerSun } from "react-icons/bs";
 import { CiSaveUp2 } from "react-icons/ci";
 import { IoPrintOutline } from "react-icons/io5";
-import Barcode from 'react-barcode';
+import Barcode from "react-barcode";
 import { MdOutlineVerified } from "react-icons/md";
 
 const NewTrans = ({ customerData, price, transaction }) => {
@@ -29,7 +29,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
   const [kubik, setKubik] = useState(null);
   const [nilai, setNilai] = useState(0);
   const [isSave, setIsSave] = useState(false);
-  const dataTrans = 'Transaction'
+  const dataTrans = "Transaction";
   useEffect(() => {
     // getTransactionDetail(customerData.no_id)
   }, []);
@@ -59,47 +59,43 @@ const NewTrans = ({ customerData, price, transaction }) => {
       setBayar((e.target.value - 0) * price[0].harga);
       setNilai(e.target.value - 0);
     } else {
-       var x = 0
-       var harga_ = 0
-       x = e.target.value - transaction.meteran
-       var harga_normal = 0
-       var harga_update = 0
-      if(x <= price[0].maximum ) {
-        harga_ = x * price[0].harga
+      var x = 0;
+      var harga_ = 0;
+      x = e.target.value - transaction.meteran;
+      var harga_normal = 0;
+      var harga_update = 0;
+      if (x <= price[0].maximum) {
+        harga_ = x * price[0].harga;
         //console.log('nilai value', harga_, 'dari harga', price[0].harga)
-        setBayar(harga_)
-      }
-      else if( x > price[0].maximum && x <= price[1].maximum ) {
-       // console.log('cek data lagi', x)   
-        const price_ = x - price[0].maximum
+        setBayar(harga_);
+      } else if (x > price[0].maximum && x <= price[1].maximum) {
+        // console.log('cek data lagi', x)
+        const price_ = x - price[0].maximum;
         //console.log('cek lagi', price_ * price[1].harga)
-        harga_normal = price[0].harga * (x - price_)
-        harga_update = price_ * price[1].harga
+        harga_normal = price[0].harga * (x - price_);
+        harga_update = price_ * price[1].harga;
         //console.log("ini harga update", price_ * price[1].harga)
         //console.log(harga_normal ,"ini harga normal")
         //console.log('harga total', harga_update+harga_normal)
-        setBayar(harga_normal+harga_update)
-
-      }
-      else if(x > price[1].maximum ) {
-        var harga_akhir = 0
-        console.log('harga akhir')
-        const price_ = x - price[1].maximum
-        harga_normal = price_ * price[2].harga
+        setBayar(harga_normal + harga_update);
+      } else if (x > price[1].maximum) {
+        var harga_akhir = 0;
+        console.log("harga akhir");
+        const price_ = x - price[1].maximum;
+        harga_normal = price_ * price[2].harga;
 
         //console.log('cek data',harga_normal)
-       // console.log('harga sisa',price_)
+        // console.log('harga sisa',price_)
         //console.log(price_ * price[2].harga,"masuk harga") //harga_3
-        harga_update = ((x - price_) - price[0].maximum) * price[1].harga
-        harga_akhir = (x - ((x - price_) - price[0].maximum) - price_) * price[0].harga
-       // console.log(harga_akhir, harga_update, harga_normal,"cek update")
+        harga_update = (x - price_ - price[0].maximum) * price[1].harga;
+        harga_akhir =
+          (x - (x - price_ - price[0].maximum) - price_) * price[0].harga;
+        // console.log(harga_akhir, harga_update, harga_normal,"cek update")
         //console.log(harga_akhir+harga_normal+harga_update,"ini harga_awal")
-        setBayar(harga_akhir+harga_normal+harga_update)
-      
+        setBayar(harga_akhir + harga_normal + harga_update);
       }
       setNilai(e.target.value - transaction.meteran);
     }
-   
   };
   //console.log('test data',transaction)
   const saveData = () => {
@@ -137,17 +133,15 @@ const NewTrans = ({ customerData, price, transaction }) => {
       ) : (
         <>
           {loading ? (
-             <Spinner />
+            <Spinner />
           ) : (
             <>
               <button className="absolute top-[50px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center">
                 <IoChevronBack />
                 QRCode
               </button>
-              {isSave ? <AlertMessage data={dataTrans} /> : (
-                null
-              )}
-            
+              {isSave ? <AlertMessage data={dataTrans} /> : null}
+
               <div className="py-2 flex items-center space-x-2 relative">
                 <Avatar
                   className="rounded-full"
@@ -163,25 +157,37 @@ const NewTrans = ({ customerData, price, transaction }) => {
                     Active <MdOutlineVerified />
                   </p>
                 </div>
-                <Barcode height={20} value={customerData.no_id}/>
+                <Barcode height={20} value={customerData.no_id} />
               </div>
-              
+
               <div className="border-t border-gray-200 py-2 sm:p-0">
                 <dl className="sm:divide-y sm:divide-gray-200">
                   <div className="py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <div className="flex items-center justify-between">
                       <div>
                         <dt className="text-sm font-medium text-gray-500 flex gap-1 items-center">
-                          <FaGenderless />Gender
+                          <FaGenderless />
+                          Gender
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                          {customerData.gender === "L" ? <p className="flex gap-1 items-center"><FaMale />Male</p> : <p className="flex gap-1 items-center"><FaFemale />Female</p>}
+                          {customerData.gender === "L" ? (
+                            <p className="flex gap-1 items-center">
+                              <FaMale />
+                              Male
+                            </p>
+                          ) : (
+                            <p className="flex gap-1 items-center">
+                              <FaFemale />
+                              Female
+                            </p>
+                          )}
                         </dd>
                       </div>
 
                       <div>
                         <dt className="text-sm font-medium text-gray-500 flex items-center gap-1">
-                          <CiPhone />Phone number
+                          <CiPhone />
+                          Phone number
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex gap-1 items-center">
                           <FaWhatsapp className="" />{" "}
@@ -198,8 +204,9 @@ const NewTrans = ({ customerData, price, transaction }) => {
                   </div>
                 </dl>
               </div>
+              {/*
               <div className="flex justify-between">
-                 <div className="w-1/3">
+                <div className="w-1/3">
                   <label
                     htmlFor="quantity-input"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white flex items-center gap-1"
@@ -207,7 +214,6 @@ const NewTrans = ({ customerData, price, transaction }) => {
                     <BsThermometerSun /> Cubic:
                   </label>
                   <div className="relative flex items-center w-16">
-                   
                     <input
                       type="number"
                       id="quantity-input"
@@ -219,31 +225,49 @@ const NewTrans = ({ customerData, price, transaction }) => {
                       placeholder="999"
                       required
                     />
-                  
                   </div>
                 </div>
-                <div className="w-2/3 py-2 flex gap-2 justify-between items-center">
-                <h2 className="text-lg flex gap-1 items-center"><BsSpeedometer />Last used</h2>
-                <h2 className="text-3xl">
-                  {transaction ? <> {transaction.meteran}</> : 0}
-                </h2>
+                
               </div>
-              </div>          
-              <div className="py-2 flex justify-end items-center">
-                <h2 className="text-3xl">{nilai}</h2>
+              */}
+              <div className="mt-2 mb-2 border rounded-lg flex justify-between">
+                <div className="text-white w-24 bg-blue-600 rounded-l-lg">
+                      <p className="text-[10px] px-2">Last Month</p>
+                      <div className="pl-2 flex items-center gap-1">
+                        <BsSpeedometer />{transaction?.meteran}
+                      </div>
+                </div>
+                <input type="number"  onChange={onChanData}
+                      defaultValue={kubik}  id="quantity-input" placeholder="999" className="border-none w-24" />
+                <div className="text-white w-24 bg-pink-500 rounded-r-lg">
+                      <p className="text-[10px] px-2 text-right">Now</p>
+                      <div className="pr-2 flex justify-end items-center gap-1">
+                      {nilai}<BsThermometerSun />
+                      </div>
+                </div>
               </div>
-              <div className="py-4 mb-4 flex justify-between text-lg">
-                 <p>Total</p>
+
+           
+              <div className="py-4 px-1 mb-4 flex justify-between text-lg">
+                <p>Total</p>
                 <p> Rp {bayar}</p>
               </div>
-              
+
               {isSave ? null : (
                 <div className="flex justify-end py-2">
                   <button
                     className="px-2 py-1 bg-blue-500 rounded-sm text-white flex items-center gap-1"
                     onClick={saveData}
                   >
-                    {loading ? <>Loading</> : <> <CiSaveUp2 />Save</>}
+                    {loading ? (
+                      <>Loading</>
+                    ) : (
+                      <>
+                        {" "}
+                        <CiSaveUp2 />
+                        Save
+                      </>
+                    )}
                   </button>
                 </div>
               )}
