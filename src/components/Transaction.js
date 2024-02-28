@@ -8,6 +8,7 @@ import EscPosEncoder from "@manhnd/esc-pos-encoder";
 import { IoIosPrint } from "react-icons/io";
 import ReactWhatsapp from "react-whatsapp";
 import { FaWhatsapp } from "react-icons/fa";
+import decodeUriComponent from 'decode-uri-component';
 
 import {
   Bluetooth,
@@ -314,7 +315,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     if (currentTrans.meteran <= price[0].maximum) {
       meteran_x = currentTrans.meteran;
       harga_x = meteran_x * price[0].harga;
-      console.log("harga normal", currentTrans.meteran * price[0].harga);
+      //console.log("harga normal", currentTrans.meteran * price[0].harga);
     } else if (
       currentTrans.meteran > price[0].maximum &&
       currentTrans.meteran < price[1].maximum
@@ -392,8 +393,9 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       console.log(error);
     }
   };
-  const number_phone = "0"+data?.no_tel.toString()
-  console.log(number_phone)
+ // const number_phone = "0"+data?.no_tel.toString()
+  //console.log(number_phone)
+ // const text_whatsapp = `Anggota%20HIPPAM%20WOTAN%20Yth%2C%20`+`${data?.name}`+`%20%0A%20%0ATerima%20kasih%2C%20Anda%20telah%20membayar%20Tagihan%0ARp`+`${(currentTrans?.amount+5000)}`+`.%0A%0A%0A%0A%28Pesan%20ini%20dikirim%20otomatis%20oleh%20sistem%20mohon%20tidak%20membalas%20pesan%20ini%29` 
   return (
     <React.Fragment>
       <div className="relative">
@@ -442,9 +444,9 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                 {isPrint === true ? (
                   <div className="flex space-x-4">
                     <ReactWhatsapp
-                   
-                      number={`${data?.no_tel}`}
-                      message={`hi ${data?.name} your bill ${currentTrans?.amount+5000}`}
+                     // encodeURIComponent
+                      number={`0${data?.no_tel}`}
+                      message={`${decodeUriComponent(`Anggota%20HIPPAM%20WOTAN%20Yth%2C%20`+`${data?.name}`+`%20%0A%20%0ATerima%20kasih%2C%20Anda%20telah%20membayar%20Tagihan%0ARp`+`${currentTrans?.amount+5000}`+`.%0A%0A%0A%0A%28Pesan%20ini%20dikirim%20otomatis%20oleh%20sistem%20mohon%20tidak%20membalas%20pesan%20ini%29`)}`}
                     >
                       <button
                         className="px-2 py-1 bg-teal-600 rounded-sm text-white flex gap-1 items-center"
