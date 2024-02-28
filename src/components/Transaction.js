@@ -202,7 +202,11 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       .line(`Nama      : ${data.name}`)
       .line(`Tanggal   : ${moment(new Date()).format("MM/DD/YYYY HH:mm:ss")}`)
       .line(`Meteran   : ${currentTrans.meteran}`)
-      .line(`TOTAL     : ${Number(bayar).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`)
+      .line(
+        `TOTAL     : ${Number(bayar)
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
+      )
       .newline();
     //moment(new Date()).format("MM/DD/YYYY HH:mm:ss")
     {
@@ -215,58 +219,67 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
 
   */
     }
-    if(harga_z === 0 && harga_y != 0){
+    if (harga_z === 0 && harga_y != 0) {
       basePrint
-      .table(InvoiceColumn, [
-        InvoiceColumnHeader,
-        [
-          meteran_x.toString(),
-          (harga_x / meteran_x).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-          harga_x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-        ],
-        [
-          meteran_y.toString(),
-          (harga_y / meteran_y).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-          harga_y.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-        ]
-      ])
-      .newline();
-    }
-    else if (harga_y === 0 && harga_z === 0 ) {
+        .table(InvoiceColumn, [
+          InvoiceColumnHeader,
+          [
+            meteran_x.toString(),
+            (harga_x / meteran_x)
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+            harga_x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+          ],
+          [
+            meteran_y.toString(),
+            (harga_y / meteran_y)
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+            harga_y.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+          ],
+        ])
+        .newline();
+    } else if (harga_y === 0 && harga_z === 0) {
       basePrint
-      .table(InvoiceColumn, [
-        InvoiceColumnHeader,
-        [
-          meteran_x.toString(),
-          (harga_x / meteran_x).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-          harga_x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-        ]
-      ])
-      .newline();
-    }
-    else {
+        .table(InvoiceColumn, [
+          InvoiceColumnHeader,
+          [
+            meteran_x.toString(),
+            (harga_x / meteran_x)
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+            harga_x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+          ],
+        ])
+        .newline();
+    } else {
       basePrint
-      .table(InvoiceColumn, [
-        InvoiceColumnHeader,
-        [
-          meteran_x.toString(),
-          (harga_x / meteran_x).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-          harga_x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-        ],
-        [
-          meteran_y.toString(),
-          (harga_y / meteran_y).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-          harga_y.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-        ],
-        [
-          meteran_z.toString(),
-          (harga_z / meteran_z).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-          harga_z.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-        ],
-      ])
-      .newline();
+        .table(InvoiceColumn, [
+          InvoiceColumnHeader,
+          [
+            meteran_x.toString(),
+            (harga_x / meteran_x)
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+            harga_x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+          ],
+          [
+            meteran_y.toString(),
+            (harga_y / meteran_y)
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+            harga_y.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+          ],
+          [
+            meteran_z.toString(),
+            (harga_z / meteran_z)
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+            harga_z.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+          ],
+        ])
+        .newline();
     }
-  
 
     basePrint.newline().line("Terima Kasih").newline();
     return basePrint.encode();
@@ -407,7 +420,8 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                 <div className="flex flex-row items-center justify-between py-4">
                   <div className="flex flex-col items-start">
                     <span className="text-lg font-medium text-gray-800">
-                      Rp {bayar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                      Rp{" "}
+                      {bayar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                     </span>
                   </div>
                 </div>
