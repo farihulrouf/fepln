@@ -215,8 +215,37 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
 
   */
     }
-    
-    basePrint
+    if(harga_z === 0 && harga_y != 0){
+      basePrint
+      .table(InvoiceColumn, [
+        InvoiceColumnHeader,
+        [
+          meteran_x.toString(),
+          (harga_x / meteran_x).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+          harga_x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+        ],
+        [
+          meteran_y.toString(),
+          (harga_y / meteran_y).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+          harga_y.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+        ]
+      ])
+      .newline();
+    }
+    else if (harga_y === 0 && harga_z === 0 ) {
+      basePrint
+      .table(InvoiceColumn, [
+        InvoiceColumnHeader,
+        [
+          meteran_x.toString(),
+          (harga_x / meteran_x).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+          harga_x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+        ]
+      ])
+      .newline();
+    }
+    else {
+      basePrint
       .table(InvoiceColumn, [
         InvoiceColumnHeader,
         [
@@ -236,6 +265,8 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
         ],
       ])
       .newline();
+    }
+  
 
     basePrint.newline().line("Terima Kasih").newline();
     return basePrint.encode();
