@@ -8,7 +8,7 @@ import EscPosEncoder from "@manhnd/esc-pos-encoder";
 import { IoIosPrint } from "react-icons/io";
 import ReactWhatsapp from "react-whatsapp";
 import { FaWhatsapp } from "react-icons/fa";
-import decodeUriComponent from 'decode-uri-component';
+import decodeUriComponent from "decode-uri-component";
 
 import {
   Bluetooth,
@@ -393,9 +393,9 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       console.log(error);
     }
   };
- // const number_phone = "0"+data?.no_tel.toString()
+  // const number_phone = "0"+data?.no_tel.toString()
   //console.log(number_phone)
- // const text_whatsapp = `Anggota%20HIPPAM%20WOTAN%20Yth%2C%20`+`${data?.name}`+`%20%0A%20%0ATerima%20kasih%2C%20Anda%20telah%20membayar%20Tagihan%0ARp`+`${(currentTrans?.amount+5000)}`+`.%0A%0A%0A%0A%28Pesan%20ini%20dikirim%20otomatis%20oleh%20sistem%20mohon%20tidak%20membalas%20pesan%20ini%29` 
+  // const text_whatsapp = `Anggota%20HIPPAM%20WOTAN%20Yth%2C%20`+`${data?.name}`+`%20%0A%20%0ATerima%20kasih%2C%20Anda%20telah%20membayar%20Tagihan%0ARp`+`${(currentTrans?.amount+5000)}`+`.%0A%0A%0A%0A%28Pesan%20ini%20dikirim%20otomatis%20oleh%20sistem%20mohon%20tidak%20membalas%20pesan%20ini%29`
   return (
     <React.Fragment>
       <div className="relative">
@@ -444,14 +444,17 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                 {isPrint === true ? (
                   <div className="flex space-x-4">
                     <ReactWhatsapp
-                     // encodeURIComponent
-                      number={`0${data?.no_tel}`}
-                      message={`${decodeUriComponent(`Anggota%20HIPPAM%20WOTAN%20Yth%2C%20`+`${data?.name}`+`%20%0A%20%0ATerima%20kasih%2C%20Anda%20telah%20membayar%20Tagihan%0ARp`+`${currentTrans?.amount+5000}`+`.%0A%0A%0A%0A%28Pesan%20ini%20dikirim%20otomatis%20oleh%20sistem%20mohon%20tidak%20membalas%20pesan%20ini%29`)}`}
+                      // encodeURIComponent
+                      number={`+62${data?.no_tel.toString()}`}
+                      message={`${decodeUriComponent(
+                        `Anggota%20HIPPAM%20WOTAN%20Yth%2C%20` +
+                          `${data?.name}` +
+                          `%20%0A%20%0ATerima%20kasih%2C%20Anda%20telah%20membayar%20Tagihan%0ARp` +
+                          `${currentTrans?.amount + 5000}` +
+                          `.%0A%0A%0A%0A%28Pesan%20ini%20dikirim%20otomatis%20oleh%20sistem%20mohon%20tidak%20membalas%20pesan%20ini%29`
+                      )}`}
                     >
-                      <button
-                        className="px-2 py-1 bg-teal-600 rounded-sm text-white flex gap-1 items-center"
-                        
-                      >
+                      <button className="px-2 py-1 bg-teal-600 rounded-sm text-white flex gap-1 items-center">
                         Send
                         <FaWhatsapp />
                       </button>
