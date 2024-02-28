@@ -127,7 +127,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
   //console.log('data', price)
 
   return (
-    <React.Fragment>
+    <div className="py-6">
       {customerData === null ? (
         <Spinner />
       ) : (
@@ -232,22 +232,29 @@ const NewTrans = ({ customerData, price, transaction }) => {
               */}
               <div className="mt-2 mb-2 border rounded-lg flex justify-between">
                 <div className="text-white w-24 bg-blue-600 rounded-l-lg">
-                      <p className="text-[10px] px-2">Last Month</p>
-                      <div className="pl-2 flex items-center gap-1">
-                        <BsSpeedometer />{transaction?.meteran}
-                      </div>
+                  <p className="text-[10px] px-2">Last Month</p>
+                  <div className="pl-2 flex items-center gap-1">
+                    <BsSpeedometer />
+                    {transaction?.meteran}
+                  </div>
                 </div>
-                <input type="number"  onChange={onChanData}
-                      defaultValue={kubik}  id="quantity-input" placeholder="999" className="border-none w-24" />
+                <input
+                  type="number"
+                  onChange={onChanData}
+                  defaultValue={kubik}
+                  id="quantity-input"
+                  placeholder="999"
+                  className="bg-white border-none w-24 outline-none focus:outline-none"
+                />
                 <div className="text-white w-24 bg-pink-500 rounded-r-lg">
-                      <p className="text-[10px] px-2 text-right">Now</p>
-                      <div className="pr-2 flex justify-end items-center gap-1">
-                      {nilai}<BsThermometerSun />
-                      </div>
+                  <p className="text-[10px] px-2 text-right">Now</p>
+                  <div className="pr-2 flex justify-end items-center gap-1">
+                    {nilai}
+                    <BsThermometerSun />
+                  </div>
                 </div>
               </div>
 
-           
               <div className="py-4 px-1 mb-4 flex justify-between text-lg">
                 <p>Total</p>
                 <p> Rp {bayar}</p>
@@ -275,7 +282,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
           )}
         </>
       )}
-    </React.Fragment>
+    </div>
   );
 };
 export default NewTrans;
