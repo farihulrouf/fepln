@@ -4,7 +4,6 @@ import ServiceApi from "../../services/ServiceApi";
 import CardProfile from "../CardProfile";
 import Transaction from "../Transaction";
 import Spinner from "../Spinner";
-import LoadingQr from "../LoadingQr";
 import NewTrans from "../ListTransaction/NewTrans";
 import Customers from "../Customers";
 const ScannerMenu = ({ user }) => {
