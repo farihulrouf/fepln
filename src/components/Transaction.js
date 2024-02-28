@@ -162,8 +162,8 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
   const MAX_DATA_SIZE = 125;
 
   const InvoiceColumn = [
-    { width: 8, marginRight: 2, align: "left" },
-    { width: 8, marginRight: 2, align: "center" },
+    { width: 7, marginRight: 2, align: "center" },
+    { width: 9, marginRight: 2, align: "center" },
     { width: 9, align: "right" },
   ];
 
