@@ -185,6 +185,9 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
   };
 
   const getData = (harga_x, harga_y, harga_z, meteran_x, meteran_y, meteran_z) => {
+    const data_item = [
+
+    ]
     let invoiceEncoder = new EscPosEncoder();
     let basePrint = invoiceEncoder
       .align("center")
@@ -198,6 +201,15 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       .line(`TOTAL     : ${Number(bayar)}`)
       .newline();
     //moment(new Date()).format("MM/DD/YYYY HH:mm:ss")
+    {/*
+      const InvoiceColumn = [
+    { width: 7, marginRight: 2, align: "center" },
+    { width: 9, marginRight: 2, align: "center" },
+    { width: 9, align: "right" },
+    ];
+
+  */}
+  
     basePrint
       .table(InvoiceColumn, [
         InvoiceColumnHeader,
@@ -208,11 +220,12 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       ])
       .newline();
     basePrint
-      .newline()
-      .line("Untuk cek  tagihan kamu, bisa melakukan scan disini");
-    basePrint.qrcode("Guest", 1, 2, "q");
+      .newline().
+      basePrint.newline().line("Terima Kasih").newline();
+     {/* .line("Untuk cek  tagihan kamu, bisa melakukan scan disini");
+    basePrint.qrcode("Guest", 1, 2, "q");*/}
 
-    basePrint.newline().line("Terima Kasih").newline();
+    
     return basePrint.encode();
   };
 
