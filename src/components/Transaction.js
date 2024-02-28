@@ -162,12 +162,12 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
   const MAX_DATA_SIZE = 125;
 
   const InvoiceColumn = [
-    { width: 5, marginRight: 2, align: "left" },
-    { width: 10, marginRight: 2, align: "center" },
-    { width: 10, align: "right" },
+    { width: 8, marginRight: 2, align: "left" },
+    { width: 8, marginRight: 2, align: "center" },
+    { width: 9, align: "right" },
   ];
 
-  const InvoiceColumnHeader = ["No", "Meteran", "Total"];
+  const InvoiceColumnHeader = ["Meteran", "Harga", "Total"];
 
   const getPrintDeviceList = async () => {
     const nvg = navigator;
@@ -194,16 +194,16 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       .line(`No INV    : ${currentTrans.noinv}`)
       .line(`Nama      : ${data.name}`)
       .line(`Tanggal   : ${moment(new Date()).format("MM/DD/YYYY HH:mm:ss")}`)
-      .newline()
+      .line(`Meteran   : ${currentTrans.meteran}`)
       .line(`TOTAL     : ${Number(bayar)}`)
       .newline();
     //moment(new Date()).format("MM/DD/YYYY HH:mm:ss")
     basePrint
       .table(InvoiceColumn, [
         InvoiceColumnHeader,
-        ["1", meteran_x.toString(), harga_x.toString()],
-        ["2", meteran_y.toString(), harga_y.toString()],
-        ["3", meteran_z.toString(), harga_z.toString()],
+        [ meteran_x.toString(), price[0].harga, harga_x.toString()],
+        [ meteran_y.toString(), price[1].harga, harga_y.toString()],
+        [ meteran_z.toString(), price[2].harga, harga_z.toString()],
         
       ])
       .newline();
