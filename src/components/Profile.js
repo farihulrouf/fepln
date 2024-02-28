@@ -20,7 +20,9 @@ import Barcode from "react-barcode";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import Bill from "./Bill";
 import ViewTrans from "./Customers/ViewTrans";
-import { IoIosArrowRoundBack } from "react-icons/io";
+//import { IoIosArrowRoundBack } from "react-icons/io";
+import { FaChevronLeft } from "react-icons/fa";
+
 export default function Profile({ user }) {
   const [menu, setMenu] = useState(0);
   const [menuAf, setMenuAf] = useState(false);
@@ -63,12 +65,12 @@ export default function Profile({ user }) {
       {menu != 0 ? (
         <div className="flex justify-start mt-2">
           <button
-            className="px-2 flex space-x-1 items-center"
+            className="flex space-x-1 items-center"
             onClick={onChageDefault}
           >
-            <IoIosArrowRoundBack size={30} />{" "}
-            <span className="text-sm">
-              Menu {menuAf ? <>Tes</> : <></>}{" "}
+            <FaChevronLeft size={16} />{" "}
+            <span className="text-md">
+            Menu {menuAf ? <>Tes</> : <></>}{" "}
             </span>
           </button>
         </div>
