@@ -202,7 +202,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       .line(`Nama      : ${data.name}`)
       .line(`Tanggal   : ${moment(new Date()).format("MM/DD/YYYY HH:mm:ss")}`)
       .line(`Meteran   : ${currentTrans.meteran}`)
-      .line(`TOTAL     : ${Number(bayar)}`)
+      .line(`TOTAL     : ${Number(bayar).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`)
       .newline();
     //moment(new Date()).format("MM/DD/YYYY HH:mm:ss")
     {
@@ -221,18 +221,18 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
         InvoiceColumnHeader,
         [
           meteran_x.toString(),
-          (harga_x / meteran_x).toString(),
-          harga_x.toString(),
+          (harga_x / meteran_x).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+          harga_x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
         ],
         [
           meteran_y.toString(),
-          (harga_y / meteran_y).toString(),
-          harga_y.toString(),
+          (harga_y / meteran_y).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+          harga_y.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
         ],
         [
           meteran_z.toString(),
-          (harga_z / meteran_z).toString(),
-          harga_z.toString(),
+          (harga_z / meteran_z).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+          harga_z.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
         ],
       ])
       .newline();
