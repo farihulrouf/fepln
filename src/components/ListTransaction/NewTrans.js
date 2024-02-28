@@ -127,7 +127,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
   //console.log('data', price)
 
   return (
-    <div className="py-6">
+    <div className="py-">
       {customerData === null ? (
         <Spinner />
       ) : (

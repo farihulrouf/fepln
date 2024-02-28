@@ -23,11 +23,13 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
   const [isPrint, setIprint] = useState(true)
   const dataTrans = "Transaction";
   const [isEdit, setIsEdit] = useState(false);
+  const [data, setData] = useState(null)
   // console.log('dara dari', idtrans)
   useEffect(() => {
     if (setIsupdate === 0) {
       getCustomerName();
     } else {
+      //getCustomerName()
       getDetailTransaction();
     }
     getPrice();
@@ -51,6 +53,19 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
         setIprint(response.data.status)
         setBayar(response.data.amount);
         setKubik(response.data.last_meteran);
+        getDetailuser(response.data.no_id)
+        setLoading(false);
+      })
+      .catch((e) => {
+        setLoading(false);
+      });
+  };
+
+  const getDetailuser = (id) => {
+    setLoading(true);
+    ServiceApi.getCustomer(id)
+      .then((response) => {
+        setData(response.data);
         setLoading(false);
       })
       .catch((e) => {
@@ -171,7 +186,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       .newline()
       .align("left")
       .line(`No INV    : ${currentTrans.noinv}`)
-      .line(`Kasir     : Eli`)
+      .line(`Nama      : ${data.name}`)
       .line(`Tanggal   : ${moment(new Date()).format("MM/DD/YYYY HH:mm:ss")}`)
       .line(`Sub total : ${Number(bayar)}`)
       .line(`TOTAL     : ${Number(bayar)}`)
@@ -249,8 +264,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       console.log(error);
     }
   };
-
-  // console.log('ini data asd', idtrans);
+ // console.log('data', data)
   return (
     <React.Fragment>
       <div className="relative">

@@ -99,7 +99,7 @@ const ScannerMenu = ({ user }) => {
     //setMenuCount(0)
   };
 
-  console.log('jakshdiajdh',customer)
+  //console.log('jakshdiajdh',customer)
   return (
     <React.Fragment>
       <div className="flex space-x-4 mb-2 mt-2">
