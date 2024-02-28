@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { IoArrowBack } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { HiDocumentReport } from "react-icons/hi";
 import { ImProfile } from "react-icons/im";
@@ -21,6 +20,7 @@ import Barcode from "react-barcode";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import Bill from "./Bill";
 import ViewTrans from "./Customers/ViewTrans";
+import { IoIosArrowRoundBack } from "react-icons/io";
 export default function Profile({ user }) {
   const [menu, setMenu] = useState(0);
   const [menuAf, setMenuAf] = useState(false);
@@ -59,15 +59,15 @@ export default function Profile({ user }) {
 
   // console.log(user);
   return (
-    <div className="px-6">
+    <div className="px-4">
       {menu != 0 ? (
         <div className="flex justify-start mt-2">
           <button
             className="px-2 flex space-x-1 items-center"
             onClick={onChageDefault}
           >
-            <IoArrowBack />{" "}
-            <span className="text-[12px]">
+            <IoIosArrowRoundBack size={30} />{" "}
+            <span className="text-sm">
               Menu {menuAf ? <>Tes</> : <></>}{" "}
             </span>
           </button>
