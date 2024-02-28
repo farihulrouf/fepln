@@ -68,7 +68,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
         harga_ = x * price[0].harga;
         //console.log('nilai value', harga_, 'dari harga', price[0].harga)
         setBayar(harga_);
-      } else if (x > price[0].maximum && x <= price[1].maximum) {
+      } else if (x > price[0].maximum && x < price[1].maximum) {
         // console.log('cek data lagi', x)
         const price_ = x - price[0].maximum;
         //console.log('cek lagi', price_ * price[1].harga)
@@ -78,7 +78,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
         //console.log(harga_normal ,"ini harga normal")
         //console.log('harga total', harga_update+harga_normal)
         setBayar(harga_normal + harga_update);
-      } else if (x > price[1].maximum) {
+      } else if (x >= price[1].maximum) {
         var harga_akhir = 0;
         console.log("harga akhir");
         const price_ = x - price[1].maximum;

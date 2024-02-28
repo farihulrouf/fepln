@@ -24,6 +24,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
   const dataTrans = "Transaction";
   const [isEdit, setIsEdit] = useState(false);
   const [data, setData] = useState(null)
+  const [isPrice, setIsPrice] = useState()
   // console.log('dara dari', idtrans)
   useEffect(() => {
     if (setIsupdate === 0) {
@@ -33,6 +34,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       getDetailTransaction();
     }
     getPrice();
+   // printPrice()
   }, []);
   const getCustomerName = () => {
     setLoading(true);
@@ -73,10 +75,14 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       });
   };
 
+  const printPrice = () => {
+    //console.log('cek price',price)
+  }
   const getPrice = () => {
     ServiceApi.getallPrice().then((response) => {
       setPrice(response.data);
     });
+   // console.log('data', price)
   };
 
   const onChangeUp = () => {
@@ -178,7 +184,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     }
   };
 
-  const getData = () => {
+  const getData = (harga_x, harga_y, harga_z, meteran_x, meteran_y, meteran_z) => {
     let invoiceEncoder = new EscPosEncoder();
     let basePrint = invoiceEncoder
       .align("center")
@@ -195,7 +201,10 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     basePrint
       .table(InvoiceColumn, [
         InvoiceColumnHeader,
-        ["1", kubik.toString(), bayar.toString()],
+        ["1", meteran_x.toString(), harga_x.toString()],
+        ["2", meteran_y.toString(), harga_y.toString()],
+        ["3", meteran_z.toString(), harga_z.toString()],
+        
       ])
       .newline();
     basePrint
@@ -217,6 +226,40 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
   }
 
   const handlePrint = async () => {
+    var meteran_x = 0
+    var meteran_y = 0
+    var meteran_z = 0
+    var harga_x = 0
+    var harga_y = 0
+    var harga_z = 0
+    console.log('cek price', price)
+    console.log('meteran', currentTrans.meteran)
+    if(currentTrans.meteran <= price[0].maximum){
+      meteran_x = price[0].maximum 
+      harga_x = meteran_x * price[0].harga
+      console.log('harga normal',currentTrans.meteran * price[0].harga)
+    }
+    else if (currentTrans.meteran > price[0].maximum && currentTrans.meteran < price[1].maximum ) {
+      meteran_x = price[0].maximum
+      harga_x = meteran_x * price[0].harga
+      //console.log('meterran awal', meteran_x, harga_x)
+      meteran_y = currentTrans.meteran - meteran_x
+      harga_y = meteran_y * price[1].harga
+      //console.log('meteran y', meteran_y, harga_y)
+    }
+    else if (currentTrans.meteran >= price[2].minimum) {
+      meteran_z = currentTrans.meteran - price[1].maximum
+      harga_z = price[2].harga * meteran_z
+      //console.log('meteran', meteran_z, harga_z)
+      meteran_y = price[1].maximum - price[0].maximum
+      harga_y = meteran_y * price[1].harga
+     // console.log('meteran 2',meteran_y, harga_y)
+      meteran_x = price[0].maximum
+      harga_x = meteran_x * price[0].harga
+      //console.log('meteran pertama', meteran_x, harga_x)
+    }
+   //console.log('hasil akhir',meteran_y,meteran_z)
+    
     try {
       const deviceList = await getPrintDeviceList();
       const gatt = await deviceList?.gatt?.connect();
@@ -226,7 +269,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
             "000018f0-0000-1000-8000-00805f9b34fb"
           );
           if (service) {
-            const printData = getData();
+            const printData = getData(harga_x, harga_y, harga_z, meteran_x, meteran_y, meteran_z);
             console.log("printData", printData);
             const characteristic = await service.getCharacteristic(
               "00002af1-0000-1000-8000-00805f9b34fb"
@@ -263,8 +306,9 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     } catch (error) {
       console.log(error);
     }
+  
   };
- // console.log('data', data)
+ 
   return (
     <React.Fragment>
       <div className="relative">
