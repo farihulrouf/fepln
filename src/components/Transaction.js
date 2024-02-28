@@ -201,9 +201,9 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     basePrint
       .table(InvoiceColumn, [
         InvoiceColumnHeader,
-        [ meteran_x.toString(), price[0].harga, harga_x.toString()],
-        [ meteran_y.toString(), price[1].harga, harga_y.toString()],
-        [ meteran_z.toString(), price[2].harga, harga_z.toString()],
+        [ meteran_x.toString(), (harga_x/meteran_x).toString(), harga_x.toString()],
+        [ meteran_y.toString(), (harga_y/meteran_y).toString(), harga_y.toString()],
+        [ meteran_z.toString(), (harga_z/meteran_z).toString(), harga_z.toString()],
         
       ])
       .newline();
