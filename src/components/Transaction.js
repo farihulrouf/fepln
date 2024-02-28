@@ -221,7 +221,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       .newline();
     basePrint
       .newline()
-      //.line("Untuk cek  tagihan kamu, bisa melakukan scan disini");
+      .line("");
     //basePrint.qrcode("Guest", 1, 2, "q");
 
     basePrint.newline().line("Terima Kasih").newline();
