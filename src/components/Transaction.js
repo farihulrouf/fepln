@@ -291,7 +291,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     console.log("cek price", price);
     console.log("meteran", currentTrans.meteran);
     if (currentTrans.meteran <= price[0].maximum) {
-      meteran_x = price[0].maximum;
+      meteran_x = currentTrans.meteran;
       harga_x = meteran_x * price[0].harga;
       console.log("harga normal", currentTrans.meteran * price[0].harga);
     } else if (
