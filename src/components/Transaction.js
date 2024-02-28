@@ -376,7 +376,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                 <div className="flex flex-row items-center justify-between py-4">
                   <div className="flex flex-col items-start">
                     <span className="text-lg font-medium text-gray-800">
-                      Rp {bayar}
+                      Rp {bayar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                     </span>
                   </div>
                 </div>

@@ -257,7 +257,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
 
               <div className="py-4 px-1 mb-4 flex justify-between text-lg">
                 <p>Total</p>
-                <p> Rp {bayar}</p>
+                <p> Rp {bayar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
               </div>
 
               {isSave ? null : (
