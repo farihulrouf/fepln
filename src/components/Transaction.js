@@ -447,7 +447,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                       // encodeURIComponent
                       number={`+62${data?.no_tel.toString()}`}
                       message={`${decodeUriComponent(
-                        `Anggota%20HIPPAM%20WOTAN%20Yth%2C%20` +
+                        `Pelanggan%20HIPPAM%20WOTAN%20Yth%2C%20` +
                           `${data?.name}` +
                           `%20%0A%20%0ATerima%20kasih%2C%20Anda%20telah%20membayar%20Tagihan%0ARp` +
                           `${currentTrans?.amount + 5000}` +
