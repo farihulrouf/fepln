@@ -207,6 +207,11 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
           .toString()
           .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
       )
+      .line(
+        `Bayar     : ${Number(bayar+5000)
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
+      )
       .newline();
     //moment(new Date()).format("MM/DD/YYYY HH:mm:ss")
     {
@@ -237,6 +242,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
               .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
             harga_y.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
           ],
+          ["Abond", "5,000", "5,000"]
         ])
         .newline();
     } else if (harga_y === 0 && harga_z === 0) {
@@ -250,6 +256,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
               .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
             harga_x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
           ],
+          ["Abond", "5,000", "5,000"]
         ])
         .newline();
     } else {
@@ -277,6 +284,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
               .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
             harga_z.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
           ],
+          ["Abond", "5,000", "5,000"]
         ])
         .newline();
     }
