@@ -209,7 +209,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     ];
 
   */}
-    
+    i
     basePrint
       .table(InvoiceColumn, [
         InvoiceColumnHeader,
@@ -219,9 +219,10 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
         
       ])
       .newline();
-    basePrint
-      .newline()
-      .line("");
+
+  //  basePrint
+   //   .newline()
+    //  .line("Untuk cek  tagihan kamu, bisa melakukan scan disini");
     //basePrint.qrcode("Guest", 1, 2, "q");
 
     basePrint.newline().line("Terima Kasih").newline();
