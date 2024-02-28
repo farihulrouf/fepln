@@ -5,6 +5,10 @@ import moment from "moment";
 import AlertMessage from "./AlertMessage";
 import { MdModeEditOutline } from "react-icons/md";
 import EscPosEncoder from "@manhnd/esc-pos-encoder";
+import { IoIosPrint } from "react-icons/io";
+import ReactWhatsapp from "react-whatsapp";
+import { FaWhatsapp } from "react-icons/fa";
+
 import {
   Bluetooth,
   BluetoothRemoteGATTCharacteristic,
@@ -203,12 +207,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       .line(`Tanggal   : ${moment(new Date()).format("MM/DD/YYYY HH:mm:ss")}`)
       .line(`Meteran   : ${currentTrans.meteran}`)
       .line(
-        `TOTAL     : ${Number(bayar)
-          .toString()
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
-      )
-      .line(
-        `Bayar     : ${Number(bayar+5000)
+        `Bayar     : ${Number(bayar + 5000)
           .toString()
           .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
       )
@@ -242,7 +241,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
               .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
             harga_y.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
           ],
-          ["Abond", "5,000", "5,000"]
+          ["Abond", "5,000", "5,000"],
         ])
         .newline();
     } else if (harga_y === 0 && harga_z === 0) {
@@ -256,7 +255,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
               .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
             harga_x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
           ],
-          ["Abond", "5,000", "5,000"]
+          ["Abond", "5,000", "5,000"],
         ])
         .newline();
     } else {
@@ -284,7 +283,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
               .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
             harga_z.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
           ],
-          ["Abond", "5,000", "5,000"]
+          ["Abond", "5,000", "5,000"],
         ])
         .newline();
     }
@@ -435,15 +434,31 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                 </div>
               </div>
             </div>
+
             {user.typeuser === "Admin" ? (
-              <div className="flex justify-end py-4">
+              <div className="flex justify-end py-4 mt-8">
                 {isPrint === true ? (
-                  <button
-                    className="px-3 py-1 bg-blue-600 rounded-sm text-white"
-                    onClick={handlePrint}
-                  >
-                    Print
-                  </button>
+                  <div className="flex space-x-4">
+                    <ReactWhatsapp
+                      number="+6282333899903"
+                      message="Hello World!!!"
+                    >
+                      <button
+                        className="px-2 py-1 bg-teal-600 rounded-sm text-white flex gap-1 items-center"
+                        
+                      >
+                        Send
+                        <FaWhatsapp />
+                      </button>
+                    </ReactWhatsapp>
+                    <button
+                      className="px-2 py-1 bg-blue-600 rounded-sm text-white flex gap-1 items-center"
+                      onClick={handlePrint}
+                    >
+                      Print
+                      <IoIosPrint />
+                    </button>
+                  </div>
                 ) : (
                   <button
                     className="px-3 py-1 bg-blue-600 rounded-sm text-white"
