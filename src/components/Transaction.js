@@ -29,6 +29,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [data, setData] = useState(null);
   const [isPrice, setIsPrice] = useState();
+  //let number = 0;
   // console.log('dara dari', idtrans)
   useEffect(() => {
     if (setIsupdate === 0) {
@@ -391,7 +392,8 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       console.log(error);
     }
   };
-
+  const number_phone = "0"+data?.no_tel.toString()
+  console.log(number_phone)
   return (
     <React.Fragment>
       <div className="relative">
@@ -434,14 +436,15 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                 </div>
               </div>
             </div>
-
+            {/*  (`No INV    : ${currentTrans.noinv}`) */}
             {user.typeuser === "Admin" ? (
               <div className="flex justify-end py-4 mt-8">
                 {isPrint === true ? (
                   <div className="flex space-x-4">
                     <ReactWhatsapp
-                      number="+6282333899903"
-                      message="Hello World!!!"
+                   
+                      number={`${data?.no_tel}`}
+                      message={`hi ${data?.name} your bill ${currentTrans?.amount+5000}`}
                     >
                       <button
                         className="px-2 py-1 bg-teal-600 rounded-sm text-white flex gap-1 items-center"
