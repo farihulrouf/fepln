@@ -118,7 +118,7 @@ const ScannerMenu = ({ user }) => {
       </div>
       <Scanner type={scannerType} onResult={(res) => onChangeData(res)} />
       {err && <h2>{err}</h2>}
-      <div className="py-0">
+      <div className="mt-8">
         {getCall ? (
           <>
             <NewTrans customerData={customer} price={price} transaction={transaction}  setGetcall={setGetcall} />

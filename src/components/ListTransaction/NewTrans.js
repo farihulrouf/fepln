@@ -134,7 +134,7 @@ const NewTrans = ({ customerData, price, transaction, setGetcall }) => {
     //onChangeBack();
   };
   return (
-    <div className="py-">
+    <div className="">
       {customerData === null ? (
         <Spinner />
       ) : (
