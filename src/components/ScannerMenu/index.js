@@ -93,7 +93,7 @@ const ScannerMenu = ({ user }) => {
   //console.log('jakshdiajdh',customer)
   return (
     <React.Fragment>
-      <div className="flex space-x-4 mb-2 mt-2">
+      <div className="flex space-x-16 mb-2 mt-2">
       <label>
         <input
           type="radio"
@@ -103,7 +103,7 @@ const ScannerMenu = ({ user }) => {
           className=""
           onChange={() => setScannerType("QR")}
         />
-        QR
+        <span className="ml-2">QR</span>
       </label>
       <label>
         <input
@@ -113,7 +113,7 @@ const ScannerMenu = ({ user }) => {
           className=""
           onChange={() => setScannerType("BAR")}
         />
-        BAR
+         <span className="ml-2">BAR</span>
       </label>
       </div>
       <Scanner type={scannerType} onResult={(res) => onChangeData(res)} />
