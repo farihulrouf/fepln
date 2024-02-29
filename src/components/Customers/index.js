@@ -66,6 +66,7 @@ export default function Customers({ user, isBoolean }) {
             user={user}
             onChangeBack={onChangeBack}
             setIsupdate={setIsupdate}
+            textMenu="Customers"
           />
           {menuCount === 0 ? <ViewTrans id={currentUser} /> : null}
         </div>

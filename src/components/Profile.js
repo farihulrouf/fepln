@@ -69,7 +69,7 @@ export default function Profile({ user }) {
             onClick={onChageDefault}
           >
             <FaChevronLeft size={16} />{" "}
-            <span className="text-md">
+            <span className="text-sm">
             Menu {menuAf ? <>Tes</> : <></>}{" "}
             </span>
           </button>

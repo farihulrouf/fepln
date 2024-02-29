@@ -20,6 +20,7 @@ import { CiSaveUp2 } from "react-icons/ci";
 import { IoPrintOutline } from "react-icons/io5";
 import Barcode from "react-barcode";
 import { MdOutlineVerified } from "react-icons/md";
+import { FaChevronLeft } from "react-icons/fa";
 
 const NewTrans = ({ customerData, price, transaction }) => {
   // const [customerData, setcustomerData] = useState(null);
@@ -137,7 +138,7 @@ const NewTrans = ({ customerData, price, transaction }) => {
           ) : (
             <>
               <button className="absolute top-[50px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center">
-                <IoChevronBack />
+                <FaChevronLeft size={16} />
                 QRCode
               </button>
               {isSave ? <AlertMessage data={dataTrans} /> : null}

@@ -58,6 +58,7 @@ export default function ListTransaction({ user }) {
               user={user}
               onChangeBack={onChangeBack}
               setIsupdate={setIsupdate}
+              textMenu="Transactions"
             />
             <Transaction
               idtrans={idtrans}

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Scanner from "../Scanner";
 import ServiceApi from "../../services/ServiceApi";
-import CardProfile from "../CardProfile";
 import Transaction from "../Transaction";
 import Spinner from "../Spinner";
 import NewTrans from "../ListTransaction/NewTrans";
@@ -30,14 +29,7 @@ const ScannerMenu = ({ user }) => {
     getTransactionDetail(res)
    // onSearchdata(res)
     setGetcall(true);
-    {
-      /*
-    return (
-      <div><CardProfile id={res} />
-      </div>
-    )
-    */
-    }
+  
   };
   const onChangeCal = () => {
     setGetcall(false);

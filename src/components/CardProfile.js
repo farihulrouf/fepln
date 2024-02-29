@@ -14,7 +14,8 @@ import { FaMale } from "react-icons/fa";
 import { FaFemale } from "react-icons/fa";
 import { CiPhone } from "react-icons/ci";
 import ReactWhatsapp from 'react-whatsapp';
-const CardProfile = ({ id, user, onChangeBack, setIsupdate }) => {
+import { FaChevronLeft } from "react-icons/fa";
+const CardProfile = ({ id, user, onChangeBack, setIsupdate, textMenu }) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
   const [isUpdate, setIsUpdate] = useState(0);
@@ -47,11 +48,11 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate }) => {
           {isUpdate === 0 ? (
             <>
               <button
-                className="absolute top-[50px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center"
+                className="absolute top-[49px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center"
                 onClick={() => setIsupdate(0)}
               >
-                <IoChevronBack />
-                Customers
+                <FaChevronLeft size={16} />
+                <span className="text-sm">{textMenu}</span>
               </button>
               <div className="px-4 py-5 sm:px-6 flex items-center space-x-2 relative">
                 <Avatar
