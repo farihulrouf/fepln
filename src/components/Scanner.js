@@ -121,32 +121,23 @@ const Scanner = (props) => {
           </select>
         )}
         */}
-        <div className="flex space-x-2">
+        <div className="flex space-x-2 justify-between bg-blue-600 w-1/2 rounded-lg">
           <button
-            className="bg-blue-600 rounded-md px-3 py-2 text-white flex gap-2 items-center"
+            className="bg-blue-600 rounded-l-lg  py-2 px-1 text-white flex gap-2 items-center"
             onClick={() => handleClickAdvanced()}
           >
             <MdQrCodeScanner />
             <span className="text-sm">Scan {props.type}</span>
           </button>
           <button
-            className="text-white bg-red-500 px-3 py-2 rounded-sm text-sm flex gap-2 items-center"
+            className="text-white bg-orange-500 py-2 px-1 rounded-r-lg text-sm flex gap-2 items-center"
             onClick={() => handleStop()}
           >
             <FaRegStopCircle />
             stop
           </button>
         </div>
-        {/*
-        <button onClick={scanLocalFile}>Scan local file</button>
-        <input
-          type="file"
-          hidden
-          ref={fileRef}
-          accept="image/*"
-          onChange={scanFile}
-            />
-        */}
+      
       </div>
     );
   };
