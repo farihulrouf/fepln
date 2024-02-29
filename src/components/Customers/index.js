@@ -17,6 +17,7 @@ import ViewTrans from "./ViewTrans";
 export default function Customers({ user, isBoolean }) {
   const [isUpdate, setIsupdate] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [getCall, setGetcall] = useState(false);
   //const [dataCustomer, setDataCustomer] = useState(null);
   const [metadata, setMetadata] = useState(null);
   const [customer, setCustomers] = useState(null);
@@ -81,7 +82,7 @@ export default function Customers({ user, isBoolean }) {
           customerData={detailCust}
           price={price}
           transaction={transaction}
-      
+          setGetcall={setGetcall}
         />
       </>
     );

@@ -127,8 +127,8 @@ const NewTrans = ({ customerData, price, transaction, setGetcall }) => {
 
   //console.log('data', price)
   const getBack = () => {
-    console.log(setGetcall)
-    //setGetcall
+    //console.log(setGetcall)
+    setGetcall(false)
     //console.log(!setGetcall)
    // setIsUpdate(1);
     //onChangeBack();
