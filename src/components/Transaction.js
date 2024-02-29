@@ -450,7 +450,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                         `Anggota%20HIPPAM%20WOTAN%20Yth%2C%20` +
                           `*${data?.name}*` +
                           `%20%0A%20%0ATerima%20kasih%2C%20Anda%20telah%20membayar%20Tagihan%0ARp` +
-                          `*${currentTrans?.amount + 5000}*` +
+                          `*${(currentTrans?.amount + 5000).toString()}*` +
                           `.%0A%0A%0A%0A%28Pesan%20ini%20dikirim%20otomatis%20oleh%20sistem%20mohon%20tidak%20membalas%20pesan%20ini%29`
                       )}`}
                     >
@@ -476,7 +476,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                         `Anggota%20HIPPAM%20WOTAN%20Yth%2C%20` +
                           `*${data?.name}*` +
                           `%20%0A%20%0ABulan%20ini%2C%20Anda%20memiliki%20Tagihan%20Sebesar%0ARp` +
-                          `*${currentTrans?.amount + 5000}*` +
+                          `*${(currentTrans?.amount + 5000).toString()}*`+
                           `.%0A%0A%0A%0A%28Pesan%20ini%20dikirim%20otomatis%20oleh%20sistem%20mohon%20tidak%20membalas%20pesan%20ini%29`
                       )}`}
                     >
