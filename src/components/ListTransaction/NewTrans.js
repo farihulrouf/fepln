@@ -150,7 +150,7 @@ const NewTrans = ({ customerData, price, transaction, setGetcall }) => {
                 QRCode
               </button>
               {isSave ? <AlertMessage data={dataTrans} /> : null}
-
+              <div className="mt-8">
               <div className="py-2 flex items-center space-x-2 relative">
                 <Avatar
                   className="rounded-full"
@@ -213,32 +213,6 @@ const NewTrans = ({ customerData, price, transaction, setGetcall }) => {
                   </div>
                 </dl>
               </div>
-              {/*
-              <div className="flex justify-between">
-                <div className="w-1/3">
-                  <label
-                    htmlFor="quantity-input"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white flex items-center gap-1"
-                  >
-                    <BsThermometerSun /> Cubic:
-                  </label>
-                  <div className="relative flex items-center w-16">
-                    <input
-                      type="number"
-                      id="quantity-input"
-                      onChange={onChanData}
-                      defaultValue={kubik}
-                      data-input-counter
-                      aria-describedby="helper-text-explanation"
-                      className="bg-gray-50  border-gray-300 h-10 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="999"
-                      required
-                    />
-                  </div>
-                </div>
-                
-              </div>
-              */}
             
               <div className="mt-2 mb-2 border rounded-lg flex justify-between">
                 <div className="text-white w-24 bg-blue-600 rounded-l-lg">
@@ -295,6 +269,7 @@ const NewTrans = ({ customerData, price, transaction, setGetcall }) => {
                   </button>
                 </div>
               )}
+              </div>
             </>
           )}
         </>
