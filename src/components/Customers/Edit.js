@@ -7,7 +7,7 @@ import { CiSaveDown2 } from "react-icons/ci";
 import AddUser from "../Users/AddUser";
 import { IoMdAdd } from "react-icons/io";
 
-const Edit = ({ customer, editChange }) => {
+const Edit = ({ customer, setIsEdit }) => {
   const initialState = {
     id: customer._id,
     name: customer.name,
@@ -18,9 +18,9 @@ const Edit = ({ customer, editChange }) => {
   };
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState(initialState);
-  const [isEdit, setIsEdit] = useState(0);
+  const [isUpdate, setIsUpdate] = useState(0);
   const onChange = () => {
-    editChange();
+    //editChange();
   };
   //console.log(data)
   const handleInputChange = (event) => {
@@ -35,7 +35,7 @@ const Edit = ({ customer, editChange }) => {
       .then((response) => {
         setData(data);
         setIsLoading(false);
-        onChange();
+        setIsEdit(0)
         // onChangeAdd()
         //setSubmitted(true);
         //console.log(response.data);
@@ -45,26 +45,25 @@ const Edit = ({ customer, editChange }) => {
         setIsLoading(false);
       });
   };
-  const isEditChange = () => {
-    setIsEdit(1);
-  };
+  
   return (
     <React.Fragment>
       <div className="px-6">
-        <button className="absolute top-[50px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center">
+        <button
+        className="absolute 
+        top-[50px] left-20 px-1 
+        mt-2 text-[12px] flex space-x-2 
+        items-center"  onClick={() => setIsEdit(0)}
+        >
           <IoChevronBack />
           Customers
         </button>
       </div>
 
-      {isEdit === 0 ? (
+      {isUpdate === 0 ? (
         <>
           <div className="mb-2 mt-2">
-            <div className="my-4 flex justify-end">
-              <button className="bg-teal-600 text-white px-1 py-1 rounded-full">
-                <IoMdAdd onClick={isEditChange} />
-              </button>
-            </div>
+            
             <label className="block text-gray-700 font-bold mb-2">Name</label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -76,18 +75,7 @@ const Edit = ({ customer, editChange }) => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="mb-2">
-            <label className="block text-gray-700 font-bold mb-2">No Id</label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="noid"
-              type="number"
-              name="no_id"
-              placeholder="Enter your Id"
-              value={data.no_id}
-              onChange={handleInputChange}
-            />
-          </div>
+        
           <div className="mb-2">
             <label className="block text-gray-700 font-bold mb-2">Gender</label>
             <select

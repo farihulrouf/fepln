@@ -4,7 +4,7 @@ import { IoChevronBack } from "react-icons/io5";
 import ServiceApi from "../../services/ServiceApi";
 import Spinner from "../Spinner";
 import { IoIosArrowRoundBack } from "react-icons/io";
-
+import { FaChevronLeft } from "react-icons/fa";
 const Add = ({ setIsupdate }) => {
   //console.log(onChangeAdd)
   const initialState = {
@@ -77,10 +77,10 @@ const Add = ({ setIsupdate }) => {
   return (
     <React.Fragment>
       <button
-        className="absolute top-[57px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center"
+        className="absolute top-[49px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center"
         onClick={() => setIsupdate(0)}
       >
-        <IoChevronBack />
+        <FaChevronLeft size={16} />
         Customers
       </button>
 
@@ -97,20 +97,7 @@ const Add = ({ setIsupdate }) => {
           onChange={handleInputChange}
         />
       </div>
-      {/*
-      <div className="mb-2">
-        <label className="block text-gray-700 font-bold mb-2">No Id</label>
-        <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="noid"
-          type="number"
-          name="no_id"
-          placeholder="Enter your Id"
-          value={data.no_id}
-          onChange={handleInputChange}
-        />
-      </div>
-    */}
+  
       <div className="mb-2">
         <label className="block text-gray-700 font-bold mb-2">Gender</label>
         <select

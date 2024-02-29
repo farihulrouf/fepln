@@ -18,7 +18,7 @@ import { FaChevronLeft } from "react-icons/fa";
 const CardProfile = ({ id, user, onChangeBack, setIsupdate, textMenu }) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
-  const [isUpdate, setIsUpdate] = useState(0);
+  const [isEdit, setIsEdit] = useState(0);
   useEffect(() => {
     getDetailuser(id);
   }, []);
@@ -34,7 +34,7 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate, textMenu }) => {
       });
   };
   const dataOnchange = () => {
-    setIsUpdate(1);
+    setIsEdit(1);
     onChangeBack();
   };
   //console.log("data pengguna", data);
@@ -45,11 +45,11 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate, textMenu }) => {
         <Spinner />
       ) : (
         <React.Fragment>
-          {isUpdate === 0 ? (
+          {isEdit === 0 ? (
             <>
               <button
                 className="absolute top-[49px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center"
-                onClick={() => setIsupdate(0)}
+                onClick={() => setIsEdit(0)}
               >
                 <FaChevronLeft size={16} />
                 <span className="text-sm">{textMenu}</span>
@@ -149,7 +149,7 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate, textMenu }) => {
               </div>
             </>
           ) : (
-            <Edit customer={data} editChange={dataOnchange} />
+            <Edit customer={data} setIsEdit={setIsEdit} />
           )}
         </React.Fragment>
       )}
