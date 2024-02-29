@@ -121,7 +121,7 @@ const Scanner = (props) => {
           </select>
         )}
         */}
-        <div className="flex space-x-2 border justify-between w-1/2 rounded-lg">
+        <div className="flex space-x-2 justify-between w-1/2 rounded-lg">
           <button
             className="rounded-l-lg hover:bg-blue-500 hover:-text-white py-2 px-1 flex gap-2 items-center"
             onClick={() => handleClickAdvanced()}
