@@ -54,7 +54,7 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate, textMenu }) => {
                 <FaChevronLeft size={16} />
                 <span className="text-sm">{textMenu}</span>
               </button>
-              <div className="px-4 py-5 sm:px-6 flex items-center space-x-2 relative">
+              <div className="py-5 flex items-center space-x-2 relative">
                 <Avatar
                   className="rounded-full"
                   name={data.name}
@@ -79,7 +79,7 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate, textMenu }) => {
                   />
                 ) : null}
               </div>
-              <div className="border-t border-gray-200 px-4 py-2 sm:p-0">
+              <div className="border-t border-gray-200 py-2 sm:p-0">
                 <dl className="sm:divide-y sm:divide-gray-200">
                   <div className="py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <div className="flex items-center justify-between">
@@ -126,10 +126,10 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate, textMenu }) => {
                 */}
                 </dl>
               </div>
-              <div className="px-2">
+              <div className="">
                 <Barcode
-                  height={10}
-                  width={2.5}
+                  height={14}
+                  width={4.7}
                   fontSize={14}
                   textPosition="bottom"
                   value={data.no_id}
