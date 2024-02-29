@@ -448,9 +448,9 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                       number={`+62${data?.no_tel.toString()}`}
                       message={`${decodeUriComponent(
                         `Anggota%20HIPPAM%20WOTAN%20Yth%2C%20` +
-                          `${data?.name}` +
+                          `*${data?.name}*` +
                           `%20%0A%20%0ATerima%20kasih%2C%20Anda%20telah%20membayar%20Tagihan%0ARp` +
-                          `${currentTrans?.amount + 5000}` +
+                          `*${currentTrans?.amount + 5000}*` +
                           `.%0A%0A%0A%0A%28Pesan%20ini%20dikirim%20otomatis%20oleh%20sistem%20mohon%20tidak%20membalas%20pesan%20ini%29`
                       )}`}
                     >
@@ -485,12 +485,12 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                         <FaWhatsapp />
                       </button>
                     </ReactWhatsapp>
-                      <button
-                        className="px-3 py-1 bg-blue-600 rounded-sm text-white"
-                        onClick={saveData}
-                      >
-                        Bayar
-                      </button>
+                    <button
+                      className="px-3 py-1 bg-blue-600 rounded-sm text-white"
+                      onClick={saveData}
+                    >
+                      Bayar
+                    </button>
                   </div>
                 )}
               </div>
