@@ -13,7 +13,7 @@ import { FaGenderless } from "react-icons/fa";
 import { FaMale } from "react-icons/fa";
 import { FaFemale } from "react-icons/fa";
 import { CiPhone } from "react-icons/ci";
-import ReactWhatsapp from 'react-whatsapp';
+import ReactWhatsapp from "react-whatsapp";
 import { FaChevronLeft } from "react-icons/fa";
 const CardProfile = ({ id, user, onChangeBack, setIsupdate, textMenu }) => {
   const [data, setData] = useState({});
@@ -66,12 +66,14 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate, textMenu }) => {
                     {data.name}
                   </h3>
 
-                  <p className="mt-1 flex gap-1 items-center text-sm text-gray-500">
-                    Active <MdOutlineVerified />
-                  </p>
+                 
+                    <p className="mt-1 flex gap-1 items-center text-sm text-gray-500">
+                      Active <MdOutlineVerified />
+                    </p>
+                
                 </div>
 
-                {user.typeuser === "Admin" ? (
+                {user.typeuser === "Admin" && textMenu=== "Customers" ? (
                   <MdModeEditOutline
                     size={25}
                     className="absolute right-4"
@@ -89,9 +91,17 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate, textMenu }) => {
                           Gender
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        {data.gender === "L" ? <p className="flex gap-1 items-center"><FaMale />Male</p> : <p className="flex gap-1 items-center"><FaFemale />Female</p>}
-
-                          
+                          {data.gender === "L" ? (
+                            <p className="flex gap-1 items-center">
+                              <FaMale />
+                              Male
+                            </p>
+                          ) : (
+                            <p className="flex gap-1 items-center">
+                              <FaFemale />
+                              Female
+                            </p>
+                          )}
                         </dd>
                       </div>
 
@@ -101,9 +111,13 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate, textMenu }) => {
                           Phone number
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex gap-1 items-center">
-                        <ReactWhatsapp className="flex gap-1" number="+6282333899903" message="Hello World!!!"><FaWhatsapp  />{" "}
-                          <p>0{data.no_tel}</p>
-                        </ReactWhatsapp>
+                          <ReactWhatsapp
+                            className="flex gap-1"
+                            number="+6282333899903"
+                            message="Hello World!!!"
+                          >
+                            <FaWhatsapp /> <p>0{data.no_tel}</p>
+                          </ReactWhatsapp>
                         </dd>
                       </div>
 
