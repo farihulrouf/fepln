@@ -174,7 +174,10 @@ export default function Customers({ user, isBoolean }) {
         <>
           <div className="flex space-x-2 items-center">
             <input
-              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none mt-4 mb-4"
+              className="appearance-none bg-transparent 
+              border-none 
+              w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:ring-0 focus:ring-offset-0
+              mt-4 mb-4"
               type="text"
               placeholder="Type Customers Name"
               aria-label="Meteran"

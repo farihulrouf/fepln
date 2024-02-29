@@ -244,7 +244,7 @@ const NewTrans = ({ customerData, price, transaction, setGetcall }) => {
                     defaultValue={kubik}
                     id="quantity-input"
                     placeholder="input"
-                    className="bg-white border-none w-24"
+                    className="bg-white border-none text-center w-24 focus:ring-0 focus:ring-offset-0"
                  
                   
                   />

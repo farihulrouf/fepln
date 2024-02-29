@@ -96,7 +96,10 @@ export default function ListTransaction({ user }) {
         <>
           <div>
             <input
-              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none mt-4 mb-4"
+              className="appearance-none 
+              bg-transparent border-none w-full 
+              text-gray-700 mr-3 py-1 px-2 
+              leading-tight mt-4 mb-4 focus:ring-0 focus:ring-offset-0"
               type="text"
               placeholder="Type Customers Name"
               aria-label="Meteran"
