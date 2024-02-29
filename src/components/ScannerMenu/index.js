@@ -93,7 +93,7 @@ const ScannerMenu = ({ user }) => {
   //console.log('jakshdiajdh',customer)
   return (
     <React.Fragment>
-      <div className="flex space-x-4 mb-2 mt-4">
+      <div className="flex space-x-4 mb-2 mt-3">
       <label>
         <input
           type="radio"

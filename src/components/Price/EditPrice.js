@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { IoChevronBack } from "react-icons/io5";
 import ServiceApi from "../../services/ServiceApi";
 import Spinner from "../Spinner";
-const EditPrice = ({ setIsupdate, idprice }) => {
+import { FaChevronLeft } from "react-icons/fa";
+const EditPrice = ({ setIsupdate, idprice, textMenu, getPrice }) => {
   const [loading, setLoading] = useState(false);
   const [price, setPrice] = useState(null);
-  const [data, setData] = useState(null)
-  //console.log(setIsupdate)
-  const backPrice = () => {
-    console.log("rest");
-    // setIsupdate
-  };
+  const [data, setData] = useState(null);
+
   useEffect(() => {
     getIdPrice(idprice);
   }, []);
@@ -31,21 +27,24 @@ const EditPrice = ({ setIsupdate, idprice }) => {
   };
 
   const onChangeSave = () => {
-    setLoading(true)
+    setLoading(true);
     ServiceApi.updatePrice(idprice, data)
-    .then((response) => {
-      //console.log('di dalam',response.data)
-      setLoading(false)
-    }).catch((e) => {
-      setLoading(false)
-    })
-  }
+      .then((response) => {
+        //console.log('di dalam',response.data)
+        setLoading(false);
+        setIsupdate(false);
+        getPrice()
+      })
+      .catch((e) => {
+        setLoading(false);
+      });
+  };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     // console.log(event.target)
     setData({ ...data, [name]: value });
   };
- // console.log('cek',data)
+  // console.log('cek',data)
   return (
     <React.Fragment>
       {loading ? (
@@ -53,9 +52,14 @@ const EditPrice = ({ setIsupdate, idprice }) => {
       ) : (
         <React.Fragment>
           <div className="px-6">
-            <button className="absolute top-[50px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center">
-              <IoChevronBack onClick={backPrice} />
-              Price
+            <button
+              className="absolute top-[49px] 
+            left-20 px-1 mt-2 text-[12px] 
+            flex space-x-2 items-center"
+              onClick={() => setIsupdate(false)}
+            >
+              <FaChevronLeft size={16} />
+              <span className="text-sm">{textMenu}</span>
             </button>
           </div>
           <div className="container mx-auto p4-10">

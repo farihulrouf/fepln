@@ -38,7 +38,7 @@ const Price = () => {
       ) : (
         <>
           {isUpdate ? (
-            <EditPrice setIsupdate={setIsupdate} idprice={idPrice} />
+            <EditPrice setIsupdate={setIsupdate} idprice={idPrice} textMenu="Price" getPrice={getPrice} />
           ) : (
             <div className="flex flex-col">
               <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
