@@ -161,7 +161,7 @@ export default function Customers({ user, isBoolean }) {
  // console.log('ini test', currentUser)
 
   return (
-    <div className="realtive px-2">
+    <div className="realtive">
       {isUpdate === 1 ? (
         onCalldata(currentUser, idCustomer)
       ) : isUpdate === 2 ? (
@@ -181,7 +181,7 @@ export default function Customers({ user, isBoolean }) {
             {user.typeuser === "Admin" ? (
               <button
                 onClick={() => setIsupdate(2)}
-                className="px-1 py-1 rounded-full bg-teal-800 text-white text-bold"
+                className="px-1 py-1 rounded-full bg-blue-600 text-white text-bold"
               >
                 <IoAdd />
               </button>
