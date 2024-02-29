@@ -49,7 +49,7 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate, textMenu }) => {
             <>
               <button
                 className="absolute top-[49px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center"
-                onClick={() => setIsEdit(0)}
+                onClick={() => setIsupdate(0)}
               >
                 <FaChevronLeft size={16} />
                 <span className="text-sm">{textMenu}</span>
