@@ -123,14 +123,14 @@ const Scanner = (props) => {
         */}
         <div className="flex space-x-2 border justify-between w-1/2 rounded-lg">
           <button
-            className="rounded-l-lg hover:bg-blue-500 py-2 px-1 flex gap-2 items-center"
+            className="rounded-l-lg hover:bg-blue-500 hover:-text-white py-2 px-1 flex gap-2 items-center"
             onClick={() => handleClickAdvanced()}
           >
             <MdQrCodeScanner />
             <span className="text-sm">Scan {props.type}</span>
           </button>
           <button
-            className="py-2 px-1 rounded-r-lg hover:bg-red-500 text-sm flex gap-2 items-center"
+            className="py-2 px-1 rounded-r-lg hover:bg-red-500 hover:-text-white text-sm flex gap-2 items-center"
             onClick={() => handleStop()}
           >
             <FaRegStopCircle />
