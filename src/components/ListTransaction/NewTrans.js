@@ -21,7 +21,7 @@ import { IoPrintOutline } from "react-icons/io5";
 import Barcode from "react-barcode";
 import { MdOutlineVerified } from "react-icons/md";
 import { FaChevronLeft } from "react-icons/fa";
-
+import formatNumber from "../formatNumber";
 const NewTrans = ({ customerData, price, transaction, setGetcall }) => {
   // const [customerData, setcustomerData] = useState(null);
   const notify = () => toast("Transaction Saved");
@@ -245,7 +245,7 @@ const NewTrans = ({ customerData, price, transaction, setGetcall }) => {
                   <p className="text-[10px] px-2">Total used</p>
                   <div className="pl-2 flex items-center gap-1">
                     <BsSpeedometer />
-                    {transaction?.meteran}
+                    {formatNumber(transaction?.meteran)}
                   </div>
                 </div>
                 <div className="text-white w-20 bg-teal-500">
