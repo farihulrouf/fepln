@@ -239,12 +239,13 @@ const NewTrans = ({ customerData, price, transaction, setGetcall }) => {
                 
               </div>
               */}
+            
               <div className="mt-2 mb-2 border rounded-lg flex justify-between">
                 <div className="text-white w-24 bg-blue-600 rounded-l-lg">
                   <p className="text-[10px] px-2">Last Month</p>
                   <div className="pl-2 flex items-center gap-1">
                     <BsSpeedometer />
-                    {transaction?.meteran}
+                    {transaction?.last_meteran}
                   </div>
                 </div>
                 <input
