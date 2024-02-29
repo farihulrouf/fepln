@@ -47,6 +47,7 @@ export default function Customers({ user, isBoolean }) {
   };
   const onChangeBack = () => {
     setMenuCount(1);
+    //console.log('test')
   };
   const getPrice = () => {
     ServiceApi.getallPrice()
@@ -99,11 +100,11 @@ export default function Customers({ user, isBoolean }) {
   };
   const onChange = (no_id, id_customer) => {
     // console.log('this one',data)
-    if (isBoolean === 0) {
+    if (isBoolean === true) {
       setCurrentUser(no_id);
       setIdCustomer(id_customer);
       setIsupdate(1);
-    } else if (isBoolean === 1) {
+    } else if (isBoolean === false) {
      // console.log("boolean", no_id, isBoolean);
       getCustomerDetail(no_id);
       getTransactionDetail(no_id);
