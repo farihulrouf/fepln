@@ -121,7 +121,7 @@ const ScannerMenu = ({ user }) => {
       <div className="py-0">
         {getCall ? (
           <>
-            <NewTrans customerData={customer} price={price} transaction={transaction} />
+            <NewTrans customerData={customer} price={price} transaction={transaction}  setGetcall={setGetcall} />
           </>
         ) : (
           <>

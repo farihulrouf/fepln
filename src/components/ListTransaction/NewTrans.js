@@ -22,7 +22,7 @@ import Barcode from "react-barcode";
 import { MdOutlineVerified } from "react-icons/md";
 import { FaChevronLeft } from "react-icons/fa";
 
-const NewTrans = ({ customerData, price, transaction }) => {
+const NewTrans = ({ customerData, price, transaction, setGetcall }) => {
   // const [customerData, setcustomerData] = useState(null);
   const notify = () => toast("Transaction Saved");
   const [loading, setLoading] = useState(false);
@@ -126,7 +126,13 @@ const NewTrans = ({ customerData, price, transaction }) => {
   };
 
   //console.log('data', price)
-
+  const getBack = () => {
+    console.log(setGetcall)
+    //setGetcall
+    //console.log(!setGetcall)
+   // setIsUpdate(1);
+    //onChangeBack();
+  };
   return (
     <div className="py-">
       {customerData === null ? (
@@ -137,7 +143,9 @@ const NewTrans = ({ customerData, price, transaction }) => {
             <Spinner />
           ) : (
             <>
-              <button className="absolute top-[50px] left-20 px-1 mt-2 text-[12px] flex space-x-2 items-center">
+              <button className="absolute top-[50px] 
+              left-20 px-1 mt-2 text-[12px] 
+              flex space-x-2 items-center"  onClick={() => getBack() }>
                 <FaChevronLeft size={16} />
                 QRCode
               </button>
