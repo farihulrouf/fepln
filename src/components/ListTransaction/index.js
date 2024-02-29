@@ -52,7 +52,7 @@ export default function ListTransaction({ user }) {
     return (
       <>
         {menuCount === 0 ? (
-          <div>
+          <div className="mt-4">
             <CardProfile
               id={id}
               user={user}
