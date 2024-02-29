@@ -56,13 +56,15 @@ const NewTrans = ({ customerData, price, transaction, setGetcall }) => {
 
   const onChanData = (e) => {
     setKubik(e.target.value);
-    if (transaction === undefined) {
-      setBayar((e.target.value - 0) * price[0].harga);
-      setNilai(e.target.value - 0);
-    } else {
+  
       var x = 0;
       var harga_ = 0;
-      x = e.target.value - transaction.meteran;
+      if(transaction === undefined) {
+        x = e.target.value - 0
+      }
+      else {
+        x = e.target.value - transaction.meteran;
+      }
       var harga_normal = 0;
       var harga_update = 0;
       if (x <= price[0].maximum) {
@@ -95,8 +97,13 @@ const NewTrans = ({ customerData, price, transaction, setGetcall }) => {
         //console.log(harga_akhir+harga_normal+harga_update,"ini harga_awal")
         setBayar(harga_akhir + harga_normal + harga_update);
       }
-      setNilai(e.target.value - transaction.meteran);
-    }
+      if(transaction === undefined ) {
+        setNilai(e.target.value - 0)
+      }
+      else {
+        setNilai(e.target.value - transaction.meteran);
+      }
+    
   };
   //console.log('test data',transaction)
   const saveData = () => {
