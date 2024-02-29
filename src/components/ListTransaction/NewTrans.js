@@ -222,7 +222,7 @@ const NewTrans = ({ customerData, price, transaction, setGetcall }) => {
                     {formatNumber(transaction?.meteran)}
                   </div>
                 </div>
-                <div className="text-white w-20 bg-teal-500">
+                <div className="text-white w-20 bg-orange-500">
                   <p className="text-[10px] px-2">Last Month</p>
                   <div className="pl-2 flex items-center gap-1">
                     <BsThermometerSun />
@@ -237,7 +237,7 @@ const NewTrans = ({ customerData, price, transaction, setGetcall }) => {
                   placeholder="999"
                   className="bg-white border-none w-24 outline-none focus:outline-none"
                 />
-                <div className="text-white w-24 bg-pink-500 rounded-r-lg">
+                <div className="text-white w-24 bg-teal-500 rounded-r-lg">
                   <p className="text-[10px] px-2 text-right">Now</p>
                   <div className="pr-2 flex justify-end items-center gap-1">
                     {nilai}
