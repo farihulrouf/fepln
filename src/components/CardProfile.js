@@ -66,14 +66,12 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate, textMenu }) => {
                     {data.name}
                   </h3>
 
-                 
-                    <p className="mt-1 flex gap-1 items-center text-sm text-gray-500">
-                      Active <MdOutlineVerified />
-                    </p>
-                
+                  <p className="mt-1 flex gap-1 items-center text-sm text-gray-500">
+                    Active <MdOutlineVerified />
+                  </p>
                 </div>
 
-                {user.typeuser === "Admin" && textMenu=== "Customers" ? (
+                {user.typeuser === "Admin" && textMenu === "Customers" ? (
                   <MdModeEditOutline
                     size={25}
                     className="absolute right-4"

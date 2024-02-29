@@ -58,6 +58,7 @@ export default function Customers({ user, isBoolean }) {
         console.log(e);
       });
   };
+  //console.log('cek is', isBoolean)
   const onCalldata = (id, id_customer) => {
     return (
       <>
@@ -178,7 +179,7 @@ export default function Customers({ user, isBoolean }) {
               aria-label="Meteran"
               onChange={(e) => onChangeSearch(e.target.value)}
             />
-            {user.typeuser === "Admin" ? (
+            {user.typeuser === "Admin"  && isBoolean === true ? (
               <button
                 onClick={() => setIsupdate(2)}
                 className="px-1 py-1 rounded-full bg-blue-600 text-white text-bold"

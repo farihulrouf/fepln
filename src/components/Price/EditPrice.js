@@ -33,7 +33,7 @@ const EditPrice = ({ setIsupdate, idprice, textMenu, getPrice }) => {
         //console.log('di dalam',response.data)
         setLoading(false);
         setIsupdate(false);
-        getPrice()
+        getPrice();
       })
       .catch((e) => {
         setLoading(false);

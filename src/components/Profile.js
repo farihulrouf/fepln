@@ -69,9 +69,7 @@ export default function Profile({ user }) {
             onClick={onChageDefault}
           >
             <FaChevronLeft size={16} />{" "}
-            <span className="text-sm">
-            Menu {menuAf ? <>Tes</> : <></>}{" "}
-            </span>
+            <span className="text-sm">Menu {menuAf ? <>Tes</> : <></>} </span>
           </button>
         </div>
       ) : null}
@@ -81,7 +79,7 @@ export default function Profile({ user }) {
       ) : menu === 2 ? (
         <Report />
       ) : menu === 3 ? (
-        <Customers user={user} isBoolean={isBoolean} l={l} />
+        <Customers user={user} isBoolean={true} />
       ) : menu === 4 ? (
         <ListTransaction user={user} />
       ) : menu === 5 ? (

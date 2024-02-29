@@ -15,7 +15,7 @@ const ScannerMenu = ({ user }) => {
   const [decodedValue, setDecodedValue] = useState(43243435);
   const [isUpdate, setIsupdate] = useState(0);
   const [transaction, setTransaction] = useState(null)
-  const isBoolean = 1
+  const isBoolean = false
   useEffect(() => {
     // getAdminBoard()
      getPrice();
