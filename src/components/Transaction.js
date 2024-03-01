@@ -448,21 +448,24 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </span>
             </div>
-
-            {/*  (`No INV    : ${currentTrans.noinv}`) */}
             {user.typeuser === "Admin" ? (
               <div className="flex justify-end py-4 mt-8">
                 {isPrint === true ? (
                   <div className="flex space-x-4">
                     <ReactWhatsapp
                       // encodeURIComponent
+
                       number={`+62${data?.no_tel.toString()}`}
                       message={`${decodeUriComponent(
-                        `Anggota%20HIPPAM%20WOTAN%20Yth%2C%20` +
+                        `Anggota%20HIPPAM%20WOTAN%20Yth%2C` +
                           `*${data?.name}*` +
-                          `%20%0A%20%0ATerima%20kasih%2C%20Anda%20telah%20membayar%20Tagihan%0ARp` +
+                          `%20%0A%20%0ATerima%20kasih%2C%20Anda%20telah%20membayar%20Tagihan%0ADengan%20rician%0A----------------------------------------%0A` +
+                          `*${currentTrans?.meteran}*` +
+                          `%20%20kubik%20%20%20%20%20%20%20%20%20%20%20` +
+                          `*${currentTrans?.amount.toString()}*` +
+                          `%0A%20Abond%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20*5000*%0A----------------------------------------%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Rp%20` +
                           `*${(currentTrans?.amount + 5000).toString()}*` +
-                          `.%0A%0A%0A%0A%28Pesan%20ini%20dikirim%20otomatis%20oleh%20sistem%20mohon%20tidak%20membalas%20pesan%20ini%29`
+                          `%0A%0A%0A%20%20%20%20%20%20%20%0A%0A%0A%0A%28Pesan%20ini%20dikirim%20otomatis%20oleh%20sistem%20mohon%20tidak%20membalas%20pesan%20ini%29`
                       )}`}
                     >
                       <button className="px-2 py-1 bg-teal-600 rounded-sm text-white flex gap-1 items-center">
@@ -484,11 +487,15 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                       // encodeURIComponent
                       number={`+62${data?.no_tel.toString()}`}
                       message={`${decodeUriComponent(
-                        `Anggota%20HIPPAM%20WOTAN%20Yth%2C%20` +
+                        `Anggota%20HIPPAM%20WOTAN%20Yth%2C` +
                           `*${data?.name}*` +
-                          `%20%0A%20%0ABulan%20ini%2C%20Anda%20memiliki%20Tagihan%20Sebesar%0ARp` +
+                          `%20%0A%20%0ATerima%20kasih%2C%20Anda%20Memiliki%20Tagihan%20Pembayaran%0ADengan%20rician%0A----------------------------------------%0A` +
+                          `*${currentTrans?.meteran}*` +
+                          `%20%20kubik%20%20%20%20%20%20%20%20%20%20%20` +
+                          `*${currentTrans?.amount.toString()}*` +
+                          `%0A%20Abond%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20*5000*%0A----------------------------------------%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Rp%20` +
                           `*${(currentTrans?.amount + 5000).toString()}*` +
-                          `.%0A%0A%0A%0A%28Pesan%20ini%20dikirim%20otomatis%20oleh%20sistem%20mohon%20tidak%20membalas%20pesan%20ini%29`
+                          `%0A%0A%0A%20%20%20%20%20%20%20%0A%0A%0A%0A%28Pesan%20ini%20dikirim%20otomatis%20oleh%20sistem%20mohon%20tidak%20membalas%20pesan%20ini%29`
                       )}`}
                     >
                       <button className="px-2 py-1 bg-teal-600 rounded-sm text-white flex gap-1 items-center">
