@@ -412,32 +412,43 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
 
             <div>{isEdit ? <p>{currentTrans?.meteran}</p> : null}</div>
             <div className="py-2 flex relative">
-              <div className="w-2/3">
-                <label
-                  htmlFor="quantity-input"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Meteran:
-                </label>
-                <p className="text-xl">{kubik}</p>
-              </div>
-              <p className="flex text-sm text-gray-500 justify-end w-1/3">
+              <p className="flex text-sm text-gray-500 justify-end w-full">
                 <span>
                   {moment(currentTrans?.updated_at).format("MM/DD/YYYY")}
                 </span>
               </p>
-
-              <div className="mt-5 absolute right-0">
-                <div className="flex flex-row items-center justify-between py-4">
-                  <div className="flex flex-col items-start">
-                    <span className="text-lg font-medium text-gray-800">
-                      Rp{" "}
-                      {bayar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                    </span>
-                  </div>
-                </div>
-              </div>
             </div>
+            <div className="flex justify-between w-full">
+              <div className="flex space-x-24">
+                <span>Used</span>
+                <span>{kubik}</span>
+              </div>
+              <span className="text-lg text-gray-800 w-44 flex justify-end">
+                {bayar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </span>
+            </div>
+            <div className="flex justify-between w-full">
+              <div className="flex space-x-24">
+                <span>Abond</span>
+                <span></span>
+              </div>
+              <span className="text-lg text-gray-800 w-44 flex justify-end">
+                5,000
+              </span>
+            </div>
+            <div className="flex mt-6 justify-between w-full">
+              <div className="flex space-x-24">
+                <span>Total</span>
+                <span></span>
+              </div>
+              <span className="text-lg font-medium text-gray-800 w-44 flex justify-end">
+                Rp{" "}
+                {(bayar + 5000)
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </span>
+            </div>
+
             {/*  (`No INV    : ${currentTrans.noinv}`) */}
             {user.typeuser === "Admin" ? (
               <div className="flex justify-end py-4 mt-8">
@@ -476,7 +487,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                         `Anggota%20HIPPAM%20WOTAN%20Yth%2C%20` +
                           `*${data?.name}*` +
                           `%20%0A%20%0ABulan%20ini%2C%20Anda%20memiliki%20Tagihan%20Sebesar%0ARp` +
-                          `*${(currentTrans?.amount + 5000).toString()}*`+
+                          `*${(currentTrans?.amount + 5000).toString()}*` +
                           `.%0A%0A%0A%0A%28Pesan%20ini%20dikirim%20otomatis%20oleh%20sistem%20mohon%20tidak%20membalas%20pesan%20ini%29`
                       )}`}
                     >

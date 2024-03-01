@@ -75,24 +75,24 @@ const User = () => {
                   <Spinner />
                 ) : (
                   <React.Fragment>
-                    {userData[0].data.map((users, index) => {
+                    {userData[0]?.data.map((users, index) => {
                       return (
                         <tr key={index}>
                           <td className="py-2 whitespace-nowrap">
                             <div className="flex items-center">
                               <div className="">
                                 <div className="text-sm font-medium text-gray-900">
-                                  {users.username}
+                                  {users?.username}
                                 </div>
                                 <div className="text-sm text-gray-500">
-                                  {users.email}
+                                  {users?.email}
                                 </div>
                               </div>
                             </div>
                           </td>
                           <td className="py-2 whitespace-nowrap">
                             <div className="text-sm text-gray-500">
-                              {users.typeuser}
+                              {users?.typeuser}
                             </div>
                           </td>
                           <td className="py-2 whitespace-nowrap">
@@ -107,7 +107,7 @@ const User = () => {
                     })}
                     <div>
                       <p className="text-sm px-2 py-2">
-                        Total {userData[0].metaData[0].totalDocuments}
+                        Total {userData[0].metaData[0]?.totalDocuments}
                       </p>
                     </div>
                   </React.Fragment>
@@ -126,7 +126,7 @@ const User = () => {
             }
             onPageChange={handlePageClick}
             pageRangeDisplayed={3}
-            pageCount={userData[0].metaData[0].totalPages}
+            pageCount={userData[0].metaData[0]?.totalPages}
             previousLabel={
               <span className="h-10 flex items-center justify-center bg-lightgray rounded-md">
                 <FaChevronLeft />
