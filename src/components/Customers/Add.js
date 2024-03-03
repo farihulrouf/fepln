@@ -9,7 +9,7 @@ const Add = ({ setIsupdate }) => {
   //console.log(onChangeAdd)
   const initialState = {
     name: null,
-    no_id: Math.random().toFixed(6).split(".")[1],
+    no_id: null,
     gender: null,
     no_tel: null,
     addres: null,
@@ -92,6 +92,21 @@ const Add = ({ setIsupdate }) => {
           name="name"
           placeholder="Enter your name"
           value={data.name}
+          onChange={handleInputChange}
+        />
+      </div>
+      
+      <div className="mb-2">
+        <label className="block text-gray-700 font-bold mb-2">
+          No Id
+        </label>
+        <input
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="number"
+          id="noid"
+          name="no_id"
+          value={data.no_id}
+          placeholder="Enter your id"
           onChange={handleInputChange}
         />
       </div>
