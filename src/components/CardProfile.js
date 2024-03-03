@@ -141,7 +141,7 @@ const CardProfile = ({ id, user, onChangeBack, setIsupdate, textMenu }) => {
               <div className="">
                 <Barcode
                   height={14}
-                  width={4.5}
+                  width={3}
                   fontSize={14}
                   textPosition="bottom"
                   value={data.no_id}
