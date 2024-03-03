@@ -90,9 +90,9 @@ const Report = () => {
             <div className="px-4 text-gray-700">
               <h3 className="text-sm tracking-wider">Total Transactions</h3>
               <div className="flex">
-                <p className="text-xl">{report[0].count}</p>
+                <p className="text-xl">{report[0]?.count}</p>
                 <LuSpace className="text-blue-500" />
-                <p className="text-xl text-red-500">{report[1].count}</p>
+                <p className="text-xl text-red-500">{report[1]?.count}</p>
               </div>
             </div>
           </div>
@@ -104,12 +104,12 @@ const Report = () => {
               <h3 className="text-sm tracking-wider">Total Usage</h3>
               <div className="flex space-x-2 items-center">
                 <div className="flex">
-                  <p className="text-xl">{report[0].used}</p>{" "}
+                  <p className="text-xl">{report[0]?.used}</p>{" "}
                   <span className="text-[10px]">Kubik</span>
                 </div>
                 <LuSpace className="text-blue-500" />
                 <div className="flex text-red-500">
-                  <p className="text-xl">{report[1].used}</p>{" "}
+                  <p className="text-xl">{report[1]?.used}</p>{" "}
                   <span className="text-[10px]">Kubik</span>
                 </div>
               </div>
@@ -122,10 +122,10 @@ const Report = () => {
             <div className="px-4 text-gray-700">
               <h3 className="text-sm tracking-wider">Average/kubik</h3>
               <div className="flex gap-1 ">
-                <p className="text-xl">{report[0].avg_used.toFixed(2)}</p>
+                <p className="text-xl">{report[0]?.avg_used.toFixed(2)}</p>
                 <LuSpace className="text-blue-500" />
                 <p className="text-xl text-red-600">
-                  {report[1].avg_used.toFixed(2)}
+                  {report[1]?.avg_used.toFixed(2)}
                 </p>
               </div>
             </div>
@@ -137,10 +137,10 @@ const Report = () => {
             <div className="px-4 text-gray-700">
               <h3 className="text-sm tracking-wider">Cash Flow</h3>
               <div className="flex gap-1 ">
-                <p className="text-xl">Rp {formatNumber(report[0].total)}</p>
+                <p className="text-xl">Rp {formatNumber(report[0]?.total)}</p>
                 <LuSpace className="text-blue-500" />
                 <p className="text-xl text-red-600">
-                  Rp {formatNumber(report[1].total)}
+                  Rp {formatNumber(report[1]?.total)}
                 </p>
               </div>
             </div>
