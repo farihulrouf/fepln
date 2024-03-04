@@ -91,7 +91,7 @@ export default function Profile({ user }) {
           <p className="text-lg py-4 mb-4 px-2">List Transaction</p>
           <Barcode
             height={15}
-            width={4}
+            width={3}
             fontSize={14}
             textPosition="bottom"
             value={user.no_id}
