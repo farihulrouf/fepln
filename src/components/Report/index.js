@@ -19,7 +19,7 @@ const Report = () => {
   const [report, setReport] = useState(null);
 
   useEffect(() => {
-    getReport(2, 2);
+    getReport(3, 3);
   }, []);
 
   const rupiah = (number) => {
