@@ -316,7 +316,11 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     var harga_z = 0;
    // console.log("cek price", price);
     // console.log("meteran", currentTrans.meteran, currentTrans.last_meteran);
-    if (currentTrans.last_meteran <= price[0].maximum) {
+    if( currentTrans.last_meteran === 0 ) {
+      meteran_x = 0;
+      harga_x = 0
+    }
+    else if (currentTrans.last_meteran <= price[0].maximum) {
       meteran_x = currentTrans.last_meteran;
       harga_x = meteran_x * price[0].harga;
       //console.log("harga normal", currentTrans.last_meteran * price[0].harga);
@@ -361,7 +365,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
               meteran_y,
               meteran_z
             );
-            console.log("printData", printData);
+           // console.log("printData", printData);
             const characteristic = await service.getCharacteristic(
               "00002af1-0000-1000-8000-00805f9b34fb"
             );
