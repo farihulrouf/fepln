@@ -315,23 +315,24 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     var harga_y = 0;
     var harga_z = 0;
    // console.log("cek price", price);
-   // console.log("meteran", currentTrans.meteran);
-    if (currentTrans.meteran <= price[0].maximum) {
-      meteran_x = currentTrans.meteran;
+    // console.log("meteran", currentTrans.meteran, currentTrans.last_meteran);
+    if (currentTrans.last_meteran <= price[0].maximum) {
+      meteran_x = currentTrans.last_meteran;
       harga_x = meteran_x * price[0].harga;
-      //console.log("harga normal", currentTrans.meteran * price[0].harga);
+      //console.log("harga normal", currentTrans.last_meteran * price[0].harga);
     } else if (
-      currentTrans.meteran > price[0].maximum &&
-      currentTrans.meteran < price[1].maximum
+      currentTrans.last_meteran > price[0].maximum &&
+      currentTrans.last_meteran < price[1].maximum
     ) {
       meteran_x = price[0].maximum;
       harga_x = meteran_x * price[0].harga;
-      //console.log('meterran awal', meteran_x, harga_x)
-      meteran_y = currentTrans.meteran - meteran_x;
+     
+      meteran_y = currentTrans.last_meteran - meteran_x;
       harga_y = meteran_y * price[1].harga;
+     // console.log('meterran awal', meteran_x, harga_x, meteran_y, harga_y)
       //console.log('meteran y', meteran_y, harga_y)
-    } else if (currentTrans.meteran >= price[2].minimum) {
-      meteran_z = currentTrans.meteran - price[1].maximum;
+    } else if (currentTrans.last_meteran >= price[2].minimum) {
+      meteran_z = currentTrans.last_meteran - price[1].maximum;
       harga_z = price[2].harga * meteran_z;
       //console.log('meteran', meteran_z, harga_z)
       meteran_y = price[1].maximum - price[0].maximum;
@@ -342,7 +343,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       //console.log('meteran pertama', meteran_x, harga_x)
     }
     //console.log('hasil akhir',meteran_y,meteran_z)
-
+    
     try {
       const deviceList = await getPrintDeviceList();
       const gatt = await deviceList?.gatt?.connect();
@@ -396,10 +397,9 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     } catch (error) {
       console.log(error);
     }
+  
   };
-  // const number_phone = "0"+data?.no_tel.toString()
-  //console.log(number_phone)
-  // const text_whatsapp = `Anggota%20HIPPAM%20WOTAN%20Yth%2C%20`+`${data?.name}`+`%20%0A%20%0ATerima%20kasih%2C%20Anda%20telah%20membayar%20Tagihan%0ARp`+`${(currentTrans?.amount+5000)}`+`.%0A%0A%0A%0A%28Pesan%20ini%20dikirim%20otomatis%20oleh%20sistem%20mohon%20tidak%20membalas%20pesan%20ini%29`
+  
   return (
     <React.Fragment>
       <div className="relative">
