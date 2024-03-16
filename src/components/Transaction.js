@@ -464,7 +464,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                         `Anggota%20HIPPAM%20WOTAN%20Yth%2C` +
                           `*${data?.name}*` +
                           `%20%0A%20%0ATerima%20kasih%2C%20Anda%20telah%20membayar%20Tagihan%0ADengan%20rician%0A----------------------------------------%0A` +
-                          `*${currentTrans?.meteran}*` +
+                          `*${currentTrans?.last_meteran}*` +
                           `%20%20kubik%20%20%20%20%20%20%20%20%20%20%20` +
                           `*${currentTrans?.amount.toString()}*` +
                           `%0A%20Abond%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20*5000*%0A----------------------------------------%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Rp%20` +
@@ -494,7 +494,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
                         `Anggota%20HIPPAM%20WOTAN%20Yth%2C` +
                           `*${data?.name}*` +
                           `%20%0A%20%0ATerima%20kasih%2C%20Anda%20Memiliki%20Tagihan%20Pembayaran%0ADengan%20rician%0A----------------------------------------%0A` +
-                          `*${currentTrans?.meteran}*` +
+                          `*${currentTrans?.last_meteran}*` +
                           `%20%20kubik%20%20%20%20%20%20%20%20%20%20%20` +
                           `*${currentTrans?.amount.toString()}*` +
                           `%0A%20Abond%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20*5000*%0A----------------------------------------%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Rp%20` +
