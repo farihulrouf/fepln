@@ -211,7 +211,7 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       .line(`No INV    : ${currentTrans.noinv}`)
       .line(`Nama      : ${data.name}`)
       .line(`Tanggal   : ${moment(new Date()).format("MM/DD/YYYY HH:mm:ss")}`)
-      .line(`Meteran   : ${currentTrans.meteran}`)
+      .line(`Meteran   : ${currentTrans.last_meteran}`)
       .line(
         `Bayar     : ${Number(bayar + 5000)
           .toString()

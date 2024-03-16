@@ -115,7 +115,7 @@ const NewTrans = ({ customerData, price, transaction, setGetcall }) => {
       meteran: kubik,
       last_meteran: nilai,
     };
-
+    console.log(dataTransaction,'save')
     setLoading(true);
     ServiceApi.createTransactions(dataTransaction)
       .then((response) => {
@@ -127,6 +127,7 @@ const NewTrans = ({ customerData, price, transaction, setGetcall }) => {
         console.log(e);
         setLoading(false);
       });
+    
   };
 
   //console.log('data', price)
