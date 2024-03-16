@@ -112,11 +112,12 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
   const onChangeEdit = () => {
     const edit = {
       status: true,
-      meteran: kubik,
-      amount: bayar,
-      customer: currentTrans.customer,
+      //meteran: kubik,
+      //amount: bayar,
+      //customer: currentTrans.customer,
     };
     setLoading(true);
+    
     ServiceApi.updateTransactions(edit, currentTrans._id)
       .then((response) => {
         setLoading(false);
@@ -127,19 +128,22 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
       .catch((e) => {
         setLoading(false);
       });
+    
   };
   //console.log('idtrans', idtrans)
   const saveData = () => {
     if (setIsupdate === 0) {
+      //console.log('save dat')
       onChangeSave();
     } else {
+      //console.log('edit di lakukan')
       onChangeEdit();
     }
     //setIsSave(false);
   };
   const onChangeSave = () => {
     //console.log("cek data");
-
+    //console.log('Cek data')
     const dataTransaction = {
       title: "Air",
       noinv: generate,
@@ -310,8 +314,8 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
     var harga_x = 0;
     var harga_y = 0;
     var harga_z = 0;
-    console.log("cek price", price);
-    console.log("meteran", currentTrans.meteran);
+   // console.log("cek price", price);
+   // console.log("meteran", currentTrans.meteran);
     if (currentTrans.meteran <= price[0].maximum) {
       meteran_x = currentTrans.meteran;
       harga_x = meteran_x * price[0].harga;
