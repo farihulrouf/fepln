@@ -229,7 +229,16 @@ const Transaction = ({ idtrans, user, setIsupdate }) => {
 
   */
     }
-    if (harga_z === 0 && harga_y != 0) {
+
+    if(harga_x === 0 ) {
+      basePrint
+      .table(InvoiceColumn, [
+        InvoiceColumnHeader,
+        ["Abond", "5,000", "5,000"],
+      ])
+      .newline();
+    }
+    else if (harga_z === 0 && harga_y != 0) {
       basePrint
         .table(InvoiceColumn, [
           InvoiceColumnHeader,
